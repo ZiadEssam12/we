@@ -1,4 +1,7 @@
 // Properly define the global type to avoid TypeScript errors
+
+import { PrismaClient } from "../../prisma/app/generated/prisma/client";
+
 // Note: If using JavaScript (not TypeScript), you can simplify this
 const globalForPrisma = global;
 

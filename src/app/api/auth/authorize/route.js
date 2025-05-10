@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
-import prisma from "@/lib/prisma";
 import bcrypt from "bcrypt";
 import { loginSchema } from "@/schemas/auth";
+import prisma from "@/lib/prisma";
 
 export async function POST(req) {
   try {
