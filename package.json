@@ -4,15 +4,15 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "node vercel-build.js",
     "start": "next start",
     "lint": "next lint",
+    "preinstall": "prisma generate",
+    "build": "prisma generate && next build",
     "postinstall": "prisma generate && flowbite-react patch",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
     "prisma:studio": "prisma studio",
-    "db:seed": "node prisma/seed.js",
-    "vercel-build": "node vercel-build.js"
+    "db:seed": "node prisma/seed.js"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.9.1",
