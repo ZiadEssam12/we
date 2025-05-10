@@ -1,12 +1,20 @@
 import { PrismaClient } from "@prisma/client";
 
-// Prevent multiple instances of Prisma Client in development
+// Properly define the global type to avoid TypeScript errors
+// Note: If using JavaScript (not TypeScript), you can simplify this
 const globalForPrisma = global;
 
-const prisma = globalForPrisma.prisma || new PrismaClient();
+// Create a singleton instance
+const prisma =
+  globalForPrisma.prisma ||
+  new PrismaClient({
+    log:
+      process.env.NODE_ENV === "development"
+        ? ["query", "error", "warn"]
+        : ["error"],
+  });
 
-if (process.env.NODE_ENV !== "production") {
-  globalForPrisma.prisma = prisma;
-}
+// Only assign to global object in development to prevent memory leaks
+if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
 
 export default prisma;
