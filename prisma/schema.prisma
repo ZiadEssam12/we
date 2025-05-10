@@ -5,6 +5,7 @@ datasource db {
  
 generator client {
   provider = "prisma-client-js"
+  output   = "app/generated/prisma/client"
 }
 
 enum UserRole {
@@ -15,6 +16,7 @@ enum UserRole {
  
 model User {
   id            String          @id @default(cuid())
+  userName      String          @unique
   name          String?
   email         String          @unique
   role          UserRole        @default(USER)

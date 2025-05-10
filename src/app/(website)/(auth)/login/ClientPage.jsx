@@ -2,7 +2,7 @@
 "use client";
 
 import { useFormik } from "formik";
-import { Label } from "flowbite-react";
+import { Label, TextInput } from "flowbite-react";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
@@ -20,17 +20,20 @@ export default function LoginPage() {
     onSubmit: async (values) => {
       setLoading(true);
       setError(null); // Clear previous errors
+
+      console.log("values:", values);
+
       try {
         const result = await signIn("credentials", {
           redirect: false, // Prevent redirect
-          email: values.email,
+          userName: values.userName,
           password: values.password,
         });
 
         if (result?.error) {
           setError(result.code);
         } else if (!result.ok) {
-          setError("Authentication failed. Please try again.");
+          setError("حدث خطأ أثناء تسجيل الدخول. حاول مرة أخرى.");
         } else {
           router.push("/"); // Redirect on success
         }
@@ -61,15 +64,15 @@ export default function LoginPage() {
               اسم المستخدم
             </label>
             <div className="mt-2">
-              <input
+              <TextInput
                 id="userName"
-                name="userName"
-                type="userName"
+                type="text"
+                placeholder="اسم المستخدم"
                 autoComplete="userName"
-                className="block w-full rounded-md border-0 py-1.5 pl-3 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6"
                 value={formik.values.userName}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
+                required
               />
             </div>
             {formik.touched.userName && formik.errors.userName && (
@@ -89,15 +92,14 @@ export default function LoginPage() {
               </label>
             </div>
             <div className="mt-2">
-              <input
+              <TextInput
                 id="password"
-                name="password"
                 type="password"
-                autoComplete="current-password"
-                className="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6"
+                placeholder="كلمة المرور"
                 value={formik.values.password}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
+                required
               />
             </div>
             {formik.touched.password && formik.errors.password && (
@@ -114,7 +116,7 @@ export default function LoginPage() {
 
           <div>
             <LoadingButton
-              text="Sign in"
+              text="تسجيل الدخول"
               areaLabel="sign in button"
               valid={formik.isValid && formik.dirty}
               loading={loading}

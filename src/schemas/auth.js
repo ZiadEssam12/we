@@ -2,7 +2,6 @@ import * as yup from "yup";
 
 export const loginSchema = yup.object({
   userName: yup.string().required("اسم المستخدم مطلوب"),
-
   password: yup
     .string()
     .required("كلمة المرور مطلوبة")

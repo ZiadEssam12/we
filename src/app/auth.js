@@ -9,6 +9,8 @@ class CustomError extends CredentialsSignin {
     super(msg);
     this.code = msg;
     this.message = msg;
+    this.name = "CustomError";
+    this.fails = true;
   }
 }
 
@@ -18,23 +20,33 @@ const { handlers, auth, signIn, signOut } = NextAuth({
     CredentialsProvider({
       name: "Credentials",
       credentials: {
-        email: { label: "Email", type: "email" },
-        password: { label: "Password", type: "password" },
+        userName: {
+          label: "اسم المستخدم",
+          type: "text",
+          placeholder: "اسم المستخدم",
+        },
+        password: {
+          label: "كلمة المرور",
+          type: "password",
+          placeholder: "كلمة المرور",
+        },
       },
       async authorize(credentials) {
+        console.log("credentials :  ", credentials);
+
         try {
           // Validate credentials
-          if (!credentials?.email || !credentials?.password) {
-            throw new CustomError("Email and password are required");
+          if (!credentials?.userName || !credentials?.password) {
+            throw new CustomError("اسم المستخدم وكلمة المرور مطلوبان");
           }
 
           const response = await fetch(
-            `${process.env.NEXT_PUBLIC_API_URL}/auth/authorize`,
+            `${process.env.NEXT_PUBLIC_APP_URL}/api/auth/authorize`,
             {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({
-                email: credentials.email,
+                userName: credentials.userName,
                 password: credentials.password,
               }),
             }
@@ -43,12 +55,12 @@ const { handlers, auth, signIn, signOut } = NextAuth({
           const data = await response.json();
 
           if (!response.ok) {
-            throw new CustomError(data.message || "Invalid credentials");
+            throw new CustomError(data.message || "بيانات الاعتماد غير صحيحة");
           }
 
           return {
             id: data.user.id,
-            email: data.user.email,
+            userName: data.user.userName,
           };
         } catch (error) {
           console.error("Authentication error:", error.message);
@@ -62,7 +74,7 @@ const { handlers, auth, signIn, signOut } = NextAuth({
       // Only populate session if token has valid user data
       if (token && !token.error) {
         session.user.id = token.id;
-        session.user.email = token.email;
+        session.user.userName = token.userName;
         return session;
       }
       // Return empty session if there's an error
@@ -76,12 +88,12 @@ const { handlers, auth, signIn, signOut } = NextAuth({
         if (user.error) {
           token.error = user.error;
           delete token.id;
-          delete token.email;
+          delete token.userName;
           delete token.name;
         } else {
           // Valid user, store data in token
           token.id = user.id;
-          token.email = user.email;
+          token.userName = user.userName;
           token.name = user.name;
         }
       }
