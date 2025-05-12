@@ -4,7 +4,6 @@ import { getAllUsers } from "@/lib/api";
 import { getSessionCookieName, setCookiesHeader } from "@/lib/utils";
 import { cookies } from "next/headers";
 import React from "react";
-import NewUser from "./NewUser";
 
 export default async function page() {
   const session = await auth();
@@ -56,12 +55,12 @@ export default async function page() {
     return user;
   });
   return (
-    <div className="flex flex-col text-black py-8">
+    <div className="flex flex-col text-black">
       <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-l from-blue-600 to-purple-600 text-transparent bg-clip-text animate-gradient-text leading-tight text-center mb-6">
         المستخدمين
       </h1>
       <div className="flex flex-col gap-4 w-full">
-        <div className="pt-8 pb-3 w-full">
+        <div className="pt-2 pb-3 w-full">
           <UserDataTableWrapper data={data} columns={columns} />
         </div>
       </div>

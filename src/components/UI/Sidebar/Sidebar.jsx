@@ -3,7 +3,7 @@
 import { Button } from "flowbite-react";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 import React, { useState, useEffect } from "react";
 import {
@@ -20,43 +20,36 @@ import {
 const links = [
   {
     name: "الكابينات الرئيسة",
-    link: "/main-cabinets",
+    link: "/dashboard/main-cabinets",
     icon: MdOutlineStorage,
   },
   {
     name: "الكابينات الفرعية",
-    link: "/sub-cabinets",
+    link: "/dashboard/sub-cabinets",
     icon: MdOutlineDevices,
   },
   {
     name: "إدارة ابراج المحمول",
-    link: "/mobile-towers",
+    link: "/dashboard/mobile-towers",
     icon: MdOutlineSettingsInputAntenna,
   },
   {
     name: "كابينات النحاس",
-    link: "/copper-cabinets",
+    link: "/dashboard/copper-cabinets",
     icon: MdOutlineCable,
   },
 ];
 
 export default function Sidebar() {
   const router = useRouter();
-  const [activeLink, setActiveLink] = useState("");
-  const [isOpen, setIsOpen] = useState(false);
 
-  // Save sidebar state to localStorage
-  useEffect(() => {
-    const savedState = localStorage.getItem("sidebarOpen");
-    if (savedState !== null) {
-      setIsOpen(savedState === "true");
-    }
-  }, []);
+  const currentActiveLink = usePathname();
+
+  const [isOpen, setIsOpen] = useState(false);
 
   const toggleSidebar = () => {
     const newState = !isOpen;
     setIsOpen(newState);
-    localStorage.setItem("sidebarOpen", String(newState));
   };
 
   const handleSignOut = async () => {
@@ -94,7 +87,7 @@ export default function Sidebar() {
             <Link
               href="/dashboard/users"
               className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 ${
-                activeLink === "/users"
+                currentActiveLink === "/dashboard/users"
                   ? "bg-blue-100 text-blue-600 font-medium"
                   : "text-gray-700 hover:bg-gray-100"
               }`}
@@ -105,7 +98,7 @@ export default function Sidebar() {
             </Link>
           )}
           {links.map((link) => {
-            const isActive = activeLink === link.link;
+            const isActive = currentActiveLink === link.link;
             return (
               <Link
                 key={link.name}

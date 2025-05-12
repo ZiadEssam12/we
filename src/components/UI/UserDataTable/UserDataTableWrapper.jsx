@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
-import DataTable from "@/components/UI/DataTable/DataTable";
 import { useSession } from "next-auth/react";
-import NewUser from "@/app/(website)/dashboard/(admin)/users/NewUser";
+import { DataTable } from "../DataTable/DynamicDataTable";
+import { NewUserForm } from "@/app/(website)/dashboard/(admin)/users/NewUserForm";
 
 export default function UserDataTableWrapper({ data, columns }) {
   const [usersData, setUsersData] = useState(data);
@@ -23,7 +23,7 @@ export default function UserDataTableWrapper({ data, columns }) {
     <>
       <div className="w-full mb-4">
         {session?.user?.role === "ADMIN" && (
-          <NewUser setUsersData={setUsersData} />
+          <NewUserForm setUsersData={setUsersData} />
         )}
       </div>
       <div className="overflow-auto w-full">

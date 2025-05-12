@@ -1,8 +1,5 @@
 "use client";
-import {
-  MaterialSymbolsLightClose,
-  MdiLightInformation,
-} from "@/app/icons/Icons";
+import { MaterialSymbolsLightClose } from "@/app/icons/Icons";
 import LoadingButton from "@/components/buttonWithLoading/ButtonWithLoading";
 import Modal from "@/components/UI/Modal/Modal";
 import { createUser } from "@/lib/api";
@@ -15,11 +12,6 @@ import { useFormik } from "formik";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 
-// form inputs
-// name , username , email , phone number , password , confirm password , role
-// role : admin , user , manager
-// role default is user
-
 export default function NewUser({ setUsersData }) {
   const [openModal, setOpenModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -29,7 +21,6 @@ export default function NewUser({ setUsersData }) {
     const result = await createUser({
       user,
     });
-    console.log("result : ", result);
 
     if (!result.success) {
       toast.error(result.message);
@@ -52,7 +43,6 @@ export default function NewUser({ setUsersData }) {
 
   const handleCloseModal = () => {
     setOpenModal(false);
-    setError("");
     formik.resetForm();
   };
   return (
