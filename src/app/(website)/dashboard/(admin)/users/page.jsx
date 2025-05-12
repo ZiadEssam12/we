@@ -26,7 +26,7 @@ export default async function page() {
     );
   }
 
-  const date = await getAllUsers({ headers });
+  let data = await getAllUsers({ headers });
   const columns = [
     {
       accessorKey: "userName",
@@ -45,14 +45,24 @@ export default async function page() {
       header: "الدور",
     },
   ];
+
+  data = data.map((user) => {
+    user.role =
+      user.role === "ADMIN"
+        ? "مشرف"
+        : user.role === "MANAGER"
+        ? "مدير"
+        : "مستخدم";
+    return user;
+  });
   return (
-    <div className="h-screen flex flex-col items-center justify-center text-black py-8">
+    <div className="flex flex-col text-black py-8">
       <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-l from-blue-600 to-purple-600 text-transparent bg-clip-text animate-gradient-text leading-tight text-center mb-6">
         المستخدمين
       </h1>
-      <div className="flex flex-col gap-4 w-full max-w-7xl px-4">
-        <div className="overflow-x-auto pt-8 pb-3">
-          <UserDataTableWrapper data={date} columns={columns} />
+      <div className="flex flex-col gap-4 w-full">
+        <div className="pt-8 pb-3 w-full">
+          <UserDataTableWrapper data={data} columns={columns} />
         </div>
       </div>
     </div>

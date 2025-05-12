@@ -4,17 +4,17 @@ import { Toaster } from "react-hot-toast";
 
 export default function layout({ children }) {
   return (
-    <div className="flex min-h-screen w-full overflow-x-hidden">
-      {/* Sidebar */}
-      <div className="w-[250px] flex-shrink-0">
+    <div className="flex min-h-screen w-full" dir="rtl">
+      {/* Sidebar container */}
+      <div className="flex-shrink-0">
         <Sidebar />
       </div>
 
       {/* Main content area */}
-      <main className="flex-1 p-4">
+      <main className="flex-1 transition-all duration-[350ms] overflow-x-auto p-4">
         <div className="max-w-7xl mx-auto">{children}</div>
       </main>
-      <Toaster position="top-right" reverseOrder={false} />
+      <Toaster position="top-center" reverseOrder={false} />
     </div>
   );
 }

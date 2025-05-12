@@ -5,7 +5,7 @@ import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   MdOutlineStorage,
   MdOutlineDevices,
@@ -13,6 +13,8 @@ import {
   MdOutlineCable,
   MdOutlineDashboard,
   MdOutlineSpaceDashboard,
+  MdMenu,
+  MdChevronRight,
 } from "react-icons/md";
 
 const links = [
@@ -41,6 +43,21 @@ const links = [
 export default function Sidebar() {
   const router = useRouter();
   const [activeLink, setActiveLink] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
+
+  // Save sidebar state to localStorage
+  useEffect(() => {
+    const savedState = localStorage.getItem("sidebarOpen");
+    if (savedState !== null) {
+      setIsOpen(savedState === "true");
+    }
+  }, []);
+
+  const toggleSidebar = () => {
+    const newState = !isOpen;
+    setIsOpen(newState);
+    localStorage.setItem("sidebarOpen", String(newState));
+  };
 
   const handleSignOut = async () => {
     await signOut({ redirect: false });
@@ -50,60 +67,74 @@ export default function Sidebar() {
   const { data: session } = useSession();
 
   return (
-    <aside className="sticky top-0 h-screen border-l border-gray-200 bg-white shadow-sm p-5 z-10 flex flex-col">
-      <div className="flex items-center justify-center mb-8">
-        <h1 className="text-2xl font-bold text-blue-600 flex items-center gap-2">
-          <MdOutlineDashboard size={24} />
-          <span>لوحة التحكم</span>
-        </h1>
-      </div>
+    <>
+      {/* Toggle Button */}
+      <button
+        onClick={toggleSidebar}
+        className="fixed top-4 right-4 z-20 p-2 rounded-full bg-blue-600 text-white hover:bg-blue-700 transition-all duration-[350ms] shadow-md"
+        aria-label="Toggle Sidebar"
+      >
+        {isOpen ? <MdChevronRight size={24} /> : <MdMenu size={24} />}
+      </button>
 
-      <nav className="flex flex-col gap-2 flex-grow">
-        {session?.user?.role === "ADMIN" && (
-          <Link
-            href="/dashboard/users"
-            className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 ${
-              activeLink === "/users"
-                ? "bg-blue-100 text-blue-600 font-medium"
-                : "text-gray-700 hover:bg-gray-100"
-            }`}
-            onClick={() => setActiveLink("/users")}
-          >
-            <MdOutlineSpaceDashboard size={20} className="flex-shrink-0" />
-            <span>إدارة المستخدمين</span>
-          </Link>
-        )}
-        {links.map((link) => {
-          const isActive = activeLink === link.link;
-          return (
+      <aside
+        className={`fixed top-0 right-0 h-screen border-l border-gray-200 bg-white shadow-lg z-10 flex flex-col overflow-hidden transition-all duration-[350ms] ${
+          isOpen ? "w-[250px] opacity-100" : "w-0 opacity-0"
+        }`}
+      >
+        <div className="flex items-center justify-center mb-8 mt-16">
+          <h1 className="text-2xl font-bold text-blue-600 flex items-center gap-2">
+            <MdOutlineDashboard size={24} />
+            <span>لوحة التحكم</span>
+          </h1>
+        </div>
+
+        <nav className="flex flex-col gap-2 flex-grow px-5">
+          {session?.user?.role === "ADMIN" && (
             <Link
-              key={link.name}
-              href={link.link}
+              href="/dashboard/users"
               className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 ${
-                isActive
+                activeLink === "/users"
                   ? "bg-blue-100 text-blue-600 font-medium"
                   : "text-gray-700 hover:bg-gray-100"
               }`}
-              onClick={() => setActiveLink(link.link)}
+              onClick={() => setActiveLink("/users")}
             >
-              <link.icon size={20} className="flex-shrink-0" />
-              <span>{link.name}</span>
+              <MdOutlineSpaceDashboard size={20} className="flex-shrink-0" />
+              <span>إدارة المستخدمين</span>
             </Link>
-          );
-        })}
-      </nav>
+          )}
+          {links.map((link) => {
+            const isActive = activeLink === link.link;
+            return (
+              <Link
+                key={link.name}
+                href={link.link}
+                className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 ${
+                  isActive
+                    ? "bg-blue-100 text-blue-600 font-medium"
+                    : "text-gray-700 hover:bg-gray-100"
+                }`}
+                onClick={() => setActiveLink(link.link)}
+              >
+                <link.icon size={20} className="flex-shrink-0" />
+                <span>{link.name}</span>
+              </Link>
+            );
+          })}
+        </nav>
 
-      {/* Logout button at the bottom */}
-      <div className="mt-auto py-4 border-t border-gray-200">
-        <Button
-          color="red"
-          onClick={handleSignOut}
-          className="w-full flex items-center gap-1 cursor-pointer"
-        >
-          <MdOutlineSpaceDashboard size={20} className="flex-shrink-0" />
-          <span>تسجيل الخروج</span>
-        </Button>
-      </div>
-    </aside>
+        {/* Logout button at the bottom */}
+        <div className="mt-auto py-4 border-t border-gray-200 px-5 mb-4">
+          <Button
+            color="red"
+            onClick={handleSignOut}
+            className="w-full flex items-center gap-1 cursor-pointer"
+          >
+            تسجيل الخروج
+          </Button>
+        </div>
+      </aside>
+    </>
   );
 }

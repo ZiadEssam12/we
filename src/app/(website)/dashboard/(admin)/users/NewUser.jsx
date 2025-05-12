@@ -23,8 +23,6 @@ import toast from "react-hot-toast";
 export default function NewUser({ setUsersData }) {
   const [openModal, setOpenModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
   const handleSubmit = async (user) => {
     setIsLoading(true);
 
@@ -40,10 +38,9 @@ export default function NewUser({ setUsersData }) {
       toast.success(result.message);
       setUsersData((prev) => [result.user, ...prev]);
       formik.resetForm();
+      setOpenModal(false);
     }
     setIsLoading(false);
-
-    setOpenModal(false); // Close the modal after submission
   };
 
   const formik = useFormik({
@@ -53,22 +50,17 @@ export default function NewUser({ setUsersData }) {
     validateOnMount: true,
   });
 
-  const testToast = () => {
-    toast.error("خطأ في إضافة المستخدم");
-  };
-
   const handleCloseModal = () => {
     setOpenModal(false);
     setError("");
     formik.resetForm();
   };
-
   return (
     <>
-      <div className="flex justify-end">
+      <div className="flex justify-end w-full overflow-hidden">
         <button
           onClick={() => setOpenModal(true)}
-          className="bg-blue-600 w-max font-bold text-lg text-white px-4 py-2 rounded-md cursor-pointer hover:bg-blue-700 transition-colors"
+          className="bg-blue-600 whitespace-nowrap text-sm sm:text-base md:text-lg font-bold text-white px-3 py-2 rounded-md cursor-pointer hover:bg-blue-700 transition-colors"
         >
           إضافة مستخدم جديد
         </button>
@@ -87,41 +79,7 @@ export default function NewUser({ setUsersData }) {
               <MaterialSymbolsLightClose width={24} height={24} />
             </button>
           </div>
-          {error && (
-            <div
-              icon={MdiLightInformation}
-              onDismiss={() => setError((prev) => "")}
-              className="flex justify-between items-center p-4 text-sm border-red-500 bg-red-100 text-red-700 dark:bg-red-200 dark:text-red-800 rounded-lg "
-            >
-              <span>
-                <span className="font-medium ml-1">خطأ!</span>
-                <span>{error}</span>
-              </span>
 
-              <button
-                className="cursor-pointer text-red-700"
-                onClick={() => setError((prev) => "")}
-              >
-                <MaterialSymbolsLightClose width={24} height={24} />
-              </button>
-            </div>
-          )}
-
-          {success && (
-            <div
-              onDismiss={() => setError((prev) => "")}
-              className="flex justify-between items-center  gap-2 p-4 text-sm border-green-500 bg-green-100 text-green-700 dark:bg-green-200 dark:text-green-800 rounded-lg"
-            >
-              <span>{success}</span>
-
-              <button
-                className="cursor-pointer text-red-700"
-                onClick={() => setSuccess((prev) => "")}
-              >
-                <MaterialSymbolsLightClose width={24} height={24} />
-              </button>
-            </div>
-          )}
           <form onSubmit={formik.handleSubmit} className="flex flex-col gap-4">
             <div>
               <Label

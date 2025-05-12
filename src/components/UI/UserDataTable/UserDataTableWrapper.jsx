@@ -19,19 +19,20 @@ export default function UserDataTableWrapper({ data, columns }) {
     console.log(row);
     // Handle edit logic here
   };
-
   return (
     <>
-      <DataTable
-        data={usersData}
-        columns={columns}
-        onEdit={onEdit}
-        onDelete={onDelete}
-      />
-      <div className="flex justify-end mt-4">
+      <div className="w-full mb-4">
         {session?.user?.role === "ADMIN" && (
           <NewUser setUsersData={setUsersData} />
         )}
+      </div>
+      <div className="overflow-auto w-full">
+        <DataTable
+          data={usersData}
+          columns={columns}
+          onEdit={onEdit}
+          onDelete={onDelete}
+        />
       </div>
     </>
   );

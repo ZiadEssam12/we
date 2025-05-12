@@ -26,7 +26,7 @@ const ActionButtons = ({ row, onEdit, onDelete, userRole }) => {
   }
 
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center justify-end gap-1 flex-nowrap">
       <button
         onClick={() => onEdit(row.original)}
         className="p-1 text-blue-600 hover:text-blue-800 transition-colors cursor-pointer"
@@ -55,7 +55,7 @@ export default function DataTable({
 
   const [pagination, setPagination] = useState({
     pageIndex: 0,
-    pageSize: 5,
+    pageSize: 10,
   });
   // Add action column
   const columnsWithActions = [
@@ -88,19 +88,18 @@ export default function DataTable({
     getPaginationRowModel: getPaginationRowModel(),
     manualPagination: false,
   });
-
   return (
     <div className="w-full">
       <div className="rounded-md border bg-white">
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
-            <thead className="bg-gray-50 border-b">
+            <thead className="bg-gray-50 border-b max-w-7xl">
               {table.getHeaderGroups().map((headerGroup) => (
                 <tr key={headerGroup.id}>
                   {headerGroup.headers.map((header) => (
                     <th
                       key={header.id}
-                      className="px-4 py-3 text-right font-medium text-gray-700"
+                      className="px-4 py-3 text-right font-medium text-gray-700 whitespace-nowrap"
                     >
                       {header.isPlaceholder
                         ? null
@@ -142,11 +141,10 @@ export default function DataTable({
               )}
             </tbody>
           </table>
-        </div>
-
+        </div>{" "}
         {/* Pagination Controls */}
-        <div className="flex items-center justify-between px-4 py-3 border-t">
-          <div className="flex-1 text-sm text-gray-700">
+        <div className="flex flex-wrap items-center justify-between gap-3 px-4 py-3 border-t">
+          <div className="text-sm text-gray-700 whitespace-nowrap">
             {`عرض ${
               pagination.pageSize * pagination.pageIndex + 1
             } إلى ${Math.min(
