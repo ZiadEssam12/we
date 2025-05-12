@@ -35,7 +35,7 @@ export default function LoginPage() {
         } else if (!result.ok) {
           setError("حدث خطأ أثناء تسجيل الدخول. حاول مرة أخرى.");
         } else {
-          router.push("/"); // Redirect on success
+          router.push("/dashboard"); // Redirect on success
         }
       } catch (error) {
         console.error("Unexpected error during signIn:", error);

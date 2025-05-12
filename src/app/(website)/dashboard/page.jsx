@@ -1,6 +1,9 @@
-import { MdWavingHand, MdArrowForward } from "react-icons/md";
+import { auth } from "@/app/auth";
+import { MdWavingHand } from "react-icons/md";
 
-export default function Page() {
+export default async function Page() {
+  const session = await auth();
+
   return (
     <div className="h-screen flex items-center justify-center">
       <div className="text-center max-w-3xl px-4">

@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Sidebar from "@/components/UI/Sidebar/Sidebar";
+import { SessionProvider } from "next-auth/react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,16 +18,18 @@ export const metadata = {
   description: "لوحة التحكم",
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children, session }) {
   return (
-    <html lang="ar" dir="rtl">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <main className="min-h-screen flex items-center justify-center bg-gray-100">
-          {children}
-        </main>
-      </body>
-    </html>
+    <SessionProvider session={session}>
+      <html lang="ar" dir="rtl">
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        >
+          <main className="min-h-screen flex items-center justify-center bg-gray-50">
+            {children}
+          </main>
+        </body>
+      </html>
+    </SessionProvider>
   );
 }

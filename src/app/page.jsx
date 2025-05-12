@@ -1,6 +1,10 @@
 import { MdWavingHand, MdArrowForward } from "react-icons/md";
+import { auth } from "./auth";
+import Link from "next/link";
 
-export default function Page() {
+export default async function Page() {
+  const session = await auth();
+
   return (
     <div className="w-full min-h-[80vh] flex flex-col items-center justify-center p-6">
       <div className="text-center max-w-3xl">
@@ -56,10 +60,13 @@ export default function Page() {
           </div>
         </div>
         {/* CTA Button */}
-        <button className="mt-10 cursor-pointer flex items-center gap-2 mx-auto bg-gradient-to-l from-blue-600 to-purple-600 text-white px-8 py-3 rounded-full font-medium hover:opacity-90 transition-opacity">
+        <Link
+          href={`${session?.user?.id ? "/dashboard" : "/login"}`}
+          className="mt-10 cursor-pointer w-max inline-flex items-center gap-2 mx-auto bg-gradient-to-l from-blue-600 to-purple-600 text-white px-8 py-3 rounded-full font-medium hover:opacity-90 transition-opacity"
+        >
           ابدأ الاستخدام الآن
           <MdArrowForward />
-        </button>
+        </Link>
       </div>
     </div>
   );

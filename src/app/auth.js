@@ -61,6 +61,8 @@ const { handlers, auth, signIn, signOut } = NextAuth({
           return {
             id: data.user.id,
             userName: data.user.userName,
+            name: data.user.name,
+            role: data.user.role,
           };
         } catch (error) {
           console.error("Authentication error:", error.message);
@@ -75,6 +77,8 @@ const { handlers, auth, signIn, signOut } = NextAuth({
       if (token && !token.error) {
         session.user.id = token.id;
         session.user.userName = token.userName;
+        session.user.name = token.name;
+        session.user.role = token.role;
         return session;
       }
       // Return empty session if there's an error
@@ -90,11 +94,14 @@ const { handlers, auth, signIn, signOut } = NextAuth({
           delete token.id;
           delete token.userName;
           delete token.name;
+          delete token.role;
+          // If the user is not valid, set error message
         } else {
           // Valid user, store data in token
           token.id = user.id;
           token.userName = user.userName;
           token.name = user.name;
+          token.role = user.role;
         }
       }
       return token;
