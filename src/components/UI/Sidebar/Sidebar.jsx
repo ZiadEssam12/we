@@ -5,7 +5,7 @@ import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   MdOutlineStorage,
   MdOutlineDevices,
@@ -42,7 +42,6 @@ const links = [
 
 export default function Sidebar() {
   const router = useRouter();
-
   const currentActiveLink = usePathname();
 
   const [isOpen, setIsOpen] = useState(false);
@@ -55,6 +54,10 @@ export default function Sidebar() {
   const handleSignOut = async () => {
     await signOut({ redirect: false });
     router.push("/login");
+  };
+
+  const handleClick = () => {
+    setIsOpen(false);
   };
 
   const { data: session } = useSession();
@@ -91,7 +94,8 @@ export default function Sidebar() {
                   ? "bg-blue-100 text-blue-600 font-medium"
                   : "text-gray-700 hover:bg-gray-100"
               }`}
-              onClick={() => setActiveLink("/users")}
+              onClick={handleClick}
+              prefetch={true}
             >
               <MdOutlineSpaceDashboard size={20} className="flex-shrink-0" />
               <span>إدارة المستخدمين</span>
@@ -108,7 +112,8 @@ export default function Sidebar() {
                     ? "bg-blue-100 text-blue-600 font-medium"
                     : "text-gray-700 hover:bg-gray-100"
                 }`}
-                onClick={() => setActiveLink(link.link)}
+                onClick={handleClick}
+                prefetch={true}
               >
                 <link.icon size={20} className="flex-shrink-0" />
                 <span>{link.name}</span>
