@@ -1,5 +1,6 @@
 import * as Yup from "yup";
 
+// Schema for creating a new user (with password required)
 export const registerNewUserSchema = Yup.object().shape({
   userName: Yup.string().min(
     3,
@@ -25,5 +26,26 @@ export const initalRegisterNewUserValues = {
   name: "",
   phoneNumber: "",
   confirmPassword: "",
+  role: "USER",
+};
+
+// Schema for updating a user (without password required)
+export const updateUserSchema = Yup.object().shape({
+  userName: Yup.string().min(
+    3,
+    "يجب أن يتكون اسم المستخدم من 3 أحرف على الأقل"
+  ),
+  name: Yup.string().required("الاسم مطلوب"),
+  phoneNumber: Yup.string().required("رقم الهاتف مطلوب"),
+  role: Yup.string().oneOf(
+    ["ADMIN", "MANAGER", "USER"],
+    "يجب أن يكون الدور إما مسؤول أو مستخدم أو مدير"
+  ),
+});
+
+export const initalUpdateUserValues = {
+  userName: "",
+  name: "",
+  phoneNumber: "",
   role: "USER",
 };

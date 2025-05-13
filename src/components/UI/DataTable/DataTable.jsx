@@ -15,6 +15,8 @@ import {
   ChevronsRightIcon,
   PencilIcon,
   TrashIcon,
+  Search,
+  X,
 } from "lucide-react";
 import { useSession } from "next-auth/react";
 
@@ -50,13 +52,15 @@ export default function DataTable({
   columns = [],
   onEdit = () => {},
   onDelete = () => {},
+  CustomModal = null,
 }) {
   const { data: session } = useSession();
-
   const [pagination, setPagination] = useState({
     pageIndex: 0,
     pageSize: 10,
   });
+  const [globalFilter, setGlobalFilter] = useState("");
+
   // Add action column
   const columnsWithActions = [
     ...columns,
@@ -75,21 +79,50 @@ export default function DataTable({
       enableHiding: false,
     },
   ];
-
   const table = useReactTable({
     data,
     columns: columnsWithActions,
     state: {
       pagination,
+      globalFilter,
     },
     onPaginationChange: setPagination,
+    onGlobalFilterChange: setGlobalFilter,
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
+    globalFilterFn: "includesString",
     manualPagination: false,
   });
   return (
     <div className="w-full">
+      <div className="flex items-center justify-between mb-4">
+        <div className="relative">
+          <div className="flex items-center">
+            <input
+              type="text"
+              placeholder="بحث..."
+              className="py-2 px-4 pr-10 w-[250px] border border-gray-300 rounded-lg focus:outline-none focus:ring-0 "
+              value={globalFilter || ""}
+              onChange={(e) => setGlobalFilter(e.target.value)}
+            />
+            <div className="absolute right-3 inset-y-0 flex items-center">
+              {globalFilter ? (
+                <button
+                  onClick={() => setGlobalFilter("")}
+                  className="text-gray-400 hover:text-gray-600 focus:outline-none"
+                  title="مسح البحث"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              ) : (
+                <Search className="h-4 w-4 text-gray-400" />
+              )}
+            </div>
+          </div>
+        </div>
+        {CustomModal && <CustomModal />}
+      </div>
       <div className="rounded-md border bg-white">
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
@@ -135,22 +168,24 @@ export default function DataTable({
                     colSpan={columnsWithActions.length}
                     className="py-6 text-center text-gray-500"
                   >
-                    لا توجد بيانات
+                    لا توجد بيانات لعرضها
                   </td>
                 </tr>
               )}
             </tbody>
           </table>
         </div>{" "}
-        {/* Pagination Controls */}
+        {/* Pagination Controls */}{" "}
         <div className="flex flex-wrap items-center justify-between gap-3 px-4 py-3 border-t">
           <div className="text-sm text-gray-700 whitespace-nowrap">
             {`عرض ${
-              pagination.pageSize * pagination.pageIndex + 1
+              table.getFilteredRowModel().rows.length > 0
+                ? pagination.pageSize * pagination.pageIndex + 1
+                : 0
             } إلى ${Math.min(
               (pagination.pageIndex + 1) * pagination.pageSize,
-              data.length
-            )} من ${data.length} عنصر`}
+              table.getFilteredRowModel().rows.length
+            )} من ${table.getFilteredRowModel().rows.length} عنصر`}
           </div>
 
           <div className="flex items-center space-x-2 space-x-reverse">

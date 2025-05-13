@@ -2,19 +2,27 @@
 import { MaterialSymbolsLightClose } from "@/app/icons/Icons";
 import LoadingButton from "@/components/buttonWithLoading/ButtonWithLoading";
 import Modal from "@/components/UI/Modal/Modal";
-import { createUser } from "@/lib/api";
+import { createUser, updateUser } from "@/lib/api";
 import {
   initalRegisterNewUserValues,
   registerNewUserSchema,
+  updateUserSchema,
 } from "@/schemas/registerNewUser";
 import { Label, TextInput } from "flowbite-react";
 import { useFormik } from "formik";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 
-export default function NewUser({ setUsersData }) {
-  const [openModal, setOpenModal] = useState(false);
+export default function NewUser({
+  setUsersData,
+  openModal,
+  setOpenModal,
+  handleCloseModal,
+  updatUserData,
+  isUpdate,
+}) {
   const [isLoading, setIsLoading] = useState(false);
+
   const handleSubmit = async (user) => {
     setIsLoading(true);
 
@@ -34,32 +42,56 @@ export default function NewUser({ setUsersData }) {
     setIsLoading(false);
   };
 
+  const handleUpdateSubmit = async (user) => {
+    setIsLoading(true);
+
+    // The 'user' object from formik.values will now include the id
+    const result = await updateUser({ user });
+    if (!result.success) {
+      toast.error(result.message);
+    }
+    if (result.success) {
+      toast.success(result.message);
+      setUsersData(
+        (prev) => prev.map((u) => (u.id === user.id ? result.user : u)) // Use user.id from form values
+      );
+
+      handleCloseModal();
+    }
+    setIsLoading(false);
+  };
+
   const formik = useFormik({
-    initialValues: initalRegisterNewUserValues,
-    validationSchema: registerNewUserSchema,
-    onSubmit: handleSubmit,
+    initialValues: isUpdate
+      ? {
+          id: updatUserData?.id || "", // Add the id here
+          userName: updatUserData?.userName || "",
+          name: updatUserData?.name || "",
+          phoneNumber: updatUserData?.phoneNumber || "",
+          role: updatUserData?.role || "USER",
+        }
+      : initalRegisterNewUserValues,
+    validationSchema: isUpdate ? updateUserSchema : registerNewUserSchema,
+    onSubmit: isUpdate ? handleUpdateSubmit : handleSubmit,
     validateOnMount: true,
+    enableReinitialize: true,
   });
 
-  const handleCloseModal = () => {
-    setOpenModal(false);
-    formik.resetForm();
-  };
   return (
     <>
       <div className="flex justify-end w-full overflow-hidden">
         <button
           onClick={() => setOpenModal(true)}
-          className="bg-blue-600 whitespace-nowrap text-sm sm:text-base md:text-lg font-bold text-white px-3 py-2 rounded-md cursor-pointer hover:bg-blue-700 transition-colors"
+          className="py-2 px-4 cursor-pointer rounded-lg bg-black hover:bg-black/80 border border-black  text-white transition-colors duration-150 "
         >
-          إضافة مستخدم جديد
+          إضافة مستخدم
         </button>
       </div>
       <Modal open={openModal} onClose={handleCloseModal}>
         <div className="flex flex-col gap-4 text-sm">
           <div className="flex items-center justify-between">
             <h2 className="text-2xl text-blue-700 font-bold">
-              إضافة مستخدم جديد
+              {isUpdate ? "تعديل مستخدم" : "إضافة مستخدم"}
             </h2>
             <button
               onClick={handleCloseModal}
@@ -143,59 +175,60 @@ export default function NewUser({ setUsersData }) {
               )}
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <Label
-                  htmlFor="password"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  كلمة المرور
-                </Label>
-                <TextInput
-                  id="password"
-                  name="password"
-                  type="password"
-                  placeholder="كلمة المرور"
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  value={formik.values.password}
-                  required
-                />
-                {formik.touched.password && formik.errors.password && (
-                  <div className="text-red-500 text-sm mt-1">
-                    {formik.errors.password}
-                  </div>
-                )}
-              </div>
-
-              <div>
-                <Label
-                  htmlFor="confirmPassword"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  تأكيد كلمة المرور
-                </Label>
-                <TextInput
-                  id="confirmPassword"
-                  name="confirmPassword"
-                  type="password"
-                  placeholder="تأكيد كلمة المرور"
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  value={formik.values.confirmPassword}
-                  required
-                />
-                {formik.touched.confirmPassword &&
-                  formik.errors.confirmPassword && (
+            {!isUpdate && (
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <Label
+                    htmlFor="password"
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    كلمة المرور
+                  </Label>
+                  <TextInput
+                    id="password"
+                    name="password"
+                    type="password"
+                    placeholder="كلمة المرور"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.password}
+                    required
+                  />
+                  {formik.touched.password && formik.errors.password && (
                     <div className="text-red-500 text-sm mt-1">
-                      {formik.errors.confirmPassword}
+                      {formik.errors.password}
                     </div>
                   )}
+                </div>
+
+                <div>
+                  <Label
+                    htmlFor="confirmPassword"
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    تأكيد كلمة المرور
+                  </Label>
+                  <TextInput
+                    id="confirmPassword"
+                    name="confirmPassword"
+                    type="password"
+                    placeholder="تأكيد كلمة المرور"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.confirmPassword}
+                    required
+                  />
+                  {formik.touched.confirmPassword &&
+                    formik.errors.confirmPassword && (
+                      <div className="text-red-500 text-sm mt-1">
+                        {formik.errors.confirmPassword}
+                      </div>
+                    )}
+                </div>
               </div>
-            </div>
+            )}
 
             <div>
-              {" "}
               <Label
                 htmlFor="role"
                 className="block text-sm font-medium text-gray-700"
@@ -226,8 +259,8 @@ export default function NewUser({ setUsersData }) {
             </div>
 
             <LoadingButton
-              text="إضافة مستخدم"
-              areaLabel="إضافة مستخدم"
+              text={isUpdate ? "تعديل مستخدم" : "إضافة مستخدم"}
+              areaLabel={isUpdate ? "تعديل مستخدم" : "إضافة مستخدم"}
               valid={
                 formik.isValid &&
                 formik.dirty &&

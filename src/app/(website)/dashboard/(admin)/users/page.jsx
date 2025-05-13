@@ -45,15 +45,8 @@ export default async function page() {
     },
   ];
 
-  data = data.map((user) => {
-    user.role =
-      user.role === "ADMIN"
-        ? "مشرف"
-        : user.role === "MANAGER"
-        ? "مدير"
-        : "مستخدم";
-    return user;
-  });
+  console.log("data :> ", data);
+
   return (
     <div className="flex flex-col text-black">
       <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-l from-blue-600 to-purple-600 text-transparent bg-clip-text animate-gradient-text leading-tight text-center mb-6">
