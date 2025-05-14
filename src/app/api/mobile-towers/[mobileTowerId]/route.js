@@ -14,7 +14,7 @@ export async function GET(request, { params }) {
     );
   }
 
-  const { mobileTowerId } = params;
+  const { mobileTowerId } = await params;
 
   if (!mobileTowerId) {
     return NextResponse.json(
@@ -63,7 +63,7 @@ export async function PUT(request, { params }) {
     );
   }
 
-  const { mobileTowerId } = params;
+  const { mobileTowerId } = await params;
 
   if (!mobileTowerId) {
     return NextResponse.json(
@@ -140,7 +140,7 @@ export async function DELETE(request, { params }) {
     );
   }
 
-  const { mobileTowerId } = params;
+  const { mobileTowerId } = await params;
 
   if (!mobileTowerId) {
     return NextResponse.json(

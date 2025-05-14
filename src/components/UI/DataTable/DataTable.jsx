@@ -62,24 +62,7 @@ export default function DataTable({
   });
   const [globalFilter, setGlobalFilter] = useState("");
 
-  // Add action column
-  const columnsWithActions = [
-    ...columns,
-    {
-      id: "actions",
-      header: "الإجراءات",
-      cell: ({ row }) => (
-        <ActionButtons
-          row={row}
-          onEdit={onEdit}
-          onDelete={onDelete}
-          userRole={session?.user?.role}
-        />
-      ),
-      enableSorting: false,
-      enableHiding: false,
-    },
-  ];
+  // Use columns directly as provided by parent component
   const table = useReactTable({
     data,
     columns,
@@ -171,7 +154,7 @@ export default function DataTable({
               ) : (
                 <tr>
                   <td
-                    colSpan={columnsWithActions.length}
+                    colSpan={columns.length}
                     className="py-6 text-center text-gray-500"
                   >
                     لا توجد بيانات لعرضها

@@ -14,7 +14,7 @@ export async function GET(request, { params }) {
     );
   }
 
-  const { majorCabinetId } = params;
+  const { majorCabinetId } = await params;
 
   if (!majorCabinetId) {
     return NextResponse.json(

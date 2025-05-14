@@ -14,7 +14,7 @@ export async function GET(request, { params }) {
     );
   }
 
-  const { copperLineId } = params;
+  const { copperLineId } = await params;
 
   if (!copperLineId) {
     return NextResponse.json(
@@ -64,7 +64,7 @@ export async function PUT(request, { params }) {
     );
   }
 
-  const { copperLineId } = params;
+  const { copperLineId } = await params;
 
   if (!copperLineId) {
     return NextResponse.json(
@@ -142,7 +142,7 @@ export async function DELETE(request, { params }) {
     );
   }
 
-  const { copperLineId } = params;
+  const { copperLineId } = await params;
 
   if (!copperLineId) {
     return NextResponse.json(

@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { DataTable } from "@/components/UI/DataTable/DynamicDataTable";
 import Modal from "@/components/UI/Modal/Modal";
 import toast from "react-hot-toast";
+import { IcomoonFreePencil, TrashIcon } from "@/app/icons/Icons";
 
 /**
  * Generic data table wrapper component that can be extended for specific entity types
@@ -41,6 +42,7 @@ export default function DataTableWrapper({
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isDeleteLoading, setIsDeleteLoading] = useState(false);
   const [isFormProcessing, setIsFormProcessing] = useState(false);
+  const [openActionButtonsId, setOpenActionButtonsId] = useState(null);
 
   useEffect(() => {
     console.log("modal status:", isModalOpen ? "open" : "closed");
@@ -55,6 +57,9 @@ export default function DataTableWrapper({
     deleteConfirmation: `هل أنت متأكد من حذف ${entityName}؟`,
     deleteSuccess: `تم حذف ${entityName} بنجاح`,
     ...modalTexts,
+  };
+  const toggleActionButtons = (rowId) => {
+    setOpenActionButtonsId((prevId) => (prevId === rowId ? null : rowId));
   };
 
   // Fetch data on component mount or when refetch is triggered
@@ -149,32 +154,56 @@ export default function DataTableWrapper({
     }
   };
 
-  // Add actions column to the table
   const columnsWithActions = [
     ...columns,
     {
-      Header: "الإجراءات",
+      header: "الإجراءات",
       id: "actions",
-      Cell: ({ row }) => (
-        <div className="flex space-x-2 justify-center">
+      cell: ({ row }) => (
+        <div className="flex space-x-2 justify-center relative">
           <button
-            onClick={() => {
-              setSelectedItem(row.original);
-              setIsModalOpen(true);
-            }}
-            className="px-3 py-1 bg-blue-500 text-white text-xs rounded hover:bg-blue-700"
+            onClick={() => toggleActionButtons(row.id)}
+            className="px-3 cursor-pointer py-1.5 bg-gray-200 text-gray-700 text-xs rounded-md hover:bg-gray-300 transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50"
           >
-            تعديل
+            <span className="block leading-none">•••</span>
           </button>
-          <button
-            onClick={() => {
-              setSelectedItem(row.original);
-              setIsDeleteModalOpen(true);
-            }}
-            className="px-3 py-1 bg-red-500 text-white text-xs rounded hover:bg-red-700"
-          >
-            حذف
-          </button>
+          {openActionButtonsId === row.id && (
+            <div
+              className="fixed bg-white shadow-lg rounded-md p-2 z-50 min-w-[120px] border border-gray-100"
+              style={{
+                top: "auto",
+                right: "auto",
+                transform: "translateY(20px)",
+                boxShadow:
+                  "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+              }}
+            >
+              <div className="flex flex-col gap-2">
+                <button
+                  onClick={() => {
+                    setSelectedItem(row.original);
+                    setIsModalOpen(true);
+                    setOpenActionButtonsId(null);
+                  }}
+                  className="px-4 cursor-pointer py-2 flex items-center gap-2 bg-blue-50 text-blue-600 text-xs rounded-md hover:bg-blue-100 transition-colors"
+                >
+                  <IcomoonFreePencil className="w-3.5 h-3.5" />
+                  <span>تعديل</span>
+                </button>
+                <button
+                  onClick={() => {
+                    setSelectedItem(row.original);
+                    setIsDeleteModalOpen(true);
+                    setOpenActionButtonsId(null);
+                  }}
+                  className="px-4 cursor-pointer py-2 flex items-center gap-2 bg-red-50 text-red-600 text-xs rounded-md hover:bg-red-100 transition-colors"
+                >
+                  <TrashIcon className="w-3.5 h-3.5" />
+                  <span>حذف</span>
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       ),
     },

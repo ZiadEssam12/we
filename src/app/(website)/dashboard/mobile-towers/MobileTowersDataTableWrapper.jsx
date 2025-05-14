@@ -31,12 +31,12 @@ export default function MobileTowersDataTableWrapper({ initialData, columns }) {
       columns={columns}
       apiHandlers={apiHandlers}
       FormComponent={MobileTowerForm}
-      entityName="برج الجوال"
+      entityName="برج التليفون"
       modalTexts={{
-        addButton: "إضافة برج جوال",
-        editTitle: "تعديل برج الجوال",
+        addButton: "إضافة ",
+        editTitle: "تعديل برج التليفون",
         addTitle: "إضافة برج جوال جديد",
-        deleteTitle: "حذف برج الجوال",
+        deleteTitle: "حذف برج التليفون",
         deleteConfirmation: "هل أنت متأكد من حذف هذا البرج؟",
       }}
     />

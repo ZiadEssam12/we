@@ -1,4 +1,6 @@
-export default function Modal({ isOpen, onClose, children }) {
+import { MaterialSymbolsLightClose } from "@/app/icons/Icons";
+
+export default function Modal({ isOpen, onClose, title, children }) {
   if (!isOpen) return null;
 
   const handleContentClick = (e) => {
@@ -15,7 +17,18 @@ export default function Modal({ isOpen, onClose, children }) {
         onClick={handleContentClick}
         className="bg-white rounded-lg shadow-lg p-6 min-w-1/3"
       >
-        {children}
+        <div className="flex items-center justify-between py-2">
+          <h3 className="font-semibold text-2xl">{title}</h3>
+
+          <button
+            onClick={onClose}
+            className="text-gray-500 hover:text-gray-700 bg-gray-200 p-2 rounded-full hover:bg-gray-100 transition-colors duration-150 focus:outline-none cursor-pointer"
+            title="Close Modal"
+          >
+            <MaterialSymbolsLightClose />
+          </button>
+        </div>
+        <div className="pt-4 border-t-2 border-gray-200">{children}</div>
       </div>
     </div>
   );

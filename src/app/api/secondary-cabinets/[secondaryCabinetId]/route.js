@@ -14,7 +14,7 @@ export async function GET(request, { params }) {
     );
   }
 
-  const { secondaryCabinetId } = params;
+  const { secondaryCabinetId } = await params;
 
   if (!secondaryCabinetId) {
     return NextResponse.json(
@@ -66,7 +66,7 @@ export async function PUT(request, { params }) {
     );
   }
 
-  const { secondaryCabinetId } = params;
+  const { secondaryCabinetId } = await params;
 
   if (!secondaryCabinetId) {
     return NextResponse.json(
@@ -146,7 +146,7 @@ export async function DELETE(request, { params }) {
     );
   }
 
-  const { secondaryCabinetId } = params;
+  const { secondaryCabinetId } = await params;
 
   if (!secondaryCabinetId) {
     return NextResponse.json(

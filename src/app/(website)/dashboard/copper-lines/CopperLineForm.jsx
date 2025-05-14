@@ -68,7 +68,7 @@ export default function CopperLineForm({
 
   return (
     <form onSubmit={formik.handleSubmit} className="space-y-4">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
         <div>
           <label
             htmlFor="landline_number"
@@ -466,12 +466,11 @@ export default function CopperLineForm({
 
       <div className="flex justify-end space-x-3">
         <ButtonWithLoading
-          type="submit"
-          isLoading={isProcessing}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        >
-          {initialData ? "تحديث" : "إضافة"}
-        </ButtonWithLoading>
+          loading={isProcessing}
+          text={initialData ? "تحديث" : "إضافة"}
+          areaLabel={initialData ? "تحديث" : "إضافة"}
+          valid={formik.isValid && formik.dirty}
+        />
       </div>
     </form>
   );
