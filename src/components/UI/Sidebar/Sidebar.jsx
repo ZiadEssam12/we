@@ -25,7 +25,7 @@ const links = [
   },
   {
     name: "الكابينات الفرعية",
-    link: "/dashboard/sub-cabinets",
+    link: "/dashboard/secondary-cabinets",
     icon: MdOutlineDevices,
   },
   {
@@ -35,7 +35,7 @@ const links = [
   },
   {
     name: "كابينات النحاس",
-    link: "/dashboard/copper-cabinets",
+    link: "/dashboard/copper-lines",
     icon: MdOutlineCable,
   },
 ];

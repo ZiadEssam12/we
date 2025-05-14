@@ -6,19 +6,19 @@ import Modal from "@/components/UI/Modal/Modal";
 import LoadingButton from "@/components/buttonWithLoading/ButtonWithLoading";
 import { Label, TextInput, Textarea } from "flowbite-react"; // Assuming Textarea is available or similar
 import { MaterialSymbolsLightClose } from "@/app/icons/Icons";
+
+import { createMajorCabinet, updateMajorCabinet } from "@/lib/api";
 import {
   initialMajorCabinetValues,
   majorCabinetSchema,
 } from "@/schemas/majorCabinet";
-import { createMajorCabinet, updateMajorCabinet } from "@/lib/api";
 
 export default function MajorCabinetForm({
-  openModal,
-  setOpenModal,
+  isOpen, // Changed from openModal to isOpen
   isUpdate,
-  currentCabinetData,
+  currentCabinet, // Changed from currentCabinetData to currentCabinet
   setMajorCabinetsData,
-  onClose, // Renamed from handleCloseModal for clarity if passed from parent
+  onClose,
 }) {
   const [isLoading, setIsLoading] = useState(false);
 
@@ -27,7 +27,7 @@ export default function MajorCabinetForm({
     try {
       let result;
       if (isUpdate) {
-        result = await updateMajorCabinet(currentCabinetData.id, values);
+        result = await updateMajorCabinet(currentCabinet.id, values);
       } else {
         result = await createMajorCabinet(values);
       }
@@ -37,20 +37,19 @@ export default function MajorCabinetForm({
         if (isUpdate) {
           setMajorCabinetsData((prev) =>
             prev.map((cabinet) =>
-              cabinet.id === currentCabinetData.id ? result.data : cabinet
+              cabinet.id === currentCabinet.id ? result.data : cabinet
             )
           );
         } else {
           setMajorCabinetsData((prev) => [result.data, ...prev]);
         }
         formik.resetForm();
-        setOpenModal(false);
-      } else {
+        onClose(); // Use onClose to close the modal
+      }
+      if (!result.success) {
+        // Optionally display field-specific errors
+        console.error("Validation errors:", result.error);
         toast.error(result.message || "An error occurred.");
-        if (result.errors) {
-          // Optionally display field-specific errors
-          console.error("Validation errors:", result.errors);
-        }
       }
     } catch (error) {
       toast.error("An unexpected error occurred.");
@@ -67,34 +66,34 @@ export default function MajorCabinetForm({
   });
 
   useEffect(() => {
-    if (isUpdate && currentCabinetData) {
+    if (isUpdate && currentCabinet) {
       formik.setValues({
-        central: currentCabinetData.central || "",
-        village: currentCabinetData.village || "",
-        cabinet: currentCabinetData.cabinet || "",
+        id: currentCabinet.id || "",
+        central: currentCabinet.central || "",
+        village: currentCabinet.village || "",
+        cabinet: currentCabinet.cabinet || "",
         central_to_cabinet_distance:
-          currentCabinetData.central_to_cabinet_distance || "",
-        number_of_joints: currentCabinetData.number_of_joints || 0,
-        joint_location: currentCabinetData.joint_location || "",
-        rooms: currentCabinetData.rooms || "",
-        room_location: currentCabinetData.room_location || "",
-        entitlement: currentCabinetData.entitlement || "",
-        distance: currentCabinetData.distance || "",
-        responsible: currentCabinetData.responsible || "",
-        notes: currentCabinetData.notes || "",
+          currentCabinet.central_to_cabinet_distance || "",
+        number_of_joints: currentCabinet.number_of_joints || 0,
+        joint_location: currentCabinet.joint_location || "",
+        rooms: currentCabinet.rooms || "",
+        room_location: currentCabinet.room_location || "",
+        entitlement: currentCabinet.entitlement || "",
+        distance: currentCabinet.distance || "",
+        responsible: currentCabinet.responsible || "",
+        notes: currentCabinet.notes || "",
       });
     } else {
       formik.setValues(initialMajorCabinetValues);
     }
-  }, [isUpdate, currentCabinetData, openModal]); // Added openModal to reset form if closed then opened for new
+  }, [isUpdate, currentCabinet, isOpen]); // Changed openModal to isOpen
 
   const handleClose = () => {
     formik.resetForm(); // Reset form on close
     if (onClose) {
       onClose();
-    } else {
-      setOpenModal(false);
     }
+    // Removed else block with setOpenModal as onClose should handle it
   };
 
   // Helper to generate form fields
@@ -111,7 +110,7 @@ export default function MajorCabinetForm({
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
         value={formik.values[id]}
-        required={majorCabinetSchema.fields[id]?.isRequired()}
+        // required={majorCabinetSchema.fields[id]?.isRequired()}
       />
       {formik.touched[id] && formik.errors[id] && (
         <div className="text-red-500 text-sm mt-1">{formik.errors[id]}</div>
@@ -120,7 +119,9 @@ export default function MajorCabinetForm({
   );
 
   return (
-    <Modal open={openModal} onClose={handleClose}>
+    <Modal open={isOpen} onClose={handleClose}>
+      {" "}
+      {/* Changed openModal to isOpen */}
       <div className="flex flex-col gap-4 text-sm p-1">
         {" "}
         {/* Reduced padding for scrollbar visibility */}
@@ -171,7 +172,7 @@ export default function MajorCabinetForm({
               onBlur={formik.handleBlur}
               value={formik.values.notes}
               rows={3}
-              required={majorCabinetSchema.fields.notes?.isRequired()}
+              // required={majorCabinetSchema.fields.notes?.isRequired()}
             />
             {formik.touched.notes && formik.errors.notes && (
               <div className="text-red-500 text-sm mt-1">

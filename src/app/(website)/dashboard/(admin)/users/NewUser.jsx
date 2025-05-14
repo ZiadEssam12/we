@@ -78,14 +78,6 @@ export default function NewUser({
 
   return (
     <>
-      <div className="flex justify-end w-full overflow-hidden">
-        <button
-          onClick={() => setOpenModal(true)}
-          className="py-2 px-4 cursor-pointer rounded-lg bg-black hover:bg-black/80 border border-black  text-white transition-colors duration-150 "
-        >
-          إضافة مستخدم
-        </button>
-      </div>
       <Modal open={openModal} onClose={handleCloseModal}>
         <div className="flex flex-col gap-4 text-sm">
           <div className="flex items-center justify-between">

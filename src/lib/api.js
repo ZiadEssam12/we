@@ -251,26 +251,28 @@ export async function deleteMajorCabinet(id) {
 // =================== Secondary Cabinet API Functions ===================
 
 // Get all secondary cabinets
-export function getAllSecondaryCabinets() {
+export function getAllSecondaryCabinets({ headers }) {
   return fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/secondary-cabinets`, {
     method: "GET",
+    headers: headers,
     credentials: "include",
   }).then((res) => res.json());
 }
 
 // Get a single secondary cabinet by ID
-export function getSecondaryCabinetById({ id }) {
+export function getSecondaryCabinetById({ id, headers }) {
   return fetch(
     `${process.env.NEXT_PUBLIC_APP_URL}/api/secondary-cabinets/${id}`,
     {
       method: "GET",
+      headers: headers,
       credentials: "include",
     }
   ).then((res) => res.json());
 }
 
 // Create a new secondary cabinet
-export async function createSecondaryCabinet({ secondaryCabinetData }) {
+export async function createSecondaryCabinet({ cabinetData }) {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_APP_URL}/api/secondary-cabinets`,
     {
@@ -278,7 +280,7 @@ export async function createSecondaryCabinet({ secondaryCabinetData }) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(secondaryCabinetData),
+      body: JSON.stringify(cabinetData),
       credentials: "include",
     }
   );
@@ -288,20 +290,20 @@ export async function createSecondaryCabinet({ secondaryCabinetData }) {
   if (!response.ok) {
     return {
       success: false,
-      message: data.message || "فشل في إنشاء الكابينة الفرعية",
+      message: data.message || "Failed to create secondary cabinet",
       error: data.error,
     };
   }
 
   return {
     success: true,
-    message: "تم إنشاء الكابينة الفرعية بنجاح",
-    secondaryCabinet: data.secondaryCabinet,
+    message: "تم إنشاء الكبينة الثانوية بنجاح",
+    data: data.data,
   };
 }
 
 // Update an existing secondary cabinet
-export async function updateSecondaryCabinet({ id, secondaryCabinetData }) {
+export async function updateSecondaryCabinet({ id, cabinetData }) {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_APP_URL}/api/secondary-cabinets/${id}`,
     {
@@ -309,7 +311,7 @@ export async function updateSecondaryCabinet({ id, secondaryCabinetData }) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(secondaryCabinetData),
+      body: JSON.stringify(cabinetData),
       credentials: "include",
     }
   );
@@ -319,15 +321,15 @@ export async function updateSecondaryCabinet({ id, secondaryCabinetData }) {
   if (!response.ok) {
     return {
       success: false,
-      message: data.message || "فشل في تحديث الكابينة الفرعية",
+      message: data.message || "Failed to update secondary cabinet",
       error: data.error,
     };
   }
 
   return {
     success: true,
-    message: "تم تحديث الكابينة الفرعية بنجاح",
-    secondaryCabinet: data.secondaryCabinet,
+    message: "تم تحديث الكبينة الثانوية بنجاح",
+    data: data.data,
   };
 }
 
@@ -337,6 +339,9 @@ export async function deleteSecondaryCabinet({ id }) {
     `${process.env.NEXT_PUBLIC_APP_URL}/api/secondary-cabinets/${id}`,
     {
       method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
       credentials: "include",
     }
   );
@@ -346,37 +351,39 @@ export async function deleteSecondaryCabinet({ id }) {
   if (!response.ok) {
     return {
       success: false,
-      message: data.message || "فشل في حذف الكابينة الفرعية",
+      message: data.message || "Failed to delete secondary cabinet",
       error: data.error,
     };
   }
 
   return {
     success: true,
-    message: "تم حذف الكابينة الفرعية بنجاح",
+    message: "تم حذف الكبينة الثانوية بنجاح",
   };
 }
 
 // =================== Mobile Tower API Functions ===================
 
 // Get all mobile towers
-export function getAllMobileTowers() {
+export function getAllMobileTowers({ headers }) {
   return fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/mobile-towers`, {
     method: "GET",
+    headers: headers,
     credentials: "include",
   }).then((res) => res.json());
 }
 
 // Get a single mobile tower by ID
-export function getMobileTowerById({ id }) {
+export function getMobileTowerById({ id, headers }) {
   return fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/mobile-towers/${id}`, {
     method: "GET",
+    headers: headers,
     credentials: "include",
   }).then((res) => res.json());
 }
 
 // Create a new mobile tower
-export async function createMobileTower({ mobileTowerData }) {
+export async function createMobileTower({ towerData }) {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_APP_URL}/api/mobile-towers`,
     {
@@ -384,7 +391,7 @@ export async function createMobileTower({ mobileTowerData }) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(mobileTowerData),
+      body: JSON.stringify(towerData),
       credentials: "include",
     }
   );
@@ -394,20 +401,20 @@ export async function createMobileTower({ mobileTowerData }) {
   if (!response.ok) {
     return {
       success: false,
-      message: data.message || "فشل في إنشاء برج المحمول",
+      message: data.message || "Failed to create mobile tower",
       error: data.error,
     };
   }
 
   return {
     success: true,
-    message: "تم إنشاء برج المحمول بنجاح",
-    mobileTower: data.mobileTower,
+    message: "تم إنشاء برج الجوال بنجاح",
+    data: data.data,
   };
 }
 
 // Update an existing mobile tower
-export async function updateMobileTower({ id, mobileTowerData }) {
+export async function updateMobileTower({ id, towerData }) {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_APP_URL}/api/mobile-towers/${id}`,
     {
@@ -415,7 +422,7 @@ export async function updateMobileTower({ id, mobileTowerData }) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(mobileTowerData),
+      body: JSON.stringify(towerData),
       credentials: "include",
     }
   );
@@ -425,15 +432,15 @@ export async function updateMobileTower({ id, mobileTowerData }) {
   if (!response.ok) {
     return {
       success: false,
-      message: data.message || "فشل في تحديث برج المحمول",
+      message: data.message || "Failed to update mobile tower",
       error: data.error,
     };
   }
 
   return {
     success: true,
-    message: "تم تحديث برج المحمول بنجاح",
-    mobileTower: data.mobileTower,
+    message: "تم تحديث برج الجوال بنجاح",
+    data: data.data,
   };
 }
 
@@ -443,6 +450,9 @@ export async function deleteMobileTower({ id }) {
     `${process.env.NEXT_PUBLIC_APP_URL}/api/mobile-towers/${id}`,
     {
       method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
       credentials: "include",
     }
   );
@@ -452,37 +462,39 @@ export async function deleteMobileTower({ id }) {
   if (!response.ok) {
     return {
       success: false,
-      message: data.message || "فشل في حذف برج المحمول",
+      message: data.message || "Failed to delete mobile tower",
       error: data.error,
     };
   }
 
   return {
     success: true,
-    message: "تم حذف برج المحمول بنجاح",
+    message: "تم حذف برج الجوال بنجاح",
   };
 }
 
 // =================== Copper Line API Functions ===================
 
 // Get all copper lines
-export function getAllCopperLines() {
+export function getAllCopperLines({ headers }) {
   return fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/copper-lines`, {
     method: "GET",
+    headers: headers,
     credentials: "include",
   }).then((res) => res.json());
 }
 
 // Get a single copper line by ID
-export function getCopperLineById({ id }) {
+export function getCopperLineById({ id, headers }) {
   return fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/copper-lines/${id}`, {
     method: "GET",
+    headers: headers,
     credentials: "include",
   }).then((res) => res.json());
 }
 
 // Create a new copper line
-export async function createCopperLine({ copperLineData }) {
+export async function createCopperLine({ lineData }) {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_APP_URL}/api/copper-lines`,
     {
@@ -490,7 +502,7 @@ export async function createCopperLine({ copperLineData }) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(copperLineData),
+      body: JSON.stringify(lineData),
       credentials: "include",
     }
   );
@@ -500,7 +512,7 @@ export async function createCopperLine({ copperLineData }) {
   if (!response.ok) {
     return {
       success: false,
-      message: data.message || "فشل في إنشاء خط النحاس",
+      message: data.message || "Failed to create copper line",
       error: data.error,
     };
   }
@@ -508,12 +520,12 @@ export async function createCopperLine({ copperLineData }) {
   return {
     success: true,
     message: "تم إنشاء خط النحاس بنجاح",
-    copperLine: data.copperLine,
+    data: data.data,
   };
 }
 
 // Update an existing copper line
-export async function updateCopperLine({ id, copperLineData }) {
+export async function updateCopperLine({ id, lineData }) {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_APP_URL}/api/copper-lines/${id}`,
     {
@@ -521,7 +533,7 @@ export async function updateCopperLine({ id, copperLineData }) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(copperLineData),
+      body: JSON.stringify(lineData),
       credentials: "include",
     }
   );
@@ -531,7 +543,7 @@ export async function updateCopperLine({ id, copperLineData }) {
   if (!response.ok) {
     return {
       success: false,
-      message: data.message || "فشل في تحديث خط النحاس",
+      message: data.message || "Failed to update copper line",
       error: data.error,
     };
   }
@@ -539,7 +551,7 @@ export async function updateCopperLine({ id, copperLineData }) {
   return {
     success: true,
     message: "تم تحديث خط النحاس بنجاح",
-    copperLine: data.copperLine,
+    data: data.data,
   };
 }
 
@@ -549,6 +561,9 @@ export async function deleteCopperLine({ id }) {
     `${process.env.NEXT_PUBLIC_APP_URL}/api/copper-lines/${id}`,
     {
       method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
       credentials: "include",
     }
   );
@@ -558,7 +573,7 @@ export async function deleteCopperLine({ id }) {
   if (!response.ok) {
     return {
       success: false,
-      message: data.message || "فشل في حذف خط النحاس",
+      message: data.message || "Failed to delete copper line",
       error: data.error,
     };
   }

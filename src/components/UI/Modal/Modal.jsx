@@ -1,5 +1,5 @@
-export default function Modal({ open, onClose, children }) {
-  if (!open) return null;
+export default function Modal({ isOpen, onClose, children }) {
+  if (!isOpen) return null;
 
   const handleContentClick = (e) => {
     // Stop propagation to prevent the backdrop click handler from firing

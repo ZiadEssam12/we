@@ -1,0 +1,41 @@
+import * as yup from "yup";
+
+export const copperLineSchema = yup.object().shape({
+  landline_number: yup.string().required("Landline Number is required"),
+  central: yup.string().required("Central is required"),
+  village: yup.string().required("Village is required"),
+  cabinet_number: yup.string().required("Cabinet Number is required"),
+  port_number: yup.string().required("Port Number is required"),
+  terminal_number: yup.string().required("Terminal Number is required"),
+  cabinet_location: yup.string().required("Cabinet Location is required"),
+  box_number: yup.string().required("Box Number is required"),
+  box_entitlement: yup.string().required("Box Entitlement is required"),
+  box_location: yup.string().required("Box Location is required"),
+  joint_location: yup.string().required("Joint Location is required"),
+  joint_entitlement: yup.string().required("Joint Entitlement is required"),
+  joint_depth: yup.string().required("Joint Depth is required"),
+  room_location: yup.string().required("Room Location is required"),
+  insulation_level: yup.string().required("Insulation Level is required"),
+  responsible: yup.string().nullable(),
+  notes: yup.string().nullable(),
+});
+
+export const updateCopperLineSchema = yup.object().shape({
+  landline_number: yup.string(),
+  central: yup.string(),
+  village: yup.string(),
+  cabinet_number: yup.string(),
+  port_number: yup.string(),
+  terminal_number: yup.string(),
+  cabinet_location: yup.string(),
+  box_number: yup.string(),
+  box_entitlement: yup.string(),
+  box_location: yup.string(),
+  joint_location: yup.string(),
+  joint_entitlement: yup.string(),
+  joint_depth: yup.string(),
+  room_location: yup.string(),
+  insulation_level: yup.string(),
+  responsible: yup.string().nullable(),
+  notes: yup.string().nullable(),
+});

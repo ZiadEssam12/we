@@ -1,11 +1,10 @@
 import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 import { auth } from "@/app/auth";
-import { majorCabinetSchema } from "@/schemas/majorCabinet"; // Ensure this import is present
+import { secondaryCabinetSchema } from "@/schemas/secondaryCabinet";
 
-// GET all MajorCabinets
-
-// api/major-cabinets
+// GET all SecondaryCabinets
+// api/secondary-cabinets
 export async function GET(request) {
   const session = await auth();
 
@@ -17,21 +16,21 @@ export async function GET(request) {
   }
 
   try {
-    const majorCabinets = await prisma.majorCabinet.findMany({
+    const secondaryCabinets = await prisma.secondaryCabinet.findMany({
       orderBy: {
         createdAt: "desc",
       },
     });
     return NextResponse.json(
-      { success: true, data: majorCabinets },
+      { success: true, data: secondaryCabinets },
       { status: 200 }
     );
   } catch (error) {
-    console.error("Error fetching major cabinets:", error);
+    console.error("Error fetching secondary cabinets:", error);
     return NextResponse.json(
       {
         success: false,
-        message: "حدث خطأ أثناء استرجاع بيانات الكبائن الرئيسية",
+        message: "حدث خطأ أثناء استرجاع بيانات الكبائن الثانوية",
         error: error.message,
       },
       { status: 500 }
@@ -39,7 +38,7 @@ export async function GET(request) {
   }
 }
 
-// POST a new MajorCabinet
+// POST a new SecondaryCabinet
 export async function POST(request) {
   const session = await auth();
 
@@ -54,11 +53,8 @@ export async function POST(request) {
     const body = await request.json();
     let validatedData;
 
-    // Validate the request body against the schema
     try {
-      // stripUnknown: true will remove any properties not defined in the schema
-      // Yup's .number().integer() should coerce the string to an integer if valid
-      validatedData = await majorCabinetSchema.validate(body, {
+      validatedData = await secondaryCabinetSchema.validate(body, {
         abortEarly: false,
         stripUnknown: true,
       });
@@ -77,35 +73,24 @@ export async function POST(request) {
       );
     }
 
-    // The permission check was here in your original code, ensure it's correctly placed.
-    // Assuming only ADMIN can create based on your previous setup for this model.
-    // if (session.user.role !== "ADMIN") {
-    //   return NextResponse.json(
-    //     { success: false, message: "غير مصرح به. يتطلب دور المسؤول." },
-    //     { status: 403 }
-    //   );
-    // }
-
-    const newMajorCabinet = await prisma.majorCabinet.create({
-      data: validatedData, // Use the validated and typed data directly
+    const newSecondaryCabinet = await prisma.secondaryCabinet.create({
+      data: validatedData,
     });
 
     return NextResponse.json(
       {
         success: true,
-        message: "تم إنشاء الكبينة الرئيسية بنجاح",
-        data: newMajorCabinet,
+        message: "تم إنشاء الكبينة الثانوية بنجاح",
+        data: newSecondaryCabinet,
       },
       { status: 201 }
     );
   } catch (error) {
-    console.error("Error creating major cabinet:", error);
-    // This catch block will handle other errors, like Prisma errors
-    // or issues not caught by the Yup validation's try-catch.
+    console.error("Error creating secondary cabinet:", error);
     return NextResponse.json(
       {
         success: false,
-        message: "حدث خطأ أثناء إنشاء الكبينة الرئيسية",
+        message: "حدث خطأ أثناء إنشاء الكبينة الثانوية",
         error: error.message,
       },
       { status: 500 }

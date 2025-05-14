@@ -15,7 +15,6 @@ export const initialMajorCabinetValues = {
   notes: "",
 };
 
-// Schema for creating and updating a MajorCabinet
 export const majorCabinetSchema = Yup.object().shape({
   central: Yup.string().required("اسم السنترال مطلوب"),
   village: Yup.string().required("اسم القرية مطلوب"),
@@ -40,7 +39,4 @@ export const majorCabinetSchema = Yup.object().shape({
   notes: Yup.string().required("الملاحظات مطلوبة"),
 });
 
-// Optional: A separate schema for updates if some fields have different rules
-// For example, if some fields cannot be updated or are not required on update.
-// For now, we'll use the same schema for create and update.
 export const updateMajorCabinetSchema = majorCabinetSchema;

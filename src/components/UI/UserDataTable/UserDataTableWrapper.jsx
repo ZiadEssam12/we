@@ -41,21 +41,21 @@ export default function UserDataTableWrapper({ data, columns }) {
           columns={columns}
           onEdit={handleUpdate}
           onDelete={handleDelete}
-          {...(session?.user?.role === "ADMIN" && {
-            CustomModal: () => (
-              <NewUserForm
-                setUsersData={setUsersData}
-                userData={usersData}
-                setOpenModal={setOpenModal}
-                openModal={openModal}
-                updatUserData={updatUserData}
-                handleCloseModal={handleCloseModal}
-                isUpdate={isUpdate}
-                handleUpdate={handleUpdate}
-              />
-            ),
-          })}
+          setOpenModal={setOpenModal}
+          ButtonTitle="إضافة مستخدم"
         />
+        {openModal && session?.user?.role === "ADMIN" && (
+          <NewUserForm
+            setUsersData={setUsersData}
+            userData={usersData}
+            setOpenModal={setOpenModal}
+            openModal={openModal}
+            updatUserData={updatUserData}
+            handleCloseModal={handleCloseModal}
+            isUpdate={isUpdate}
+            handleUpdate={handleUpdate}
+          />
+        )}
       </div>
     </>
   );

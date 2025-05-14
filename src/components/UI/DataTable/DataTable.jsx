@@ -20,39 +20,40 @@ import {
 } from "lucide-react";
 import { useSession } from "next-auth/react";
 
-// Define action buttons component
-const ActionButtons = ({ row, onEdit, onDelete, userRole }) => {
-  // Hide action buttons for MANAGER role
-  if (userRole === "MANAGER") {
-    return null;
-  }
+// // Define action buttons component
+// const ActionButtons = ({ row, onEdit, onDelete, userRole }) => {
+//   // Hide action buttons for MANAGER role
+//   if (userRole === "MANAGER") {
+//     return null;
+//   }
 
-  return (
-    <div className="flex items-center justify-end gap-1 flex-nowrap">
-      <button
-        onClick={() => onEdit(row.original)}
-        className="p-1 text-blue-600 hover:text-blue-800 transition-colors cursor-pointer"
-        title="تعديل"
-      >
-        <PencilIcon className="w-4 h-4" />
-      </button>
-      <button
-        onClick={() => onDelete(row.original)}
-        className="p-1 text-red-600 hover:text-red-800 transition-colors cursor-pointer"
-        title="حذف"
-      >
-        <TrashIcon className="w-4 h-4" />
-      </button>
-    </div>
-  );
-};
+//   return (
+//     <div className="flex items-center justify-end gap-1 flex-nowrap">
+//       <button
+//         onClick={() => onEdit(row.original)}
+//         className="p-1 text-blue-600 hover:text-blue-800 transition-colors cursor-pointer"
+//         title="تعديل"
+//       >
+//         <PencilIcon className="w-4 h-4" />
+//       </button>
+//       <button
+//         onClick={() => onDelete(row.original)}
+//         className="p-1 text-red-600 hover:text-red-800 transition-colors cursor-pointer"
+//         title="حذف"
+//       >
+//         <TrashIcon className="w-4 h-4" />
+//       </button>
+//     </div>
+//   );
+// };
 
 export default function DataTable({
   data = [],
   columns = [],
   onEdit = () => {},
   onDelete = () => {},
-  CustomModal = null,
+  ButtonTitle = null,
+  setOpenModal,
 }) {
   const { data: session } = useSession();
   const [pagination, setPagination] = useState({
@@ -81,7 +82,7 @@ export default function DataTable({
   ];
   const table = useReactTable({
     data,
-    columns: columnsWithActions,
+    columns,
     state: {
       pagination,
       globalFilter,
@@ -121,7 +122,12 @@ export default function DataTable({
             </div>
           </div>
         </div>
-        {CustomModal && <CustomModal />}
+        <button
+          onClick={() => setOpenModal(true)}
+          className="py-2 px-4 cursor-pointer rounded-lg bg-black hover:bg-black/80 border border-black  text-white transition-colors duration-150 "
+        >
+          {ButtonTitle}
+        </button>
       </div>
       <div className="rounded-md border bg-white">
         <div className="overflow-x-auto">
