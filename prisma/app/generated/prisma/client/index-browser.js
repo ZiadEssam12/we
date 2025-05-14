@@ -155,6 +155,82 @@ exports.Prisma.SessionScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.MajorCabinetScalarFieldEnum = {
+  id: 'id',
+  central: 'central',
+  village: 'village',
+  cabinet: 'cabinet',
+  central_to_cabinet_distance: 'central_to_cabinet_distance',
+  number_of_joints: 'number_of_joints',
+  joint_location: 'joint_location',
+  rooms: 'rooms',
+  room_location: 'room_location',
+  entitlement: 'entitlement',
+  distance: 'distance',
+  responsible: 'responsible',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.SecondaryCabinetScalarFieldEnum = {
+  id: 'id',
+  central: 'central',
+  village: 'village',
+  port_gbon: 'port_gbon',
+  cabinet: 'cabinet',
+  splitter_number: 'splitter_number',
+  splitter_port: 'splitter_port',
+  distance: 'distance',
+  box_number: 'box_number',
+  cabinet_location: 'cabinet_location',
+  box_location: 'box_location',
+  cabinet_to_box_distance: 'cabinet_to_box_distance',
+  responsible: 'responsible',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.MobileTowerScalarFieldEnum = {
+  id: 'id',
+  central: 'central',
+  cable_name: 'cable_name',
+  tower_code: 'tower_code',
+  company: 'company',
+  entitlement: 'entitlement',
+  distance: 'distance',
+  address: 'address',
+  location: 'location',
+  responsible: 'responsible',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.CopperLineScalarFieldEnum = {
+  id: 'id',
+  landline_number: 'landline_number',
+  central: 'central',
+  village: 'village',
+  cabinet_number: 'cabinet_number',
+  port_number: 'port_number',
+  terminal_number: 'terminal_number',
+  cabinet_location: 'cabinet_location',
+  box_number: 'box_number',
+  box_entitlement: 'box_entitlement',
+  box_location: 'box_location',
+  joint_location: 'joint_location',
+  joint_entitlement: 'joint_entitlement',
+  joint_depth: 'joint_depth',
+  room_location: 'room_location',
+  insulation_level: 'insulation_level',
+  responsible: 'responsible',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -178,7 +254,11 @@ exports.UserRole = exports.$Enums.UserRole = {
 exports.Prisma.ModelName = {
   User: 'User',
   Account: 'Account',
-  Session: 'Session'
+  Session: 'Session',
+  MajorCabinet: 'MajorCabinet',
+  SecondaryCabinet: 'SecondaryCabinet',
+  MobileTower: 'MobileTower',
+  CopperLine: 'CopperLine'
 };
 
 /**

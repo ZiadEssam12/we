@@ -58,3 +58,99 @@ model Session {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+model MajorCabinet {
+  id                          String  @id @default(cuid())
+  central                     String
+  village                     String
+  cabinet                     String
+  central_to_cabinet_distance String
+  number_of_joints            Int
+  joint_location              String // Stores "lat,lng" pairs
+  rooms                       String
+  room_location               String // Stores "lat,lng" pairs
+  entitlement                 String
+  distance                    String
+  responsible                 String? // Optional field
+  notes                       String  @db.Text
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([central])
+  @@index([village])
+}
+
+model SecondaryCabinet {
+  id                      String  @id @default(cuid())
+  central                 String
+  village                 String
+  port_gbon               String
+  cabinet                 String
+  splitter_number         String
+  splitter_port           String
+  distance                String
+  box_number              String
+  cabinet_location        String
+  box_location            String
+  cabinet_to_box_distance String
+  responsible             String?
+  notes                   String? @db.Text
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([central])
+  @@index([village])
+  @@index([cabinet])
+}
+
+model MobileTower {
+  id          String  @id @default(cuid())
+  central     String
+  cable_name  String
+  tower_code  String
+  company     String
+  entitlement String
+  distance    String
+  address     String
+  location    String // Stores "lat,lng" pairs
+  responsible String?
+  notes       String? @db.Text
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([central])
+  @@index([tower_code])
+  @@index([company])
+}
+
+model CopperLine {
+  id                String  @id @default(cuid())
+  landline_number   String
+  central           String
+  village           String
+  cabinet_number    String
+  port_number       String
+  terminal_number   String
+  cabinet_location  String
+  box_number        String
+  box_entitlement   String
+  box_location      String
+  joint_location    String
+  joint_entitlement String
+  joint_depth       String
+  room_location     String
+  insulation_level  String
+  responsible       String?
+  notes             String? @db.Text
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([landline_number])
+  @@index([central])
+  @@index([village])
+  @@index([cabinet_number])
+}

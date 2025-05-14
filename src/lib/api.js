@@ -100,23 +100,63 @@ export async function changePassword({ userId, passwordData }) {
 // =================== Major Cabinet API Functions ===================
 
 // Get all major cabinets
-export function getAllMajorCabinets() {
-  return fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/major-cabinets`, {
+export async function getAllMajorCabinets({ headers } = {}) {
+  // Added headers parameter
+  const fetchOptions = {
     method: "GET",
-    credentials: "include",
-  }).then((res) => res.json());
+    headers: {
+      "Content-Type": "application/json",
+      ...(headers && headers), // Spread the passed headers
+    },
+  };
+
+  // Only add credentials if headers are not explicitly passed (for client-side calls)
+  if (!headers) {
+    fetchOptions.credentials = "include";
+  }
+
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_APP_URL}/api/major-cabinets`,
+    fetchOptions
+  );
+  const data = await response.json();
+  if (!response.ok) {
+    return {
+      success: false,
+      message: data.message || "فشل في استرجاع الكبائن الرئيسية",
+      error: data.error,
+    };
+  }
+  return data; // Returns { success: true, data: majorCabinets }
 }
 
 // Get a single major cabinet by ID
-export function getMajorCabinetById({ id }) {
-  return fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/major-cabinets/${id}`, {
-    method: "GET",
-    credentials: "include",
-  }).then((res) => res.json());
+export async function getMajorCabinetById(id) {
+  // Changed to accept id directly
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_APP_URL}/api/major-cabinets/${id}`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    }
+  );
+  const data = await response.json();
+  if (!response.ok) {
+    return {
+      success: false,
+      message: data.message || `فشل في استرجاع الكبينة الرئيسية ${id}`,
+      error: data.error,
+    };
+  }
+  return data; // Returns { success: true, data: majorCabinet }
 }
 
 // Create a new major cabinet
-export async function createMajorCabinet({ majorCabinetData }) {
+export async function createMajorCabinet(majorCabinetData) {
+  // Changed to accept majorCabinetData directly
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_APP_URL}/api/major-cabinets`,
     {
@@ -142,12 +182,13 @@ export async function createMajorCabinet({ majorCabinetData }) {
   return {
     success: true,
     message: "تم إنشاء الكابينة الرئيسية بنجاح",
-    majorCabinet: data.majorCabinet,
+    data: data.data, // API returns { success: true, message: ..., data: newMajorCabinet }
   };
 }
 
 // Update an existing major cabinet
-export async function updateMajorCabinet({ id, majorCabinetData }) {
+export async function updateMajorCabinet(id, majorCabinetData) {
+  // Changed to accept id and majorCabinetData
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_APP_URL}/api/major-cabinets/${id}`,
     {
@@ -173,16 +214,20 @@ export async function updateMajorCabinet({ id, majorCabinetData }) {
   return {
     success: true,
     message: "تم تحديث الكابينة الرئيسية بنجاح",
-    majorCabinet: data.majorCabinet,
+    data: data.data, // API returns { success: true, message: ..., data: updatedMajorCabinet }
   };
 }
 
 // Delete a major cabinet
-export async function deleteMajorCabinet({ id }) {
+export async function deleteMajorCabinet(id) {
+  // Changed to accept id directly
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_APP_URL}/api/major-cabinets/${id}`,
     {
       method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
       credentials: "include",
     }
   );

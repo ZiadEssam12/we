@@ -28,6 +28,26 @@ export type Account = $Result.DefaultSelection<Prisma.$AccountPayload>
  * 
  */
 export type Session = $Result.DefaultSelection<Prisma.$SessionPayload>
+/**
+ * Model MajorCabinet
+ * 
+ */
+export type MajorCabinet = $Result.DefaultSelection<Prisma.$MajorCabinetPayload>
+/**
+ * Model SecondaryCabinet
+ * 
+ */
+export type SecondaryCabinet = $Result.DefaultSelection<Prisma.$SecondaryCabinetPayload>
+/**
+ * Model MobileTower
+ * 
+ */
+export type MobileTower = $Result.DefaultSelection<Prisma.$MobileTowerPayload>
+/**
+ * Model CopperLine
+ * 
+ */
+export type CopperLine = $Result.DefaultSelection<Prisma.$CopperLinePayload>
 
 /**
  * Enums
@@ -201,6 +221,46 @@ export class PrismaClient<
     * ```
     */
   get session(): Prisma.SessionDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.majorCabinet`: Exposes CRUD operations for the **MajorCabinet** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more MajorCabinets
+    * const majorCabinets = await prisma.majorCabinet.findMany()
+    * ```
+    */
+  get majorCabinet(): Prisma.MajorCabinetDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.secondaryCabinet`: Exposes CRUD operations for the **SecondaryCabinet** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more SecondaryCabinets
+    * const secondaryCabinets = await prisma.secondaryCabinet.findMany()
+    * ```
+    */
+  get secondaryCabinet(): Prisma.SecondaryCabinetDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.mobileTower`: Exposes CRUD operations for the **MobileTower** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more MobileTowers
+    * const mobileTowers = await prisma.mobileTower.findMany()
+    * ```
+    */
+  get mobileTower(): Prisma.MobileTowerDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.copperLine`: Exposes CRUD operations for the **CopperLine** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more CopperLines
+    * const copperLines = await prisma.copperLine.findMany()
+    * ```
+    */
+  get copperLine(): Prisma.CopperLineDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -643,7 +703,11 @@ export namespace Prisma {
   export const ModelName: {
     User: 'User',
     Account: 'Account',
-    Session: 'Session'
+    Session: 'Session',
+    MajorCabinet: 'MajorCabinet',
+    SecondaryCabinet: 'SecondaryCabinet',
+    MobileTower: 'MobileTower',
+    CopperLine: 'CopperLine'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -662,7 +726,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "account" | "session"
+      modelProps: "user" | "account" | "session" | "majorCabinet" | "secondaryCabinet" | "mobileTower" | "copperLine"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -888,6 +952,302 @@ export namespace Prisma {
           }
         }
       }
+      MajorCabinet: {
+        payload: Prisma.$MajorCabinetPayload<ExtArgs>
+        fields: Prisma.MajorCabinetFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.MajorCabinetFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MajorCabinetPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.MajorCabinetFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MajorCabinetPayload>
+          }
+          findFirst: {
+            args: Prisma.MajorCabinetFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MajorCabinetPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.MajorCabinetFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MajorCabinetPayload>
+          }
+          findMany: {
+            args: Prisma.MajorCabinetFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MajorCabinetPayload>[]
+          }
+          create: {
+            args: Prisma.MajorCabinetCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MajorCabinetPayload>
+          }
+          createMany: {
+            args: Prisma.MajorCabinetCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.MajorCabinetCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MajorCabinetPayload>[]
+          }
+          delete: {
+            args: Prisma.MajorCabinetDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MajorCabinetPayload>
+          }
+          update: {
+            args: Prisma.MajorCabinetUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MajorCabinetPayload>
+          }
+          deleteMany: {
+            args: Prisma.MajorCabinetDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.MajorCabinetUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.MajorCabinetUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MajorCabinetPayload>[]
+          }
+          upsert: {
+            args: Prisma.MajorCabinetUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MajorCabinetPayload>
+          }
+          aggregate: {
+            args: Prisma.MajorCabinetAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateMajorCabinet>
+          }
+          groupBy: {
+            args: Prisma.MajorCabinetGroupByArgs<ExtArgs>
+            result: $Utils.Optional<MajorCabinetGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.MajorCabinetCountArgs<ExtArgs>
+            result: $Utils.Optional<MajorCabinetCountAggregateOutputType> | number
+          }
+        }
+      }
+      SecondaryCabinet: {
+        payload: Prisma.$SecondaryCabinetPayload<ExtArgs>
+        fields: Prisma.SecondaryCabinetFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.SecondaryCabinetFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SecondaryCabinetPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.SecondaryCabinetFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SecondaryCabinetPayload>
+          }
+          findFirst: {
+            args: Prisma.SecondaryCabinetFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SecondaryCabinetPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.SecondaryCabinetFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SecondaryCabinetPayload>
+          }
+          findMany: {
+            args: Prisma.SecondaryCabinetFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SecondaryCabinetPayload>[]
+          }
+          create: {
+            args: Prisma.SecondaryCabinetCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SecondaryCabinetPayload>
+          }
+          createMany: {
+            args: Prisma.SecondaryCabinetCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.SecondaryCabinetCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SecondaryCabinetPayload>[]
+          }
+          delete: {
+            args: Prisma.SecondaryCabinetDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SecondaryCabinetPayload>
+          }
+          update: {
+            args: Prisma.SecondaryCabinetUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SecondaryCabinetPayload>
+          }
+          deleteMany: {
+            args: Prisma.SecondaryCabinetDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.SecondaryCabinetUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.SecondaryCabinetUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SecondaryCabinetPayload>[]
+          }
+          upsert: {
+            args: Prisma.SecondaryCabinetUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SecondaryCabinetPayload>
+          }
+          aggregate: {
+            args: Prisma.SecondaryCabinetAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSecondaryCabinet>
+          }
+          groupBy: {
+            args: Prisma.SecondaryCabinetGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SecondaryCabinetGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.SecondaryCabinetCountArgs<ExtArgs>
+            result: $Utils.Optional<SecondaryCabinetCountAggregateOutputType> | number
+          }
+        }
+      }
+      MobileTower: {
+        payload: Prisma.$MobileTowerPayload<ExtArgs>
+        fields: Prisma.MobileTowerFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.MobileTowerFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MobileTowerPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.MobileTowerFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MobileTowerPayload>
+          }
+          findFirst: {
+            args: Prisma.MobileTowerFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MobileTowerPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.MobileTowerFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MobileTowerPayload>
+          }
+          findMany: {
+            args: Prisma.MobileTowerFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MobileTowerPayload>[]
+          }
+          create: {
+            args: Prisma.MobileTowerCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MobileTowerPayload>
+          }
+          createMany: {
+            args: Prisma.MobileTowerCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.MobileTowerCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MobileTowerPayload>[]
+          }
+          delete: {
+            args: Prisma.MobileTowerDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MobileTowerPayload>
+          }
+          update: {
+            args: Prisma.MobileTowerUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MobileTowerPayload>
+          }
+          deleteMany: {
+            args: Prisma.MobileTowerDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.MobileTowerUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.MobileTowerUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MobileTowerPayload>[]
+          }
+          upsert: {
+            args: Prisma.MobileTowerUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MobileTowerPayload>
+          }
+          aggregate: {
+            args: Prisma.MobileTowerAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateMobileTower>
+          }
+          groupBy: {
+            args: Prisma.MobileTowerGroupByArgs<ExtArgs>
+            result: $Utils.Optional<MobileTowerGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.MobileTowerCountArgs<ExtArgs>
+            result: $Utils.Optional<MobileTowerCountAggregateOutputType> | number
+          }
+        }
+      }
+      CopperLine: {
+        payload: Prisma.$CopperLinePayload<ExtArgs>
+        fields: Prisma.CopperLineFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CopperLineFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CopperLinePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CopperLineFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CopperLinePayload>
+          }
+          findFirst: {
+            args: Prisma.CopperLineFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CopperLinePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CopperLineFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CopperLinePayload>
+          }
+          findMany: {
+            args: Prisma.CopperLineFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CopperLinePayload>[]
+          }
+          create: {
+            args: Prisma.CopperLineCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CopperLinePayload>
+          }
+          createMany: {
+            args: Prisma.CopperLineCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.CopperLineCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CopperLinePayload>[]
+          }
+          delete: {
+            args: Prisma.CopperLineDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CopperLinePayload>
+          }
+          update: {
+            args: Prisma.CopperLineUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CopperLinePayload>
+          }
+          deleteMany: {
+            args: Prisma.CopperLineDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CopperLineUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.CopperLineUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CopperLinePayload>[]
+          }
+          upsert: {
+            args: Prisma.CopperLineUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CopperLinePayload>
+          }
+          aggregate: {
+            args: Prisma.CopperLineAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCopperLine>
+          }
+          groupBy: {
+            args: Prisma.CopperLineGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CopperLineGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CopperLineCountArgs<ExtArgs>
+            result: $Utils.Optional<CopperLineCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -975,6 +1335,10 @@ export namespace Prisma {
     user?: UserOmit
     account?: AccountOmit
     session?: SessionOmit
+    majorCabinet?: MajorCabinetOmit
+    secondaryCabinet?: SecondaryCabinetOmit
+    mobileTower?: MobileTowerOmit
+    copperLine?: CopperLineOmit
   }
 
   /* Types for Logging */
@@ -4500,6 +4864,4592 @@ export namespace Prisma {
 
 
   /**
+   * Model MajorCabinet
+   */
+
+  export type AggregateMajorCabinet = {
+    _count: MajorCabinetCountAggregateOutputType | null
+    _avg: MajorCabinetAvgAggregateOutputType | null
+    _sum: MajorCabinetSumAggregateOutputType | null
+    _min: MajorCabinetMinAggregateOutputType | null
+    _max: MajorCabinetMaxAggregateOutputType | null
+  }
+
+  export type MajorCabinetAvgAggregateOutputType = {
+    number_of_joints: number | null
+  }
+
+  export type MajorCabinetSumAggregateOutputType = {
+    number_of_joints: number | null
+  }
+
+  export type MajorCabinetMinAggregateOutputType = {
+    id: string | null
+    central: string | null
+    village: string | null
+    cabinet: string | null
+    central_to_cabinet_distance: string | null
+    number_of_joints: number | null
+    joint_location: string | null
+    rooms: string | null
+    room_location: string | null
+    entitlement: string | null
+    distance: string | null
+    responsible: string | null
+    notes: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type MajorCabinetMaxAggregateOutputType = {
+    id: string | null
+    central: string | null
+    village: string | null
+    cabinet: string | null
+    central_to_cabinet_distance: string | null
+    number_of_joints: number | null
+    joint_location: string | null
+    rooms: string | null
+    room_location: string | null
+    entitlement: string | null
+    distance: string | null
+    responsible: string | null
+    notes: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type MajorCabinetCountAggregateOutputType = {
+    id: number
+    central: number
+    village: number
+    cabinet: number
+    central_to_cabinet_distance: number
+    number_of_joints: number
+    joint_location: number
+    rooms: number
+    room_location: number
+    entitlement: number
+    distance: number
+    responsible: number
+    notes: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type MajorCabinetAvgAggregateInputType = {
+    number_of_joints?: true
+  }
+
+  export type MajorCabinetSumAggregateInputType = {
+    number_of_joints?: true
+  }
+
+  export type MajorCabinetMinAggregateInputType = {
+    id?: true
+    central?: true
+    village?: true
+    cabinet?: true
+    central_to_cabinet_distance?: true
+    number_of_joints?: true
+    joint_location?: true
+    rooms?: true
+    room_location?: true
+    entitlement?: true
+    distance?: true
+    responsible?: true
+    notes?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type MajorCabinetMaxAggregateInputType = {
+    id?: true
+    central?: true
+    village?: true
+    cabinet?: true
+    central_to_cabinet_distance?: true
+    number_of_joints?: true
+    joint_location?: true
+    rooms?: true
+    room_location?: true
+    entitlement?: true
+    distance?: true
+    responsible?: true
+    notes?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type MajorCabinetCountAggregateInputType = {
+    id?: true
+    central?: true
+    village?: true
+    cabinet?: true
+    central_to_cabinet_distance?: true
+    number_of_joints?: true
+    joint_location?: true
+    rooms?: true
+    room_location?: true
+    entitlement?: true
+    distance?: true
+    responsible?: true
+    notes?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type MajorCabinetAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MajorCabinet to aggregate.
+     */
+    where?: MajorCabinetWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MajorCabinets to fetch.
+     */
+    orderBy?: MajorCabinetOrderByWithRelationInput | MajorCabinetOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: MajorCabinetWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MajorCabinets from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MajorCabinets.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned MajorCabinets
+    **/
+    _count?: true | MajorCabinetCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: MajorCabinetAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: MajorCabinetSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: MajorCabinetMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: MajorCabinetMaxAggregateInputType
+  }
+
+  export type GetMajorCabinetAggregateType<T extends MajorCabinetAggregateArgs> = {
+        [P in keyof T & keyof AggregateMajorCabinet]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateMajorCabinet[P]>
+      : GetScalarType<T[P], AggregateMajorCabinet[P]>
+  }
+
+
+
+
+  export type MajorCabinetGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MajorCabinetWhereInput
+    orderBy?: MajorCabinetOrderByWithAggregationInput | MajorCabinetOrderByWithAggregationInput[]
+    by: MajorCabinetScalarFieldEnum[] | MajorCabinetScalarFieldEnum
+    having?: MajorCabinetScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: MajorCabinetCountAggregateInputType | true
+    _avg?: MajorCabinetAvgAggregateInputType
+    _sum?: MajorCabinetSumAggregateInputType
+    _min?: MajorCabinetMinAggregateInputType
+    _max?: MajorCabinetMaxAggregateInputType
+  }
+
+  export type MajorCabinetGroupByOutputType = {
+    id: string
+    central: string
+    village: string
+    cabinet: string
+    central_to_cabinet_distance: string
+    number_of_joints: number
+    joint_location: string
+    rooms: string
+    room_location: string
+    entitlement: string
+    distance: string
+    responsible: string | null
+    notes: string
+    createdAt: Date
+    updatedAt: Date
+    _count: MajorCabinetCountAggregateOutputType | null
+    _avg: MajorCabinetAvgAggregateOutputType | null
+    _sum: MajorCabinetSumAggregateOutputType | null
+    _min: MajorCabinetMinAggregateOutputType | null
+    _max: MajorCabinetMaxAggregateOutputType | null
+  }
+
+  type GetMajorCabinetGroupByPayload<T extends MajorCabinetGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<MajorCabinetGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof MajorCabinetGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], MajorCabinetGroupByOutputType[P]>
+            : GetScalarType<T[P], MajorCabinetGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type MajorCabinetSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    central?: boolean
+    village?: boolean
+    cabinet?: boolean
+    central_to_cabinet_distance?: boolean
+    number_of_joints?: boolean
+    joint_location?: boolean
+    rooms?: boolean
+    room_location?: boolean
+    entitlement?: boolean
+    distance?: boolean
+    responsible?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["majorCabinet"]>
+
+  export type MajorCabinetSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    central?: boolean
+    village?: boolean
+    cabinet?: boolean
+    central_to_cabinet_distance?: boolean
+    number_of_joints?: boolean
+    joint_location?: boolean
+    rooms?: boolean
+    room_location?: boolean
+    entitlement?: boolean
+    distance?: boolean
+    responsible?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["majorCabinet"]>
+
+  export type MajorCabinetSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    central?: boolean
+    village?: boolean
+    cabinet?: boolean
+    central_to_cabinet_distance?: boolean
+    number_of_joints?: boolean
+    joint_location?: boolean
+    rooms?: boolean
+    room_location?: boolean
+    entitlement?: boolean
+    distance?: boolean
+    responsible?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["majorCabinet"]>
+
+  export type MajorCabinetSelectScalar = {
+    id?: boolean
+    central?: boolean
+    village?: boolean
+    cabinet?: boolean
+    central_to_cabinet_distance?: boolean
+    number_of_joints?: boolean
+    joint_location?: boolean
+    rooms?: boolean
+    room_location?: boolean
+    entitlement?: boolean
+    distance?: boolean
+    responsible?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type MajorCabinetOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "central" | "village" | "cabinet" | "central_to_cabinet_distance" | "number_of_joints" | "joint_location" | "rooms" | "room_location" | "entitlement" | "distance" | "responsible" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["majorCabinet"]>
+
+  export type $MajorCabinetPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "MajorCabinet"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      central: string
+      village: string
+      cabinet: string
+      central_to_cabinet_distance: string
+      number_of_joints: number
+      joint_location: string
+      rooms: string
+      room_location: string
+      entitlement: string
+      distance: string
+      responsible: string | null
+      notes: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["majorCabinet"]>
+    composites: {}
+  }
+
+  type MajorCabinetGetPayload<S extends boolean | null | undefined | MajorCabinetDefaultArgs> = $Result.GetResult<Prisma.$MajorCabinetPayload, S>
+
+  type MajorCabinetCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<MajorCabinetFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: MajorCabinetCountAggregateInputType | true
+    }
+
+  export interface MajorCabinetDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['MajorCabinet'], meta: { name: 'MajorCabinet' } }
+    /**
+     * Find zero or one MajorCabinet that matches the filter.
+     * @param {MajorCabinetFindUniqueArgs} args - Arguments to find a MajorCabinet
+     * @example
+     * // Get one MajorCabinet
+     * const majorCabinet = await prisma.majorCabinet.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends MajorCabinetFindUniqueArgs>(args: SelectSubset<T, MajorCabinetFindUniqueArgs<ExtArgs>>): Prisma__MajorCabinetClient<$Result.GetResult<Prisma.$MajorCabinetPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one MajorCabinet that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {MajorCabinetFindUniqueOrThrowArgs} args - Arguments to find a MajorCabinet
+     * @example
+     * // Get one MajorCabinet
+     * const majorCabinet = await prisma.majorCabinet.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends MajorCabinetFindUniqueOrThrowArgs>(args: SelectSubset<T, MajorCabinetFindUniqueOrThrowArgs<ExtArgs>>): Prisma__MajorCabinetClient<$Result.GetResult<Prisma.$MajorCabinetPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MajorCabinet that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MajorCabinetFindFirstArgs} args - Arguments to find a MajorCabinet
+     * @example
+     * // Get one MajorCabinet
+     * const majorCabinet = await prisma.majorCabinet.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends MajorCabinetFindFirstArgs>(args?: SelectSubset<T, MajorCabinetFindFirstArgs<ExtArgs>>): Prisma__MajorCabinetClient<$Result.GetResult<Prisma.$MajorCabinetPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MajorCabinet that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MajorCabinetFindFirstOrThrowArgs} args - Arguments to find a MajorCabinet
+     * @example
+     * // Get one MajorCabinet
+     * const majorCabinet = await prisma.majorCabinet.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends MajorCabinetFindFirstOrThrowArgs>(args?: SelectSubset<T, MajorCabinetFindFirstOrThrowArgs<ExtArgs>>): Prisma__MajorCabinetClient<$Result.GetResult<Prisma.$MajorCabinetPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more MajorCabinets that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MajorCabinetFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all MajorCabinets
+     * const majorCabinets = await prisma.majorCabinet.findMany()
+     * 
+     * // Get first 10 MajorCabinets
+     * const majorCabinets = await prisma.majorCabinet.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const majorCabinetWithIdOnly = await prisma.majorCabinet.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends MajorCabinetFindManyArgs>(args?: SelectSubset<T, MajorCabinetFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MajorCabinetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a MajorCabinet.
+     * @param {MajorCabinetCreateArgs} args - Arguments to create a MajorCabinet.
+     * @example
+     * // Create one MajorCabinet
+     * const MajorCabinet = await prisma.majorCabinet.create({
+     *   data: {
+     *     // ... data to create a MajorCabinet
+     *   }
+     * })
+     * 
+     */
+    create<T extends MajorCabinetCreateArgs>(args: SelectSubset<T, MajorCabinetCreateArgs<ExtArgs>>): Prisma__MajorCabinetClient<$Result.GetResult<Prisma.$MajorCabinetPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many MajorCabinets.
+     * @param {MajorCabinetCreateManyArgs} args - Arguments to create many MajorCabinets.
+     * @example
+     * // Create many MajorCabinets
+     * const majorCabinet = await prisma.majorCabinet.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends MajorCabinetCreateManyArgs>(args?: SelectSubset<T, MajorCabinetCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many MajorCabinets and returns the data saved in the database.
+     * @param {MajorCabinetCreateManyAndReturnArgs} args - Arguments to create many MajorCabinets.
+     * @example
+     * // Create many MajorCabinets
+     * const majorCabinet = await prisma.majorCabinet.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many MajorCabinets and only return the `id`
+     * const majorCabinetWithIdOnly = await prisma.majorCabinet.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends MajorCabinetCreateManyAndReturnArgs>(args?: SelectSubset<T, MajorCabinetCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MajorCabinetPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a MajorCabinet.
+     * @param {MajorCabinetDeleteArgs} args - Arguments to delete one MajorCabinet.
+     * @example
+     * // Delete one MajorCabinet
+     * const MajorCabinet = await prisma.majorCabinet.delete({
+     *   where: {
+     *     // ... filter to delete one MajorCabinet
+     *   }
+     * })
+     * 
+     */
+    delete<T extends MajorCabinetDeleteArgs>(args: SelectSubset<T, MajorCabinetDeleteArgs<ExtArgs>>): Prisma__MajorCabinetClient<$Result.GetResult<Prisma.$MajorCabinetPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one MajorCabinet.
+     * @param {MajorCabinetUpdateArgs} args - Arguments to update one MajorCabinet.
+     * @example
+     * // Update one MajorCabinet
+     * const majorCabinet = await prisma.majorCabinet.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends MajorCabinetUpdateArgs>(args: SelectSubset<T, MajorCabinetUpdateArgs<ExtArgs>>): Prisma__MajorCabinetClient<$Result.GetResult<Prisma.$MajorCabinetPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more MajorCabinets.
+     * @param {MajorCabinetDeleteManyArgs} args - Arguments to filter MajorCabinets to delete.
+     * @example
+     * // Delete a few MajorCabinets
+     * const { count } = await prisma.majorCabinet.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends MajorCabinetDeleteManyArgs>(args?: SelectSubset<T, MajorCabinetDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MajorCabinets.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MajorCabinetUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many MajorCabinets
+     * const majorCabinet = await prisma.majorCabinet.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends MajorCabinetUpdateManyArgs>(args: SelectSubset<T, MajorCabinetUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MajorCabinets and returns the data updated in the database.
+     * @param {MajorCabinetUpdateManyAndReturnArgs} args - Arguments to update many MajorCabinets.
+     * @example
+     * // Update many MajorCabinets
+     * const majorCabinet = await prisma.majorCabinet.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more MajorCabinets and only return the `id`
+     * const majorCabinetWithIdOnly = await prisma.majorCabinet.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends MajorCabinetUpdateManyAndReturnArgs>(args: SelectSubset<T, MajorCabinetUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MajorCabinetPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one MajorCabinet.
+     * @param {MajorCabinetUpsertArgs} args - Arguments to update or create a MajorCabinet.
+     * @example
+     * // Update or create a MajorCabinet
+     * const majorCabinet = await prisma.majorCabinet.upsert({
+     *   create: {
+     *     // ... data to create a MajorCabinet
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the MajorCabinet we want to update
+     *   }
+     * })
+     */
+    upsert<T extends MajorCabinetUpsertArgs>(args: SelectSubset<T, MajorCabinetUpsertArgs<ExtArgs>>): Prisma__MajorCabinetClient<$Result.GetResult<Prisma.$MajorCabinetPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of MajorCabinets.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MajorCabinetCountArgs} args - Arguments to filter MajorCabinets to count.
+     * @example
+     * // Count the number of MajorCabinets
+     * const count = await prisma.majorCabinet.count({
+     *   where: {
+     *     // ... the filter for the MajorCabinets we want to count
+     *   }
+     * })
+    **/
+    count<T extends MajorCabinetCountArgs>(
+      args?: Subset<T, MajorCabinetCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], MajorCabinetCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a MajorCabinet.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MajorCabinetAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends MajorCabinetAggregateArgs>(args: Subset<T, MajorCabinetAggregateArgs>): Prisma.PrismaPromise<GetMajorCabinetAggregateType<T>>
+
+    /**
+     * Group by MajorCabinet.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MajorCabinetGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends MajorCabinetGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: MajorCabinetGroupByArgs['orderBy'] }
+        : { orderBy?: MajorCabinetGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, MajorCabinetGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMajorCabinetGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the MajorCabinet model
+   */
+  readonly fields: MajorCabinetFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for MajorCabinet.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__MajorCabinetClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the MajorCabinet model
+   */
+  interface MajorCabinetFieldRefs {
+    readonly id: FieldRef<"MajorCabinet", 'String'>
+    readonly central: FieldRef<"MajorCabinet", 'String'>
+    readonly village: FieldRef<"MajorCabinet", 'String'>
+    readonly cabinet: FieldRef<"MajorCabinet", 'String'>
+    readonly central_to_cabinet_distance: FieldRef<"MajorCabinet", 'String'>
+    readonly number_of_joints: FieldRef<"MajorCabinet", 'Int'>
+    readonly joint_location: FieldRef<"MajorCabinet", 'String'>
+    readonly rooms: FieldRef<"MajorCabinet", 'String'>
+    readonly room_location: FieldRef<"MajorCabinet", 'String'>
+    readonly entitlement: FieldRef<"MajorCabinet", 'String'>
+    readonly distance: FieldRef<"MajorCabinet", 'String'>
+    readonly responsible: FieldRef<"MajorCabinet", 'String'>
+    readonly notes: FieldRef<"MajorCabinet", 'String'>
+    readonly createdAt: FieldRef<"MajorCabinet", 'DateTime'>
+    readonly updatedAt: FieldRef<"MajorCabinet", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * MajorCabinet findUnique
+   */
+  export type MajorCabinetFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MajorCabinet
+     */
+    select?: MajorCabinetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MajorCabinet
+     */
+    omit?: MajorCabinetOmit<ExtArgs> | null
+    /**
+     * Filter, which MajorCabinet to fetch.
+     */
+    where: MajorCabinetWhereUniqueInput
+  }
+
+  /**
+   * MajorCabinet findUniqueOrThrow
+   */
+  export type MajorCabinetFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MajorCabinet
+     */
+    select?: MajorCabinetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MajorCabinet
+     */
+    omit?: MajorCabinetOmit<ExtArgs> | null
+    /**
+     * Filter, which MajorCabinet to fetch.
+     */
+    where: MajorCabinetWhereUniqueInput
+  }
+
+  /**
+   * MajorCabinet findFirst
+   */
+  export type MajorCabinetFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MajorCabinet
+     */
+    select?: MajorCabinetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MajorCabinet
+     */
+    omit?: MajorCabinetOmit<ExtArgs> | null
+    /**
+     * Filter, which MajorCabinet to fetch.
+     */
+    where?: MajorCabinetWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MajorCabinets to fetch.
+     */
+    orderBy?: MajorCabinetOrderByWithRelationInput | MajorCabinetOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MajorCabinets.
+     */
+    cursor?: MajorCabinetWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MajorCabinets from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MajorCabinets.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MajorCabinets.
+     */
+    distinct?: MajorCabinetScalarFieldEnum | MajorCabinetScalarFieldEnum[]
+  }
+
+  /**
+   * MajorCabinet findFirstOrThrow
+   */
+  export type MajorCabinetFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MajorCabinet
+     */
+    select?: MajorCabinetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MajorCabinet
+     */
+    omit?: MajorCabinetOmit<ExtArgs> | null
+    /**
+     * Filter, which MajorCabinet to fetch.
+     */
+    where?: MajorCabinetWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MajorCabinets to fetch.
+     */
+    orderBy?: MajorCabinetOrderByWithRelationInput | MajorCabinetOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MajorCabinets.
+     */
+    cursor?: MajorCabinetWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MajorCabinets from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MajorCabinets.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MajorCabinets.
+     */
+    distinct?: MajorCabinetScalarFieldEnum | MajorCabinetScalarFieldEnum[]
+  }
+
+  /**
+   * MajorCabinet findMany
+   */
+  export type MajorCabinetFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MajorCabinet
+     */
+    select?: MajorCabinetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MajorCabinet
+     */
+    omit?: MajorCabinetOmit<ExtArgs> | null
+    /**
+     * Filter, which MajorCabinets to fetch.
+     */
+    where?: MajorCabinetWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MajorCabinets to fetch.
+     */
+    orderBy?: MajorCabinetOrderByWithRelationInput | MajorCabinetOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing MajorCabinets.
+     */
+    cursor?: MajorCabinetWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MajorCabinets from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MajorCabinets.
+     */
+    skip?: number
+    distinct?: MajorCabinetScalarFieldEnum | MajorCabinetScalarFieldEnum[]
+  }
+
+  /**
+   * MajorCabinet create
+   */
+  export type MajorCabinetCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MajorCabinet
+     */
+    select?: MajorCabinetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MajorCabinet
+     */
+    omit?: MajorCabinetOmit<ExtArgs> | null
+    /**
+     * The data needed to create a MajorCabinet.
+     */
+    data: XOR<MajorCabinetCreateInput, MajorCabinetUncheckedCreateInput>
+  }
+
+  /**
+   * MajorCabinet createMany
+   */
+  export type MajorCabinetCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many MajorCabinets.
+     */
+    data: MajorCabinetCreateManyInput | MajorCabinetCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * MajorCabinet createManyAndReturn
+   */
+  export type MajorCabinetCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MajorCabinet
+     */
+    select?: MajorCabinetSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the MajorCabinet
+     */
+    omit?: MajorCabinetOmit<ExtArgs> | null
+    /**
+     * The data used to create many MajorCabinets.
+     */
+    data: MajorCabinetCreateManyInput | MajorCabinetCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * MajorCabinet update
+   */
+  export type MajorCabinetUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MajorCabinet
+     */
+    select?: MajorCabinetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MajorCabinet
+     */
+    omit?: MajorCabinetOmit<ExtArgs> | null
+    /**
+     * The data needed to update a MajorCabinet.
+     */
+    data: XOR<MajorCabinetUpdateInput, MajorCabinetUncheckedUpdateInput>
+    /**
+     * Choose, which MajorCabinet to update.
+     */
+    where: MajorCabinetWhereUniqueInput
+  }
+
+  /**
+   * MajorCabinet updateMany
+   */
+  export type MajorCabinetUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update MajorCabinets.
+     */
+    data: XOR<MajorCabinetUpdateManyMutationInput, MajorCabinetUncheckedUpdateManyInput>
+    /**
+     * Filter which MajorCabinets to update
+     */
+    where?: MajorCabinetWhereInput
+    /**
+     * Limit how many MajorCabinets to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * MajorCabinet updateManyAndReturn
+   */
+  export type MajorCabinetUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MajorCabinet
+     */
+    select?: MajorCabinetSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the MajorCabinet
+     */
+    omit?: MajorCabinetOmit<ExtArgs> | null
+    /**
+     * The data used to update MajorCabinets.
+     */
+    data: XOR<MajorCabinetUpdateManyMutationInput, MajorCabinetUncheckedUpdateManyInput>
+    /**
+     * Filter which MajorCabinets to update
+     */
+    where?: MajorCabinetWhereInput
+    /**
+     * Limit how many MajorCabinets to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * MajorCabinet upsert
+   */
+  export type MajorCabinetUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MajorCabinet
+     */
+    select?: MajorCabinetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MajorCabinet
+     */
+    omit?: MajorCabinetOmit<ExtArgs> | null
+    /**
+     * The filter to search for the MajorCabinet to update in case it exists.
+     */
+    where: MajorCabinetWhereUniqueInput
+    /**
+     * In case the MajorCabinet found by the `where` argument doesn't exist, create a new MajorCabinet with this data.
+     */
+    create: XOR<MajorCabinetCreateInput, MajorCabinetUncheckedCreateInput>
+    /**
+     * In case the MajorCabinet was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<MajorCabinetUpdateInput, MajorCabinetUncheckedUpdateInput>
+  }
+
+  /**
+   * MajorCabinet delete
+   */
+  export type MajorCabinetDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MajorCabinet
+     */
+    select?: MajorCabinetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MajorCabinet
+     */
+    omit?: MajorCabinetOmit<ExtArgs> | null
+    /**
+     * Filter which MajorCabinet to delete.
+     */
+    where: MajorCabinetWhereUniqueInput
+  }
+
+  /**
+   * MajorCabinet deleteMany
+   */
+  export type MajorCabinetDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MajorCabinets to delete
+     */
+    where?: MajorCabinetWhereInput
+    /**
+     * Limit how many MajorCabinets to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * MajorCabinet without action
+   */
+  export type MajorCabinetDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MajorCabinet
+     */
+    select?: MajorCabinetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MajorCabinet
+     */
+    omit?: MajorCabinetOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model SecondaryCabinet
+   */
+
+  export type AggregateSecondaryCabinet = {
+    _count: SecondaryCabinetCountAggregateOutputType | null
+    _min: SecondaryCabinetMinAggregateOutputType | null
+    _max: SecondaryCabinetMaxAggregateOutputType | null
+  }
+
+  export type SecondaryCabinetMinAggregateOutputType = {
+    id: string | null
+    central: string | null
+    village: string | null
+    port_gbon: string | null
+    cabinet: string | null
+    splitter_number: string | null
+    splitter_port: string | null
+    distance: string | null
+    box_number: string | null
+    cabinet_location: string | null
+    box_location: string | null
+    cabinet_to_box_distance: string | null
+    responsible: string | null
+    notes: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type SecondaryCabinetMaxAggregateOutputType = {
+    id: string | null
+    central: string | null
+    village: string | null
+    port_gbon: string | null
+    cabinet: string | null
+    splitter_number: string | null
+    splitter_port: string | null
+    distance: string | null
+    box_number: string | null
+    cabinet_location: string | null
+    box_location: string | null
+    cabinet_to_box_distance: string | null
+    responsible: string | null
+    notes: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type SecondaryCabinetCountAggregateOutputType = {
+    id: number
+    central: number
+    village: number
+    port_gbon: number
+    cabinet: number
+    splitter_number: number
+    splitter_port: number
+    distance: number
+    box_number: number
+    cabinet_location: number
+    box_location: number
+    cabinet_to_box_distance: number
+    responsible: number
+    notes: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type SecondaryCabinetMinAggregateInputType = {
+    id?: true
+    central?: true
+    village?: true
+    port_gbon?: true
+    cabinet?: true
+    splitter_number?: true
+    splitter_port?: true
+    distance?: true
+    box_number?: true
+    cabinet_location?: true
+    box_location?: true
+    cabinet_to_box_distance?: true
+    responsible?: true
+    notes?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type SecondaryCabinetMaxAggregateInputType = {
+    id?: true
+    central?: true
+    village?: true
+    port_gbon?: true
+    cabinet?: true
+    splitter_number?: true
+    splitter_port?: true
+    distance?: true
+    box_number?: true
+    cabinet_location?: true
+    box_location?: true
+    cabinet_to_box_distance?: true
+    responsible?: true
+    notes?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type SecondaryCabinetCountAggregateInputType = {
+    id?: true
+    central?: true
+    village?: true
+    port_gbon?: true
+    cabinet?: true
+    splitter_number?: true
+    splitter_port?: true
+    distance?: true
+    box_number?: true
+    cabinet_location?: true
+    box_location?: true
+    cabinet_to_box_distance?: true
+    responsible?: true
+    notes?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type SecondaryCabinetAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SecondaryCabinet to aggregate.
+     */
+    where?: SecondaryCabinetWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SecondaryCabinets to fetch.
+     */
+    orderBy?: SecondaryCabinetOrderByWithRelationInput | SecondaryCabinetOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: SecondaryCabinetWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SecondaryCabinets from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SecondaryCabinets.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned SecondaryCabinets
+    **/
+    _count?: true | SecondaryCabinetCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SecondaryCabinetMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SecondaryCabinetMaxAggregateInputType
+  }
+
+  export type GetSecondaryCabinetAggregateType<T extends SecondaryCabinetAggregateArgs> = {
+        [P in keyof T & keyof AggregateSecondaryCabinet]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSecondaryCabinet[P]>
+      : GetScalarType<T[P], AggregateSecondaryCabinet[P]>
+  }
+
+
+
+
+  export type SecondaryCabinetGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SecondaryCabinetWhereInput
+    orderBy?: SecondaryCabinetOrderByWithAggregationInput | SecondaryCabinetOrderByWithAggregationInput[]
+    by: SecondaryCabinetScalarFieldEnum[] | SecondaryCabinetScalarFieldEnum
+    having?: SecondaryCabinetScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SecondaryCabinetCountAggregateInputType | true
+    _min?: SecondaryCabinetMinAggregateInputType
+    _max?: SecondaryCabinetMaxAggregateInputType
+  }
+
+  export type SecondaryCabinetGroupByOutputType = {
+    id: string
+    central: string
+    village: string
+    port_gbon: string
+    cabinet: string
+    splitter_number: string
+    splitter_port: string
+    distance: string
+    box_number: string
+    cabinet_location: string
+    box_location: string
+    cabinet_to_box_distance: string
+    responsible: string | null
+    notes: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: SecondaryCabinetCountAggregateOutputType | null
+    _min: SecondaryCabinetMinAggregateOutputType | null
+    _max: SecondaryCabinetMaxAggregateOutputType | null
+  }
+
+  type GetSecondaryCabinetGroupByPayload<T extends SecondaryCabinetGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SecondaryCabinetGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SecondaryCabinetGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SecondaryCabinetGroupByOutputType[P]>
+            : GetScalarType<T[P], SecondaryCabinetGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type SecondaryCabinetSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    central?: boolean
+    village?: boolean
+    port_gbon?: boolean
+    cabinet?: boolean
+    splitter_number?: boolean
+    splitter_port?: boolean
+    distance?: boolean
+    box_number?: boolean
+    cabinet_location?: boolean
+    box_location?: boolean
+    cabinet_to_box_distance?: boolean
+    responsible?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["secondaryCabinet"]>
+
+  export type SecondaryCabinetSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    central?: boolean
+    village?: boolean
+    port_gbon?: boolean
+    cabinet?: boolean
+    splitter_number?: boolean
+    splitter_port?: boolean
+    distance?: boolean
+    box_number?: boolean
+    cabinet_location?: boolean
+    box_location?: boolean
+    cabinet_to_box_distance?: boolean
+    responsible?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["secondaryCabinet"]>
+
+  export type SecondaryCabinetSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    central?: boolean
+    village?: boolean
+    port_gbon?: boolean
+    cabinet?: boolean
+    splitter_number?: boolean
+    splitter_port?: boolean
+    distance?: boolean
+    box_number?: boolean
+    cabinet_location?: boolean
+    box_location?: boolean
+    cabinet_to_box_distance?: boolean
+    responsible?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["secondaryCabinet"]>
+
+  export type SecondaryCabinetSelectScalar = {
+    id?: boolean
+    central?: boolean
+    village?: boolean
+    port_gbon?: boolean
+    cabinet?: boolean
+    splitter_number?: boolean
+    splitter_port?: boolean
+    distance?: boolean
+    box_number?: boolean
+    cabinet_location?: boolean
+    box_location?: boolean
+    cabinet_to_box_distance?: boolean
+    responsible?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type SecondaryCabinetOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "central" | "village" | "port_gbon" | "cabinet" | "splitter_number" | "splitter_port" | "distance" | "box_number" | "cabinet_location" | "box_location" | "cabinet_to_box_distance" | "responsible" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["secondaryCabinet"]>
+
+  export type $SecondaryCabinetPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "SecondaryCabinet"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      central: string
+      village: string
+      port_gbon: string
+      cabinet: string
+      splitter_number: string
+      splitter_port: string
+      distance: string
+      box_number: string
+      cabinet_location: string
+      box_location: string
+      cabinet_to_box_distance: string
+      responsible: string | null
+      notes: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["secondaryCabinet"]>
+    composites: {}
+  }
+
+  type SecondaryCabinetGetPayload<S extends boolean | null | undefined | SecondaryCabinetDefaultArgs> = $Result.GetResult<Prisma.$SecondaryCabinetPayload, S>
+
+  type SecondaryCabinetCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<SecondaryCabinetFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: SecondaryCabinetCountAggregateInputType | true
+    }
+
+  export interface SecondaryCabinetDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['SecondaryCabinet'], meta: { name: 'SecondaryCabinet' } }
+    /**
+     * Find zero or one SecondaryCabinet that matches the filter.
+     * @param {SecondaryCabinetFindUniqueArgs} args - Arguments to find a SecondaryCabinet
+     * @example
+     * // Get one SecondaryCabinet
+     * const secondaryCabinet = await prisma.secondaryCabinet.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends SecondaryCabinetFindUniqueArgs>(args: SelectSubset<T, SecondaryCabinetFindUniqueArgs<ExtArgs>>): Prisma__SecondaryCabinetClient<$Result.GetResult<Prisma.$SecondaryCabinetPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one SecondaryCabinet that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {SecondaryCabinetFindUniqueOrThrowArgs} args - Arguments to find a SecondaryCabinet
+     * @example
+     * // Get one SecondaryCabinet
+     * const secondaryCabinet = await prisma.secondaryCabinet.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends SecondaryCabinetFindUniqueOrThrowArgs>(args: SelectSubset<T, SecondaryCabinetFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SecondaryCabinetClient<$Result.GetResult<Prisma.$SecondaryCabinetPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first SecondaryCabinet that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SecondaryCabinetFindFirstArgs} args - Arguments to find a SecondaryCabinet
+     * @example
+     * // Get one SecondaryCabinet
+     * const secondaryCabinet = await prisma.secondaryCabinet.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends SecondaryCabinetFindFirstArgs>(args?: SelectSubset<T, SecondaryCabinetFindFirstArgs<ExtArgs>>): Prisma__SecondaryCabinetClient<$Result.GetResult<Prisma.$SecondaryCabinetPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first SecondaryCabinet that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SecondaryCabinetFindFirstOrThrowArgs} args - Arguments to find a SecondaryCabinet
+     * @example
+     * // Get one SecondaryCabinet
+     * const secondaryCabinet = await prisma.secondaryCabinet.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends SecondaryCabinetFindFirstOrThrowArgs>(args?: SelectSubset<T, SecondaryCabinetFindFirstOrThrowArgs<ExtArgs>>): Prisma__SecondaryCabinetClient<$Result.GetResult<Prisma.$SecondaryCabinetPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more SecondaryCabinets that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SecondaryCabinetFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all SecondaryCabinets
+     * const secondaryCabinets = await prisma.secondaryCabinet.findMany()
+     * 
+     * // Get first 10 SecondaryCabinets
+     * const secondaryCabinets = await prisma.secondaryCabinet.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const secondaryCabinetWithIdOnly = await prisma.secondaryCabinet.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends SecondaryCabinetFindManyArgs>(args?: SelectSubset<T, SecondaryCabinetFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SecondaryCabinetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a SecondaryCabinet.
+     * @param {SecondaryCabinetCreateArgs} args - Arguments to create a SecondaryCabinet.
+     * @example
+     * // Create one SecondaryCabinet
+     * const SecondaryCabinet = await prisma.secondaryCabinet.create({
+     *   data: {
+     *     // ... data to create a SecondaryCabinet
+     *   }
+     * })
+     * 
+     */
+    create<T extends SecondaryCabinetCreateArgs>(args: SelectSubset<T, SecondaryCabinetCreateArgs<ExtArgs>>): Prisma__SecondaryCabinetClient<$Result.GetResult<Prisma.$SecondaryCabinetPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many SecondaryCabinets.
+     * @param {SecondaryCabinetCreateManyArgs} args - Arguments to create many SecondaryCabinets.
+     * @example
+     * // Create many SecondaryCabinets
+     * const secondaryCabinet = await prisma.secondaryCabinet.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends SecondaryCabinetCreateManyArgs>(args?: SelectSubset<T, SecondaryCabinetCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many SecondaryCabinets and returns the data saved in the database.
+     * @param {SecondaryCabinetCreateManyAndReturnArgs} args - Arguments to create many SecondaryCabinets.
+     * @example
+     * // Create many SecondaryCabinets
+     * const secondaryCabinet = await prisma.secondaryCabinet.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many SecondaryCabinets and only return the `id`
+     * const secondaryCabinetWithIdOnly = await prisma.secondaryCabinet.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends SecondaryCabinetCreateManyAndReturnArgs>(args?: SelectSubset<T, SecondaryCabinetCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SecondaryCabinetPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a SecondaryCabinet.
+     * @param {SecondaryCabinetDeleteArgs} args - Arguments to delete one SecondaryCabinet.
+     * @example
+     * // Delete one SecondaryCabinet
+     * const SecondaryCabinet = await prisma.secondaryCabinet.delete({
+     *   where: {
+     *     // ... filter to delete one SecondaryCabinet
+     *   }
+     * })
+     * 
+     */
+    delete<T extends SecondaryCabinetDeleteArgs>(args: SelectSubset<T, SecondaryCabinetDeleteArgs<ExtArgs>>): Prisma__SecondaryCabinetClient<$Result.GetResult<Prisma.$SecondaryCabinetPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one SecondaryCabinet.
+     * @param {SecondaryCabinetUpdateArgs} args - Arguments to update one SecondaryCabinet.
+     * @example
+     * // Update one SecondaryCabinet
+     * const secondaryCabinet = await prisma.secondaryCabinet.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends SecondaryCabinetUpdateArgs>(args: SelectSubset<T, SecondaryCabinetUpdateArgs<ExtArgs>>): Prisma__SecondaryCabinetClient<$Result.GetResult<Prisma.$SecondaryCabinetPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more SecondaryCabinets.
+     * @param {SecondaryCabinetDeleteManyArgs} args - Arguments to filter SecondaryCabinets to delete.
+     * @example
+     * // Delete a few SecondaryCabinets
+     * const { count } = await prisma.secondaryCabinet.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends SecondaryCabinetDeleteManyArgs>(args?: SelectSubset<T, SecondaryCabinetDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SecondaryCabinets.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SecondaryCabinetUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many SecondaryCabinets
+     * const secondaryCabinet = await prisma.secondaryCabinet.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends SecondaryCabinetUpdateManyArgs>(args: SelectSubset<T, SecondaryCabinetUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SecondaryCabinets and returns the data updated in the database.
+     * @param {SecondaryCabinetUpdateManyAndReturnArgs} args - Arguments to update many SecondaryCabinets.
+     * @example
+     * // Update many SecondaryCabinets
+     * const secondaryCabinet = await prisma.secondaryCabinet.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more SecondaryCabinets and only return the `id`
+     * const secondaryCabinetWithIdOnly = await prisma.secondaryCabinet.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends SecondaryCabinetUpdateManyAndReturnArgs>(args: SelectSubset<T, SecondaryCabinetUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SecondaryCabinetPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one SecondaryCabinet.
+     * @param {SecondaryCabinetUpsertArgs} args - Arguments to update or create a SecondaryCabinet.
+     * @example
+     * // Update or create a SecondaryCabinet
+     * const secondaryCabinet = await prisma.secondaryCabinet.upsert({
+     *   create: {
+     *     // ... data to create a SecondaryCabinet
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the SecondaryCabinet we want to update
+     *   }
+     * })
+     */
+    upsert<T extends SecondaryCabinetUpsertArgs>(args: SelectSubset<T, SecondaryCabinetUpsertArgs<ExtArgs>>): Prisma__SecondaryCabinetClient<$Result.GetResult<Prisma.$SecondaryCabinetPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of SecondaryCabinets.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SecondaryCabinetCountArgs} args - Arguments to filter SecondaryCabinets to count.
+     * @example
+     * // Count the number of SecondaryCabinets
+     * const count = await prisma.secondaryCabinet.count({
+     *   where: {
+     *     // ... the filter for the SecondaryCabinets we want to count
+     *   }
+     * })
+    **/
+    count<T extends SecondaryCabinetCountArgs>(
+      args?: Subset<T, SecondaryCabinetCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SecondaryCabinetCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a SecondaryCabinet.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SecondaryCabinetAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SecondaryCabinetAggregateArgs>(args: Subset<T, SecondaryCabinetAggregateArgs>): Prisma.PrismaPromise<GetSecondaryCabinetAggregateType<T>>
+
+    /**
+     * Group by SecondaryCabinet.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SecondaryCabinetGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends SecondaryCabinetGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: SecondaryCabinetGroupByArgs['orderBy'] }
+        : { orderBy?: SecondaryCabinetGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, SecondaryCabinetGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSecondaryCabinetGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the SecondaryCabinet model
+   */
+  readonly fields: SecondaryCabinetFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for SecondaryCabinet.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__SecondaryCabinetClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the SecondaryCabinet model
+   */
+  interface SecondaryCabinetFieldRefs {
+    readonly id: FieldRef<"SecondaryCabinet", 'String'>
+    readonly central: FieldRef<"SecondaryCabinet", 'String'>
+    readonly village: FieldRef<"SecondaryCabinet", 'String'>
+    readonly port_gbon: FieldRef<"SecondaryCabinet", 'String'>
+    readonly cabinet: FieldRef<"SecondaryCabinet", 'String'>
+    readonly splitter_number: FieldRef<"SecondaryCabinet", 'String'>
+    readonly splitter_port: FieldRef<"SecondaryCabinet", 'String'>
+    readonly distance: FieldRef<"SecondaryCabinet", 'String'>
+    readonly box_number: FieldRef<"SecondaryCabinet", 'String'>
+    readonly cabinet_location: FieldRef<"SecondaryCabinet", 'String'>
+    readonly box_location: FieldRef<"SecondaryCabinet", 'String'>
+    readonly cabinet_to_box_distance: FieldRef<"SecondaryCabinet", 'String'>
+    readonly responsible: FieldRef<"SecondaryCabinet", 'String'>
+    readonly notes: FieldRef<"SecondaryCabinet", 'String'>
+    readonly createdAt: FieldRef<"SecondaryCabinet", 'DateTime'>
+    readonly updatedAt: FieldRef<"SecondaryCabinet", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * SecondaryCabinet findUnique
+   */
+  export type SecondaryCabinetFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SecondaryCabinet
+     */
+    select?: SecondaryCabinetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SecondaryCabinet
+     */
+    omit?: SecondaryCabinetOmit<ExtArgs> | null
+    /**
+     * Filter, which SecondaryCabinet to fetch.
+     */
+    where: SecondaryCabinetWhereUniqueInput
+  }
+
+  /**
+   * SecondaryCabinet findUniqueOrThrow
+   */
+  export type SecondaryCabinetFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SecondaryCabinet
+     */
+    select?: SecondaryCabinetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SecondaryCabinet
+     */
+    omit?: SecondaryCabinetOmit<ExtArgs> | null
+    /**
+     * Filter, which SecondaryCabinet to fetch.
+     */
+    where: SecondaryCabinetWhereUniqueInput
+  }
+
+  /**
+   * SecondaryCabinet findFirst
+   */
+  export type SecondaryCabinetFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SecondaryCabinet
+     */
+    select?: SecondaryCabinetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SecondaryCabinet
+     */
+    omit?: SecondaryCabinetOmit<ExtArgs> | null
+    /**
+     * Filter, which SecondaryCabinet to fetch.
+     */
+    where?: SecondaryCabinetWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SecondaryCabinets to fetch.
+     */
+    orderBy?: SecondaryCabinetOrderByWithRelationInput | SecondaryCabinetOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SecondaryCabinets.
+     */
+    cursor?: SecondaryCabinetWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SecondaryCabinets from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SecondaryCabinets.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SecondaryCabinets.
+     */
+    distinct?: SecondaryCabinetScalarFieldEnum | SecondaryCabinetScalarFieldEnum[]
+  }
+
+  /**
+   * SecondaryCabinet findFirstOrThrow
+   */
+  export type SecondaryCabinetFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SecondaryCabinet
+     */
+    select?: SecondaryCabinetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SecondaryCabinet
+     */
+    omit?: SecondaryCabinetOmit<ExtArgs> | null
+    /**
+     * Filter, which SecondaryCabinet to fetch.
+     */
+    where?: SecondaryCabinetWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SecondaryCabinets to fetch.
+     */
+    orderBy?: SecondaryCabinetOrderByWithRelationInput | SecondaryCabinetOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SecondaryCabinets.
+     */
+    cursor?: SecondaryCabinetWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SecondaryCabinets from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SecondaryCabinets.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SecondaryCabinets.
+     */
+    distinct?: SecondaryCabinetScalarFieldEnum | SecondaryCabinetScalarFieldEnum[]
+  }
+
+  /**
+   * SecondaryCabinet findMany
+   */
+  export type SecondaryCabinetFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SecondaryCabinet
+     */
+    select?: SecondaryCabinetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SecondaryCabinet
+     */
+    omit?: SecondaryCabinetOmit<ExtArgs> | null
+    /**
+     * Filter, which SecondaryCabinets to fetch.
+     */
+    where?: SecondaryCabinetWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SecondaryCabinets to fetch.
+     */
+    orderBy?: SecondaryCabinetOrderByWithRelationInput | SecondaryCabinetOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing SecondaryCabinets.
+     */
+    cursor?: SecondaryCabinetWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SecondaryCabinets from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SecondaryCabinets.
+     */
+    skip?: number
+    distinct?: SecondaryCabinetScalarFieldEnum | SecondaryCabinetScalarFieldEnum[]
+  }
+
+  /**
+   * SecondaryCabinet create
+   */
+  export type SecondaryCabinetCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SecondaryCabinet
+     */
+    select?: SecondaryCabinetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SecondaryCabinet
+     */
+    omit?: SecondaryCabinetOmit<ExtArgs> | null
+    /**
+     * The data needed to create a SecondaryCabinet.
+     */
+    data: XOR<SecondaryCabinetCreateInput, SecondaryCabinetUncheckedCreateInput>
+  }
+
+  /**
+   * SecondaryCabinet createMany
+   */
+  export type SecondaryCabinetCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many SecondaryCabinets.
+     */
+    data: SecondaryCabinetCreateManyInput | SecondaryCabinetCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * SecondaryCabinet createManyAndReturn
+   */
+  export type SecondaryCabinetCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SecondaryCabinet
+     */
+    select?: SecondaryCabinetSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the SecondaryCabinet
+     */
+    omit?: SecondaryCabinetOmit<ExtArgs> | null
+    /**
+     * The data used to create many SecondaryCabinets.
+     */
+    data: SecondaryCabinetCreateManyInput | SecondaryCabinetCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * SecondaryCabinet update
+   */
+  export type SecondaryCabinetUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SecondaryCabinet
+     */
+    select?: SecondaryCabinetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SecondaryCabinet
+     */
+    omit?: SecondaryCabinetOmit<ExtArgs> | null
+    /**
+     * The data needed to update a SecondaryCabinet.
+     */
+    data: XOR<SecondaryCabinetUpdateInput, SecondaryCabinetUncheckedUpdateInput>
+    /**
+     * Choose, which SecondaryCabinet to update.
+     */
+    where: SecondaryCabinetWhereUniqueInput
+  }
+
+  /**
+   * SecondaryCabinet updateMany
+   */
+  export type SecondaryCabinetUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update SecondaryCabinets.
+     */
+    data: XOR<SecondaryCabinetUpdateManyMutationInput, SecondaryCabinetUncheckedUpdateManyInput>
+    /**
+     * Filter which SecondaryCabinets to update
+     */
+    where?: SecondaryCabinetWhereInput
+    /**
+     * Limit how many SecondaryCabinets to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * SecondaryCabinet updateManyAndReturn
+   */
+  export type SecondaryCabinetUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SecondaryCabinet
+     */
+    select?: SecondaryCabinetSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the SecondaryCabinet
+     */
+    omit?: SecondaryCabinetOmit<ExtArgs> | null
+    /**
+     * The data used to update SecondaryCabinets.
+     */
+    data: XOR<SecondaryCabinetUpdateManyMutationInput, SecondaryCabinetUncheckedUpdateManyInput>
+    /**
+     * Filter which SecondaryCabinets to update
+     */
+    where?: SecondaryCabinetWhereInput
+    /**
+     * Limit how many SecondaryCabinets to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * SecondaryCabinet upsert
+   */
+  export type SecondaryCabinetUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SecondaryCabinet
+     */
+    select?: SecondaryCabinetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SecondaryCabinet
+     */
+    omit?: SecondaryCabinetOmit<ExtArgs> | null
+    /**
+     * The filter to search for the SecondaryCabinet to update in case it exists.
+     */
+    where: SecondaryCabinetWhereUniqueInput
+    /**
+     * In case the SecondaryCabinet found by the `where` argument doesn't exist, create a new SecondaryCabinet with this data.
+     */
+    create: XOR<SecondaryCabinetCreateInput, SecondaryCabinetUncheckedCreateInput>
+    /**
+     * In case the SecondaryCabinet was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<SecondaryCabinetUpdateInput, SecondaryCabinetUncheckedUpdateInput>
+  }
+
+  /**
+   * SecondaryCabinet delete
+   */
+  export type SecondaryCabinetDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SecondaryCabinet
+     */
+    select?: SecondaryCabinetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SecondaryCabinet
+     */
+    omit?: SecondaryCabinetOmit<ExtArgs> | null
+    /**
+     * Filter which SecondaryCabinet to delete.
+     */
+    where: SecondaryCabinetWhereUniqueInput
+  }
+
+  /**
+   * SecondaryCabinet deleteMany
+   */
+  export type SecondaryCabinetDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SecondaryCabinets to delete
+     */
+    where?: SecondaryCabinetWhereInput
+    /**
+     * Limit how many SecondaryCabinets to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * SecondaryCabinet without action
+   */
+  export type SecondaryCabinetDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SecondaryCabinet
+     */
+    select?: SecondaryCabinetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SecondaryCabinet
+     */
+    omit?: SecondaryCabinetOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model MobileTower
+   */
+
+  export type AggregateMobileTower = {
+    _count: MobileTowerCountAggregateOutputType | null
+    _min: MobileTowerMinAggregateOutputType | null
+    _max: MobileTowerMaxAggregateOutputType | null
+  }
+
+  export type MobileTowerMinAggregateOutputType = {
+    id: string | null
+    central: string | null
+    cable_name: string | null
+    tower_code: string | null
+    company: string | null
+    entitlement: string | null
+    distance: string | null
+    address: string | null
+    location: string | null
+    responsible: string | null
+    notes: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type MobileTowerMaxAggregateOutputType = {
+    id: string | null
+    central: string | null
+    cable_name: string | null
+    tower_code: string | null
+    company: string | null
+    entitlement: string | null
+    distance: string | null
+    address: string | null
+    location: string | null
+    responsible: string | null
+    notes: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type MobileTowerCountAggregateOutputType = {
+    id: number
+    central: number
+    cable_name: number
+    tower_code: number
+    company: number
+    entitlement: number
+    distance: number
+    address: number
+    location: number
+    responsible: number
+    notes: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type MobileTowerMinAggregateInputType = {
+    id?: true
+    central?: true
+    cable_name?: true
+    tower_code?: true
+    company?: true
+    entitlement?: true
+    distance?: true
+    address?: true
+    location?: true
+    responsible?: true
+    notes?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type MobileTowerMaxAggregateInputType = {
+    id?: true
+    central?: true
+    cable_name?: true
+    tower_code?: true
+    company?: true
+    entitlement?: true
+    distance?: true
+    address?: true
+    location?: true
+    responsible?: true
+    notes?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type MobileTowerCountAggregateInputType = {
+    id?: true
+    central?: true
+    cable_name?: true
+    tower_code?: true
+    company?: true
+    entitlement?: true
+    distance?: true
+    address?: true
+    location?: true
+    responsible?: true
+    notes?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type MobileTowerAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MobileTower to aggregate.
+     */
+    where?: MobileTowerWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MobileTowers to fetch.
+     */
+    orderBy?: MobileTowerOrderByWithRelationInput | MobileTowerOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: MobileTowerWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MobileTowers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MobileTowers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned MobileTowers
+    **/
+    _count?: true | MobileTowerCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: MobileTowerMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: MobileTowerMaxAggregateInputType
+  }
+
+  export type GetMobileTowerAggregateType<T extends MobileTowerAggregateArgs> = {
+        [P in keyof T & keyof AggregateMobileTower]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateMobileTower[P]>
+      : GetScalarType<T[P], AggregateMobileTower[P]>
+  }
+
+
+
+
+  export type MobileTowerGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MobileTowerWhereInput
+    orderBy?: MobileTowerOrderByWithAggregationInput | MobileTowerOrderByWithAggregationInput[]
+    by: MobileTowerScalarFieldEnum[] | MobileTowerScalarFieldEnum
+    having?: MobileTowerScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: MobileTowerCountAggregateInputType | true
+    _min?: MobileTowerMinAggregateInputType
+    _max?: MobileTowerMaxAggregateInputType
+  }
+
+  export type MobileTowerGroupByOutputType = {
+    id: string
+    central: string
+    cable_name: string
+    tower_code: string
+    company: string
+    entitlement: string
+    distance: string
+    address: string
+    location: string
+    responsible: string | null
+    notes: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: MobileTowerCountAggregateOutputType | null
+    _min: MobileTowerMinAggregateOutputType | null
+    _max: MobileTowerMaxAggregateOutputType | null
+  }
+
+  type GetMobileTowerGroupByPayload<T extends MobileTowerGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<MobileTowerGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof MobileTowerGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], MobileTowerGroupByOutputType[P]>
+            : GetScalarType<T[P], MobileTowerGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type MobileTowerSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    central?: boolean
+    cable_name?: boolean
+    tower_code?: boolean
+    company?: boolean
+    entitlement?: boolean
+    distance?: boolean
+    address?: boolean
+    location?: boolean
+    responsible?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["mobileTower"]>
+
+  export type MobileTowerSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    central?: boolean
+    cable_name?: boolean
+    tower_code?: boolean
+    company?: boolean
+    entitlement?: boolean
+    distance?: boolean
+    address?: boolean
+    location?: boolean
+    responsible?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["mobileTower"]>
+
+  export type MobileTowerSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    central?: boolean
+    cable_name?: boolean
+    tower_code?: boolean
+    company?: boolean
+    entitlement?: boolean
+    distance?: boolean
+    address?: boolean
+    location?: boolean
+    responsible?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["mobileTower"]>
+
+  export type MobileTowerSelectScalar = {
+    id?: boolean
+    central?: boolean
+    cable_name?: boolean
+    tower_code?: boolean
+    company?: boolean
+    entitlement?: boolean
+    distance?: boolean
+    address?: boolean
+    location?: boolean
+    responsible?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type MobileTowerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "central" | "cable_name" | "tower_code" | "company" | "entitlement" | "distance" | "address" | "location" | "responsible" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["mobileTower"]>
+
+  export type $MobileTowerPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "MobileTower"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      central: string
+      cable_name: string
+      tower_code: string
+      company: string
+      entitlement: string
+      distance: string
+      address: string
+      location: string
+      responsible: string | null
+      notes: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["mobileTower"]>
+    composites: {}
+  }
+
+  type MobileTowerGetPayload<S extends boolean | null | undefined | MobileTowerDefaultArgs> = $Result.GetResult<Prisma.$MobileTowerPayload, S>
+
+  type MobileTowerCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<MobileTowerFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: MobileTowerCountAggregateInputType | true
+    }
+
+  export interface MobileTowerDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['MobileTower'], meta: { name: 'MobileTower' } }
+    /**
+     * Find zero or one MobileTower that matches the filter.
+     * @param {MobileTowerFindUniqueArgs} args - Arguments to find a MobileTower
+     * @example
+     * // Get one MobileTower
+     * const mobileTower = await prisma.mobileTower.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends MobileTowerFindUniqueArgs>(args: SelectSubset<T, MobileTowerFindUniqueArgs<ExtArgs>>): Prisma__MobileTowerClient<$Result.GetResult<Prisma.$MobileTowerPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one MobileTower that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {MobileTowerFindUniqueOrThrowArgs} args - Arguments to find a MobileTower
+     * @example
+     * // Get one MobileTower
+     * const mobileTower = await prisma.mobileTower.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends MobileTowerFindUniqueOrThrowArgs>(args: SelectSubset<T, MobileTowerFindUniqueOrThrowArgs<ExtArgs>>): Prisma__MobileTowerClient<$Result.GetResult<Prisma.$MobileTowerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MobileTower that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MobileTowerFindFirstArgs} args - Arguments to find a MobileTower
+     * @example
+     * // Get one MobileTower
+     * const mobileTower = await prisma.mobileTower.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends MobileTowerFindFirstArgs>(args?: SelectSubset<T, MobileTowerFindFirstArgs<ExtArgs>>): Prisma__MobileTowerClient<$Result.GetResult<Prisma.$MobileTowerPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MobileTower that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MobileTowerFindFirstOrThrowArgs} args - Arguments to find a MobileTower
+     * @example
+     * // Get one MobileTower
+     * const mobileTower = await prisma.mobileTower.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends MobileTowerFindFirstOrThrowArgs>(args?: SelectSubset<T, MobileTowerFindFirstOrThrowArgs<ExtArgs>>): Prisma__MobileTowerClient<$Result.GetResult<Prisma.$MobileTowerPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more MobileTowers that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MobileTowerFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all MobileTowers
+     * const mobileTowers = await prisma.mobileTower.findMany()
+     * 
+     * // Get first 10 MobileTowers
+     * const mobileTowers = await prisma.mobileTower.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const mobileTowerWithIdOnly = await prisma.mobileTower.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends MobileTowerFindManyArgs>(args?: SelectSubset<T, MobileTowerFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MobileTowerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a MobileTower.
+     * @param {MobileTowerCreateArgs} args - Arguments to create a MobileTower.
+     * @example
+     * // Create one MobileTower
+     * const MobileTower = await prisma.mobileTower.create({
+     *   data: {
+     *     // ... data to create a MobileTower
+     *   }
+     * })
+     * 
+     */
+    create<T extends MobileTowerCreateArgs>(args: SelectSubset<T, MobileTowerCreateArgs<ExtArgs>>): Prisma__MobileTowerClient<$Result.GetResult<Prisma.$MobileTowerPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many MobileTowers.
+     * @param {MobileTowerCreateManyArgs} args - Arguments to create many MobileTowers.
+     * @example
+     * // Create many MobileTowers
+     * const mobileTower = await prisma.mobileTower.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends MobileTowerCreateManyArgs>(args?: SelectSubset<T, MobileTowerCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many MobileTowers and returns the data saved in the database.
+     * @param {MobileTowerCreateManyAndReturnArgs} args - Arguments to create many MobileTowers.
+     * @example
+     * // Create many MobileTowers
+     * const mobileTower = await prisma.mobileTower.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many MobileTowers and only return the `id`
+     * const mobileTowerWithIdOnly = await prisma.mobileTower.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends MobileTowerCreateManyAndReturnArgs>(args?: SelectSubset<T, MobileTowerCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MobileTowerPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a MobileTower.
+     * @param {MobileTowerDeleteArgs} args - Arguments to delete one MobileTower.
+     * @example
+     * // Delete one MobileTower
+     * const MobileTower = await prisma.mobileTower.delete({
+     *   where: {
+     *     // ... filter to delete one MobileTower
+     *   }
+     * })
+     * 
+     */
+    delete<T extends MobileTowerDeleteArgs>(args: SelectSubset<T, MobileTowerDeleteArgs<ExtArgs>>): Prisma__MobileTowerClient<$Result.GetResult<Prisma.$MobileTowerPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one MobileTower.
+     * @param {MobileTowerUpdateArgs} args - Arguments to update one MobileTower.
+     * @example
+     * // Update one MobileTower
+     * const mobileTower = await prisma.mobileTower.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends MobileTowerUpdateArgs>(args: SelectSubset<T, MobileTowerUpdateArgs<ExtArgs>>): Prisma__MobileTowerClient<$Result.GetResult<Prisma.$MobileTowerPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more MobileTowers.
+     * @param {MobileTowerDeleteManyArgs} args - Arguments to filter MobileTowers to delete.
+     * @example
+     * // Delete a few MobileTowers
+     * const { count } = await prisma.mobileTower.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends MobileTowerDeleteManyArgs>(args?: SelectSubset<T, MobileTowerDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MobileTowers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MobileTowerUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many MobileTowers
+     * const mobileTower = await prisma.mobileTower.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends MobileTowerUpdateManyArgs>(args: SelectSubset<T, MobileTowerUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MobileTowers and returns the data updated in the database.
+     * @param {MobileTowerUpdateManyAndReturnArgs} args - Arguments to update many MobileTowers.
+     * @example
+     * // Update many MobileTowers
+     * const mobileTower = await prisma.mobileTower.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more MobileTowers and only return the `id`
+     * const mobileTowerWithIdOnly = await prisma.mobileTower.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends MobileTowerUpdateManyAndReturnArgs>(args: SelectSubset<T, MobileTowerUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MobileTowerPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one MobileTower.
+     * @param {MobileTowerUpsertArgs} args - Arguments to update or create a MobileTower.
+     * @example
+     * // Update or create a MobileTower
+     * const mobileTower = await prisma.mobileTower.upsert({
+     *   create: {
+     *     // ... data to create a MobileTower
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the MobileTower we want to update
+     *   }
+     * })
+     */
+    upsert<T extends MobileTowerUpsertArgs>(args: SelectSubset<T, MobileTowerUpsertArgs<ExtArgs>>): Prisma__MobileTowerClient<$Result.GetResult<Prisma.$MobileTowerPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of MobileTowers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MobileTowerCountArgs} args - Arguments to filter MobileTowers to count.
+     * @example
+     * // Count the number of MobileTowers
+     * const count = await prisma.mobileTower.count({
+     *   where: {
+     *     // ... the filter for the MobileTowers we want to count
+     *   }
+     * })
+    **/
+    count<T extends MobileTowerCountArgs>(
+      args?: Subset<T, MobileTowerCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], MobileTowerCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a MobileTower.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MobileTowerAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends MobileTowerAggregateArgs>(args: Subset<T, MobileTowerAggregateArgs>): Prisma.PrismaPromise<GetMobileTowerAggregateType<T>>
+
+    /**
+     * Group by MobileTower.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MobileTowerGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends MobileTowerGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: MobileTowerGroupByArgs['orderBy'] }
+        : { orderBy?: MobileTowerGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, MobileTowerGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMobileTowerGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the MobileTower model
+   */
+  readonly fields: MobileTowerFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for MobileTower.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__MobileTowerClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the MobileTower model
+   */
+  interface MobileTowerFieldRefs {
+    readonly id: FieldRef<"MobileTower", 'String'>
+    readonly central: FieldRef<"MobileTower", 'String'>
+    readonly cable_name: FieldRef<"MobileTower", 'String'>
+    readonly tower_code: FieldRef<"MobileTower", 'String'>
+    readonly company: FieldRef<"MobileTower", 'String'>
+    readonly entitlement: FieldRef<"MobileTower", 'String'>
+    readonly distance: FieldRef<"MobileTower", 'String'>
+    readonly address: FieldRef<"MobileTower", 'String'>
+    readonly location: FieldRef<"MobileTower", 'String'>
+    readonly responsible: FieldRef<"MobileTower", 'String'>
+    readonly notes: FieldRef<"MobileTower", 'String'>
+    readonly createdAt: FieldRef<"MobileTower", 'DateTime'>
+    readonly updatedAt: FieldRef<"MobileTower", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * MobileTower findUnique
+   */
+  export type MobileTowerFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MobileTower
+     */
+    select?: MobileTowerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MobileTower
+     */
+    omit?: MobileTowerOmit<ExtArgs> | null
+    /**
+     * Filter, which MobileTower to fetch.
+     */
+    where: MobileTowerWhereUniqueInput
+  }
+
+  /**
+   * MobileTower findUniqueOrThrow
+   */
+  export type MobileTowerFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MobileTower
+     */
+    select?: MobileTowerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MobileTower
+     */
+    omit?: MobileTowerOmit<ExtArgs> | null
+    /**
+     * Filter, which MobileTower to fetch.
+     */
+    where: MobileTowerWhereUniqueInput
+  }
+
+  /**
+   * MobileTower findFirst
+   */
+  export type MobileTowerFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MobileTower
+     */
+    select?: MobileTowerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MobileTower
+     */
+    omit?: MobileTowerOmit<ExtArgs> | null
+    /**
+     * Filter, which MobileTower to fetch.
+     */
+    where?: MobileTowerWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MobileTowers to fetch.
+     */
+    orderBy?: MobileTowerOrderByWithRelationInput | MobileTowerOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MobileTowers.
+     */
+    cursor?: MobileTowerWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MobileTowers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MobileTowers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MobileTowers.
+     */
+    distinct?: MobileTowerScalarFieldEnum | MobileTowerScalarFieldEnum[]
+  }
+
+  /**
+   * MobileTower findFirstOrThrow
+   */
+  export type MobileTowerFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MobileTower
+     */
+    select?: MobileTowerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MobileTower
+     */
+    omit?: MobileTowerOmit<ExtArgs> | null
+    /**
+     * Filter, which MobileTower to fetch.
+     */
+    where?: MobileTowerWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MobileTowers to fetch.
+     */
+    orderBy?: MobileTowerOrderByWithRelationInput | MobileTowerOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MobileTowers.
+     */
+    cursor?: MobileTowerWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MobileTowers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MobileTowers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MobileTowers.
+     */
+    distinct?: MobileTowerScalarFieldEnum | MobileTowerScalarFieldEnum[]
+  }
+
+  /**
+   * MobileTower findMany
+   */
+  export type MobileTowerFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MobileTower
+     */
+    select?: MobileTowerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MobileTower
+     */
+    omit?: MobileTowerOmit<ExtArgs> | null
+    /**
+     * Filter, which MobileTowers to fetch.
+     */
+    where?: MobileTowerWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MobileTowers to fetch.
+     */
+    orderBy?: MobileTowerOrderByWithRelationInput | MobileTowerOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing MobileTowers.
+     */
+    cursor?: MobileTowerWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MobileTowers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MobileTowers.
+     */
+    skip?: number
+    distinct?: MobileTowerScalarFieldEnum | MobileTowerScalarFieldEnum[]
+  }
+
+  /**
+   * MobileTower create
+   */
+  export type MobileTowerCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MobileTower
+     */
+    select?: MobileTowerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MobileTower
+     */
+    omit?: MobileTowerOmit<ExtArgs> | null
+    /**
+     * The data needed to create a MobileTower.
+     */
+    data: XOR<MobileTowerCreateInput, MobileTowerUncheckedCreateInput>
+  }
+
+  /**
+   * MobileTower createMany
+   */
+  export type MobileTowerCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many MobileTowers.
+     */
+    data: MobileTowerCreateManyInput | MobileTowerCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * MobileTower createManyAndReturn
+   */
+  export type MobileTowerCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MobileTower
+     */
+    select?: MobileTowerSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the MobileTower
+     */
+    omit?: MobileTowerOmit<ExtArgs> | null
+    /**
+     * The data used to create many MobileTowers.
+     */
+    data: MobileTowerCreateManyInput | MobileTowerCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * MobileTower update
+   */
+  export type MobileTowerUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MobileTower
+     */
+    select?: MobileTowerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MobileTower
+     */
+    omit?: MobileTowerOmit<ExtArgs> | null
+    /**
+     * The data needed to update a MobileTower.
+     */
+    data: XOR<MobileTowerUpdateInput, MobileTowerUncheckedUpdateInput>
+    /**
+     * Choose, which MobileTower to update.
+     */
+    where: MobileTowerWhereUniqueInput
+  }
+
+  /**
+   * MobileTower updateMany
+   */
+  export type MobileTowerUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update MobileTowers.
+     */
+    data: XOR<MobileTowerUpdateManyMutationInput, MobileTowerUncheckedUpdateManyInput>
+    /**
+     * Filter which MobileTowers to update
+     */
+    where?: MobileTowerWhereInput
+    /**
+     * Limit how many MobileTowers to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * MobileTower updateManyAndReturn
+   */
+  export type MobileTowerUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MobileTower
+     */
+    select?: MobileTowerSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the MobileTower
+     */
+    omit?: MobileTowerOmit<ExtArgs> | null
+    /**
+     * The data used to update MobileTowers.
+     */
+    data: XOR<MobileTowerUpdateManyMutationInput, MobileTowerUncheckedUpdateManyInput>
+    /**
+     * Filter which MobileTowers to update
+     */
+    where?: MobileTowerWhereInput
+    /**
+     * Limit how many MobileTowers to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * MobileTower upsert
+   */
+  export type MobileTowerUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MobileTower
+     */
+    select?: MobileTowerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MobileTower
+     */
+    omit?: MobileTowerOmit<ExtArgs> | null
+    /**
+     * The filter to search for the MobileTower to update in case it exists.
+     */
+    where: MobileTowerWhereUniqueInput
+    /**
+     * In case the MobileTower found by the `where` argument doesn't exist, create a new MobileTower with this data.
+     */
+    create: XOR<MobileTowerCreateInput, MobileTowerUncheckedCreateInput>
+    /**
+     * In case the MobileTower was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<MobileTowerUpdateInput, MobileTowerUncheckedUpdateInput>
+  }
+
+  /**
+   * MobileTower delete
+   */
+  export type MobileTowerDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MobileTower
+     */
+    select?: MobileTowerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MobileTower
+     */
+    omit?: MobileTowerOmit<ExtArgs> | null
+    /**
+     * Filter which MobileTower to delete.
+     */
+    where: MobileTowerWhereUniqueInput
+  }
+
+  /**
+   * MobileTower deleteMany
+   */
+  export type MobileTowerDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MobileTowers to delete
+     */
+    where?: MobileTowerWhereInput
+    /**
+     * Limit how many MobileTowers to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * MobileTower without action
+   */
+  export type MobileTowerDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MobileTower
+     */
+    select?: MobileTowerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MobileTower
+     */
+    omit?: MobileTowerOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model CopperLine
+   */
+
+  export type AggregateCopperLine = {
+    _count: CopperLineCountAggregateOutputType | null
+    _min: CopperLineMinAggregateOutputType | null
+    _max: CopperLineMaxAggregateOutputType | null
+  }
+
+  export type CopperLineMinAggregateOutputType = {
+    id: string | null
+    landline_number: string | null
+    central: string | null
+    village: string | null
+    cabinet_number: string | null
+    port_number: string | null
+    terminal_number: string | null
+    cabinet_location: string | null
+    box_number: string | null
+    box_entitlement: string | null
+    box_location: string | null
+    joint_location: string | null
+    joint_entitlement: string | null
+    joint_depth: string | null
+    room_location: string | null
+    insulation_level: string | null
+    responsible: string | null
+    notes: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type CopperLineMaxAggregateOutputType = {
+    id: string | null
+    landline_number: string | null
+    central: string | null
+    village: string | null
+    cabinet_number: string | null
+    port_number: string | null
+    terminal_number: string | null
+    cabinet_location: string | null
+    box_number: string | null
+    box_entitlement: string | null
+    box_location: string | null
+    joint_location: string | null
+    joint_entitlement: string | null
+    joint_depth: string | null
+    room_location: string | null
+    insulation_level: string | null
+    responsible: string | null
+    notes: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type CopperLineCountAggregateOutputType = {
+    id: number
+    landline_number: number
+    central: number
+    village: number
+    cabinet_number: number
+    port_number: number
+    terminal_number: number
+    cabinet_location: number
+    box_number: number
+    box_entitlement: number
+    box_location: number
+    joint_location: number
+    joint_entitlement: number
+    joint_depth: number
+    room_location: number
+    insulation_level: number
+    responsible: number
+    notes: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type CopperLineMinAggregateInputType = {
+    id?: true
+    landline_number?: true
+    central?: true
+    village?: true
+    cabinet_number?: true
+    port_number?: true
+    terminal_number?: true
+    cabinet_location?: true
+    box_number?: true
+    box_entitlement?: true
+    box_location?: true
+    joint_location?: true
+    joint_entitlement?: true
+    joint_depth?: true
+    room_location?: true
+    insulation_level?: true
+    responsible?: true
+    notes?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type CopperLineMaxAggregateInputType = {
+    id?: true
+    landline_number?: true
+    central?: true
+    village?: true
+    cabinet_number?: true
+    port_number?: true
+    terminal_number?: true
+    cabinet_location?: true
+    box_number?: true
+    box_entitlement?: true
+    box_location?: true
+    joint_location?: true
+    joint_entitlement?: true
+    joint_depth?: true
+    room_location?: true
+    insulation_level?: true
+    responsible?: true
+    notes?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type CopperLineCountAggregateInputType = {
+    id?: true
+    landline_number?: true
+    central?: true
+    village?: true
+    cabinet_number?: true
+    port_number?: true
+    terminal_number?: true
+    cabinet_location?: true
+    box_number?: true
+    box_entitlement?: true
+    box_location?: true
+    joint_location?: true
+    joint_entitlement?: true
+    joint_depth?: true
+    room_location?: true
+    insulation_level?: true
+    responsible?: true
+    notes?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type CopperLineAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CopperLine to aggregate.
+     */
+    where?: CopperLineWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CopperLines to fetch.
+     */
+    orderBy?: CopperLineOrderByWithRelationInput | CopperLineOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CopperLineWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CopperLines from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CopperLines.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned CopperLines
+    **/
+    _count?: true | CopperLineCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CopperLineMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CopperLineMaxAggregateInputType
+  }
+
+  export type GetCopperLineAggregateType<T extends CopperLineAggregateArgs> = {
+        [P in keyof T & keyof AggregateCopperLine]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCopperLine[P]>
+      : GetScalarType<T[P], AggregateCopperLine[P]>
+  }
+
+
+
+
+  export type CopperLineGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CopperLineWhereInput
+    orderBy?: CopperLineOrderByWithAggregationInput | CopperLineOrderByWithAggregationInput[]
+    by: CopperLineScalarFieldEnum[] | CopperLineScalarFieldEnum
+    having?: CopperLineScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CopperLineCountAggregateInputType | true
+    _min?: CopperLineMinAggregateInputType
+    _max?: CopperLineMaxAggregateInputType
+  }
+
+  export type CopperLineGroupByOutputType = {
+    id: string
+    landline_number: string
+    central: string
+    village: string
+    cabinet_number: string
+    port_number: string
+    terminal_number: string
+    cabinet_location: string
+    box_number: string
+    box_entitlement: string
+    box_location: string
+    joint_location: string
+    joint_entitlement: string
+    joint_depth: string
+    room_location: string
+    insulation_level: string
+    responsible: string | null
+    notes: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: CopperLineCountAggregateOutputType | null
+    _min: CopperLineMinAggregateOutputType | null
+    _max: CopperLineMaxAggregateOutputType | null
+  }
+
+  type GetCopperLineGroupByPayload<T extends CopperLineGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CopperLineGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CopperLineGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CopperLineGroupByOutputType[P]>
+            : GetScalarType<T[P], CopperLineGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CopperLineSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    landline_number?: boolean
+    central?: boolean
+    village?: boolean
+    cabinet_number?: boolean
+    port_number?: boolean
+    terminal_number?: boolean
+    cabinet_location?: boolean
+    box_number?: boolean
+    box_entitlement?: boolean
+    box_location?: boolean
+    joint_location?: boolean
+    joint_entitlement?: boolean
+    joint_depth?: boolean
+    room_location?: boolean
+    insulation_level?: boolean
+    responsible?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["copperLine"]>
+
+  export type CopperLineSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    landline_number?: boolean
+    central?: boolean
+    village?: boolean
+    cabinet_number?: boolean
+    port_number?: boolean
+    terminal_number?: boolean
+    cabinet_location?: boolean
+    box_number?: boolean
+    box_entitlement?: boolean
+    box_location?: boolean
+    joint_location?: boolean
+    joint_entitlement?: boolean
+    joint_depth?: boolean
+    room_location?: boolean
+    insulation_level?: boolean
+    responsible?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["copperLine"]>
+
+  export type CopperLineSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    landline_number?: boolean
+    central?: boolean
+    village?: boolean
+    cabinet_number?: boolean
+    port_number?: boolean
+    terminal_number?: boolean
+    cabinet_location?: boolean
+    box_number?: boolean
+    box_entitlement?: boolean
+    box_location?: boolean
+    joint_location?: boolean
+    joint_entitlement?: boolean
+    joint_depth?: boolean
+    room_location?: boolean
+    insulation_level?: boolean
+    responsible?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["copperLine"]>
+
+  export type CopperLineSelectScalar = {
+    id?: boolean
+    landline_number?: boolean
+    central?: boolean
+    village?: boolean
+    cabinet_number?: boolean
+    port_number?: boolean
+    terminal_number?: boolean
+    cabinet_location?: boolean
+    box_number?: boolean
+    box_entitlement?: boolean
+    box_location?: boolean
+    joint_location?: boolean
+    joint_entitlement?: boolean
+    joint_depth?: boolean
+    room_location?: boolean
+    insulation_level?: boolean
+    responsible?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type CopperLineOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "landline_number" | "central" | "village" | "cabinet_number" | "port_number" | "terminal_number" | "cabinet_location" | "box_number" | "box_entitlement" | "box_location" | "joint_location" | "joint_entitlement" | "joint_depth" | "room_location" | "insulation_level" | "responsible" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["copperLine"]>
+
+  export type $CopperLinePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "CopperLine"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      landline_number: string
+      central: string
+      village: string
+      cabinet_number: string
+      port_number: string
+      terminal_number: string
+      cabinet_location: string
+      box_number: string
+      box_entitlement: string
+      box_location: string
+      joint_location: string
+      joint_entitlement: string
+      joint_depth: string
+      room_location: string
+      insulation_level: string
+      responsible: string | null
+      notes: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["copperLine"]>
+    composites: {}
+  }
+
+  type CopperLineGetPayload<S extends boolean | null | undefined | CopperLineDefaultArgs> = $Result.GetResult<Prisma.$CopperLinePayload, S>
+
+  type CopperLineCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<CopperLineFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: CopperLineCountAggregateInputType | true
+    }
+
+  export interface CopperLineDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['CopperLine'], meta: { name: 'CopperLine' } }
+    /**
+     * Find zero or one CopperLine that matches the filter.
+     * @param {CopperLineFindUniqueArgs} args - Arguments to find a CopperLine
+     * @example
+     * // Get one CopperLine
+     * const copperLine = await prisma.copperLine.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CopperLineFindUniqueArgs>(args: SelectSubset<T, CopperLineFindUniqueArgs<ExtArgs>>): Prisma__CopperLineClient<$Result.GetResult<Prisma.$CopperLinePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one CopperLine that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {CopperLineFindUniqueOrThrowArgs} args - Arguments to find a CopperLine
+     * @example
+     * // Get one CopperLine
+     * const copperLine = await prisma.copperLine.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CopperLineFindUniqueOrThrowArgs>(args: SelectSubset<T, CopperLineFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CopperLineClient<$Result.GetResult<Prisma.$CopperLinePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CopperLine that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CopperLineFindFirstArgs} args - Arguments to find a CopperLine
+     * @example
+     * // Get one CopperLine
+     * const copperLine = await prisma.copperLine.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CopperLineFindFirstArgs>(args?: SelectSubset<T, CopperLineFindFirstArgs<ExtArgs>>): Prisma__CopperLineClient<$Result.GetResult<Prisma.$CopperLinePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CopperLine that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CopperLineFindFirstOrThrowArgs} args - Arguments to find a CopperLine
+     * @example
+     * // Get one CopperLine
+     * const copperLine = await prisma.copperLine.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CopperLineFindFirstOrThrowArgs>(args?: SelectSubset<T, CopperLineFindFirstOrThrowArgs<ExtArgs>>): Prisma__CopperLineClient<$Result.GetResult<Prisma.$CopperLinePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more CopperLines that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CopperLineFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all CopperLines
+     * const copperLines = await prisma.copperLine.findMany()
+     * 
+     * // Get first 10 CopperLines
+     * const copperLines = await prisma.copperLine.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const copperLineWithIdOnly = await prisma.copperLine.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends CopperLineFindManyArgs>(args?: SelectSubset<T, CopperLineFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CopperLinePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a CopperLine.
+     * @param {CopperLineCreateArgs} args - Arguments to create a CopperLine.
+     * @example
+     * // Create one CopperLine
+     * const CopperLine = await prisma.copperLine.create({
+     *   data: {
+     *     // ... data to create a CopperLine
+     *   }
+     * })
+     * 
+     */
+    create<T extends CopperLineCreateArgs>(args: SelectSubset<T, CopperLineCreateArgs<ExtArgs>>): Prisma__CopperLineClient<$Result.GetResult<Prisma.$CopperLinePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many CopperLines.
+     * @param {CopperLineCreateManyArgs} args - Arguments to create many CopperLines.
+     * @example
+     * // Create many CopperLines
+     * const copperLine = await prisma.copperLine.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CopperLineCreateManyArgs>(args?: SelectSubset<T, CopperLineCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many CopperLines and returns the data saved in the database.
+     * @param {CopperLineCreateManyAndReturnArgs} args - Arguments to create many CopperLines.
+     * @example
+     * // Create many CopperLines
+     * const copperLine = await prisma.copperLine.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many CopperLines and only return the `id`
+     * const copperLineWithIdOnly = await prisma.copperLine.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends CopperLineCreateManyAndReturnArgs>(args?: SelectSubset<T, CopperLineCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CopperLinePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a CopperLine.
+     * @param {CopperLineDeleteArgs} args - Arguments to delete one CopperLine.
+     * @example
+     * // Delete one CopperLine
+     * const CopperLine = await prisma.copperLine.delete({
+     *   where: {
+     *     // ... filter to delete one CopperLine
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CopperLineDeleteArgs>(args: SelectSubset<T, CopperLineDeleteArgs<ExtArgs>>): Prisma__CopperLineClient<$Result.GetResult<Prisma.$CopperLinePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one CopperLine.
+     * @param {CopperLineUpdateArgs} args - Arguments to update one CopperLine.
+     * @example
+     * // Update one CopperLine
+     * const copperLine = await prisma.copperLine.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CopperLineUpdateArgs>(args: SelectSubset<T, CopperLineUpdateArgs<ExtArgs>>): Prisma__CopperLineClient<$Result.GetResult<Prisma.$CopperLinePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more CopperLines.
+     * @param {CopperLineDeleteManyArgs} args - Arguments to filter CopperLines to delete.
+     * @example
+     * // Delete a few CopperLines
+     * const { count } = await prisma.copperLine.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CopperLineDeleteManyArgs>(args?: SelectSubset<T, CopperLineDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CopperLines.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CopperLineUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many CopperLines
+     * const copperLine = await prisma.copperLine.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CopperLineUpdateManyArgs>(args: SelectSubset<T, CopperLineUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CopperLines and returns the data updated in the database.
+     * @param {CopperLineUpdateManyAndReturnArgs} args - Arguments to update many CopperLines.
+     * @example
+     * // Update many CopperLines
+     * const copperLine = await prisma.copperLine.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more CopperLines and only return the `id`
+     * const copperLineWithIdOnly = await prisma.copperLine.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends CopperLineUpdateManyAndReturnArgs>(args: SelectSubset<T, CopperLineUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CopperLinePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one CopperLine.
+     * @param {CopperLineUpsertArgs} args - Arguments to update or create a CopperLine.
+     * @example
+     * // Update or create a CopperLine
+     * const copperLine = await prisma.copperLine.upsert({
+     *   create: {
+     *     // ... data to create a CopperLine
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the CopperLine we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CopperLineUpsertArgs>(args: SelectSubset<T, CopperLineUpsertArgs<ExtArgs>>): Prisma__CopperLineClient<$Result.GetResult<Prisma.$CopperLinePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of CopperLines.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CopperLineCountArgs} args - Arguments to filter CopperLines to count.
+     * @example
+     * // Count the number of CopperLines
+     * const count = await prisma.copperLine.count({
+     *   where: {
+     *     // ... the filter for the CopperLines we want to count
+     *   }
+     * })
+    **/
+    count<T extends CopperLineCountArgs>(
+      args?: Subset<T, CopperLineCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CopperLineCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a CopperLine.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CopperLineAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CopperLineAggregateArgs>(args: Subset<T, CopperLineAggregateArgs>): Prisma.PrismaPromise<GetCopperLineAggregateType<T>>
+
+    /**
+     * Group by CopperLine.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CopperLineGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CopperLineGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CopperLineGroupByArgs['orderBy'] }
+        : { orderBy?: CopperLineGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CopperLineGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCopperLineGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the CopperLine model
+   */
+  readonly fields: CopperLineFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for CopperLine.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CopperLineClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the CopperLine model
+   */
+  interface CopperLineFieldRefs {
+    readonly id: FieldRef<"CopperLine", 'String'>
+    readonly landline_number: FieldRef<"CopperLine", 'String'>
+    readonly central: FieldRef<"CopperLine", 'String'>
+    readonly village: FieldRef<"CopperLine", 'String'>
+    readonly cabinet_number: FieldRef<"CopperLine", 'String'>
+    readonly port_number: FieldRef<"CopperLine", 'String'>
+    readonly terminal_number: FieldRef<"CopperLine", 'String'>
+    readonly cabinet_location: FieldRef<"CopperLine", 'String'>
+    readonly box_number: FieldRef<"CopperLine", 'String'>
+    readonly box_entitlement: FieldRef<"CopperLine", 'String'>
+    readonly box_location: FieldRef<"CopperLine", 'String'>
+    readonly joint_location: FieldRef<"CopperLine", 'String'>
+    readonly joint_entitlement: FieldRef<"CopperLine", 'String'>
+    readonly joint_depth: FieldRef<"CopperLine", 'String'>
+    readonly room_location: FieldRef<"CopperLine", 'String'>
+    readonly insulation_level: FieldRef<"CopperLine", 'String'>
+    readonly responsible: FieldRef<"CopperLine", 'String'>
+    readonly notes: FieldRef<"CopperLine", 'String'>
+    readonly createdAt: FieldRef<"CopperLine", 'DateTime'>
+    readonly updatedAt: FieldRef<"CopperLine", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * CopperLine findUnique
+   */
+  export type CopperLineFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CopperLine
+     */
+    select?: CopperLineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CopperLine
+     */
+    omit?: CopperLineOmit<ExtArgs> | null
+    /**
+     * Filter, which CopperLine to fetch.
+     */
+    where: CopperLineWhereUniqueInput
+  }
+
+  /**
+   * CopperLine findUniqueOrThrow
+   */
+  export type CopperLineFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CopperLine
+     */
+    select?: CopperLineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CopperLine
+     */
+    omit?: CopperLineOmit<ExtArgs> | null
+    /**
+     * Filter, which CopperLine to fetch.
+     */
+    where: CopperLineWhereUniqueInput
+  }
+
+  /**
+   * CopperLine findFirst
+   */
+  export type CopperLineFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CopperLine
+     */
+    select?: CopperLineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CopperLine
+     */
+    omit?: CopperLineOmit<ExtArgs> | null
+    /**
+     * Filter, which CopperLine to fetch.
+     */
+    where?: CopperLineWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CopperLines to fetch.
+     */
+    orderBy?: CopperLineOrderByWithRelationInput | CopperLineOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CopperLines.
+     */
+    cursor?: CopperLineWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CopperLines from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CopperLines.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CopperLines.
+     */
+    distinct?: CopperLineScalarFieldEnum | CopperLineScalarFieldEnum[]
+  }
+
+  /**
+   * CopperLine findFirstOrThrow
+   */
+  export type CopperLineFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CopperLine
+     */
+    select?: CopperLineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CopperLine
+     */
+    omit?: CopperLineOmit<ExtArgs> | null
+    /**
+     * Filter, which CopperLine to fetch.
+     */
+    where?: CopperLineWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CopperLines to fetch.
+     */
+    orderBy?: CopperLineOrderByWithRelationInput | CopperLineOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CopperLines.
+     */
+    cursor?: CopperLineWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CopperLines from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CopperLines.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CopperLines.
+     */
+    distinct?: CopperLineScalarFieldEnum | CopperLineScalarFieldEnum[]
+  }
+
+  /**
+   * CopperLine findMany
+   */
+  export type CopperLineFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CopperLine
+     */
+    select?: CopperLineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CopperLine
+     */
+    omit?: CopperLineOmit<ExtArgs> | null
+    /**
+     * Filter, which CopperLines to fetch.
+     */
+    where?: CopperLineWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CopperLines to fetch.
+     */
+    orderBy?: CopperLineOrderByWithRelationInput | CopperLineOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing CopperLines.
+     */
+    cursor?: CopperLineWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CopperLines from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CopperLines.
+     */
+    skip?: number
+    distinct?: CopperLineScalarFieldEnum | CopperLineScalarFieldEnum[]
+  }
+
+  /**
+   * CopperLine create
+   */
+  export type CopperLineCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CopperLine
+     */
+    select?: CopperLineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CopperLine
+     */
+    omit?: CopperLineOmit<ExtArgs> | null
+    /**
+     * The data needed to create a CopperLine.
+     */
+    data: XOR<CopperLineCreateInput, CopperLineUncheckedCreateInput>
+  }
+
+  /**
+   * CopperLine createMany
+   */
+  export type CopperLineCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many CopperLines.
+     */
+    data: CopperLineCreateManyInput | CopperLineCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * CopperLine createManyAndReturn
+   */
+  export type CopperLineCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CopperLine
+     */
+    select?: CopperLineSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CopperLine
+     */
+    omit?: CopperLineOmit<ExtArgs> | null
+    /**
+     * The data used to create many CopperLines.
+     */
+    data: CopperLineCreateManyInput | CopperLineCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * CopperLine update
+   */
+  export type CopperLineUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CopperLine
+     */
+    select?: CopperLineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CopperLine
+     */
+    omit?: CopperLineOmit<ExtArgs> | null
+    /**
+     * The data needed to update a CopperLine.
+     */
+    data: XOR<CopperLineUpdateInput, CopperLineUncheckedUpdateInput>
+    /**
+     * Choose, which CopperLine to update.
+     */
+    where: CopperLineWhereUniqueInput
+  }
+
+  /**
+   * CopperLine updateMany
+   */
+  export type CopperLineUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update CopperLines.
+     */
+    data: XOR<CopperLineUpdateManyMutationInput, CopperLineUncheckedUpdateManyInput>
+    /**
+     * Filter which CopperLines to update
+     */
+    where?: CopperLineWhereInput
+    /**
+     * Limit how many CopperLines to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * CopperLine updateManyAndReturn
+   */
+  export type CopperLineUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CopperLine
+     */
+    select?: CopperLineSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CopperLine
+     */
+    omit?: CopperLineOmit<ExtArgs> | null
+    /**
+     * The data used to update CopperLines.
+     */
+    data: XOR<CopperLineUpdateManyMutationInput, CopperLineUncheckedUpdateManyInput>
+    /**
+     * Filter which CopperLines to update
+     */
+    where?: CopperLineWhereInput
+    /**
+     * Limit how many CopperLines to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * CopperLine upsert
+   */
+  export type CopperLineUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CopperLine
+     */
+    select?: CopperLineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CopperLine
+     */
+    omit?: CopperLineOmit<ExtArgs> | null
+    /**
+     * The filter to search for the CopperLine to update in case it exists.
+     */
+    where: CopperLineWhereUniqueInput
+    /**
+     * In case the CopperLine found by the `where` argument doesn't exist, create a new CopperLine with this data.
+     */
+    create: XOR<CopperLineCreateInput, CopperLineUncheckedCreateInput>
+    /**
+     * In case the CopperLine was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CopperLineUpdateInput, CopperLineUncheckedUpdateInput>
+  }
+
+  /**
+   * CopperLine delete
+   */
+  export type CopperLineDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CopperLine
+     */
+    select?: CopperLineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CopperLine
+     */
+    omit?: CopperLineOmit<ExtArgs> | null
+    /**
+     * Filter which CopperLine to delete.
+     */
+    where: CopperLineWhereUniqueInput
+  }
+
+  /**
+   * CopperLine deleteMany
+   */
+  export type CopperLineDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CopperLines to delete
+     */
+    where?: CopperLineWhereInput
+    /**
+     * Limit how many CopperLines to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * CopperLine without action
+   */
+  export type CopperLineDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CopperLine
+     */
+    select?: CopperLineSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CopperLine
+     */
+    omit?: CopperLineOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -4555,6 +9505,94 @@ export namespace Prisma {
   };
 
   export type SessionScalarFieldEnum = (typeof SessionScalarFieldEnum)[keyof typeof SessionScalarFieldEnum]
+
+
+  export const MajorCabinetScalarFieldEnum: {
+    id: 'id',
+    central: 'central',
+    village: 'village',
+    cabinet: 'cabinet',
+    central_to_cabinet_distance: 'central_to_cabinet_distance',
+    number_of_joints: 'number_of_joints',
+    joint_location: 'joint_location',
+    rooms: 'rooms',
+    room_location: 'room_location',
+    entitlement: 'entitlement',
+    distance: 'distance',
+    responsible: 'responsible',
+    notes: 'notes',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type MajorCabinetScalarFieldEnum = (typeof MajorCabinetScalarFieldEnum)[keyof typeof MajorCabinetScalarFieldEnum]
+
+
+  export const SecondaryCabinetScalarFieldEnum: {
+    id: 'id',
+    central: 'central',
+    village: 'village',
+    port_gbon: 'port_gbon',
+    cabinet: 'cabinet',
+    splitter_number: 'splitter_number',
+    splitter_port: 'splitter_port',
+    distance: 'distance',
+    box_number: 'box_number',
+    cabinet_location: 'cabinet_location',
+    box_location: 'box_location',
+    cabinet_to_box_distance: 'cabinet_to_box_distance',
+    responsible: 'responsible',
+    notes: 'notes',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type SecondaryCabinetScalarFieldEnum = (typeof SecondaryCabinetScalarFieldEnum)[keyof typeof SecondaryCabinetScalarFieldEnum]
+
+
+  export const MobileTowerScalarFieldEnum: {
+    id: 'id',
+    central: 'central',
+    cable_name: 'cable_name',
+    tower_code: 'tower_code',
+    company: 'company',
+    entitlement: 'entitlement',
+    distance: 'distance',
+    address: 'address',
+    location: 'location',
+    responsible: 'responsible',
+    notes: 'notes',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type MobileTowerScalarFieldEnum = (typeof MobileTowerScalarFieldEnum)[keyof typeof MobileTowerScalarFieldEnum]
+
+
+  export const CopperLineScalarFieldEnum: {
+    id: 'id',
+    landline_number: 'landline_number',
+    central: 'central',
+    village: 'village',
+    cabinet_number: 'cabinet_number',
+    port_number: 'port_number',
+    terminal_number: 'terminal_number',
+    cabinet_location: 'cabinet_location',
+    box_number: 'box_number',
+    box_entitlement: 'box_entitlement',
+    box_location: 'box_location',
+    joint_location: 'joint_location',
+    joint_entitlement: 'joint_entitlement',
+    joint_depth: 'joint_depth',
+    room_location: 'room_location',
+    insulation_level: 'insulation_level',
+    responsible: 'responsible',
+    notes: 'notes',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type CopperLineScalarFieldEnum = (typeof CopperLineScalarFieldEnum)[keyof typeof CopperLineScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -4885,6 +9923,436 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"Session"> | Date | string
   }
 
+  export type MajorCabinetWhereInput = {
+    AND?: MajorCabinetWhereInput | MajorCabinetWhereInput[]
+    OR?: MajorCabinetWhereInput[]
+    NOT?: MajorCabinetWhereInput | MajorCabinetWhereInput[]
+    id?: StringFilter<"MajorCabinet"> | string
+    central?: StringFilter<"MajorCabinet"> | string
+    village?: StringFilter<"MajorCabinet"> | string
+    cabinet?: StringFilter<"MajorCabinet"> | string
+    central_to_cabinet_distance?: StringFilter<"MajorCabinet"> | string
+    number_of_joints?: IntFilter<"MajorCabinet"> | number
+    joint_location?: StringFilter<"MajorCabinet"> | string
+    rooms?: StringFilter<"MajorCabinet"> | string
+    room_location?: StringFilter<"MajorCabinet"> | string
+    entitlement?: StringFilter<"MajorCabinet"> | string
+    distance?: StringFilter<"MajorCabinet"> | string
+    responsible?: StringNullableFilter<"MajorCabinet"> | string | null
+    notes?: StringFilter<"MajorCabinet"> | string
+    createdAt?: DateTimeFilter<"MajorCabinet"> | Date | string
+    updatedAt?: DateTimeFilter<"MajorCabinet"> | Date | string
+  }
+
+  export type MajorCabinetOrderByWithRelationInput = {
+    id?: SortOrder
+    central?: SortOrder
+    village?: SortOrder
+    cabinet?: SortOrder
+    central_to_cabinet_distance?: SortOrder
+    number_of_joints?: SortOrder
+    joint_location?: SortOrder
+    rooms?: SortOrder
+    room_location?: SortOrder
+    entitlement?: SortOrder
+    distance?: SortOrder
+    responsible?: SortOrderInput | SortOrder
+    notes?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MajorCabinetWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: MajorCabinetWhereInput | MajorCabinetWhereInput[]
+    OR?: MajorCabinetWhereInput[]
+    NOT?: MajorCabinetWhereInput | MajorCabinetWhereInput[]
+    central?: StringFilter<"MajorCabinet"> | string
+    village?: StringFilter<"MajorCabinet"> | string
+    cabinet?: StringFilter<"MajorCabinet"> | string
+    central_to_cabinet_distance?: StringFilter<"MajorCabinet"> | string
+    number_of_joints?: IntFilter<"MajorCabinet"> | number
+    joint_location?: StringFilter<"MajorCabinet"> | string
+    rooms?: StringFilter<"MajorCabinet"> | string
+    room_location?: StringFilter<"MajorCabinet"> | string
+    entitlement?: StringFilter<"MajorCabinet"> | string
+    distance?: StringFilter<"MajorCabinet"> | string
+    responsible?: StringNullableFilter<"MajorCabinet"> | string | null
+    notes?: StringFilter<"MajorCabinet"> | string
+    createdAt?: DateTimeFilter<"MajorCabinet"> | Date | string
+    updatedAt?: DateTimeFilter<"MajorCabinet"> | Date | string
+  }, "id">
+
+  export type MajorCabinetOrderByWithAggregationInput = {
+    id?: SortOrder
+    central?: SortOrder
+    village?: SortOrder
+    cabinet?: SortOrder
+    central_to_cabinet_distance?: SortOrder
+    number_of_joints?: SortOrder
+    joint_location?: SortOrder
+    rooms?: SortOrder
+    room_location?: SortOrder
+    entitlement?: SortOrder
+    distance?: SortOrder
+    responsible?: SortOrderInput | SortOrder
+    notes?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: MajorCabinetCountOrderByAggregateInput
+    _avg?: MajorCabinetAvgOrderByAggregateInput
+    _max?: MajorCabinetMaxOrderByAggregateInput
+    _min?: MajorCabinetMinOrderByAggregateInput
+    _sum?: MajorCabinetSumOrderByAggregateInput
+  }
+
+  export type MajorCabinetScalarWhereWithAggregatesInput = {
+    AND?: MajorCabinetScalarWhereWithAggregatesInput | MajorCabinetScalarWhereWithAggregatesInput[]
+    OR?: MajorCabinetScalarWhereWithAggregatesInput[]
+    NOT?: MajorCabinetScalarWhereWithAggregatesInput | MajorCabinetScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"MajorCabinet"> | string
+    central?: StringWithAggregatesFilter<"MajorCabinet"> | string
+    village?: StringWithAggregatesFilter<"MajorCabinet"> | string
+    cabinet?: StringWithAggregatesFilter<"MajorCabinet"> | string
+    central_to_cabinet_distance?: StringWithAggregatesFilter<"MajorCabinet"> | string
+    number_of_joints?: IntWithAggregatesFilter<"MajorCabinet"> | number
+    joint_location?: StringWithAggregatesFilter<"MajorCabinet"> | string
+    rooms?: StringWithAggregatesFilter<"MajorCabinet"> | string
+    room_location?: StringWithAggregatesFilter<"MajorCabinet"> | string
+    entitlement?: StringWithAggregatesFilter<"MajorCabinet"> | string
+    distance?: StringWithAggregatesFilter<"MajorCabinet"> | string
+    responsible?: StringNullableWithAggregatesFilter<"MajorCabinet"> | string | null
+    notes?: StringWithAggregatesFilter<"MajorCabinet"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"MajorCabinet"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"MajorCabinet"> | Date | string
+  }
+
+  export type SecondaryCabinetWhereInput = {
+    AND?: SecondaryCabinetWhereInput | SecondaryCabinetWhereInput[]
+    OR?: SecondaryCabinetWhereInput[]
+    NOT?: SecondaryCabinetWhereInput | SecondaryCabinetWhereInput[]
+    id?: StringFilter<"SecondaryCabinet"> | string
+    central?: StringFilter<"SecondaryCabinet"> | string
+    village?: StringFilter<"SecondaryCabinet"> | string
+    port_gbon?: StringFilter<"SecondaryCabinet"> | string
+    cabinet?: StringFilter<"SecondaryCabinet"> | string
+    splitter_number?: StringFilter<"SecondaryCabinet"> | string
+    splitter_port?: StringFilter<"SecondaryCabinet"> | string
+    distance?: StringFilter<"SecondaryCabinet"> | string
+    box_number?: StringFilter<"SecondaryCabinet"> | string
+    cabinet_location?: StringFilter<"SecondaryCabinet"> | string
+    box_location?: StringFilter<"SecondaryCabinet"> | string
+    cabinet_to_box_distance?: StringFilter<"SecondaryCabinet"> | string
+    responsible?: StringNullableFilter<"SecondaryCabinet"> | string | null
+    notes?: StringNullableFilter<"SecondaryCabinet"> | string | null
+    createdAt?: DateTimeFilter<"SecondaryCabinet"> | Date | string
+    updatedAt?: DateTimeFilter<"SecondaryCabinet"> | Date | string
+  }
+
+  export type SecondaryCabinetOrderByWithRelationInput = {
+    id?: SortOrder
+    central?: SortOrder
+    village?: SortOrder
+    port_gbon?: SortOrder
+    cabinet?: SortOrder
+    splitter_number?: SortOrder
+    splitter_port?: SortOrder
+    distance?: SortOrder
+    box_number?: SortOrder
+    cabinet_location?: SortOrder
+    box_location?: SortOrder
+    cabinet_to_box_distance?: SortOrder
+    responsible?: SortOrderInput | SortOrder
+    notes?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SecondaryCabinetWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: SecondaryCabinetWhereInput | SecondaryCabinetWhereInput[]
+    OR?: SecondaryCabinetWhereInput[]
+    NOT?: SecondaryCabinetWhereInput | SecondaryCabinetWhereInput[]
+    central?: StringFilter<"SecondaryCabinet"> | string
+    village?: StringFilter<"SecondaryCabinet"> | string
+    port_gbon?: StringFilter<"SecondaryCabinet"> | string
+    cabinet?: StringFilter<"SecondaryCabinet"> | string
+    splitter_number?: StringFilter<"SecondaryCabinet"> | string
+    splitter_port?: StringFilter<"SecondaryCabinet"> | string
+    distance?: StringFilter<"SecondaryCabinet"> | string
+    box_number?: StringFilter<"SecondaryCabinet"> | string
+    cabinet_location?: StringFilter<"SecondaryCabinet"> | string
+    box_location?: StringFilter<"SecondaryCabinet"> | string
+    cabinet_to_box_distance?: StringFilter<"SecondaryCabinet"> | string
+    responsible?: StringNullableFilter<"SecondaryCabinet"> | string | null
+    notes?: StringNullableFilter<"SecondaryCabinet"> | string | null
+    createdAt?: DateTimeFilter<"SecondaryCabinet"> | Date | string
+    updatedAt?: DateTimeFilter<"SecondaryCabinet"> | Date | string
+  }, "id">
+
+  export type SecondaryCabinetOrderByWithAggregationInput = {
+    id?: SortOrder
+    central?: SortOrder
+    village?: SortOrder
+    port_gbon?: SortOrder
+    cabinet?: SortOrder
+    splitter_number?: SortOrder
+    splitter_port?: SortOrder
+    distance?: SortOrder
+    box_number?: SortOrder
+    cabinet_location?: SortOrder
+    box_location?: SortOrder
+    cabinet_to_box_distance?: SortOrder
+    responsible?: SortOrderInput | SortOrder
+    notes?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: SecondaryCabinetCountOrderByAggregateInput
+    _max?: SecondaryCabinetMaxOrderByAggregateInput
+    _min?: SecondaryCabinetMinOrderByAggregateInput
+  }
+
+  export type SecondaryCabinetScalarWhereWithAggregatesInput = {
+    AND?: SecondaryCabinetScalarWhereWithAggregatesInput | SecondaryCabinetScalarWhereWithAggregatesInput[]
+    OR?: SecondaryCabinetScalarWhereWithAggregatesInput[]
+    NOT?: SecondaryCabinetScalarWhereWithAggregatesInput | SecondaryCabinetScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"SecondaryCabinet"> | string
+    central?: StringWithAggregatesFilter<"SecondaryCabinet"> | string
+    village?: StringWithAggregatesFilter<"SecondaryCabinet"> | string
+    port_gbon?: StringWithAggregatesFilter<"SecondaryCabinet"> | string
+    cabinet?: StringWithAggregatesFilter<"SecondaryCabinet"> | string
+    splitter_number?: StringWithAggregatesFilter<"SecondaryCabinet"> | string
+    splitter_port?: StringWithAggregatesFilter<"SecondaryCabinet"> | string
+    distance?: StringWithAggregatesFilter<"SecondaryCabinet"> | string
+    box_number?: StringWithAggregatesFilter<"SecondaryCabinet"> | string
+    cabinet_location?: StringWithAggregatesFilter<"SecondaryCabinet"> | string
+    box_location?: StringWithAggregatesFilter<"SecondaryCabinet"> | string
+    cabinet_to_box_distance?: StringWithAggregatesFilter<"SecondaryCabinet"> | string
+    responsible?: StringNullableWithAggregatesFilter<"SecondaryCabinet"> | string | null
+    notes?: StringNullableWithAggregatesFilter<"SecondaryCabinet"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"SecondaryCabinet"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"SecondaryCabinet"> | Date | string
+  }
+
+  export type MobileTowerWhereInput = {
+    AND?: MobileTowerWhereInput | MobileTowerWhereInput[]
+    OR?: MobileTowerWhereInput[]
+    NOT?: MobileTowerWhereInput | MobileTowerWhereInput[]
+    id?: StringFilter<"MobileTower"> | string
+    central?: StringFilter<"MobileTower"> | string
+    cable_name?: StringFilter<"MobileTower"> | string
+    tower_code?: StringFilter<"MobileTower"> | string
+    company?: StringFilter<"MobileTower"> | string
+    entitlement?: StringFilter<"MobileTower"> | string
+    distance?: StringFilter<"MobileTower"> | string
+    address?: StringFilter<"MobileTower"> | string
+    location?: StringFilter<"MobileTower"> | string
+    responsible?: StringNullableFilter<"MobileTower"> | string | null
+    notes?: StringNullableFilter<"MobileTower"> | string | null
+    createdAt?: DateTimeFilter<"MobileTower"> | Date | string
+    updatedAt?: DateTimeFilter<"MobileTower"> | Date | string
+  }
+
+  export type MobileTowerOrderByWithRelationInput = {
+    id?: SortOrder
+    central?: SortOrder
+    cable_name?: SortOrder
+    tower_code?: SortOrder
+    company?: SortOrder
+    entitlement?: SortOrder
+    distance?: SortOrder
+    address?: SortOrder
+    location?: SortOrder
+    responsible?: SortOrderInput | SortOrder
+    notes?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MobileTowerWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: MobileTowerWhereInput | MobileTowerWhereInput[]
+    OR?: MobileTowerWhereInput[]
+    NOT?: MobileTowerWhereInput | MobileTowerWhereInput[]
+    central?: StringFilter<"MobileTower"> | string
+    cable_name?: StringFilter<"MobileTower"> | string
+    tower_code?: StringFilter<"MobileTower"> | string
+    company?: StringFilter<"MobileTower"> | string
+    entitlement?: StringFilter<"MobileTower"> | string
+    distance?: StringFilter<"MobileTower"> | string
+    address?: StringFilter<"MobileTower"> | string
+    location?: StringFilter<"MobileTower"> | string
+    responsible?: StringNullableFilter<"MobileTower"> | string | null
+    notes?: StringNullableFilter<"MobileTower"> | string | null
+    createdAt?: DateTimeFilter<"MobileTower"> | Date | string
+    updatedAt?: DateTimeFilter<"MobileTower"> | Date | string
+  }, "id">
+
+  export type MobileTowerOrderByWithAggregationInput = {
+    id?: SortOrder
+    central?: SortOrder
+    cable_name?: SortOrder
+    tower_code?: SortOrder
+    company?: SortOrder
+    entitlement?: SortOrder
+    distance?: SortOrder
+    address?: SortOrder
+    location?: SortOrder
+    responsible?: SortOrderInput | SortOrder
+    notes?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: MobileTowerCountOrderByAggregateInput
+    _max?: MobileTowerMaxOrderByAggregateInput
+    _min?: MobileTowerMinOrderByAggregateInput
+  }
+
+  export type MobileTowerScalarWhereWithAggregatesInput = {
+    AND?: MobileTowerScalarWhereWithAggregatesInput | MobileTowerScalarWhereWithAggregatesInput[]
+    OR?: MobileTowerScalarWhereWithAggregatesInput[]
+    NOT?: MobileTowerScalarWhereWithAggregatesInput | MobileTowerScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"MobileTower"> | string
+    central?: StringWithAggregatesFilter<"MobileTower"> | string
+    cable_name?: StringWithAggregatesFilter<"MobileTower"> | string
+    tower_code?: StringWithAggregatesFilter<"MobileTower"> | string
+    company?: StringWithAggregatesFilter<"MobileTower"> | string
+    entitlement?: StringWithAggregatesFilter<"MobileTower"> | string
+    distance?: StringWithAggregatesFilter<"MobileTower"> | string
+    address?: StringWithAggregatesFilter<"MobileTower"> | string
+    location?: StringWithAggregatesFilter<"MobileTower"> | string
+    responsible?: StringNullableWithAggregatesFilter<"MobileTower"> | string | null
+    notes?: StringNullableWithAggregatesFilter<"MobileTower"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"MobileTower"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"MobileTower"> | Date | string
+  }
+
+  export type CopperLineWhereInput = {
+    AND?: CopperLineWhereInput | CopperLineWhereInput[]
+    OR?: CopperLineWhereInput[]
+    NOT?: CopperLineWhereInput | CopperLineWhereInput[]
+    id?: StringFilter<"CopperLine"> | string
+    landline_number?: StringFilter<"CopperLine"> | string
+    central?: StringFilter<"CopperLine"> | string
+    village?: StringFilter<"CopperLine"> | string
+    cabinet_number?: StringFilter<"CopperLine"> | string
+    port_number?: StringFilter<"CopperLine"> | string
+    terminal_number?: StringFilter<"CopperLine"> | string
+    cabinet_location?: StringFilter<"CopperLine"> | string
+    box_number?: StringFilter<"CopperLine"> | string
+    box_entitlement?: StringFilter<"CopperLine"> | string
+    box_location?: StringFilter<"CopperLine"> | string
+    joint_location?: StringFilter<"CopperLine"> | string
+    joint_entitlement?: StringFilter<"CopperLine"> | string
+    joint_depth?: StringFilter<"CopperLine"> | string
+    room_location?: StringFilter<"CopperLine"> | string
+    insulation_level?: StringFilter<"CopperLine"> | string
+    responsible?: StringNullableFilter<"CopperLine"> | string | null
+    notes?: StringNullableFilter<"CopperLine"> | string | null
+    createdAt?: DateTimeFilter<"CopperLine"> | Date | string
+    updatedAt?: DateTimeFilter<"CopperLine"> | Date | string
+  }
+
+  export type CopperLineOrderByWithRelationInput = {
+    id?: SortOrder
+    landline_number?: SortOrder
+    central?: SortOrder
+    village?: SortOrder
+    cabinet_number?: SortOrder
+    port_number?: SortOrder
+    terminal_number?: SortOrder
+    cabinet_location?: SortOrder
+    box_number?: SortOrder
+    box_entitlement?: SortOrder
+    box_location?: SortOrder
+    joint_location?: SortOrder
+    joint_entitlement?: SortOrder
+    joint_depth?: SortOrder
+    room_location?: SortOrder
+    insulation_level?: SortOrder
+    responsible?: SortOrderInput | SortOrder
+    notes?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CopperLineWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: CopperLineWhereInput | CopperLineWhereInput[]
+    OR?: CopperLineWhereInput[]
+    NOT?: CopperLineWhereInput | CopperLineWhereInput[]
+    landline_number?: StringFilter<"CopperLine"> | string
+    central?: StringFilter<"CopperLine"> | string
+    village?: StringFilter<"CopperLine"> | string
+    cabinet_number?: StringFilter<"CopperLine"> | string
+    port_number?: StringFilter<"CopperLine"> | string
+    terminal_number?: StringFilter<"CopperLine"> | string
+    cabinet_location?: StringFilter<"CopperLine"> | string
+    box_number?: StringFilter<"CopperLine"> | string
+    box_entitlement?: StringFilter<"CopperLine"> | string
+    box_location?: StringFilter<"CopperLine"> | string
+    joint_location?: StringFilter<"CopperLine"> | string
+    joint_entitlement?: StringFilter<"CopperLine"> | string
+    joint_depth?: StringFilter<"CopperLine"> | string
+    room_location?: StringFilter<"CopperLine"> | string
+    insulation_level?: StringFilter<"CopperLine"> | string
+    responsible?: StringNullableFilter<"CopperLine"> | string | null
+    notes?: StringNullableFilter<"CopperLine"> | string | null
+    createdAt?: DateTimeFilter<"CopperLine"> | Date | string
+    updatedAt?: DateTimeFilter<"CopperLine"> | Date | string
+  }, "id">
+
+  export type CopperLineOrderByWithAggregationInput = {
+    id?: SortOrder
+    landline_number?: SortOrder
+    central?: SortOrder
+    village?: SortOrder
+    cabinet_number?: SortOrder
+    port_number?: SortOrder
+    terminal_number?: SortOrder
+    cabinet_location?: SortOrder
+    box_number?: SortOrder
+    box_entitlement?: SortOrder
+    box_location?: SortOrder
+    joint_location?: SortOrder
+    joint_entitlement?: SortOrder
+    joint_depth?: SortOrder
+    room_location?: SortOrder
+    insulation_level?: SortOrder
+    responsible?: SortOrderInput | SortOrder
+    notes?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: CopperLineCountOrderByAggregateInput
+    _max?: CopperLineMaxOrderByAggregateInput
+    _min?: CopperLineMinOrderByAggregateInput
+  }
+
+  export type CopperLineScalarWhereWithAggregatesInput = {
+    AND?: CopperLineScalarWhereWithAggregatesInput | CopperLineScalarWhereWithAggregatesInput[]
+    OR?: CopperLineScalarWhereWithAggregatesInput[]
+    NOT?: CopperLineScalarWhereWithAggregatesInput | CopperLineScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"CopperLine"> | string
+    landline_number?: StringWithAggregatesFilter<"CopperLine"> | string
+    central?: StringWithAggregatesFilter<"CopperLine"> | string
+    village?: StringWithAggregatesFilter<"CopperLine"> | string
+    cabinet_number?: StringWithAggregatesFilter<"CopperLine"> | string
+    port_number?: StringWithAggregatesFilter<"CopperLine"> | string
+    terminal_number?: StringWithAggregatesFilter<"CopperLine"> | string
+    cabinet_location?: StringWithAggregatesFilter<"CopperLine"> | string
+    box_number?: StringWithAggregatesFilter<"CopperLine"> | string
+    box_entitlement?: StringWithAggregatesFilter<"CopperLine"> | string
+    box_location?: StringWithAggregatesFilter<"CopperLine"> | string
+    joint_location?: StringWithAggregatesFilter<"CopperLine"> | string
+    joint_entitlement?: StringWithAggregatesFilter<"CopperLine"> | string
+    joint_depth?: StringWithAggregatesFilter<"CopperLine"> | string
+    room_location?: StringWithAggregatesFilter<"CopperLine"> | string
+    insulation_level?: StringWithAggregatesFilter<"CopperLine"> | string
+    responsible?: StringNullableWithAggregatesFilter<"CopperLine"> | string | null
+    notes?: StringNullableWithAggregatesFilter<"CopperLine"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"CopperLine"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"CopperLine"> | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     userName: string
@@ -5132,6 +10600,538 @@ export namespace Prisma {
     sessionToken?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     expires?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MajorCabinetCreateInput = {
+    id?: string
+    central: string
+    village: string
+    cabinet: string
+    central_to_cabinet_distance: string
+    number_of_joints: number
+    joint_location: string
+    rooms: string
+    room_location: string
+    entitlement: string
+    distance: string
+    responsible?: string | null
+    notes: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MajorCabinetUncheckedCreateInput = {
+    id?: string
+    central: string
+    village: string
+    cabinet: string
+    central_to_cabinet_distance: string
+    number_of_joints: number
+    joint_location: string
+    rooms: string
+    room_location: string
+    entitlement: string
+    distance: string
+    responsible?: string | null
+    notes: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MajorCabinetUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    central?: StringFieldUpdateOperationsInput | string
+    village?: StringFieldUpdateOperationsInput | string
+    cabinet?: StringFieldUpdateOperationsInput | string
+    central_to_cabinet_distance?: StringFieldUpdateOperationsInput | string
+    number_of_joints?: IntFieldUpdateOperationsInput | number
+    joint_location?: StringFieldUpdateOperationsInput | string
+    rooms?: StringFieldUpdateOperationsInput | string
+    room_location?: StringFieldUpdateOperationsInput | string
+    entitlement?: StringFieldUpdateOperationsInput | string
+    distance?: StringFieldUpdateOperationsInput | string
+    responsible?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MajorCabinetUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    central?: StringFieldUpdateOperationsInput | string
+    village?: StringFieldUpdateOperationsInput | string
+    cabinet?: StringFieldUpdateOperationsInput | string
+    central_to_cabinet_distance?: StringFieldUpdateOperationsInput | string
+    number_of_joints?: IntFieldUpdateOperationsInput | number
+    joint_location?: StringFieldUpdateOperationsInput | string
+    rooms?: StringFieldUpdateOperationsInput | string
+    room_location?: StringFieldUpdateOperationsInput | string
+    entitlement?: StringFieldUpdateOperationsInput | string
+    distance?: StringFieldUpdateOperationsInput | string
+    responsible?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MajorCabinetCreateManyInput = {
+    id?: string
+    central: string
+    village: string
+    cabinet: string
+    central_to_cabinet_distance: string
+    number_of_joints: number
+    joint_location: string
+    rooms: string
+    room_location: string
+    entitlement: string
+    distance: string
+    responsible?: string | null
+    notes: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MajorCabinetUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    central?: StringFieldUpdateOperationsInput | string
+    village?: StringFieldUpdateOperationsInput | string
+    cabinet?: StringFieldUpdateOperationsInput | string
+    central_to_cabinet_distance?: StringFieldUpdateOperationsInput | string
+    number_of_joints?: IntFieldUpdateOperationsInput | number
+    joint_location?: StringFieldUpdateOperationsInput | string
+    rooms?: StringFieldUpdateOperationsInput | string
+    room_location?: StringFieldUpdateOperationsInput | string
+    entitlement?: StringFieldUpdateOperationsInput | string
+    distance?: StringFieldUpdateOperationsInput | string
+    responsible?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MajorCabinetUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    central?: StringFieldUpdateOperationsInput | string
+    village?: StringFieldUpdateOperationsInput | string
+    cabinet?: StringFieldUpdateOperationsInput | string
+    central_to_cabinet_distance?: StringFieldUpdateOperationsInput | string
+    number_of_joints?: IntFieldUpdateOperationsInput | number
+    joint_location?: StringFieldUpdateOperationsInput | string
+    rooms?: StringFieldUpdateOperationsInput | string
+    room_location?: StringFieldUpdateOperationsInput | string
+    entitlement?: StringFieldUpdateOperationsInput | string
+    distance?: StringFieldUpdateOperationsInput | string
+    responsible?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SecondaryCabinetCreateInput = {
+    id?: string
+    central: string
+    village: string
+    port_gbon: string
+    cabinet: string
+    splitter_number: string
+    splitter_port: string
+    distance: string
+    box_number: string
+    cabinet_location: string
+    box_location: string
+    cabinet_to_box_distance: string
+    responsible?: string | null
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SecondaryCabinetUncheckedCreateInput = {
+    id?: string
+    central: string
+    village: string
+    port_gbon: string
+    cabinet: string
+    splitter_number: string
+    splitter_port: string
+    distance: string
+    box_number: string
+    cabinet_location: string
+    box_location: string
+    cabinet_to_box_distance: string
+    responsible?: string | null
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SecondaryCabinetUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    central?: StringFieldUpdateOperationsInput | string
+    village?: StringFieldUpdateOperationsInput | string
+    port_gbon?: StringFieldUpdateOperationsInput | string
+    cabinet?: StringFieldUpdateOperationsInput | string
+    splitter_number?: StringFieldUpdateOperationsInput | string
+    splitter_port?: StringFieldUpdateOperationsInput | string
+    distance?: StringFieldUpdateOperationsInput | string
+    box_number?: StringFieldUpdateOperationsInput | string
+    cabinet_location?: StringFieldUpdateOperationsInput | string
+    box_location?: StringFieldUpdateOperationsInput | string
+    cabinet_to_box_distance?: StringFieldUpdateOperationsInput | string
+    responsible?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SecondaryCabinetUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    central?: StringFieldUpdateOperationsInput | string
+    village?: StringFieldUpdateOperationsInput | string
+    port_gbon?: StringFieldUpdateOperationsInput | string
+    cabinet?: StringFieldUpdateOperationsInput | string
+    splitter_number?: StringFieldUpdateOperationsInput | string
+    splitter_port?: StringFieldUpdateOperationsInput | string
+    distance?: StringFieldUpdateOperationsInput | string
+    box_number?: StringFieldUpdateOperationsInput | string
+    cabinet_location?: StringFieldUpdateOperationsInput | string
+    box_location?: StringFieldUpdateOperationsInput | string
+    cabinet_to_box_distance?: StringFieldUpdateOperationsInput | string
+    responsible?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SecondaryCabinetCreateManyInput = {
+    id?: string
+    central: string
+    village: string
+    port_gbon: string
+    cabinet: string
+    splitter_number: string
+    splitter_port: string
+    distance: string
+    box_number: string
+    cabinet_location: string
+    box_location: string
+    cabinet_to_box_distance: string
+    responsible?: string | null
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SecondaryCabinetUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    central?: StringFieldUpdateOperationsInput | string
+    village?: StringFieldUpdateOperationsInput | string
+    port_gbon?: StringFieldUpdateOperationsInput | string
+    cabinet?: StringFieldUpdateOperationsInput | string
+    splitter_number?: StringFieldUpdateOperationsInput | string
+    splitter_port?: StringFieldUpdateOperationsInput | string
+    distance?: StringFieldUpdateOperationsInput | string
+    box_number?: StringFieldUpdateOperationsInput | string
+    cabinet_location?: StringFieldUpdateOperationsInput | string
+    box_location?: StringFieldUpdateOperationsInput | string
+    cabinet_to_box_distance?: StringFieldUpdateOperationsInput | string
+    responsible?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SecondaryCabinetUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    central?: StringFieldUpdateOperationsInput | string
+    village?: StringFieldUpdateOperationsInput | string
+    port_gbon?: StringFieldUpdateOperationsInput | string
+    cabinet?: StringFieldUpdateOperationsInput | string
+    splitter_number?: StringFieldUpdateOperationsInput | string
+    splitter_port?: StringFieldUpdateOperationsInput | string
+    distance?: StringFieldUpdateOperationsInput | string
+    box_number?: StringFieldUpdateOperationsInput | string
+    cabinet_location?: StringFieldUpdateOperationsInput | string
+    box_location?: StringFieldUpdateOperationsInput | string
+    cabinet_to_box_distance?: StringFieldUpdateOperationsInput | string
+    responsible?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MobileTowerCreateInput = {
+    id?: string
+    central: string
+    cable_name: string
+    tower_code: string
+    company: string
+    entitlement: string
+    distance: string
+    address: string
+    location: string
+    responsible?: string | null
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MobileTowerUncheckedCreateInput = {
+    id?: string
+    central: string
+    cable_name: string
+    tower_code: string
+    company: string
+    entitlement: string
+    distance: string
+    address: string
+    location: string
+    responsible?: string | null
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MobileTowerUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    central?: StringFieldUpdateOperationsInput | string
+    cable_name?: StringFieldUpdateOperationsInput | string
+    tower_code?: StringFieldUpdateOperationsInput | string
+    company?: StringFieldUpdateOperationsInput | string
+    entitlement?: StringFieldUpdateOperationsInput | string
+    distance?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    location?: StringFieldUpdateOperationsInput | string
+    responsible?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MobileTowerUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    central?: StringFieldUpdateOperationsInput | string
+    cable_name?: StringFieldUpdateOperationsInput | string
+    tower_code?: StringFieldUpdateOperationsInput | string
+    company?: StringFieldUpdateOperationsInput | string
+    entitlement?: StringFieldUpdateOperationsInput | string
+    distance?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    location?: StringFieldUpdateOperationsInput | string
+    responsible?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MobileTowerCreateManyInput = {
+    id?: string
+    central: string
+    cable_name: string
+    tower_code: string
+    company: string
+    entitlement: string
+    distance: string
+    address: string
+    location: string
+    responsible?: string | null
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MobileTowerUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    central?: StringFieldUpdateOperationsInput | string
+    cable_name?: StringFieldUpdateOperationsInput | string
+    tower_code?: StringFieldUpdateOperationsInput | string
+    company?: StringFieldUpdateOperationsInput | string
+    entitlement?: StringFieldUpdateOperationsInput | string
+    distance?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    location?: StringFieldUpdateOperationsInput | string
+    responsible?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MobileTowerUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    central?: StringFieldUpdateOperationsInput | string
+    cable_name?: StringFieldUpdateOperationsInput | string
+    tower_code?: StringFieldUpdateOperationsInput | string
+    company?: StringFieldUpdateOperationsInput | string
+    entitlement?: StringFieldUpdateOperationsInput | string
+    distance?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    location?: StringFieldUpdateOperationsInput | string
+    responsible?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CopperLineCreateInput = {
+    id?: string
+    landline_number: string
+    central: string
+    village: string
+    cabinet_number: string
+    port_number: string
+    terminal_number: string
+    cabinet_location: string
+    box_number: string
+    box_entitlement: string
+    box_location: string
+    joint_location: string
+    joint_entitlement: string
+    joint_depth: string
+    room_location: string
+    insulation_level: string
+    responsible?: string | null
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CopperLineUncheckedCreateInput = {
+    id?: string
+    landline_number: string
+    central: string
+    village: string
+    cabinet_number: string
+    port_number: string
+    terminal_number: string
+    cabinet_location: string
+    box_number: string
+    box_entitlement: string
+    box_location: string
+    joint_location: string
+    joint_entitlement: string
+    joint_depth: string
+    room_location: string
+    insulation_level: string
+    responsible?: string | null
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CopperLineUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    landline_number?: StringFieldUpdateOperationsInput | string
+    central?: StringFieldUpdateOperationsInput | string
+    village?: StringFieldUpdateOperationsInput | string
+    cabinet_number?: StringFieldUpdateOperationsInput | string
+    port_number?: StringFieldUpdateOperationsInput | string
+    terminal_number?: StringFieldUpdateOperationsInput | string
+    cabinet_location?: StringFieldUpdateOperationsInput | string
+    box_number?: StringFieldUpdateOperationsInput | string
+    box_entitlement?: StringFieldUpdateOperationsInput | string
+    box_location?: StringFieldUpdateOperationsInput | string
+    joint_location?: StringFieldUpdateOperationsInput | string
+    joint_entitlement?: StringFieldUpdateOperationsInput | string
+    joint_depth?: StringFieldUpdateOperationsInput | string
+    room_location?: StringFieldUpdateOperationsInput | string
+    insulation_level?: StringFieldUpdateOperationsInput | string
+    responsible?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CopperLineUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    landline_number?: StringFieldUpdateOperationsInput | string
+    central?: StringFieldUpdateOperationsInput | string
+    village?: StringFieldUpdateOperationsInput | string
+    cabinet_number?: StringFieldUpdateOperationsInput | string
+    port_number?: StringFieldUpdateOperationsInput | string
+    terminal_number?: StringFieldUpdateOperationsInput | string
+    cabinet_location?: StringFieldUpdateOperationsInput | string
+    box_number?: StringFieldUpdateOperationsInput | string
+    box_entitlement?: StringFieldUpdateOperationsInput | string
+    box_location?: StringFieldUpdateOperationsInput | string
+    joint_location?: StringFieldUpdateOperationsInput | string
+    joint_entitlement?: StringFieldUpdateOperationsInput | string
+    joint_depth?: StringFieldUpdateOperationsInput | string
+    room_location?: StringFieldUpdateOperationsInput | string
+    insulation_level?: StringFieldUpdateOperationsInput | string
+    responsible?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CopperLineCreateManyInput = {
+    id?: string
+    landline_number: string
+    central: string
+    village: string
+    cabinet_number: string
+    port_number: string
+    terminal_number: string
+    cabinet_location: string
+    box_number: string
+    box_entitlement: string
+    box_location: string
+    joint_location: string
+    joint_entitlement: string
+    joint_depth: string
+    room_location: string
+    insulation_level: string
+    responsible?: string | null
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CopperLineUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    landline_number?: StringFieldUpdateOperationsInput | string
+    central?: StringFieldUpdateOperationsInput | string
+    village?: StringFieldUpdateOperationsInput | string
+    cabinet_number?: StringFieldUpdateOperationsInput | string
+    port_number?: StringFieldUpdateOperationsInput | string
+    terminal_number?: StringFieldUpdateOperationsInput | string
+    cabinet_location?: StringFieldUpdateOperationsInput | string
+    box_number?: StringFieldUpdateOperationsInput | string
+    box_entitlement?: StringFieldUpdateOperationsInput | string
+    box_location?: StringFieldUpdateOperationsInput | string
+    joint_location?: StringFieldUpdateOperationsInput | string
+    joint_entitlement?: StringFieldUpdateOperationsInput | string
+    joint_depth?: StringFieldUpdateOperationsInput | string
+    room_location?: StringFieldUpdateOperationsInput | string
+    insulation_level?: StringFieldUpdateOperationsInput | string
+    responsible?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CopperLineUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    landline_number?: StringFieldUpdateOperationsInput | string
+    central?: StringFieldUpdateOperationsInput | string
+    village?: StringFieldUpdateOperationsInput | string
+    cabinet_number?: StringFieldUpdateOperationsInput | string
+    port_number?: StringFieldUpdateOperationsInput | string
+    terminal_number?: StringFieldUpdateOperationsInput | string
+    cabinet_location?: StringFieldUpdateOperationsInput | string
+    box_number?: StringFieldUpdateOperationsInput | string
+    box_entitlement?: StringFieldUpdateOperationsInput | string
+    box_location?: StringFieldUpdateOperationsInput | string
+    joint_location?: StringFieldUpdateOperationsInput | string
+    joint_entitlement?: StringFieldUpdateOperationsInput | string
+    joint_depth?: StringFieldUpdateOperationsInput | string
+    room_location?: StringFieldUpdateOperationsInput | string
+    insulation_level?: StringFieldUpdateOperationsInput | string
+    responsible?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -5419,6 +11419,269 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type MajorCabinetCountOrderByAggregateInput = {
+    id?: SortOrder
+    central?: SortOrder
+    village?: SortOrder
+    cabinet?: SortOrder
+    central_to_cabinet_distance?: SortOrder
+    number_of_joints?: SortOrder
+    joint_location?: SortOrder
+    rooms?: SortOrder
+    room_location?: SortOrder
+    entitlement?: SortOrder
+    distance?: SortOrder
+    responsible?: SortOrder
+    notes?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MajorCabinetAvgOrderByAggregateInput = {
+    number_of_joints?: SortOrder
+  }
+
+  export type MajorCabinetMaxOrderByAggregateInput = {
+    id?: SortOrder
+    central?: SortOrder
+    village?: SortOrder
+    cabinet?: SortOrder
+    central_to_cabinet_distance?: SortOrder
+    number_of_joints?: SortOrder
+    joint_location?: SortOrder
+    rooms?: SortOrder
+    room_location?: SortOrder
+    entitlement?: SortOrder
+    distance?: SortOrder
+    responsible?: SortOrder
+    notes?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MajorCabinetMinOrderByAggregateInput = {
+    id?: SortOrder
+    central?: SortOrder
+    village?: SortOrder
+    cabinet?: SortOrder
+    central_to_cabinet_distance?: SortOrder
+    number_of_joints?: SortOrder
+    joint_location?: SortOrder
+    rooms?: SortOrder
+    room_location?: SortOrder
+    entitlement?: SortOrder
+    distance?: SortOrder
+    responsible?: SortOrder
+    notes?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MajorCabinetSumOrderByAggregateInput = {
+    number_of_joints?: SortOrder
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type SecondaryCabinetCountOrderByAggregateInput = {
+    id?: SortOrder
+    central?: SortOrder
+    village?: SortOrder
+    port_gbon?: SortOrder
+    cabinet?: SortOrder
+    splitter_number?: SortOrder
+    splitter_port?: SortOrder
+    distance?: SortOrder
+    box_number?: SortOrder
+    cabinet_location?: SortOrder
+    box_location?: SortOrder
+    cabinet_to_box_distance?: SortOrder
+    responsible?: SortOrder
+    notes?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SecondaryCabinetMaxOrderByAggregateInput = {
+    id?: SortOrder
+    central?: SortOrder
+    village?: SortOrder
+    port_gbon?: SortOrder
+    cabinet?: SortOrder
+    splitter_number?: SortOrder
+    splitter_port?: SortOrder
+    distance?: SortOrder
+    box_number?: SortOrder
+    cabinet_location?: SortOrder
+    box_location?: SortOrder
+    cabinet_to_box_distance?: SortOrder
+    responsible?: SortOrder
+    notes?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SecondaryCabinetMinOrderByAggregateInput = {
+    id?: SortOrder
+    central?: SortOrder
+    village?: SortOrder
+    port_gbon?: SortOrder
+    cabinet?: SortOrder
+    splitter_number?: SortOrder
+    splitter_port?: SortOrder
+    distance?: SortOrder
+    box_number?: SortOrder
+    cabinet_location?: SortOrder
+    box_location?: SortOrder
+    cabinet_to_box_distance?: SortOrder
+    responsible?: SortOrder
+    notes?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MobileTowerCountOrderByAggregateInput = {
+    id?: SortOrder
+    central?: SortOrder
+    cable_name?: SortOrder
+    tower_code?: SortOrder
+    company?: SortOrder
+    entitlement?: SortOrder
+    distance?: SortOrder
+    address?: SortOrder
+    location?: SortOrder
+    responsible?: SortOrder
+    notes?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MobileTowerMaxOrderByAggregateInput = {
+    id?: SortOrder
+    central?: SortOrder
+    cable_name?: SortOrder
+    tower_code?: SortOrder
+    company?: SortOrder
+    entitlement?: SortOrder
+    distance?: SortOrder
+    address?: SortOrder
+    location?: SortOrder
+    responsible?: SortOrder
+    notes?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MobileTowerMinOrderByAggregateInput = {
+    id?: SortOrder
+    central?: SortOrder
+    cable_name?: SortOrder
+    tower_code?: SortOrder
+    company?: SortOrder
+    entitlement?: SortOrder
+    distance?: SortOrder
+    address?: SortOrder
+    location?: SortOrder
+    responsible?: SortOrder
+    notes?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CopperLineCountOrderByAggregateInput = {
+    id?: SortOrder
+    landline_number?: SortOrder
+    central?: SortOrder
+    village?: SortOrder
+    cabinet_number?: SortOrder
+    port_number?: SortOrder
+    terminal_number?: SortOrder
+    cabinet_location?: SortOrder
+    box_number?: SortOrder
+    box_entitlement?: SortOrder
+    box_location?: SortOrder
+    joint_location?: SortOrder
+    joint_entitlement?: SortOrder
+    joint_depth?: SortOrder
+    room_location?: SortOrder
+    insulation_level?: SortOrder
+    responsible?: SortOrder
+    notes?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CopperLineMaxOrderByAggregateInput = {
+    id?: SortOrder
+    landline_number?: SortOrder
+    central?: SortOrder
+    village?: SortOrder
+    cabinet_number?: SortOrder
+    port_number?: SortOrder
+    terminal_number?: SortOrder
+    cabinet_location?: SortOrder
+    box_number?: SortOrder
+    box_entitlement?: SortOrder
+    box_location?: SortOrder
+    joint_location?: SortOrder
+    joint_entitlement?: SortOrder
+    joint_depth?: SortOrder
+    room_location?: SortOrder
+    insulation_level?: SortOrder
+    responsible?: SortOrder
+    notes?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CopperLineMinOrderByAggregateInput = {
+    id?: SortOrder
+    landline_number?: SortOrder
+    central?: SortOrder
+    village?: SortOrder
+    cabinet_number?: SortOrder
+    port_number?: SortOrder
+    terminal_number?: SortOrder
+    cabinet_location?: SortOrder
+    box_number?: SortOrder
+    box_entitlement?: SortOrder
+    box_location?: SortOrder
+    joint_location?: SortOrder
+    joint_entitlement?: SortOrder
+    joint_depth?: SortOrder
+    room_location?: SortOrder
+    insulation_level?: SortOrder
+    responsible?: SortOrder
+    notes?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
   export type AccountCreateNestedManyWithoutUserInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
@@ -5553,6 +11816,14 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutSessionsInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutSessionsInput, UserUpdateWithoutSessionsInput>, UserUncheckedUpdateWithoutSessionsInput>
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -5706,6 +11977,33 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
   }
 
   export type AccountCreateWithoutUserInput = {

@@ -45,7 +45,6 @@ export default function NewUser({
   const handleUpdateSubmit = async (user) => {
     setIsLoading(true);
 
-    // The 'user' object from formik.values will now include the id
     const result = await updateUser({ user });
     if (!result.success) {
       toast.error(result.message);
