@@ -97,6 +97,35 @@ export async function changePassword({ userId, passwordData }) {
   };
 }
 
+// Delete a user
+export async function deleteUser({ userId }) {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_APP_URL}/api/users/${userId}`,
+    {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    }
+  );
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    return {
+      success: false,
+      message: data.message || "Failed to delete user",
+      error: data.error,
+    };
+  }
+
+  return {
+    success: true,
+    message: "تم حذف المستخدم بنجاح",
+  };
+}
+
 // =================== Major Cabinet API Functions ===================
 
 // Get all major cabinets

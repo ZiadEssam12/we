@@ -50,7 +50,14 @@ export const GET = auth(async function GET(req) {
       },
     });
 
-    return NextResponse.json(users, { status: 200 });
+    return NextResponse.json(
+      {
+        success: true,
+        data: users,
+        message: "تم استرجاع المستخدمين بنجاح",
+      },
+      { status: 200 }
+    );
   } catch (error) {
     return NextResponse.json(
       {
@@ -64,8 +71,32 @@ export const GET = auth(async function GET(req) {
 });
 
 // Create a new user
-export async function POST(request) {
+export const POST = auth(async function POST(request) {
   try {
+    const session = request.auth;
+
+    // Check if the user is authenticated
+    if (!session || !session.user) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "يجب تسجيل الدخول للوصول إلى هذه الصفحة",
+        },
+        { status: 401 }
+      );
+    }
+
+    // Check if the user has the required role
+    if (session?.user?.role !== "ADMIN") {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "ليس لديك صلاحيات للقيام بهذا الإجراء",
+        },
+        { status: 403 }
+      );
+    }
+
     const body = await request.json();
     const checkSchema = await registerNewUserSchema.isValid(body);
     if (!checkSchema) {
@@ -132,4 +163,4 @@ export async function POST(request) {
       { status: 500 }
     );
   }
-}
+});

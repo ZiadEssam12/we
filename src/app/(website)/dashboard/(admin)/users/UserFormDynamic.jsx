@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic";
 
-export const NewUserForm = dynamic(() => import("./NewUser"), {
+export const UserFormDynamic = dynamic(() => import("./UserForm"), {
   ssr: false,
   loading: () => (
     <div className="flex justify-end w-full">

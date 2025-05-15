@@ -21,6 +21,10 @@ import {
   createMajorCabinet as createMajor,
   updateMajorCabinet as updateMajor,
   deleteMajorCabinet as deleteMajor,
+  getAllUsers as getUsers,
+  createUser as createUserBase,
+  updateUser as updateUserBase,
+  deleteUser as deleteUserBase,
 } from "./api";
 
 // Secondary Cabinet client wrappers
@@ -89,4 +93,21 @@ export const updateMajorCabinet = async ({ id, ...data }) => {
 
 export const deleteMajorCabinet = async ({ id }) => {
   return await deleteMajor({ id });
+};
+
+// User client wrappers
+export const getAllUsers = async (options = {}) => {
+  return await getUsers(options);
+};
+
+export const createUser = async (data) => {
+  return await createUserBase({ user: data });
+};
+
+export const updateUser = async ({ id, ...data }) => {
+  return await updateUserBase({ user: { id, ...data } });
+};
+
+export const deleteUser = async ({ id }) => {
+  return await deleteUserBase({ userId: id });
 };

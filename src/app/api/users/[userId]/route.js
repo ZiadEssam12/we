@@ -2,8 +2,32 @@ import { auth } from "@/app/auth";
 import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
-export async function DELETE(request, { params }) {
+export const DELETE = auth(async function DELETE(request, { params }) {
   try {
+    const session = request.auth;
+
+    // Check if the user is authenticated and has admin role
+    if (!session || !session.user) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "يجب تسجيل الدخول للوصول إلى هذه الصفحة",
+        },
+        { status: 401 }
+      );
+    }
+
+    // Check if the user has the required role
+    if (session?.user?.role !== "ADMIN") {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "ليس لديك صلاحيات للقيام بهذا الإجراء",
+        },
+        { status: 403 }
+      );
+    }
+
     const { userId } = params;
     if (!userId) {
       return NextResponse.json(
@@ -66,11 +90,11 @@ export async function DELETE(request, { params }) {
       { status: 500 }
     );
   }
-}
+});
 
-export async function PUT(request, { params }) {
+export const PUT = auth(async function PUT(request, { params }) {
   try {
-    const session = await auth();
+    const session = request.auth;
 
     if (!session || !session.user) {
       return NextResponse.json(
@@ -82,7 +106,18 @@ export async function PUT(request, { params }) {
       );
     }
 
-    const { userId } = await params;
+    // Check if the user has the required role
+    if (session?.user?.role !== "ADMIN") {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "ليس لديك صلاحيات للقيام بهذا الإجراء",
+        },
+        { status: 403 }
+      );
+    }
+
+    const { userId } = params;
     if (!userId) {
       return NextResponse.json(
         {
@@ -90,17 +125,6 @@ export async function PUT(request, { params }) {
           message: "معرف المستخدم مطلوب",
         },
         { status: 400 }
-      );
-    }
-
-    // Check if the user is updating their own data or is an admin
-    if (session.user.id !== userId && session.user.role !== "ADMIN") {
-      return NextResponse.json(
-        {
-          success: false,
-          message: "غير مصرح لك بتحديث بيانات هذا المستخدم",
-        },
-        { status: 403 }
       );
     }
 
@@ -126,14 +150,6 @@ export async function PUT(request, { params }) {
     // Only allow admin to update role
     if (role && session.user.role === "ADMIN") {
       updateData.role = role;
-    } else if (role && session.user.role !== "ADMIN") {
-      return NextResponse.json(
-        {
-          success: false,
-          message: "غير مصرح لك بتحديث دور المستخدم",
-        },
-        { status: 403 }
-      );
     }
 
     console.log("Searching for user with ID:", userId);
@@ -169,24 +185,6 @@ export async function PUT(request, { params }) {
       }
     }
 
-    // // Prevent updating phoneNumber to an existing phoneNumber (if it's being changed)
-    // if (phoneNumber && phoneNumber !== existingUser.phoneNumber) {
-    //   const userWithSamePhoneNumber = await prisma.user.findFirst({
-    //     // Use findFirst if phoneNumber is not unique
-    //     where: { phoneNumber },
-    //   });
-    //   if (userWithSamePhoneNumber && userWithSamePhoneNumber.id !== userId) {
-    //     // Check it's not the same user
-    //     return NextResponse.json(
-    //       {
-    //         success: false,
-    //         message: "رقم الهاتف هذا مستخدم بالفعل",
-    //       },
-    //       { status: 409 } // Conflict
-    //     );
-    //   }
-    // }
-
     const updatedUser = await prisma.user.update({
       where: { id: userId },
       data: updateData,
@@ -218,4 +216,4 @@ export async function PUT(request, { params }) {
       { status: 500 }
     );
   }
-}
+});
