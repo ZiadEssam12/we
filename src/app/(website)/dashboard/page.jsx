@@ -5,7 +5,7 @@ export default async function Page() {
   const session = await auth();
 
   return (
-    <div className="h-screen flex items-center justify-center">
+    <div className="h-screen overflow-hidden flex items-center justify-center">
       <div className="text-center max-w-3xl px-4">
         <div className="inline-flex items-start justify-center gap-3 mb-4">
           <MdWavingHand
@@ -18,7 +18,7 @@ export default async function Page() {
           </h1>
         </div>
         {/* Subtitle */}
-        <p className="text-lg md:text-xl text-gray-600 mb-8">
+        <p className="text-lg md:text-xl text-gray-600">
           نظام إدارة الكابينات والأبراج المتكامل لشركة الاتصالات المصرية
         </p>
       </div>

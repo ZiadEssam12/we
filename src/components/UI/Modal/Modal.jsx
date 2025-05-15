@@ -11,13 +11,13 @@ export default function Modal({ isOpen, onClose, title, children }) {
   return (
     <div
       onClick={onClose}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/40"
+      className="fixed inset-0  z-50 flex items-center justify-center bg-black/40"
     >
       <div
         onClick={handleContentClick}
-        className="bg-white rounded-lg shadow-lg p-6 min-w-1/3"
+        className="bg-white rounded-lg shadow-lg min-w-2/4"
       >
-        <div className="flex items-center justify-between py-2">
+        <div className="flex items-center justify-between py-4 p-6">
           <h3 className="font-semibold text-2xl">{title}</h3>
 
           <button
@@ -28,7 +28,7 @@ export default function Modal({ isOpen, onClose, title, children }) {
             <MaterialSymbolsLightClose />
           </button>
         </div>
-        <div className="pt-4 border-t-2 border-gray-200">{children}</div>
+        <div className="pt-4 border-t-2 pb-4 border-gray-200">{children}</div>
       </div>
     </div>
   );

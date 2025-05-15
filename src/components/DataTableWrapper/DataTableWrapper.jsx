@@ -44,10 +44,6 @@ export default function DataTableWrapper({
   const [isFormProcessing, setIsFormProcessing] = useState(false);
   const [openActionButtonsId, setOpenActionButtonsId] = useState(null);
 
-  useEffect(() => {
-    console.log("modal status:", isModalOpen ? "open" : "closed");
-  }, [isModalOpen]);
-
   // Default modal texts that can be overridden
   const texts = {
     addButton: `إضافة ${entityName}`,
@@ -168,46 +164,49 @@ export default function DataTableWrapper({
             <span className="block leading-none">•••</span>
           </button>
           {openActionButtonsId === row.id && (
-            <div
-              className="fixed bg-white shadow-lg rounded-md p-2 z-50 min-w-[120px] border border-gray-100"
-              style={{
-                top: "auto",
-                right: "auto",
-                transform: "translateY(20px)",
-                boxShadow:
-                  "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
-              }}
+            <Modal
+              isOpen={true}
+              onClose={() => setOpenActionButtonsId(null)}
+              title={"تعديل/حذف"}
             >
-              <div className="flex flex-col gap-2">
-                <button
-                  onClick={() => {
-                    setSelectedItem(row.original);
-                    setIsModalOpen(true);
-                    setOpenActionButtonsId(null);
-                  }}
-                  className="px-4 cursor-pointer py-2 flex items-center gap-2 bg-blue-50 text-blue-600 text-xs rounded-md hover:bg-blue-100 transition-colors"
-                >
-                  <IcomoonFreePencil className="w-3.5 h-3.5" />
-                  <span>تعديل</span>
-                </button>
-                <button
-                  onClick={() => {
-                    setSelectedItem(row.original);
-                    setIsDeleteModalOpen(true);
-                    setOpenActionButtonsId(null);
-                  }}
-                  className="px-4 cursor-pointer py-2 flex items-center gap-2 bg-red-50 text-red-600 text-xs rounded-md hover:bg-red-100 transition-colors"
-                >
-                  <TrashIcon className="w-3.5 h-3.5" />
-                  <span>حذف</span>
-                </button>
+              <div className="flex flex-col space-y-4 p-6 relative min-w-[260px]">
+                <div className="flex gap-3 justify-center">
+                  <button
+                    onClick={() => {
+                      setSelectedItem(row.original);
+                      setIsModalOpen(true);
+                      setOpenActionButtonsId(null);
+                    }}
+                    className="px-4 py-2 flex items-center gap-2 bg-blue-50 text-blue-600 text-xs rounded-md hover:bg-blue-100 focus:ring-2 focus:ring-blue-200 transition-colors group shadow-sm border border-blue-100"
+                  >
+                    <span className="bg-blue-100 p-1 rounded-full group-hover:bg-blue-200 transition-colors">
+                      <IcomoonFreePencil className="w-3.5 h-3.5" />
+                    </span>
+                    <span>تعديل</span>
+                  </button>
+                  <button
+                    onClick={() => {
+                      setSelectedItem(row.original);
+                      setIsDeleteModalOpen(true);
+                      setOpenActionButtonsId(null);
+                    }}
+                    className="px-4 py-2 flex items-center gap-2 bg-red-50 text-red-600 text-xs rounded-md hover:bg-red-100 focus:ring-2 focus:ring-red-200 transition-colors group shadow-sm border border-red-100"
+                  >
+                    <span className="bg-red-100 p-1 rounded-full group-hover:bg-red-200 transition-colors">
+                      <TrashIcon className="w-3.5 h-3.5" />
+                    </span>
+                    <span>حذف</span>
+                  </button>
+                </div>
               </div>
-            </div>
+            </Modal>
           )}
         </div>
       ),
     },
   ];
+
+  console.log("columns:", columnsWithActions);
 
   // Format dates in the data
   const formattedData = data.map((item) => {

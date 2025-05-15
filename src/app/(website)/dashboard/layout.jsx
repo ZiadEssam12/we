@@ -11,7 +11,7 @@ export default function layout({ children }) {
       </div>
 
       {/* Main content area */}
-      <main className="flex-1 transition-all duration-[350ms] overflow-x-auto p-4">
+      <main className="flex-1 transition-all duration-[350ms] overflow-x-auto">
         <div className="max-w-7xl mx-auto">{children}</div>
       </main>
       <Toaster position="top-center" reverseOrder={false} />

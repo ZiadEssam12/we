@@ -20,33 +20,6 @@ import {
 } from "lucide-react";
 import { useSession } from "next-auth/react";
 
-// // Define action buttons component
-// const ActionButtons = ({ row, onEdit, onDelete, userRole }) => {
-//   // Hide action buttons for MANAGER role
-//   if (userRole === "MANAGER") {
-//     return null;
-//   }
-
-//   return (
-//     <div className="flex items-center justify-end gap-1 flex-nowrap">
-//       <button
-//         onClick={() => onEdit(row.original)}
-//         className="p-1 text-blue-600 hover:text-blue-800 transition-colors cursor-pointer"
-//         title="تعديل"
-//       >
-//         <PencilIcon className="w-4 h-4" />
-//       </button>
-//       <button
-//         onClick={() => onDelete(row.original)}
-//         className="p-1 text-red-600 hover:text-red-800 transition-colors cursor-pointer"
-//         title="حذف"
-//       >
-//         <TrashIcon className="w-4 h-4" />
-//       </button>
-//     </div>
-//   );
-// };
-
 export default function DataTable({
   data = [],
   columns = [],
@@ -55,7 +28,6 @@ export default function DataTable({
   ButtonTitle = null,
   setOpenModal,
 }) {
-  const { data: session } = useSession();
   const [pagination, setPagination] = useState({
     pageIndex: 0,
     pageSize: 10,
@@ -139,7 +111,7 @@ export default function DataTable({
                 table.getRowModel().rows.map((row) => (
                   <tr
                     key={row.id}
-                    className="border-b hover:bg-gray-50 transition-colors"
+                    className="border-b hover:bg-gray-50 transition-colors relative"
                   >
                     {row.getVisibleCells().map((cell) => (
                       <td key={cell.id} className="px-4 py-3 text-gray-700">

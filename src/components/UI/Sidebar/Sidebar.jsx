@@ -5,7 +5,7 @@ import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   MdOutlineStorage,
   MdOutlineDevices,
@@ -18,6 +18,17 @@ import {
 } from "react-icons/md";
 
 const links = [
+  {
+    name: "لوحة التحكم",
+    link: "/dashboard",
+    icon: MdOutlineDashboard,
+  },
+  {
+    name: "إدارة المستخدمين",
+    link: "/dashboard/users",
+    icon: MdOutlineSpaceDashboard,
+    role: ["ADMIN", "MANAGER"],
+  },
   {
     name: "الكابينات الرئيسة",
     link: "/dashboard/main-cabinets",
@@ -45,8 +56,16 @@ export default function Sidebar() {
   const currentActiveLink = usePathname();
 
   const [isOpen, setIsOpen] = useState(false);
-
-  const toggleSidebar = () => {
+  useEffect(() => {
+    if (currentActiveLink === "/dashboard") {
+      setIsOpen(true);
+    }
+  }, [currentActiveLink]);
+  const toggleSidebar = (e) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
     const newState = !isOpen;
     setIsOpen(newState);
   };
@@ -72,11 +91,24 @@ export default function Sidebar() {
       >
         {isOpen ? <MdChevronRight size={24} /> : <MdMenu size={24} />}
       </button>
-
+      {/* Backdrop that covers the whole screen and closes sidebar when clicked */}{" "}
+      {isOpen && (
+        <div
+          className="w-screen h-screen fixed top-0 right-0 z-5"
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            setIsOpen(false);
+          }}
+        />
+      )}
+      {/* Sidebar content */}
       <aside
-        className={`fixed top-0 right-0 h-screen border-l border-gray-200 bg-white shadow-lg z-10 flex flex-col overflow-hidden transition-all duration-[350ms] ${
-          isOpen ? "w-[250px] opacity-100" : "w-0 opacity-0"
+        className={`fixed top-0 right-0 h-screen border-l border-gray-200 bg-white shadow-lg z-10 flex flex-col overflow-hidden transition-all duration-[350ms] w-[250px] transform ${
+          isOpen ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
         }`}
+        // onClick={(e) => e.stopPropagation()}
+        // onMouseLeave={() => setIsOpen(false)}
       >
         <div className="flex items-center justify-center mb-8 mt-16">
           <h1 className="text-2xl font-bold text-blue-600 flex items-center gap-2">
@@ -86,22 +118,11 @@ export default function Sidebar() {
         </div>
 
         <nav className="flex flex-col gap-2 flex-grow px-5">
-          {session?.user?.role === "ADMIN" && (
-            <Link
-              href="/dashboard/users"
-              className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 ${
-                currentActiveLink === "/dashboard/users"
-                  ? "bg-blue-100 text-blue-600 font-medium"
-                  : "text-gray-700 hover:bg-gray-100"
-              }`}
-              onClick={handleClick}
-              prefetch={true}
-            >
-              <MdOutlineSpaceDashboard size={20} className="flex-shrink-0" />
-              <span>إدارة المستخدمين</span>
-            </Link>
-          )}
           {links.map((link) => {
+            // Check if the user has the required role to access the link
+            if (link.role && !link.role.includes(session?.user?.role)) {
+              return null; // Skip rendering this link
+            }
             const isActive = currentActiveLink === link.link;
             return (
               <Link

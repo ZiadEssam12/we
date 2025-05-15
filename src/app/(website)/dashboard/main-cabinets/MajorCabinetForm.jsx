@@ -2,10 +2,8 @@
 import React, { useState, useEffect } from "react";
 import { useFormik } from "formik";
 import toast from "react-hot-toast";
-import Modal from "@/components/UI/Modal/Modal";
 import LoadingButton from "@/components/buttonWithLoading/ButtonWithLoading";
 import { Label, TextInput, Textarea } from "flowbite-react"; // Assuming Textarea is available or similar
-import { MaterialSymbolsLightClose } from "@/app/icons/Icons";
 
 import { createMajorCabinet, updateMajorCabinet } from "@/lib/api";
 import {
@@ -119,76 +117,54 @@ export default function MajorCabinetForm({
   );
 
   return (
-    <Modal open={isOpen} onClose={handleClose}>
+    <form
+      onSubmit={formik.handleSubmit}
+      className="flex flex-col gap-3 overflow-y-auto max-h-[70vh] p-4"
+    >
       {" "}
-      {/* Changed openModal to isOpen */}
-      <div className="flex flex-col gap-4 text-sm p-1">
-        {" "}
-        {/* Reduced padding for scrollbar visibility */}
-        <div className="flex items-center justify-between">
-          <h2 className="text-2xl text-blue-700 font-bold">
-            {isUpdate ? "تعديل كبينة رئيسية" : "إضافة كبينة رئيسية"}
-          </h2>
-          <button
-            onClick={handleClose}
-            title="إغلاق"
-            className="p-2 rounded-full cursor-pointer bg-gray-100 hover:bg-gray-200 transition-colors"
-          >
-            <MaterialSymbolsLightClose width={24} height={24} />
-          </button>
-        </div>
-        <form
-          onSubmit={formik.handleSubmit}
-          className="flex flex-col gap-3 overflow-y-auto max-h-[70vh] pr-2"
+      {/* Added padding-right for scrollbar */}
+      {renderTextInput("central", "السنترال")}
+      {renderTextInput("village", "القرية")}
+      {renderTextInput("cabinet", "رقم الكبينة")}
+      {renderTextInput(
+        "central_to_cabinet_distance",
+        "المسافة من السنترال للكبينة"
+      )}
+      {renderTextInput("number_of_joints", "عدد اللحامات", "", "number")}
+      {renderTextInput("joint_location", "موقع اللحام (lat,lng)")}
+      {renderTextInput("rooms", "الغرف")}
+      {renderTextInput("room_location", "موقع الغرف (lat,lng)")}
+      {renderTextInput("entitlement", "الاستحقاق")}
+      {renderTextInput("distance", "المسافة")}
+      {renderTextInput("responsible", "المسؤول (اختياري)")}
+      <div>
+        <Label
+          htmlFor="notes"
+          className="block text-sm font-medium text-gray-700"
         >
-          {" "}
-          {/* Added padding-right for scrollbar */}
-          {renderTextInput("central", "السنترال")}
-          {renderTextInput("village", "القرية")}
-          {renderTextInput("cabinet", "رقم الكبينة")}
-          {renderTextInput(
-            "central_to_cabinet_distance",
-            "المسافة من السنترال للكبينة"
-          )}
-          {renderTextInput("number_of_joints", "عدد اللحامات", "", "number")}
-          {renderTextInput("joint_location", "موقع اللحام (lat,lng)")}
-          {renderTextInput("rooms", "الغرف")}
-          {renderTextInput("room_location", "موقع الغرف (lat,lng)")}
-          {renderTextInput("entitlement", "الاستحقاق")}
-          {renderTextInput("distance", "المسافة")}
-          {renderTextInput("responsible", "المسؤول (اختياري)")}
-          <div>
-            <Label
-              htmlFor="notes"
-              className="block text-sm font-medium text-gray-700"
-            >
-              ملاحظات
-            </Label>
-            <Textarea
-              id="notes"
-              name="notes"
-              placeholder="ملاحظات"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.notes}
-              rows={3}
-              // required={majorCabinetSchema.fields.notes?.isRequired()}
-            />
-            {formik.touched.notes && formik.errors.notes && (
-              <div className="text-red-500 text-sm mt-1">
-                {formik.errors.notes}
-              </div>
-            )}
-          </div>
-          <LoadingButton
-            text={isUpdate ? "تعديل" : "إضافة"}
-            areaLabel={isUpdate ? "تعديل كبينة" : "إضافة كبينة"}
-            valid={formik.isValid && formik.dirty}
-            loading={isLoading}
-            type="submit"
-          />
-        </form>
+          ملاحظات
+        </Label>
+        <Textarea
+          id="notes"
+          name="notes"
+          placeholder="ملاحظات"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.notes}
+          rows={3}
+          // required={majorCabinetSchema.fields.notes?.isRequired()}
+        />
+        {formik.touched.notes && formik.errors.notes && (
+          <div className="text-red-500 text-sm mt-1">{formik.errors.notes}</div>
+        )}
       </div>
-    </Modal>
+      <LoadingButton
+        text={isUpdate ? "تعديل" : "إضافة"}
+        areaLabel={isUpdate ? "تعديل كبينة" : "إضافة كبينة"}
+        valid={formik.isValid && formik.dirty}
+        loading={isLoading}
+        type="submit"
+      />
+    </form>
   );
 }
