@@ -18,13 +18,11 @@ import {
   Search,
   X,
 } from "lucide-react";
-import { useSession } from "next-auth/react";
 
 export default function DataTable({
   data = [],
   columns = [],
-  onEdit = () => {},
-  onDelete = () => {},
+
   ButtonTitle = null,
   setOpenModal,
 }) {
@@ -81,7 +79,7 @@ export default function DataTable({
           onClick={() => setOpenModal(true)}
           className="py-2 px-4 cursor-pointer rounded-lg bg-black hover:bg-black/80 border border-black  text-white transition-colors duration-150 "
         >
-          {ButtonTitle}
+          إضافة
         </button>
       </div>
       <div className="rounded-md border bg-white">

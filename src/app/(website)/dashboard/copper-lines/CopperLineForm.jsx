@@ -67,7 +67,10 @@ export default function CopperLineForm({
   };
 
   return (
-    <form onSubmit={formik.handleSubmit} className="space-y-4">
+    <form
+      onSubmit={formik.handleSubmit}
+      className="space-y-4 overflow-y-auto max-h-[70vh] p-4"
+    >
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
         <div>
           <label

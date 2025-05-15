@@ -84,13 +84,18 @@ export default function Sidebar() {
   return (
     <>
       {/* Toggle Button */}
-      <button
-        onClick={toggleSidebar}
-        className="fixed top-4 right-4 z-20 p-2 rounded-full bg-blue-600 text-white hover:bg-blue-700 transition-all duration-[350ms] shadow-md"
-        aria-label="Toggle Sidebar"
+      <div
+        className="h-screen w-[70px] absolute top-0 right-0 z-20 flex items-center justify-center"
+        onMouseEnter={() => setIsOpen(true)}
       >
-        {isOpen ? <MdChevronRight size={24} /> : <MdMenu size={24} />}
-      </button>
+        <button
+          onClick={toggleSidebar}
+          className="fixed top-4 right-4 z-20 p-2 rounded-full bg-blue-600 text-white hover:bg-blue-700 transition-all duration-[350ms] shadow-md"
+          aria-label="Toggle Sidebar"
+        >
+          {isOpen ? <MdChevronRight size={24} /> : <MdMenu size={24} />}
+        </button>
+      </div>
       {/* Backdrop that covers the whole screen and closes sidebar when clicked */}{" "}
       {isOpen && (
         <div
@@ -108,7 +113,7 @@ export default function Sidebar() {
           isOpen ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
         }`}
         // onClick={(e) => e.stopPropagation()}
-        // onMouseLeave={() => setIsOpen(false)}
+        onMouseLeave={() => setIsOpen(false)}
       >
         <div className="flex items-center justify-center mb-8 mt-16">
           <h1 className="text-2xl font-bold text-blue-600 flex items-center gap-2">

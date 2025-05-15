@@ -18,5 +18,5 @@ export const userColumns = [
     //   }
     // }
   },
-  { header: "تاريخ الإنشاء", accessorKey: "createdAt", enableSearch: false },
+//   { header: "تاريخ الإنشاء", accessorKey: "createdAt", enableSearch: false },
 ];

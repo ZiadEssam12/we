@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { DataTable } from "@/components/UI/DataTable/DynamicDataTable";
 import Modal from "@/components/UI/Modal/Modal";
 import toast from "react-hot-toast";
@@ -32,7 +32,6 @@ export default function DataTableWrapper({
   modalTexts = {},
 }) {
   const { fetchData, createItem, updateItem, deleteItem } = apiHandlers;
-
   // State for data, loading, modal, selected item, etc.
   const [data, setData] = useState(initialData || []);
   const [isLoading, setIsLoading] = useState(false);
@@ -43,7 +42,7 @@ export default function DataTableWrapper({
   const [isDeleteLoading, setIsDeleteLoading] = useState(false);
   const [isFormProcessing, setIsFormProcessing] = useState(false);
   const [openActionButtonsId, setOpenActionButtonsId] = useState(null);
-
+  const [isCustomModalOpen, setIsCustomModalOpen] = useState(false);
   // Default modal texts that can be overridden
   const texts = {
     addButton: `إضافة ${entityName}`,
@@ -52,10 +51,26 @@ export default function DataTableWrapper({
     deleteTitle: `حذف ${entityName}`,
     deleteConfirmation: `هل أنت متأكد من حذف ${entityName}؟`,
     deleteSuccess: `تم حذف ${entityName} بنجاح`,
+    customModalTitle: `إجراء مخصص`,
+    customModalButtonText: `إجراء مخصص`,
+    customModalConfirmation: `هل أنت متأكد من تنفيذ هذا الإجراء؟`,
     ...modalTexts,
   };
-  const toggleActionButtons = (rowId) => {
-    setOpenActionButtonsId((prevId) => (prevId === rowId ? null : rowId));
+  const handleOpenCustomeModal = (rowData) => {
+    // Set the selected item with all the row data
+    setSelectedItem(rowData);
+
+    // You can add your custom logic here with the row data
+    console.log("Row data selected:", rowData);
+
+    // Toggle the custom modal
+    setIsCustomModalOpen(true);
+  };
+
+  const handleCloseCustomModal = () => {
+    setIsCustomModalOpen(false);
+    // Optionally clear the selected item when closing
+    // setSelectedItem(null);
   };
 
   // Fetch data on component mount or when refetch is triggered
@@ -127,7 +142,6 @@ export default function DataTableWrapper({
       setIsFormProcessing(false);
     }
   };
-
   // Handle item deletion
   const handleDelete = async () => {
     if (!selectedItem) return;
@@ -158,55 +172,15 @@ export default function DataTableWrapper({
       cell: ({ row }) => (
         <div className="flex space-x-2 justify-center relative">
           <button
-            onClick={() => toggleActionButtons(row.id)}
+            onClick={() => handleOpenCustomeModal(row.original)}
             className="px-3 cursor-pointer py-1.5 bg-gray-200 text-gray-700 text-xs rounded-md hover:bg-gray-300 transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50"
           >
             <span className="block leading-none">•••</span>
           </button>
-          {openActionButtonsId === row.id && (
-            <Modal
-              isOpen={true}
-              onClose={() => setOpenActionButtonsId(null)}
-              title={"تعديل/حذف"}
-            >
-              <div className="flex flex-col space-y-4 p-6 relative min-w-[260px]">
-                <div className="flex gap-3 justify-center">
-                  <button
-                    onClick={() => {
-                      setSelectedItem(row.original);
-                      setIsModalOpen(true);
-                      setOpenActionButtonsId(null);
-                    }}
-                    className="px-4 py-2 flex items-center gap-2 bg-blue-50 text-blue-600 text-xs rounded-md hover:bg-blue-100 focus:ring-2 focus:ring-blue-200 transition-colors group shadow-sm border border-blue-100"
-                  >
-                    <span className="bg-blue-100 p-1 rounded-full group-hover:bg-blue-200 transition-colors">
-                      <IcomoonFreePencil className="w-3.5 h-3.5" />
-                    </span>
-                    <span>تعديل</span>
-                  </button>
-                  <button
-                    onClick={() => {
-                      setSelectedItem(row.original);
-                      setIsDeleteModalOpen(true);
-                      setOpenActionButtonsId(null);
-                    }}
-                    className="px-4 py-2 flex items-center gap-2 bg-red-50 text-red-600 text-xs rounded-md hover:bg-red-100 focus:ring-2 focus:ring-red-200 transition-colors group shadow-sm border border-red-100"
-                  >
-                    <span className="bg-red-100 p-1 rounded-full group-hover:bg-red-200 transition-colors">
-                      <TrashIcon className="w-3.5 h-3.5" />
-                    </span>
-                    <span>حذف</span>
-                  </button>
-                </div>
-              </div>
-            </Modal>
-          )}
         </div>
       ),
     },
   ];
-
-  console.log("columns:", columnsWithActions);
 
   // Format dates in the data
   const formattedData = data.map((item) => {
@@ -232,7 +206,6 @@ export default function DataTableWrapper({
           <p>{error}</p>
         </div>
       )}
-
       <DataTable
         columns={columnsWithActions}
         data={formattedData}
@@ -246,12 +219,18 @@ export default function DataTableWrapper({
         onClose={() => setIsModalOpen(false)}
         title={selectedItem ? texts.editTitle : texts.addTitle}
       >
-        <FormComponent
-          initialData={selectedItem}
-          onSubmit={handleFormSubmit}
-          isProcessing={isFormProcessing}
-          {...formProps}
-        />
+        <Suspense
+          fallback={
+            <div className="h-[100px] rounded-lg bg-gray-100 animate-bounce"></div>
+          }
+        >
+          <FormComponent
+            initialData={selectedItem}
+            onSubmit={handleFormSubmit}
+            isProcessing={isFormProcessing}
+            {...formProps}
+          />
+        </Suspense>
       </Modal>
       {/* Delete Confirmation Modal */}
       <Modal
@@ -275,6 +254,43 @@ export default function DataTableWrapper({
               disabled={isDeleteLoading}
             >
               {isDeleteLoading ? "جاري الحذف..." : "تأكيد الحذف"}
+            </button>
+          </div>
+        </div>
+      </Modal>{" "}
+      {/* Selected row update/delete modal */}
+      <Modal
+        isOpen={isCustomModalOpen}
+        onClose={handleCloseCustomModal}
+        title={"تعديل/حذف"}
+      >
+        <div className="flex flex-col space-y-4 p-6 relative min-w-[260px]">
+          <div className="flex gap-3 justify-center">
+            <button
+              onClick={() => {
+                // selectedItem is already set with row data
+                setIsModalOpen(true);
+                setIsCustomModalOpen(false);
+              }}
+              className="px-4 py-2 flex items-center gap-2 bg-blue-50 text-blue-600 text-xs rounded-md hover:bg-blue-100 focus:ring-2 focus:ring-blue-200 transition-colors group shadow-sm border border-blue-100"
+            >
+              <span className="bg-blue-100 p-1 rounded-full group-hover:bg-blue-200 transition-colors">
+                <IcomoonFreePencil className="w-3.5 h-3.5" />
+              </span>
+              <span>تعديل</span>
+            </button>
+            <button
+              onClick={() => {
+                // selectedItem is already set with row data
+                setIsDeleteModalOpen(true);
+                setIsCustomModalOpen(false);
+              }}
+              className="px-4 py-2 flex items-center gap-2 bg-red-50 text-red-600 text-xs rounded-md hover:bg-red-100 focus:ring-2 focus:ring-red-200 transition-colors group shadow-sm border border-red-100"
+            >
+              <span className="bg-red-100 p-1 rounded-full group-hover:bg-red-200 transition-colors">
+                <TrashIcon className="w-3.5 h-3.5" />
+              </span>
+              <span>حذف</span>
             </button>
           </div>
         </div>

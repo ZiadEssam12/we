@@ -119,9 +119,8 @@ export default function MajorCabinetForm({
   return (
     <form
       onSubmit={formik.handleSubmit}
-      className="flex flex-col gap-3 overflow-y-auto max-h-[70vh] p-4"
+      className="flex flex-col  gap-3 overflow-y-auto max-h-[70vh] p-4"
     >
-      {" "}
       {/* Added padding-right for scrollbar */}
       {renderTextInput("central", "السنترال")}
       {renderTextInput("village", "القرية")}
