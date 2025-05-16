@@ -2,6 +2,7 @@ import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 import { updateMajorCabinetSchema } from "@/schemas/majorCabinet"; // Import the schema
 import { auth } from "@/app/auth";
+import { getStatusFromHeader } from "@/lib/middleware-utils";
 
 // GET a single MajorCabinet by ID
 export async function GET(request, { params }) {
@@ -62,9 +63,9 @@ export async function PUT(request, { params }) {
       { status: 403 }
     );
   }
-  const { majorCabinetId } = params;
-  console.log("majorCabinetId", majorCabinetId);
-  
+
+  const { majorCabinetId } = await params;
+
   if (!majorCabinetId) {
     return NextResponse.json(
       { success: false, message: "معرف الكبينة الرئيسية مطلوب" },
@@ -74,10 +75,12 @@ export async function PUT(request, { params }) {
 
   try {
     const body = await request.json();
-    console.log("body update", body);
-    let validatedData;
+    let validatedData; // Check if status header is set by the middleware
+    const statusHeader = getStatusFromHeader(request);
+    if (statusHeader === "ACTIVE") {
+      body.status = "ACTIVE";
+    }
 
-    // Validate the request body against the schema
     try {
       validatedData = await updateMajorCabinetSchema.validate(body, {
         abortEarly: false,
@@ -97,10 +100,6 @@ export async function PUT(request, { params }) {
         { status: 400 }
       );
     }
-
-    // validatedData now contains only the fields defined in your schema,
-    // and types should be coerced (e.g., number_of_joints is an integer).
-    // Manual destructuring and reconstruction of updateData is no longer needed.
 
     if (Object.keys(validatedData).length === 0) {
       return NextResponse.json(
@@ -162,9 +161,10 @@ export async function DELETE(request, { params }) {
       { status: 403 }
     );
   }
-  const { majorCabinetId } = params;
 
-  console.log("majorCabinetId", majorCabinetId);
+  const { majorCabinetId } = await params;
+
+  console.log("majorCabinetId", await params);
 
   if (!majorCabinetId) {
     return NextResponse.json(

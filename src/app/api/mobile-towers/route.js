@@ -2,6 +2,7 @@ import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 import { auth } from "@/app/auth";
 import { mobileTowerSchema } from "@/schemas/mobileTower";
+import { getStatusFromHeader } from "@/lib/middleware-utils";
 
 // GET all MobileTowers
 // api/mobile-towers
@@ -78,6 +79,10 @@ export async function POST(request) {
         },
         { status: 400 }
       );
+    } // Check if status header is set by the middleware
+    const statusHeader = getStatusFromHeader(request);
+    if (statusHeader === "ACTIVE") {
+      validatedData.status = "ACTIVE";
     }
 
     const newMobileTower = await prisma.mobileTower.create({

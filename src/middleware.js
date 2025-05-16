@@ -1,6 +1,7 @@
 // middleware.js
 import { NextResponse } from "next/server";
 import { getToken } from "next-auth/jwt";
+import { apiRoleMiddleware } from "./middlewares/apiRoleMiddleware";
 
 export async function middleware(request) {
   // Get the pathname of the request
@@ -21,23 +22,14 @@ export async function middleware(request) {
     secureCookie: process.env.NODE_ENV === "production",
     secret: process.env.AUTH_SECRET || process.env.NEXTAUTH_SECRET,
   });
+
   const isAuthenticated = !!token;
   // If the user is logged in and trying to access auth pages, redirect to dashboard
-  console.log(
-    isAuthenticated && isAuthPath
-      ? "Redirecting to dashboard1"
-      : "Not redirecting"
-  );
 
   if (isAuthenticated && isAuthPath) {
     return NextResponse.redirect(new URL("/dashboard", request.url));
   }
 
-  console.log(
-    isAuthenticated && path === "/"
-      ? "Redirecting to dashboard2"
-      : "Not redirecting"
-  );
   // If the user is authenticated and accessing the home page, redirect to dashboard
   if (isAuthenticated && path === "/") {
     return NextResponse.redirect(new URL("/dashboard", request.url));
@@ -48,11 +40,17 @@ export async function middleware(request) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
 
+  // Check if this is an API route
+  if (path.startsWith("/api/")) {
+    // If it's an API route, apply the API role middleware
+    return await apiRoleMiddleware(request, token || {});
+  }
+
   // Continue with the request if no redirection is needed
   return NextResponse.next();
 }
 
 // Specify which paths this middleware should run on
 export const config = {
-  matcher: ["/", "/login", "/dashboard/:path*", "/admin/:path*"],
+  matcher: ["/", "/login", "/dashboard/:path*", "/admin/:path*", "/api/:path*"],
 };

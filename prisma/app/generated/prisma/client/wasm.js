@@ -167,6 +167,7 @@ exports.Prisma.MajorCabinetScalarFieldEnum = {
   room_location: 'room_location',
   entitlement: 'entitlement',
   distance: 'distance',
+  status: 'status',
   responsible: 'responsible',
   notes: 'notes',
   createdAt: 'createdAt',
@@ -187,6 +188,7 @@ exports.Prisma.SecondaryCabinetScalarFieldEnum = {
   box_location: 'box_location',
   cabinet_to_box_distance: 'cabinet_to_box_distance',
   responsible: 'responsible',
+  status: 'status',
   notes: 'notes',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -203,6 +205,7 @@ exports.Prisma.MobileTowerScalarFieldEnum = {
   address: 'address',
   location: 'location',
   responsible: 'responsible',
+  status: 'status',
   notes: 'notes',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -226,6 +229,7 @@ exports.Prisma.CopperLineScalarFieldEnum = {
   room_location: 'room_location',
   insulation_level: 'insulation_level',
   responsible: 'responsible',
+  status: 'status',
   notes: 'notes',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -249,6 +253,11 @@ exports.UserRole = exports.$Enums.UserRole = {
   ADMIN: 'ADMIN',
   MANAGER: 'MANAGER',
   USER: 'USER'
+};
+
+exports.Status = exports.$Enums.Status = {
+  ACTIVE: 'ACTIVE',
+  PENDING: 'PENDING'
 };
 
 exports.Prisma.ModelName = {

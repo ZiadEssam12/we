@@ -2,6 +2,10 @@ import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 import { auth } from "@/app/auth";
 import { majorCabinetSchema } from "@/schemas/majorCabinet"; // Ensure this import is present
+import {
+  getStatusFromHeader,
+  applyMiddlewareHeaders,
+} from "@/lib/middleware-utils";
 
 // GET all MajorCabinets
 
@@ -18,6 +22,9 @@ export async function GET(request) {
 
   try {
     const majorCabinets = await prisma.majorCabinet.findMany({
+      where: {
+        status: "ACTIVE",
+      },
       orderBy: {
         createdAt: "desc",
       },
@@ -51,7 +58,7 @@ export async function POST(request) {
   }
 
   try {
-    const { cabinetData } = await request.json();
+    const cabinetData = await request.json();
 
     console.log("cabinetData", cabinetData);
 
@@ -78,16 +85,8 @@ export async function POST(request) {
         },
         { status: 400 }
       );
-    }
-
-    // The permission check was here in your original code, ensure it's correctly placed.
-    // Assuming only ADMIN can create based on your previous setup for this model.
-    // if (session.user.role !== "ADMIN") {
-    //   return NextResponse.json(
-    //     { success: false, message: "غير مصرح به. يتطلب دور المسؤول." },
-    //     { status: 403 }
-    //   );
-    // }
+    } // Apply middleware headers
+    validatedData = applyMiddlewareHeaders(validatedData, request);
 
     const newMajorCabinet = await prisma.majorCabinet.create({
       data: validatedData, // Use the validated and typed data directly

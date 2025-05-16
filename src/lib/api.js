@@ -184,7 +184,8 @@ export async function getMajorCabinetById(id) {
 }
 
 // Create a new major cabinet
-export async function createMajorCabinet() {
+export async function createMajorCabinet({ cabinetData }) {
+  console.log("cabinetData", cabinetData);
   // Changed to accept majorCabinetData directly
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_APP_URL}/api/major-cabinets`,
@@ -193,7 +194,7 @@ export async function createMajorCabinet() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(majorCabinetData),
+      body: JSON.stringify(cabinetData),
       credentials: "include",
     }
   );
@@ -248,7 +249,7 @@ export async function updateMajorCabinet({ id, cabinetData }) {
 }
 
 // Delete a major cabinet
-export async function deleteMajorCabinet({id}) {
+export async function deleteMajorCabinet({ id }) {
   // Changed to accept id directly
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_APP_URL}/api/major-cabinets/${id}`,

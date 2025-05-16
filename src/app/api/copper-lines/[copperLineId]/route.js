@@ -2,6 +2,7 @@ import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 import { updateCopperLineSchema } from "@/schemas/copperLine";
 import { auth } from "@/app/auth";
+import { getStatusFromHeader } from "@/lib/middleware-utils";
 
 // GET a single CopperLine by ID
 export async function GET(request, { params }) {
@@ -95,6 +96,10 @@ export async function PUT(request, { params }) {
         },
         { status: 400 }
       );
+    } // Check if status header is set by the middleware
+    const statusHeader = getStatusFromHeader(request);
+    if (statusHeader === "ACTIVE") {
+      validatedData.status = "ACTIVE";
     }
 
     const updatedCopperLine = await prisma.copperLine.update({

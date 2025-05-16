@@ -13,6 +13,11 @@ enum UserRole {
   MANAGER
   USER
 }
+
+enum Status {
+  ACTIVE
+  PENDING
+}
  
 model User {
   id            String          @id @default(cuid())
@@ -71,6 +76,7 @@ model MajorCabinet {
   room_location             String   // Stores "lat,lng" pairs
   entitlement               String
   distance                  String
+  status                    Status   @default(PENDING) 
   responsible               String?  // Optional field
   notes                     String   @db.Text
   
@@ -95,6 +101,8 @@ model SecondaryCabinet {
   box_location           String
   cabinet_to_box_distance String
   responsible            String?
+  status                 Status   @default(PENDING) 
+
   notes                  String?  @db.Text
   
   createdAt              DateTime @default(now())
@@ -116,6 +124,8 @@ model MobileTower {
   address      String
   location     String   // Stores "lat,lng" pairs
   responsible  String?
+  status       Status   @default(PENDING) 
+
   notes        String?  @db.Text
   
   createdAt    DateTime @default(now())
@@ -144,6 +154,8 @@ model CopperLine {
   room_location    String
   insulation_level String
   responsible      String?
+  status           Status   @default(PENDING) 
+
   notes            String?  @db.Text
   
   createdAt        DateTime @default(now())

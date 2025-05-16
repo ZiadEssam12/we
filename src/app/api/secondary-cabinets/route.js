@@ -2,6 +2,7 @@ import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 import { auth } from "@/app/auth";
 import { secondaryCabinetSchema } from "@/schemas/secondaryCabinet";
+import { getStatusFromHeader } from "@/lib/middleware-utils";
 
 // GET all SecondaryCabinets
 // api/secondary-cabinets
@@ -53,10 +54,11 @@ export async function POST(request) {
     const body = await request.json();
     let validatedData;
 
+    console.log("Request body:", body);
+
     try {
       validatedData = await secondaryCabinetSchema.validate(body, {
         abortEarly: false,
-        stripUnknown: true,
       });
     } catch (validationError) {
       const errors = validationError.inner.reduce((acc, err) => {
@@ -71,6 +73,10 @@ export async function POST(request) {
         },
         { status: 400 }
       );
+    } // Check if status header is set by the middleware
+    const statusHeader = getStatusFromHeader(request);
+    if (statusHeader === "ACTIVE") {
+      validatedData.status = "ACTIVE";
     }
 
     const newSecondaryCabinet = await prisma.secondaryCabinet.create({

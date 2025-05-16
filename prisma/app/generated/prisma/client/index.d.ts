@@ -61,11 +61,23 @@ export namespace $Enums {
 
 export type UserRole = (typeof UserRole)[keyof typeof UserRole]
 
+
+export const Status: {
+  ACTIVE: 'ACTIVE',
+  PENDING: 'PENDING'
+};
+
+export type Status = (typeof Status)[keyof typeof Status]
+
 }
 
 export type UserRole = $Enums.UserRole
 
 export const UserRole: typeof $Enums.UserRole
+
+export type Status = $Enums.Status
+
+export const Status: typeof $Enums.Status
 
 /**
  * ##  Prisma Client ʲˢ
@@ -4895,6 +4907,7 @@ export namespace Prisma {
     room_location: string | null
     entitlement: string | null
     distance: string | null
+    status: $Enums.Status | null
     responsible: string | null
     notes: string | null
     createdAt: Date | null
@@ -4913,6 +4926,7 @@ export namespace Prisma {
     room_location: string | null
     entitlement: string | null
     distance: string | null
+    status: $Enums.Status | null
     responsible: string | null
     notes: string | null
     createdAt: Date | null
@@ -4931,6 +4945,7 @@ export namespace Prisma {
     room_location: number
     entitlement: number
     distance: number
+    status: number
     responsible: number
     notes: number
     createdAt: number
@@ -4959,6 +4974,7 @@ export namespace Prisma {
     room_location?: true
     entitlement?: true
     distance?: true
+    status?: true
     responsible?: true
     notes?: true
     createdAt?: true
@@ -4977,6 +4993,7 @@ export namespace Prisma {
     room_location?: true
     entitlement?: true
     distance?: true
+    status?: true
     responsible?: true
     notes?: true
     createdAt?: true
@@ -4995,6 +5012,7 @@ export namespace Prisma {
     room_location?: true
     entitlement?: true
     distance?: true
+    status?: true
     responsible?: true
     notes?: true
     createdAt?: true
@@ -5100,6 +5118,7 @@ export namespace Prisma {
     room_location: string
     entitlement: string
     distance: string
+    status: $Enums.Status
     responsible: string | null
     notes: string
     createdAt: Date
@@ -5137,6 +5156,7 @@ export namespace Prisma {
     room_location?: boolean
     entitlement?: boolean
     distance?: boolean
+    status?: boolean
     responsible?: boolean
     notes?: boolean
     createdAt?: boolean
@@ -5155,6 +5175,7 @@ export namespace Prisma {
     room_location?: boolean
     entitlement?: boolean
     distance?: boolean
+    status?: boolean
     responsible?: boolean
     notes?: boolean
     createdAt?: boolean
@@ -5173,6 +5194,7 @@ export namespace Prisma {
     room_location?: boolean
     entitlement?: boolean
     distance?: boolean
+    status?: boolean
     responsible?: boolean
     notes?: boolean
     createdAt?: boolean
@@ -5191,13 +5213,14 @@ export namespace Prisma {
     room_location?: boolean
     entitlement?: boolean
     distance?: boolean
+    status?: boolean
     responsible?: boolean
     notes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type MajorCabinetOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "central" | "village" | "cabinet" | "central_to_cabinet_distance" | "number_of_joints" | "joint_location" | "rooms" | "room_location" | "entitlement" | "distance" | "responsible" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["majorCabinet"]>
+  export type MajorCabinetOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "central" | "village" | "cabinet" | "central_to_cabinet_distance" | "number_of_joints" | "joint_location" | "rooms" | "room_location" | "entitlement" | "distance" | "status" | "responsible" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["majorCabinet"]>
 
   export type $MajorCabinetPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "MajorCabinet"
@@ -5214,6 +5237,7 @@ export namespace Prisma {
       room_location: string
       entitlement: string
       distance: string
+      status: $Enums.Status
       responsible: string | null
       notes: string
       createdAt: Date
@@ -5652,6 +5676,7 @@ export namespace Prisma {
     readonly room_location: FieldRef<"MajorCabinet", 'String'>
     readonly entitlement: FieldRef<"MajorCabinet", 'String'>
     readonly distance: FieldRef<"MajorCabinet", 'String'>
+    readonly status: FieldRef<"MajorCabinet", 'Status'>
     readonly responsible: FieldRef<"MajorCabinet", 'String'>
     readonly notes: FieldRef<"MajorCabinet", 'String'>
     readonly createdAt: FieldRef<"MajorCabinet", 'DateTime'>
@@ -6046,6 +6071,7 @@ export namespace Prisma {
     box_location: string | null
     cabinet_to_box_distance: string | null
     responsible: string | null
+    status: $Enums.Status | null
     notes: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -6065,6 +6091,7 @@ export namespace Prisma {
     box_location: string | null
     cabinet_to_box_distance: string | null
     responsible: string | null
+    status: $Enums.Status | null
     notes: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -6084,6 +6111,7 @@ export namespace Prisma {
     box_location: number
     cabinet_to_box_distance: number
     responsible: number
+    status: number
     notes: number
     createdAt: number
     updatedAt: number
@@ -6105,6 +6133,7 @@ export namespace Prisma {
     box_location?: true
     cabinet_to_box_distance?: true
     responsible?: true
+    status?: true
     notes?: true
     createdAt?: true
     updatedAt?: true
@@ -6124,6 +6153,7 @@ export namespace Prisma {
     box_location?: true
     cabinet_to_box_distance?: true
     responsible?: true
+    status?: true
     notes?: true
     createdAt?: true
     updatedAt?: true
@@ -6143,6 +6173,7 @@ export namespace Prisma {
     box_location?: true
     cabinet_to_box_distance?: true
     responsible?: true
+    status?: true
     notes?: true
     createdAt?: true
     updatedAt?: true
@@ -6235,6 +6266,7 @@ export namespace Prisma {
     box_location: string
     cabinet_to_box_distance: string
     responsible: string | null
+    status: $Enums.Status
     notes: string | null
     createdAt: Date
     updatedAt: Date
@@ -6271,6 +6303,7 @@ export namespace Prisma {
     box_location?: boolean
     cabinet_to_box_distance?: boolean
     responsible?: boolean
+    status?: boolean
     notes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -6290,6 +6323,7 @@ export namespace Prisma {
     box_location?: boolean
     cabinet_to_box_distance?: boolean
     responsible?: boolean
+    status?: boolean
     notes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -6309,6 +6343,7 @@ export namespace Prisma {
     box_location?: boolean
     cabinet_to_box_distance?: boolean
     responsible?: boolean
+    status?: boolean
     notes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -6328,12 +6363,13 @@ export namespace Prisma {
     box_location?: boolean
     cabinet_to_box_distance?: boolean
     responsible?: boolean
+    status?: boolean
     notes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type SecondaryCabinetOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "central" | "village" | "port_gbon" | "cabinet" | "splitter_number" | "splitter_port" | "distance" | "box_number" | "cabinet_location" | "box_location" | "cabinet_to_box_distance" | "responsible" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["secondaryCabinet"]>
+  export type SecondaryCabinetOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "central" | "village" | "port_gbon" | "cabinet" | "splitter_number" | "splitter_port" | "distance" | "box_number" | "cabinet_location" | "box_location" | "cabinet_to_box_distance" | "responsible" | "status" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["secondaryCabinet"]>
 
   export type $SecondaryCabinetPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "SecondaryCabinet"
@@ -6352,6 +6388,7 @@ export namespace Prisma {
       box_location: string
       cabinet_to_box_distance: string
       responsible: string | null
+      status: $Enums.Status
       notes: string | null
       createdAt: Date
       updatedAt: Date
@@ -6791,6 +6828,7 @@ export namespace Prisma {
     readonly box_location: FieldRef<"SecondaryCabinet", 'String'>
     readonly cabinet_to_box_distance: FieldRef<"SecondaryCabinet", 'String'>
     readonly responsible: FieldRef<"SecondaryCabinet", 'String'>
+    readonly status: FieldRef<"SecondaryCabinet", 'Status'>
     readonly notes: FieldRef<"SecondaryCabinet", 'String'>
     readonly createdAt: FieldRef<"SecondaryCabinet", 'DateTime'>
     readonly updatedAt: FieldRef<"SecondaryCabinet", 'DateTime'>
@@ -7181,6 +7219,7 @@ export namespace Prisma {
     address: string | null
     location: string | null
     responsible: string | null
+    status: $Enums.Status | null
     notes: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -7197,6 +7236,7 @@ export namespace Prisma {
     address: string | null
     location: string | null
     responsible: string | null
+    status: $Enums.Status | null
     notes: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -7213,6 +7253,7 @@ export namespace Prisma {
     address: number
     location: number
     responsible: number
+    status: number
     notes: number
     createdAt: number
     updatedAt: number
@@ -7231,6 +7272,7 @@ export namespace Prisma {
     address?: true
     location?: true
     responsible?: true
+    status?: true
     notes?: true
     createdAt?: true
     updatedAt?: true
@@ -7247,6 +7289,7 @@ export namespace Prisma {
     address?: true
     location?: true
     responsible?: true
+    status?: true
     notes?: true
     createdAt?: true
     updatedAt?: true
@@ -7263,6 +7306,7 @@ export namespace Prisma {
     address?: true
     location?: true
     responsible?: true
+    status?: true
     notes?: true
     createdAt?: true
     updatedAt?: true
@@ -7352,6 +7396,7 @@ export namespace Prisma {
     address: string
     location: string
     responsible: string | null
+    status: $Enums.Status
     notes: string | null
     createdAt: Date
     updatedAt: Date
@@ -7385,6 +7430,7 @@ export namespace Prisma {
     address?: boolean
     location?: boolean
     responsible?: boolean
+    status?: boolean
     notes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -7401,6 +7447,7 @@ export namespace Prisma {
     address?: boolean
     location?: boolean
     responsible?: boolean
+    status?: boolean
     notes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -7417,6 +7464,7 @@ export namespace Prisma {
     address?: boolean
     location?: boolean
     responsible?: boolean
+    status?: boolean
     notes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -7433,12 +7481,13 @@ export namespace Prisma {
     address?: boolean
     location?: boolean
     responsible?: boolean
+    status?: boolean
     notes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type MobileTowerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "central" | "cable_name" | "tower_code" | "company" | "entitlement" | "distance" | "address" | "location" | "responsible" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["mobileTower"]>
+  export type MobileTowerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "central" | "cable_name" | "tower_code" | "company" | "entitlement" | "distance" | "address" | "location" | "responsible" | "status" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["mobileTower"]>
 
   export type $MobileTowerPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "MobileTower"
@@ -7454,6 +7503,7 @@ export namespace Prisma {
       address: string
       location: string
       responsible: string | null
+      status: $Enums.Status
       notes: string | null
       createdAt: Date
       updatedAt: Date
@@ -7890,6 +7940,7 @@ export namespace Prisma {
     readonly address: FieldRef<"MobileTower", 'String'>
     readonly location: FieldRef<"MobileTower", 'String'>
     readonly responsible: FieldRef<"MobileTower", 'String'>
+    readonly status: FieldRef<"MobileTower", 'Status'>
     readonly notes: FieldRef<"MobileTower", 'String'>
     readonly createdAt: FieldRef<"MobileTower", 'DateTime'>
     readonly updatedAt: FieldRef<"MobileTower", 'DateTime'>
@@ -8287,6 +8338,7 @@ export namespace Prisma {
     room_location: string | null
     insulation_level: string | null
     responsible: string | null
+    status: $Enums.Status | null
     notes: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -8310,6 +8362,7 @@ export namespace Prisma {
     room_location: string | null
     insulation_level: string | null
     responsible: string | null
+    status: $Enums.Status | null
     notes: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -8333,6 +8386,7 @@ export namespace Prisma {
     room_location: number
     insulation_level: number
     responsible: number
+    status: number
     notes: number
     createdAt: number
     updatedAt: number
@@ -8358,6 +8412,7 @@ export namespace Prisma {
     room_location?: true
     insulation_level?: true
     responsible?: true
+    status?: true
     notes?: true
     createdAt?: true
     updatedAt?: true
@@ -8381,6 +8436,7 @@ export namespace Prisma {
     room_location?: true
     insulation_level?: true
     responsible?: true
+    status?: true
     notes?: true
     createdAt?: true
     updatedAt?: true
@@ -8404,6 +8460,7 @@ export namespace Prisma {
     room_location?: true
     insulation_level?: true
     responsible?: true
+    status?: true
     notes?: true
     createdAt?: true
     updatedAt?: true
@@ -8500,6 +8557,7 @@ export namespace Prisma {
     room_location: string
     insulation_level: string
     responsible: string | null
+    status: $Enums.Status
     notes: string | null
     createdAt: Date
     updatedAt: Date
@@ -8540,6 +8598,7 @@ export namespace Prisma {
     room_location?: boolean
     insulation_level?: boolean
     responsible?: boolean
+    status?: boolean
     notes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -8563,6 +8622,7 @@ export namespace Prisma {
     room_location?: boolean
     insulation_level?: boolean
     responsible?: boolean
+    status?: boolean
     notes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -8586,6 +8646,7 @@ export namespace Prisma {
     room_location?: boolean
     insulation_level?: boolean
     responsible?: boolean
+    status?: boolean
     notes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -8609,12 +8670,13 @@ export namespace Prisma {
     room_location?: boolean
     insulation_level?: boolean
     responsible?: boolean
+    status?: boolean
     notes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type CopperLineOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "landline_number" | "central" | "village" | "cabinet_number" | "port_number" | "terminal_number" | "cabinet_location" | "box_number" | "box_entitlement" | "box_location" | "joint_location" | "joint_entitlement" | "joint_depth" | "room_location" | "insulation_level" | "responsible" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["copperLine"]>
+  export type CopperLineOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "landline_number" | "central" | "village" | "cabinet_number" | "port_number" | "terminal_number" | "cabinet_location" | "box_number" | "box_entitlement" | "box_location" | "joint_location" | "joint_entitlement" | "joint_depth" | "room_location" | "insulation_level" | "responsible" | "status" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["copperLine"]>
 
   export type $CopperLinePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "CopperLine"
@@ -8637,6 +8699,7 @@ export namespace Prisma {
       room_location: string
       insulation_level: string
       responsible: string | null
+      status: $Enums.Status
       notes: string | null
       createdAt: Date
       updatedAt: Date
@@ -9080,6 +9143,7 @@ export namespace Prisma {
     readonly room_location: FieldRef<"CopperLine", 'String'>
     readonly insulation_level: FieldRef<"CopperLine", 'String'>
     readonly responsible: FieldRef<"CopperLine", 'String'>
+    readonly status: FieldRef<"CopperLine", 'Status'>
     readonly notes: FieldRef<"CopperLine", 'String'>
     readonly createdAt: FieldRef<"CopperLine", 'DateTime'>
     readonly updatedAt: FieldRef<"CopperLine", 'DateTime'>
@@ -9519,6 +9583,7 @@ export namespace Prisma {
     room_location: 'room_location',
     entitlement: 'entitlement',
     distance: 'distance',
+    status: 'status',
     responsible: 'responsible',
     notes: 'notes',
     createdAt: 'createdAt',
@@ -9542,6 +9607,7 @@ export namespace Prisma {
     box_location: 'box_location',
     cabinet_to_box_distance: 'cabinet_to_box_distance',
     responsible: 'responsible',
+    status: 'status',
     notes: 'notes',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -9561,6 +9627,7 @@ export namespace Prisma {
     address: 'address',
     location: 'location',
     responsible: 'responsible',
+    status: 'status',
     notes: 'notes',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -9587,6 +9654,7 @@ export namespace Prisma {
     room_location: 'room_location',
     insulation_level: 'insulation_level',
     responsible: 'responsible',
+    status: 'status',
     notes: 'notes',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -9677,6 +9745,20 @@ export namespace Prisma {
    * Reference to a field of type 'Int[]'
    */
   export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Status'
+   */
+  export type EnumStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Status'>
+    
+
+
+  /**
+   * Reference to a field of type 'Status[]'
+   */
+  export type ListEnumStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Status[]'>
     
 
 
@@ -9938,6 +10020,7 @@ export namespace Prisma {
     room_location?: StringFilter<"MajorCabinet"> | string
     entitlement?: StringFilter<"MajorCabinet"> | string
     distance?: StringFilter<"MajorCabinet"> | string
+    status?: EnumStatusFilter<"MajorCabinet"> | $Enums.Status
     responsible?: StringNullableFilter<"MajorCabinet"> | string | null
     notes?: StringFilter<"MajorCabinet"> | string
     createdAt?: DateTimeFilter<"MajorCabinet"> | Date | string
@@ -9956,6 +10039,7 @@ export namespace Prisma {
     room_location?: SortOrder
     entitlement?: SortOrder
     distance?: SortOrder
+    status?: SortOrder
     responsible?: SortOrderInput | SortOrder
     notes?: SortOrder
     createdAt?: SortOrder
@@ -9977,6 +10061,7 @@ export namespace Prisma {
     room_location?: StringFilter<"MajorCabinet"> | string
     entitlement?: StringFilter<"MajorCabinet"> | string
     distance?: StringFilter<"MajorCabinet"> | string
+    status?: EnumStatusFilter<"MajorCabinet"> | $Enums.Status
     responsible?: StringNullableFilter<"MajorCabinet"> | string | null
     notes?: StringFilter<"MajorCabinet"> | string
     createdAt?: DateTimeFilter<"MajorCabinet"> | Date | string
@@ -9995,6 +10080,7 @@ export namespace Prisma {
     room_location?: SortOrder
     entitlement?: SortOrder
     distance?: SortOrder
+    status?: SortOrder
     responsible?: SortOrderInput | SortOrder
     notes?: SortOrder
     createdAt?: SortOrder
@@ -10021,6 +10107,7 @@ export namespace Prisma {
     room_location?: StringWithAggregatesFilter<"MajorCabinet"> | string
     entitlement?: StringWithAggregatesFilter<"MajorCabinet"> | string
     distance?: StringWithAggregatesFilter<"MajorCabinet"> | string
+    status?: EnumStatusWithAggregatesFilter<"MajorCabinet"> | $Enums.Status
     responsible?: StringNullableWithAggregatesFilter<"MajorCabinet"> | string | null
     notes?: StringWithAggregatesFilter<"MajorCabinet"> | string
     createdAt?: DateTimeWithAggregatesFilter<"MajorCabinet"> | Date | string
@@ -10044,6 +10131,7 @@ export namespace Prisma {
     box_location?: StringFilter<"SecondaryCabinet"> | string
     cabinet_to_box_distance?: StringFilter<"SecondaryCabinet"> | string
     responsible?: StringNullableFilter<"SecondaryCabinet"> | string | null
+    status?: EnumStatusFilter<"SecondaryCabinet"> | $Enums.Status
     notes?: StringNullableFilter<"SecondaryCabinet"> | string | null
     createdAt?: DateTimeFilter<"SecondaryCabinet"> | Date | string
     updatedAt?: DateTimeFilter<"SecondaryCabinet"> | Date | string
@@ -10063,6 +10151,7 @@ export namespace Prisma {
     box_location?: SortOrder
     cabinet_to_box_distance?: SortOrder
     responsible?: SortOrderInput | SortOrder
+    status?: SortOrder
     notes?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -10085,6 +10174,7 @@ export namespace Prisma {
     box_location?: StringFilter<"SecondaryCabinet"> | string
     cabinet_to_box_distance?: StringFilter<"SecondaryCabinet"> | string
     responsible?: StringNullableFilter<"SecondaryCabinet"> | string | null
+    status?: EnumStatusFilter<"SecondaryCabinet"> | $Enums.Status
     notes?: StringNullableFilter<"SecondaryCabinet"> | string | null
     createdAt?: DateTimeFilter<"SecondaryCabinet"> | Date | string
     updatedAt?: DateTimeFilter<"SecondaryCabinet"> | Date | string
@@ -10104,6 +10194,7 @@ export namespace Prisma {
     box_location?: SortOrder
     cabinet_to_box_distance?: SortOrder
     responsible?: SortOrderInput | SortOrder
+    status?: SortOrder
     notes?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -10129,6 +10220,7 @@ export namespace Prisma {
     box_location?: StringWithAggregatesFilter<"SecondaryCabinet"> | string
     cabinet_to_box_distance?: StringWithAggregatesFilter<"SecondaryCabinet"> | string
     responsible?: StringNullableWithAggregatesFilter<"SecondaryCabinet"> | string | null
+    status?: EnumStatusWithAggregatesFilter<"SecondaryCabinet"> | $Enums.Status
     notes?: StringNullableWithAggregatesFilter<"SecondaryCabinet"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"SecondaryCabinet"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"SecondaryCabinet"> | Date | string
@@ -10148,6 +10240,7 @@ export namespace Prisma {
     address?: StringFilter<"MobileTower"> | string
     location?: StringFilter<"MobileTower"> | string
     responsible?: StringNullableFilter<"MobileTower"> | string | null
+    status?: EnumStatusFilter<"MobileTower"> | $Enums.Status
     notes?: StringNullableFilter<"MobileTower"> | string | null
     createdAt?: DateTimeFilter<"MobileTower"> | Date | string
     updatedAt?: DateTimeFilter<"MobileTower"> | Date | string
@@ -10164,6 +10257,7 @@ export namespace Prisma {
     address?: SortOrder
     location?: SortOrder
     responsible?: SortOrderInput | SortOrder
+    status?: SortOrder
     notes?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -10183,6 +10277,7 @@ export namespace Prisma {
     address?: StringFilter<"MobileTower"> | string
     location?: StringFilter<"MobileTower"> | string
     responsible?: StringNullableFilter<"MobileTower"> | string | null
+    status?: EnumStatusFilter<"MobileTower"> | $Enums.Status
     notes?: StringNullableFilter<"MobileTower"> | string | null
     createdAt?: DateTimeFilter<"MobileTower"> | Date | string
     updatedAt?: DateTimeFilter<"MobileTower"> | Date | string
@@ -10199,6 +10294,7 @@ export namespace Prisma {
     address?: SortOrder
     location?: SortOrder
     responsible?: SortOrderInput | SortOrder
+    status?: SortOrder
     notes?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -10221,6 +10317,7 @@ export namespace Prisma {
     address?: StringWithAggregatesFilter<"MobileTower"> | string
     location?: StringWithAggregatesFilter<"MobileTower"> | string
     responsible?: StringNullableWithAggregatesFilter<"MobileTower"> | string | null
+    status?: EnumStatusWithAggregatesFilter<"MobileTower"> | $Enums.Status
     notes?: StringNullableWithAggregatesFilter<"MobileTower"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"MobileTower"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"MobileTower"> | Date | string
@@ -10247,6 +10344,7 @@ export namespace Prisma {
     room_location?: StringFilter<"CopperLine"> | string
     insulation_level?: StringFilter<"CopperLine"> | string
     responsible?: StringNullableFilter<"CopperLine"> | string | null
+    status?: EnumStatusFilter<"CopperLine"> | $Enums.Status
     notes?: StringNullableFilter<"CopperLine"> | string | null
     createdAt?: DateTimeFilter<"CopperLine"> | Date | string
     updatedAt?: DateTimeFilter<"CopperLine"> | Date | string
@@ -10270,6 +10368,7 @@ export namespace Prisma {
     room_location?: SortOrder
     insulation_level?: SortOrder
     responsible?: SortOrderInput | SortOrder
+    status?: SortOrder
     notes?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -10296,6 +10395,7 @@ export namespace Prisma {
     room_location?: StringFilter<"CopperLine"> | string
     insulation_level?: StringFilter<"CopperLine"> | string
     responsible?: StringNullableFilter<"CopperLine"> | string | null
+    status?: EnumStatusFilter<"CopperLine"> | $Enums.Status
     notes?: StringNullableFilter<"CopperLine"> | string | null
     createdAt?: DateTimeFilter<"CopperLine"> | Date | string
     updatedAt?: DateTimeFilter<"CopperLine"> | Date | string
@@ -10319,6 +10419,7 @@ export namespace Prisma {
     room_location?: SortOrder
     insulation_level?: SortOrder
     responsible?: SortOrderInput | SortOrder
+    status?: SortOrder
     notes?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -10348,6 +10449,7 @@ export namespace Prisma {
     room_location?: StringWithAggregatesFilter<"CopperLine"> | string
     insulation_level?: StringWithAggregatesFilter<"CopperLine"> | string
     responsible?: StringNullableWithAggregatesFilter<"CopperLine"> | string | null
+    status?: EnumStatusWithAggregatesFilter<"CopperLine"> | $Enums.Status
     notes?: StringNullableWithAggregatesFilter<"CopperLine"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"CopperLine"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"CopperLine"> | Date | string
@@ -10616,6 +10718,7 @@ export namespace Prisma {
     room_location: string
     entitlement: string
     distance: string
+    status?: $Enums.Status
     responsible?: string | null
     notes: string
     createdAt?: Date | string
@@ -10634,6 +10737,7 @@ export namespace Prisma {
     room_location: string
     entitlement: string
     distance: string
+    status?: $Enums.Status
     responsible?: string | null
     notes: string
     createdAt?: Date | string
@@ -10652,6 +10756,7 @@ export namespace Prisma {
     room_location?: StringFieldUpdateOperationsInput | string
     entitlement?: StringFieldUpdateOperationsInput | string
     distance?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     responsible?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10670,6 +10775,7 @@ export namespace Prisma {
     room_location?: StringFieldUpdateOperationsInput | string
     entitlement?: StringFieldUpdateOperationsInput | string
     distance?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     responsible?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10688,6 +10794,7 @@ export namespace Prisma {
     room_location: string
     entitlement: string
     distance: string
+    status?: $Enums.Status
     responsible?: string | null
     notes: string
     createdAt?: Date | string
@@ -10706,6 +10813,7 @@ export namespace Prisma {
     room_location?: StringFieldUpdateOperationsInput | string
     entitlement?: StringFieldUpdateOperationsInput | string
     distance?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     responsible?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10724,6 +10832,7 @@ export namespace Prisma {
     room_location?: StringFieldUpdateOperationsInput | string
     entitlement?: StringFieldUpdateOperationsInput | string
     distance?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     responsible?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10744,6 +10853,7 @@ export namespace Prisma {
     box_location: string
     cabinet_to_box_distance: string
     responsible?: string | null
+    status?: $Enums.Status
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -10763,6 +10873,7 @@ export namespace Prisma {
     box_location: string
     cabinet_to_box_distance: string
     responsible?: string | null
+    status?: $Enums.Status
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -10782,6 +10893,7 @@ export namespace Prisma {
     box_location?: StringFieldUpdateOperationsInput | string
     cabinet_to_box_distance?: StringFieldUpdateOperationsInput | string
     responsible?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10801,6 +10913,7 @@ export namespace Prisma {
     box_location?: StringFieldUpdateOperationsInput | string
     cabinet_to_box_distance?: StringFieldUpdateOperationsInput | string
     responsible?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10820,6 +10933,7 @@ export namespace Prisma {
     box_location: string
     cabinet_to_box_distance: string
     responsible?: string | null
+    status?: $Enums.Status
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -10839,6 +10953,7 @@ export namespace Prisma {
     box_location?: StringFieldUpdateOperationsInput | string
     cabinet_to_box_distance?: StringFieldUpdateOperationsInput | string
     responsible?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10858,6 +10973,7 @@ export namespace Prisma {
     box_location?: StringFieldUpdateOperationsInput | string
     cabinet_to_box_distance?: StringFieldUpdateOperationsInput | string
     responsible?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10874,6 +10990,7 @@ export namespace Prisma {
     address: string
     location: string
     responsible?: string | null
+    status?: $Enums.Status
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -10890,6 +11007,7 @@ export namespace Prisma {
     address: string
     location: string
     responsible?: string | null
+    status?: $Enums.Status
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -10906,6 +11024,7 @@ export namespace Prisma {
     address?: StringFieldUpdateOperationsInput | string
     location?: StringFieldUpdateOperationsInput | string
     responsible?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10922,6 +11041,7 @@ export namespace Prisma {
     address?: StringFieldUpdateOperationsInput | string
     location?: StringFieldUpdateOperationsInput | string
     responsible?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10938,6 +11058,7 @@ export namespace Prisma {
     address: string
     location: string
     responsible?: string | null
+    status?: $Enums.Status
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -10954,6 +11075,7 @@ export namespace Prisma {
     address?: StringFieldUpdateOperationsInput | string
     location?: StringFieldUpdateOperationsInput | string
     responsible?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10970,6 +11092,7 @@ export namespace Prisma {
     address?: StringFieldUpdateOperationsInput | string
     location?: StringFieldUpdateOperationsInput | string
     responsible?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10993,6 +11116,7 @@ export namespace Prisma {
     room_location: string
     insulation_level: string
     responsible?: string | null
+    status?: $Enums.Status
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -11016,6 +11140,7 @@ export namespace Prisma {
     room_location: string
     insulation_level: string
     responsible?: string | null
+    status?: $Enums.Status
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -11039,6 +11164,7 @@ export namespace Prisma {
     room_location?: StringFieldUpdateOperationsInput | string
     insulation_level?: StringFieldUpdateOperationsInput | string
     responsible?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11062,6 +11188,7 @@ export namespace Prisma {
     room_location?: StringFieldUpdateOperationsInput | string
     insulation_level?: StringFieldUpdateOperationsInput | string
     responsible?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11085,6 +11212,7 @@ export namespace Prisma {
     room_location: string
     insulation_level: string
     responsible?: string | null
+    status?: $Enums.Status
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -11108,6 +11236,7 @@ export namespace Prisma {
     room_location?: StringFieldUpdateOperationsInput | string
     insulation_level?: StringFieldUpdateOperationsInput | string
     responsible?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11131,6 +11260,7 @@ export namespace Prisma {
     room_location?: StringFieldUpdateOperationsInput | string
     insulation_level?: StringFieldUpdateOperationsInput | string
     responsible?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11430,6 +11560,13 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
+  export type EnumStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumStatusFilter<$PrismaModel> | $Enums.Status
+  }
+
   export type MajorCabinetCountOrderByAggregateInput = {
     id?: SortOrder
     central?: SortOrder
@@ -11442,6 +11579,7 @@ export namespace Prisma {
     room_location?: SortOrder
     entitlement?: SortOrder
     distance?: SortOrder
+    status?: SortOrder
     responsible?: SortOrder
     notes?: SortOrder
     createdAt?: SortOrder
@@ -11464,6 +11602,7 @@ export namespace Prisma {
     room_location?: SortOrder
     entitlement?: SortOrder
     distance?: SortOrder
+    status?: SortOrder
     responsible?: SortOrder
     notes?: SortOrder
     createdAt?: SortOrder
@@ -11482,6 +11621,7 @@ export namespace Prisma {
     room_location?: SortOrder
     entitlement?: SortOrder
     distance?: SortOrder
+    status?: SortOrder
     responsible?: SortOrder
     notes?: SortOrder
     createdAt?: SortOrder
@@ -11508,6 +11648,16 @@ export namespace Prisma {
     _max?: NestedIntFilter<$PrismaModel>
   }
 
+  export type EnumStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumStatusWithAggregatesFilter<$PrismaModel> | $Enums.Status
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumStatusFilter<$PrismaModel>
+    _max?: NestedEnumStatusFilter<$PrismaModel>
+  }
+
   export type SecondaryCabinetCountOrderByAggregateInput = {
     id?: SortOrder
     central?: SortOrder
@@ -11522,6 +11672,7 @@ export namespace Prisma {
     box_location?: SortOrder
     cabinet_to_box_distance?: SortOrder
     responsible?: SortOrder
+    status?: SortOrder
     notes?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -11541,6 +11692,7 @@ export namespace Prisma {
     box_location?: SortOrder
     cabinet_to_box_distance?: SortOrder
     responsible?: SortOrder
+    status?: SortOrder
     notes?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -11560,6 +11712,7 @@ export namespace Prisma {
     box_location?: SortOrder
     cabinet_to_box_distance?: SortOrder
     responsible?: SortOrder
+    status?: SortOrder
     notes?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -11576,6 +11729,7 @@ export namespace Prisma {
     address?: SortOrder
     location?: SortOrder
     responsible?: SortOrder
+    status?: SortOrder
     notes?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -11592,6 +11746,7 @@ export namespace Prisma {
     address?: SortOrder
     location?: SortOrder
     responsible?: SortOrder
+    status?: SortOrder
     notes?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -11608,6 +11763,7 @@ export namespace Prisma {
     address?: SortOrder
     location?: SortOrder
     responsible?: SortOrder
+    status?: SortOrder
     notes?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -11631,6 +11787,7 @@ export namespace Prisma {
     room_location?: SortOrder
     insulation_level?: SortOrder
     responsible?: SortOrder
+    status?: SortOrder
     notes?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -11654,6 +11811,7 @@ export namespace Prisma {
     room_location?: SortOrder
     insulation_level?: SortOrder
     responsible?: SortOrder
+    status?: SortOrder
     notes?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -11677,6 +11835,7 @@ export namespace Prisma {
     room_location?: SortOrder
     insulation_level?: SortOrder
     responsible?: SortOrder
+    status?: SortOrder
     notes?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -11824,6 +11983,10 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type EnumStatusFieldUpdateOperationsInput = {
+    set?: $Enums.Status
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -11979,6 +12142,13 @@ export namespace Prisma {
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
+  export type NestedEnumStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumStatusFilter<$PrismaModel> | $Enums.Status
+  }
+
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -12004,6 +12174,16 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type NestedEnumStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumStatusWithAggregatesFilter<$PrismaModel> | $Enums.Status
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumStatusFilter<$PrismaModel>
+    _max?: NestedEnumStatusFilter<$PrismaModel>
   }
 
   export type AccountCreateWithoutUserInput = {

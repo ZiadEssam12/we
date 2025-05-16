@@ -17,3 +17,5 @@ export function getSessionCookieName() {
     ? "__Secure-authjs.session-token"
     : "authjs.session-token";
 }
+
+
