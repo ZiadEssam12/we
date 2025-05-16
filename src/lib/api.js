@@ -613,3 +613,29 @@ export async function deleteCopperLine({ id }) {
     message: "تم حذف خط النحاس بنجاح",
   };
 }
+
+export async function getAllRequests({ headers }) {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_APP_URL}/api/requests`,
+    {
+      headers,
+      credentials: "include",
+    }
+  );
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    return {
+      success: false,
+      message: data.message || "فشل في استرجاع الطلبات",
+      error: data.error,
+    };
+  }
+
+  return {
+    success: true,
+    message: "تم استرجاع الطلبات بنجاح",
+    data: data.data,
+  };
+}

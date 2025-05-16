@@ -15,6 +15,7 @@ import {
   MdOutlineSpaceDashboard,
   MdMenu,
   MdChevronRight,
+  MdSchedule,
 } from "react-icons/md";
 
 const links = [
@@ -27,6 +28,12 @@ const links = [
     name: "إدارة المستخدمين",
     link: "/dashboard/users",
     icon: MdOutlineSpaceDashboard,
+    role: ["ADMIN", "MANAGER"],
+  },
+  {
+    name: "الطلبات المعلقة",
+    link: "/dashboard/requests",
+    icon: MdSchedule,
     role: ["ADMIN", "MANAGER"],
   },
   {
