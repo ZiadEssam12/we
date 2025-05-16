@@ -13,9 +13,9 @@ const SecondaryCabinetSchema = Yup.object().shape({
   splitter_number: Yup.string().required("رقم السبليتر مطلوب"),
   splitter_port: Yup.string().required("منفذ السبليتر مطلوب"),
   distance: Yup.string().required("المسافة مطلوبة"),
-  box_number: Yup.string().required("رقم الصندوق مطلوب"),
+  box_number: Yup.string().required("رقم البوكس مطلوب"),
   cabinet_location: Yup.string().required("موقع الكبينة مطلوب"),
-  box_location: Yup.string().required("موقع الصندوق مطلوب"),
+  box_location: Yup.string().required("موقع البوكس مطلوب"),
   cabinet_to_box_distance: Yup.string().required(
     "المسافة من الكبينة للصندوق مطلوبة"
   ),
@@ -232,7 +232,7 @@ export default function SecondaryCabinetForm({
             htmlFor="box_number"
             className="block text-sm font-medium text-gray-700"
           >
-            رقم الصندوق
+            رقم البوكس
           </label>
           <input
             id="box_number"
@@ -279,7 +279,7 @@ export default function SecondaryCabinetForm({
             htmlFor="box_location"
             className="block text-sm font-medium text-gray-700"
           >
-            موقع الصندوق
+            موقع البوكس
           </label>
           <input
             id="box_location"

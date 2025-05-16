@@ -85,7 +85,7 @@ export default function Sidebar() {
     <>
       {/* Toggle Button */}
       <div
-        className="h-screen w-0 lg:w-[70px] absolute top-0 right-0 z-20 flex items-center justify-center"
+        className="h-screen w-0 lg:w-[20px] absolute top-0 right-0 z-20 flex items-center justify-center"
         onMouseEnter={() => setIsOpen(true)}
       >
         <button

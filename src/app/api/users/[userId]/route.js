@@ -1,6 +1,7 @@
 import { auth } from "@/app/auth";
 import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
+import bcrypt from "bcrypt";
 
 export const DELETE = auth(async function DELETE(request, { params }) {
   try {
@@ -117,7 +118,7 @@ export const PUT = auth(async function PUT(request, { params }) {
       );
     }
 
-    const { userId } = params;
+    const { userId } = await params;
     if (!userId) {
       return NextResponse.json(
         {
@@ -127,25 +128,25 @@ export const PUT = auth(async function PUT(request, { params }) {
         { status: 400 }
       );
     }
-
     const body = await request.json();
-    const { name, userName, phoneNumber, role } = body;
-
-    // Ensure password is not updated through this route
-    if (body.password || body.confirmPassword) {
-      return NextResponse.json(
-        {
-          success: false,
-          message: "لا يمكن تحديث كلمة المرور من خلال هذا المسار",
-        },
-        { status: 400 }
-      );
-    }
+    const { name, userName, phoneNumber, role, password, confirmPassword } =
+      body;
 
     const updateData = {};
     if (name) updateData.name = name;
     if (userName) updateData.userName = userName;
     if (phoneNumber) updateData.phoneNumber = phoneNumber;
+
+    // Handle password update if provided
+    if (password) {
+      const hashedPassword = await bcrypt.hash(password, 10);
+      updateData.password = hashedPassword;
+    }
+
+    // Remove confirmPassword from update data if it was sent
+    if (body.confirmPassword) {
+      delete body.confirmPassword;
+    }
 
     // Only allow admin to update role
     if (role && session.user.role === "ADMIN") {

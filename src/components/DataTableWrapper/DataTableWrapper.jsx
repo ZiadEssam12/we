@@ -146,9 +146,21 @@ export default function DataTableWrapper({
       setIsFormProcessing(false);
     }
   };
+
+  // Check if a column is a location column
+  const isLocationColumn = (key) => {
+    return (
+      key.toLowerCase().includes("location") ||
+      key.toLowerCase().includes("موقع") ||
+      key.toLowerCase().includes("مكان")
+    );
+  };
+
   // Handle item deletion
   const handleDelete = async () => {
     if (!selectedItem) return;
+
+    console.log("selected items: ", selectedItem);
 
     setIsDeleteLoading(true);
     try {
@@ -167,9 +179,58 @@ export default function DataTableWrapper({
       setIsDeleteLoading(false);
     }
   };
+  // Enhance columns to transform location data
+  const enhancedColumns = columns.map((column) => {
+    // Check if this is a location column by its accessor key
+    if (column.accessorKey && isLocationColumn(column.accessorKey)) {
+      return {
+        ...column,
+        cell: ({ row }) => {
+          const locationValue = row.original[column.accessorKey];
 
+          // Check if the location value contains coordinates (simple check)
+          if (
+            locationValue &&
+            typeof locationValue === "string" &&
+            locationValue.includes(",")
+          ) {
+            // Try to extract coordinates from the string
+            let latitude, longitude;
+
+            // Handle different formats of coordinates
+            if (locationValue.includes(",")) {
+              const parts = locationValue.split(",");
+              if (parts.length >= 2) {
+                latitude = parseFloat(parts[0].trim());
+                longitude = parseFloat(parts[1].trim());
+              }
+            }
+
+            if (latitude && longitude) {
+              return (
+                <a
+                  href={`https://www.google.com/maps?q=${latitude},${longitude}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700 text-xs"
+                >
+                  الموقع
+                </a>
+              );
+            }
+          }
+
+          // Fallback to displaying the raw value if not coordinates
+          return locationValue || "";
+        },
+      };
+    }
+
+    return column;
+  });
+  // The MapLink component has been replaced by our enhanced columns logic
   const columnsWithActions = [
-    ...columns,
+    ...enhancedColumns,
     {
       header: "الإجراءات",
       id: "actions",

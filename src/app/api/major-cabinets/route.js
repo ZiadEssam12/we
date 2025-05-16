@@ -51,14 +51,17 @@ export async function POST(request) {
   }
 
   try {
-    const body = await request.json();
+    const { cabinetData } = await request.json();
+
+    console.log("cabinetData", cabinetData);
+
     let validatedData;
 
     // Validate the request body against the schema
     try {
       // stripUnknown: true will remove any properties not defined in the schema
       // Yup's .number().integer() should coerce the string to an integer if valid
-      validatedData = await majorCabinetSchema.validate(body, {
+      validatedData = await majorCabinetSchema.validate(cabinetData, {
         abortEarly: false,
         stripUnknown: true,
       });

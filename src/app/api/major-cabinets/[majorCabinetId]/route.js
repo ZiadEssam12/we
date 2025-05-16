@@ -62,9 +62,9 @@ export async function PUT(request, { params }) {
       { status: 403 }
     );
   }
-
-  const { majorCabinetId } = await params;
-
+  const { majorCabinetId } = params;
+  console.log("majorCabinetId", majorCabinetId);
+  
   if (!majorCabinetId) {
     return NextResponse.json(
       { success: false, message: "معرف الكبينة الرئيسية مطلوب" },
@@ -74,6 +74,7 @@ export async function PUT(request, { params }) {
 
   try {
     const body = await request.json();
+    console.log("body update", body);
     let validatedData;
 
     // Validate the request body against the schema
@@ -161,8 +162,9 @@ export async function DELETE(request, { params }) {
       { status: 403 }
     );
   }
+  const { majorCabinetId } = params;
 
-  const { majorCabinetId } = await params;
+  console.log("majorCabinetId", majorCabinetId);
 
   if (!majorCabinetId) {
     return NextResponse.json(

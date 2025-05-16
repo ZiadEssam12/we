@@ -9,5 +9,6 @@ export const mobileTowerColumns = [
   { header: "العنوان", accessorKey: "address", enableSearch: true },
   { header: "الموقع", accessorKey: "location", enableSearch: true },
   { header: "المسؤول", accessorKey: "responsible", enableSearch: true },
+  { header: "ملاحظات", accessorKey: "notes", enableSearch: true },
   { header: "تاريخ الإنشاء", accessorKey: "createdAt", enableSearch: false },
 ];

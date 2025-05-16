@@ -13,9 +13,9 @@ const CopperLineSchema = Yup.object().shape({
   port_number: Yup.string().required("رقم المنفذ مطلوب"),
   terminal_number: Yup.string().required("رقم المحطة مطلوب"),
   cabinet_location: Yup.string().required("موقع الكابينة مطلوب"),
-  box_number: Yup.string().required("رقم الصندوق مطلوب"),
-  box_entitlement: Yup.string().required("استحقاق الصندوق مطلوب"),
-  box_location: Yup.string().required("موقع الصندوق مطلوب"),
+  box_number: Yup.string().required("رقم البوكس مطلوب"),
+  box_entitlement: Yup.string().required("استحقاق البوكس مطلوب"),
+  box_location: Yup.string().required("موقع البوكس مطلوب"),
   joint_location: Yup.string().required("موقع الوصلة مطلوب"),
   joint_entitlement: Yup.string().required("استحقاق الوصلة مطلوب"),
   joint_depth: Yup.string().required("عمق الوصلة مطلوب"),
@@ -239,7 +239,7 @@ export default function CopperLineForm({
             htmlFor="box_number"
             className="block text-sm font-medium text-gray-700"
           >
-            رقم الصندوق
+            رقم البوكس
           </label>
           <input
             id="box_number"
@@ -262,7 +262,7 @@ export default function CopperLineForm({
             htmlFor="box_entitlement"
             className="block text-sm font-medium text-gray-700"
           >
-            استحقاق الصندوق
+            استحقاق البوكس
           </label>
           <input
             id="box_entitlement"
@@ -285,7 +285,7 @@ export default function CopperLineForm({
             htmlFor="box_location"
             className="block text-sm font-medium text-gray-700"
           >
-            موقع الصندوق
+            موقع البوكس
           </label>
           <input
             id="box_location"

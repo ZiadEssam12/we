@@ -11,15 +11,15 @@ export const secondaryCabinetColumns = [
   },
   { header: "منفذ السبليتر", accessorKey: "splitter_port", enableSearch: true },
   { header: "المسافة", accessorKey: "distance", enableSearch: false },
-  { header: "رقم الصندوق", accessorKey: "box_number", enableSearch: true },
+  { header: "رقم البوكس", accessorKey: "box_number", enableSearch: true },
   {
     header: "موقع الكبينة",
     accessorKey: "cabinet_location",
     enableSearch: true,
   },
-  { header: "موقع الصندوق", accessorKey: "box_location", enableSearch: true },
+  { header: "موقع البوكس", accessorKey: "box_location", enableSearch: true },
   {
-    header: "المسافة من الكبينة إلى الصندوق",
+    header: "المسافة من الكبينة إلى البوكس",
     accessorKey: "cabinet_to_box_distance",
     enableSearch: false,
   },
