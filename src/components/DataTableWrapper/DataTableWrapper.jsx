@@ -41,8 +41,8 @@ export default function DataTableWrapper({
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isDeleteLoading, setIsDeleteLoading] = useState(false);
   const [isFormProcessing, setIsFormProcessing] = useState(false);
-  const [openActionButtonsId, setOpenActionButtonsId] = useState(null);
   const [isCustomModalOpen, setIsCustomModalOpen] = useState(false);
+  const [tempRowData, setTempRowData] = useState(null);
   // Default modal texts that can be overridden
   const texts = {
     addButton: `إضافة ${entityName}`,
@@ -56,9 +56,12 @@ export default function DataTableWrapper({
     customModalConfirmation: `هل أنت متأكد من تنفيذ هذا الإجراء؟`,
     ...modalTexts,
   };
+
   const handleOpenCustomeModal = (rowData) => {
-    // Set the selected item with all the row data
-    setSelectedItem(rowData);
+    // Store the row data temporarily in a local variable
+    // but don't set it as selectedItem yet
+    // Instead, we'll store it in a separate state variable
+    setTempRowData(rowData);
 
     // You can add your custom logic here with the row data
     console.log("Row data selected:", rowData);
@@ -69,8 +72,8 @@ export default function DataTableWrapper({
 
   const handleCloseCustomModal = () => {
     setIsCustomModalOpen(false);
-    // Optionally clear the selected item when closing
-    // setSelectedItem(null);
+    // Clear the temporary row data when closing
+    setTempRowData(null);
   };
 
   // Fetch data on component mount or when refetch is triggered
@@ -105,10 +108,6 @@ export default function DataTableWrapper({
         result = await createItem(formData);
       }
       if (result.success) {
-        toast.success(
-          result.message ||
-            `تم ${selectedItem ? "تعديل" : "إضافة"} ${entityName} بنجاح`
-        );
         setData((prevData) => {
           if (selectedItem) {
             return prevData.map((item) =>
@@ -118,6 +117,11 @@ export default function DataTableWrapper({
             return [result.data, ...prevData];
           }
         });
+        toast.success(
+          result.message ||
+            `تم ${selectedItem ? "تعديل" : "إضافة"} ${entityName} بنجاح`
+        );
+
         setIsModalOpen(false);
         await refetchData();
       } else {
@@ -199,6 +203,16 @@ export default function DataTableWrapper({
     return formattedItem;
   });
 
+  const closeAddUpdateModal = () => {
+    setIsModalOpen(false);
+    setSelectedItem(null);
+  };
+
+  const closeDeleteModal = () => {
+    setIsDeleteModalOpen(false);
+    setSelectedItem(null);
+  };
+
   return (
     <div className="container mx-auto px-4">
       {error && (
@@ -216,7 +230,7 @@ export default function DataTableWrapper({
       {/* Form Modal */}
       <Modal
         isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
+        onClose={closeAddUpdateModal}
         title={selectedItem ? texts.editTitle : texts.addTitle}
       >
         <Suspense
@@ -235,14 +249,14 @@ export default function DataTableWrapper({
       {/* Delete Confirmation Modal */}
       <Modal
         isOpen={isDeleteModalOpen}
-        onClose={() => setIsDeleteModalOpen(false)}
+        onClose={closeDeleteModal}
         title={texts.deleteTitle}
       >
         <div className="p-4">
           <p className="mb-4 text-center">{texts.deleteConfirmation}</p>
           <div className="flex justify-center space-x-4">
             <button
-              onClick={() => setIsDeleteModalOpen(false)}
+              onClick={closeDeleteModal}
               className="bg-gray-300 hover:bg-gray-400 text-black font-bold py-2 px-4 rounded"
               disabled={isDeleteLoading}
             >
@@ -268,7 +282,8 @@ export default function DataTableWrapper({
           <div className="flex gap-3 justify-center">
             <button
               onClick={() => {
-                // selectedItem is already set with row data
+                // Only set selectedItem when update button is clicked
+                setSelectedItem(tempRowData);
                 setIsModalOpen(true);
                 setIsCustomModalOpen(false);
               }}
@@ -281,7 +296,8 @@ export default function DataTableWrapper({
             </button>
             <button
               onClick={() => {
-                // selectedItem is already set with row data
+                // Only set selectedItem when delete button is clicked
+                setSelectedItem(tempRowData);
                 setIsDeleteModalOpen(true);
                 setIsCustomModalOpen(false);
               }}

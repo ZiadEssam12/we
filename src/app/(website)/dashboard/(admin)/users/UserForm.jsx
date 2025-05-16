@@ -49,7 +49,6 @@ export default function UserForm({ initialData, onSubmit, isProcessing }) {
     validationSchema: UserSchema,
     onSubmit: (values) => {
       const submitData = { ...values };
-      delete submitData.confirmPassword;
       delete submitData.isNewUser;
 
       // If editing and no password is provided, remove password field

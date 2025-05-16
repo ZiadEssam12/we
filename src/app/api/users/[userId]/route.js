@@ -28,7 +28,7 @@ export const DELETE = auth(async function DELETE(request, { params }) {
       );
     }
 
-    const { userId } = params;
+    const { userId } = await params;
     if (!userId) {
       return NextResponse.json(
         {
@@ -56,15 +56,15 @@ export const DELETE = auth(async function DELETE(request, { params }) {
       );
     }
 
-    // Manually delete related sessions first
-    await prisma.session.deleteMany({
-      where: { userId },
-    });
-
-    // Then delete related accounts
-    await prisma.account.deleteMany({
-      where: { userId },
-    });
+    if (user.id === session.user.id) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "لا يمكنك حذف حسابك الشخصي",
+        },
+        { status: 403 }
+      );
+    }
 
     // Finally delete the user
     await prisma.user.delete({
