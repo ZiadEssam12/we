@@ -16,7 +16,8 @@ enum UserRole {
 
 enum Status {
   ACTIVE
-  PENDING
+  PENDING_ADD 
+  PENDING_UPDATE
 }
  
 model User {
@@ -76,7 +77,7 @@ model MajorCabinet {
   room_location             String   // Stores "lat,lng" pairs
   entitlement               String
   distance                  String
-  status                    Status   @default(PENDING) 
+  status                    Status   
   responsible               String?  // Optional field
   notes                     String   @db.Text
   
@@ -101,7 +102,7 @@ model SecondaryCabinet {
   box_location           String
   cabinet_to_box_distance String
   responsible            String?
-  status                 Status   @default(PENDING) 
+  status                 Status   
 
   notes                  String?  @db.Text
   
@@ -124,7 +125,7 @@ model MobileTower {
   address      String
   location     String   // Stores "lat,lng" pairs
   responsible  String?
-  status       Status   @default(PENDING) 
+  status       Status   
 
   notes        String?  @db.Text
   
@@ -154,7 +155,7 @@ model CopperLine {
   room_location    String
   insulation_level String
   responsible      String?
-  status           Status   @default(PENDING) 
+  status           Status   
 
   notes            String?  @db.Text
   

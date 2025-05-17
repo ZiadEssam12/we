@@ -1,69 +1,20 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useFormik } from "formik";
-import toast from "react-hot-toast";
 import ButtonWithLoading from "@/components/buttonWithLoading/ButtonWithLoading";
 import { Label, TextInput, Textarea } from "flowbite-react"; // Assuming Textarea is available or similar
 
-import { createMajorCabinet, updateMajorCabinet } from "@/lib/api";
-import {
-  initialMajorCabinetValues,
-  majorCabinetSchema,
-} from "@/schemas/majorCabinet";
+import { majorCabinetSchema } from "@/schemas/majorCabinet";
 
 export default function MajorCabinetForm({
   initialData,
   onSubmit,
   isProcessing,
+  formStyle = "flex flex-col  gap-3 overflow-y-auto max-h-[70vh] p-4",
+  hideSubmitButton = false,
+  renderCustomButtons,
+  readOnly = false,
 }) {
-  // const handleFormSubmit = async (values) => {
-  //   setisProcessing(true);
-  //   try {
-  //     let result;
-  //     if (isUpdate) {
-  //       result = await updateMajorCabinet(currentCabinet.id, values);
-  //     } else {
-  //       result = await createMajorCabinet(values);
-  //     }
-
-  //     if (result.success) {
-  //       toast.success(result.message);
-  //       if (isUpdate) {
-  //         setMajorCabinetsData((prev) =>
-  //           prev.map((cabinet) =>
-  //             cabinet.id === currentCabinet.id ? result.data : cabinet
-  //           )
-  //         );
-  //       } else {
-  //         setMajorCabinetsData((prev) => [result.data, ...prev]);
-  //       }
-  //       formik.resetForm();
-  //       onClose(); // Use onClose to close the modal
-  //     }
-  //     if (!result.success) {
-  //       // Optionally display field-specific errors
-  //       console.error("Validation errors:", result.error);
-  //       toast.error(result.message || "An error occurred.");
-  //     }
-  //   } catch (error) {
-  //     toast.error("An unexpected error occurred.");
-  //     console.error("Form submission error:", error);
-  //   }
-  //   setIsLoading(false);
-  // };
-
-  //   central: "",
-  // village: "",
-  // cabinet: "",
-  // central_to_cabinet_distance: "",
-  // number_of_joints: 0,
-  // joint_location: "", // Expected "lat,lng"
-  // rooms: "",
-  // room_location: "", // Expected "lat,lng"
-  // entitlement: "",
-  // distance: "",
-  // responsible: "",
-  // notes: "",
   const formik = useFormik({
     initialValues: {
       // id: initialData.id || "",
@@ -88,37 +39,6 @@ export default function MajorCabinetForm({
     enableReinitialize: true, // Important for pre-filling form in update mode
   });
 
-  // useEffect(() => {
-  //   if (isUpdate && currentCabinet) {
-  //     formik.setValues({
-  //       id: currentCabinet.id || "",
-  //       central: currentCabinet.central || "",
-  //       village: currentCabinet.village || "",
-  //       cabinet: currentCabinet.cabinet || "",
-  //       central_to_cabinet_distance:
-  //         currentCabinet.central_to_cabinet_distance || "",
-  //       number_of_joints: currentCabinet.number_of_joints || 0,
-  //       joint_location: currentCabinet.joint_location || "",
-  //       rooms: currentCabinet.rooms || "",
-  //       room_location: currentCabinet.room_location || "",
-  //       entitlement: currentCabinet.entitlement || "",
-  //       distance: currentCabinet.distance || "",
-  //       responsible: currentCabinet.responsible || "",
-  //       notes: currentCabinet.notes || "",
-  //     });
-  //   } else {
-  //     formik.setValues(initialMajorCabinetValues);
-  //   }
-  // }, [isUpdate, currentCabinet, isOpen]); // Changed openModal to isOpen
-
-  // const handleClose = () => {
-  //   formik.resetForm(); // Reset form on close
-  //   if (onClose) {
-  //     onClose();
-  //   }
-  //   // Removed else block with setOpenModal as onClose should handle it
-  // };
-
   // Helper to generate form fields
   const renderTextInput = (id, label, placeholder = "", type = "text") => (
     <div key={id}>
@@ -133,6 +53,7 @@ export default function MajorCabinetForm({
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
         value={formik.values[id]}
+        disabled={readOnly}
         // required={majorCabinetSchema.fields[id]?.isRequired()}
       />
       {formik.touched[id] && formik.errors[id] && (
@@ -142,10 +63,7 @@ export default function MajorCabinetForm({
   );
 
   return (
-    <form
-      onSubmit={formik.handleSubmit}
-      className="flex flex-col  gap-3 overflow-y-auto max-h-[70vh] p-4"
-    >
+    <form onSubmit={formik.handleSubmit} className={formStyle}>
       {/* Added padding-right for scrollbar */}
       {renderTextInput("central", "السنترال")}
       {renderTextInput("village", "القرية")}
@@ -160,8 +78,8 @@ export default function MajorCabinetForm({
       {renderTextInput("room_location", "موقع الغرف (lat,lng)")}
       {renderTextInput("entitlement", "الاستحقاق")}
       {renderTextInput("distance", "المسافة")}
-      {renderTextInput("responsible", "المسؤول (اختياري)")}
-      <div>
+      {renderTextInput("responsible", "المسؤول (اختياري)")}{" "}
+      <div className="col-span-1 md:col-span-2 lg:col-span-3">
         <Label
           htmlFor="notes"
           className="block text-sm font-medium text-gray-700"
@@ -176,18 +94,23 @@ export default function MajorCabinetForm({
           onBlur={formik.handleBlur}
           value={formik.values.notes}
           rows={3}
+          disabled={readOnly}
+          className="w-full"
           // required={majorCabinetSchema.fields.notes?.isRequired()}
         />
         {formik.touched.notes && formik.errors.notes && (
           <div className="text-red-500 text-sm mt-1">{formik.errors.notes}</div>
         )}
       </div>
-      <ButtonWithLoading
-        loading={isProcessing}
-        text={initialData ? "تحديث" : "إضافة"}
-        areaLabel={initialData ? "تحديث" : "إضافة"}
-        valid={formik.isValid && formik.dirty}
-      />
+      {!hideSubmitButton && (
+        <ButtonWithLoading
+          loading={isProcessing}
+          text={initialData ? "تحديث" : "إضافة"}
+          areaLabel={initialData ? "تحديث" : "إضافة"}
+          valid={formik.isValid && formik.dirty}
+        />
+      )}
+      {renderCustomButtons && renderCustomButtons(formik)}
     </form>
   );
 }

@@ -3,8 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 export async function apiRoleMiddleware(req, token) {
   const path = req.nextUrl.pathname;
 
-  // Only target /api/* routes
-  if (!path.startsWith("/api/")) {
+  if (path.startsWith("/api/auth")) {
     return NextResponse.next();
   }
 

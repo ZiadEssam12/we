@@ -25,6 +25,7 @@ import {
   createUser as createUserBase,
   updateUser as updateUserBase,
   deleteUser as deleteUserBase,
+  getAllPendingRequests,
 } from "./api";
 
 // Secondary Cabinet client wrappers

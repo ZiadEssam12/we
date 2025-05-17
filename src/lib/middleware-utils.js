@@ -38,9 +38,15 @@ export function applyStatusFromHeader(data, request) {
 export function applyMiddlewareHeaders(validatedData, request) {
   const statusHeader = getStatusFromHeader(request);
 
+  const method = request.method;
+
   // Apply status if present
   if (statusHeader === "ACTIVE") {
     validatedData.status = statusHeader;
+  } else if (method === "POST") {
+    validatedData.status = "PENDING_ADD";
+  } else if (method === "PUT") {
+    validatedData.status = "PENDING_UPDATE";
   }
 
   // Add other middleware header handling here

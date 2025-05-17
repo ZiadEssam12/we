@@ -2,7 +2,10 @@ import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 import { updateCopperLineSchema } from "@/schemas/copperLine";
 import { auth } from "@/app/auth";
-import { getStatusFromHeader } from "@/lib/middleware-utils";
+import {
+  applyMiddlewareHeaders,
+  getStatusFromHeader,
+} from "@/lib/middleware-utils";
 
 // GET a single CopperLine by ID
 export async function GET(request, { params }) {
@@ -57,14 +60,6 @@ export async function GET(request, { params }) {
 export async function PUT(request, { params }) {
   const session = await auth();
 
-  if (!session || !session.user || session.user.role !== "ADMIN") {
-    // Assuming only ADMIN can update, adjust if MANAGER also has rights
-    return NextResponse.json(
-      { success: false, message: "غير مصرح به. يتطلب دور المسؤول." },
-      { status: 403 }
-    );
-  }
-
   const { copperLineId } = await params;
 
   if (!copperLineId) {
@@ -96,11 +91,8 @@ export async function PUT(request, { params }) {
         },
         { status: 400 }
       );
-    } // Check if status header is set by the middleware
-    const statusHeader = getStatusFromHeader(request);
-    if (statusHeader === "ACTIVE") {
-      validatedData.status = "ACTIVE";
     }
+    validatedData = applyMiddlewareHeaders(validatedData, request);
 
     const updatedCopperLine = await prisma.copperLine.update({
       where: { id: copperLineId },

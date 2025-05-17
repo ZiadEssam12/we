@@ -1,43 +1,41 @@
-import { auth } from "@/app/auth";
 import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
 export async function GET(request) {
   // Auth is handled by the middleware
 
+  //   PENDING_ADD
+  // PENDING_UPDATE
+  const query = {
+    status: {
+      in: ["PENDING_ADD", "PENDING_UPDATE"],
+    },
+  };
+
   try {
-    const NumberOfMajorCabinets = await prisma.majorCabinet.count({
-      where: {
-        status: "PENDING",
-      },
+    const majorCabinets = await prisma.majorCabinet.count({
+      where: query,
     });
 
-    const NumberOfSecondaryCabinets = await prisma.secondaryCabinet.count({
-      where: {
-        status: "PENDING",
-      },
+    const secondaryCabinets = await prisma.secondaryCabinet.count({
+      where: query,
+    });
+    const mobileTowers = await prisma.mobileTower.count({
+      where: query,
     });
 
-    const NumberOfMobileTowers = await prisma.mobileTower.count({
-      where: {
-        status: "PENDING",
-      },
-    });
-
-    const NumberOfRequests = await prisma.copperLine.count({
-      where: {
-        status: "PENDING",
-      },
+    const copperLines = await prisma.copperLine.count({
+      where: query,
     });
 
     return NextResponse.json(
       {
         success: true,
         data: {
-          NumberOfMajorCabinets,
-          NumberOfSecondaryCabinets,
-          NumberOfMobileTowers,
-          NumberOfRequests,
+          majorCabinets,
+          secondaryCabinets,
+          mobileTowers,
+          copperLines,
         },
       },
       { status: 200 }

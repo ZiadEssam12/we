@@ -619,7 +619,7 @@ export async function getAllRequests({ headers }) {
     `${process.env.NEXT_PUBLIC_APP_URL}/api/requests`,
     {
       headers,
-      credentials: "include",
+      cache: "no-store", // Don't cache the results
     }
   );
 
@@ -638,4 +638,79 @@ export async function getAllRequests({ headers }) {
     message: "تم استرجاع الطلبات بنجاح",
     data: data.data,
   };
+}
+
+export const getAllPendingRequests = async ({ headers }) => {
+  try {
+    // Using the direct fetch instead of the server function
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_APP_URL}/api/requests`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          ...headers,
+        },
+        cache: "no-store", // Don't cache the results
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`Error fetching request counts: ${response.statusText}`);
+    }
+
+    const result = await response.json();
+    return (
+      result.data || {
+        NumberOfMajorCabinets: 0,
+        NumberOfSecondaryCabinets: 0,
+        NumberOfMobileTowers: 0,
+        NumberOfCopperLines: 0,
+      }
+    );
+  } catch (error) {
+    console.error("Error fetching request counts:", error);
+    return {
+      success: false,
+      message: "Error fetching requests cound",
+      error: error.message,
+    };
+  }
+};
+
+export async function getMajorCabinetsRequests({ headers }) {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_APP_URL}/api/requests/major-cabinets`,
+      {
+        headers,
+        cache: "no-store", // Don't cache the results
+      }
+    );
+
+    const data = await response.json();
+
+    console.log("data:", data);
+
+    if (!response.ok) {
+      return {
+        success: false,
+        message: data.message || "فشل في استرجاع الطلبات",
+        error: data.error,
+      };
+    }
+
+    return {
+      success: true,
+      message: "تم استرجاع الطلبات بنجاح",
+      data: data.data,
+    };
+  } catch (error) {
+    console.error("Error fetching major cabinets requests:", error);
+    return {
+      success: false,
+      message: "فشل في استرجاع الطلبات",
+      error: error.message,
+    };
+  }
 }

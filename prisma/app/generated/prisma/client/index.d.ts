@@ -64,7 +64,8 @@ export type UserRole = (typeof UserRole)[keyof typeof UserRole]
 
 export const Status: {
   ACTIVE: 'ACTIVE',
-  PENDING: 'PENDING'
+  PENDING_ADD: 'PENDING_ADD',
+  PENDING_UPDATE: 'PENDING_UPDATE'
 };
 
 export type Status = (typeof Status)[keyof typeof Status]
@@ -10718,7 +10719,7 @@ export namespace Prisma {
     room_location: string
     entitlement: string
     distance: string
-    status?: $Enums.Status
+    status: $Enums.Status
     responsible?: string | null
     notes: string
     createdAt?: Date | string
@@ -10737,7 +10738,7 @@ export namespace Prisma {
     room_location: string
     entitlement: string
     distance: string
-    status?: $Enums.Status
+    status: $Enums.Status
     responsible?: string | null
     notes: string
     createdAt?: Date | string
@@ -10794,7 +10795,7 @@ export namespace Prisma {
     room_location: string
     entitlement: string
     distance: string
-    status?: $Enums.Status
+    status: $Enums.Status
     responsible?: string | null
     notes: string
     createdAt?: Date | string
@@ -10853,7 +10854,7 @@ export namespace Prisma {
     box_location: string
     cabinet_to_box_distance: string
     responsible?: string | null
-    status?: $Enums.Status
+    status: $Enums.Status
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -10873,7 +10874,7 @@ export namespace Prisma {
     box_location: string
     cabinet_to_box_distance: string
     responsible?: string | null
-    status?: $Enums.Status
+    status: $Enums.Status
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -10933,7 +10934,7 @@ export namespace Prisma {
     box_location: string
     cabinet_to_box_distance: string
     responsible?: string | null
-    status?: $Enums.Status
+    status: $Enums.Status
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -10990,7 +10991,7 @@ export namespace Prisma {
     address: string
     location: string
     responsible?: string | null
-    status?: $Enums.Status
+    status: $Enums.Status
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -11007,7 +11008,7 @@ export namespace Prisma {
     address: string
     location: string
     responsible?: string | null
-    status?: $Enums.Status
+    status: $Enums.Status
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -11058,7 +11059,7 @@ export namespace Prisma {
     address: string
     location: string
     responsible?: string | null
-    status?: $Enums.Status
+    status: $Enums.Status
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -11116,7 +11117,7 @@ export namespace Prisma {
     room_location: string
     insulation_level: string
     responsible?: string | null
-    status?: $Enums.Status
+    status: $Enums.Status
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -11140,7 +11141,7 @@ export namespace Prisma {
     room_location: string
     insulation_level: string
     responsible?: string | null
-    status?: $Enums.Status
+    status: $Enums.Status
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -11212,7 +11213,7 @@ export namespace Prisma {
     room_location: string
     insulation_level: string
     responsible?: string | null
-    status?: $Enums.Status
+    status: $Enums.Status
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string

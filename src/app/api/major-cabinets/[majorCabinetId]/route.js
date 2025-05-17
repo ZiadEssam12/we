@@ -2,7 +2,10 @@ import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 import { updateMajorCabinetSchema } from "@/schemas/majorCabinet"; // Import the schema
 import { auth } from "@/app/auth";
-import { getStatusFromHeader } from "@/lib/middleware-utils";
+import {
+  applyMiddlewareHeaders,
+  getStatusFromHeader,
+} from "@/lib/middleware-utils";
 
 // GET a single MajorCabinet by ID
 export async function GET(request, { params }) {
@@ -55,15 +58,6 @@ export async function GET(request, { params }) {
 
 // PUT (Update) a MajorCabinet by ID
 export async function PUT(request, { params }) {
-  const session = await auth();
-
-  if (!session || !session.user || session.user.role !== "ADMIN") {
-    return NextResponse.json(
-      { success: false, message: "غير مصرح به. يتطلب دور المسؤول." },
-      { status: 403 }
-    );
-  }
-
   const { majorCabinetId } = await params;
 
   if (!majorCabinetId) {
@@ -107,6 +101,8 @@ export async function PUT(request, { params }) {
         { status: 400 }
       );
     }
+
+    validatedData = applyMiddlewareHeaders(validatedData, request);
 
     const updatedMajorCabinet = await prisma.majorCabinet.update({
       where: { id: majorCabinetId },

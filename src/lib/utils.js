@@ -19,3 +19,7 @@ export function getSessionCookieName() {
 }
 
 
+
+export function setStatus(data){
+  
+}

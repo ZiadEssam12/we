@@ -257,7 +257,8 @@ exports.UserRole = exports.$Enums.UserRole = {
 
 exports.Status = exports.$Enums.Status = {
   ACTIVE: 'ACTIVE',
-  PENDING: 'PENDING'
+  PENDING_ADD: 'PENDING_ADD',
+  PENDING_UPDATE: 'PENDING_UPDATE'
 };
 
 exports.Prisma.ModelName = {

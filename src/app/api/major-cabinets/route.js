@@ -85,7 +85,8 @@ export async function POST(request) {
         },
         { status: 400 }
       );
-    } // Apply middleware headers
+    } 
+
     validatedData = applyMiddlewareHeaders(validatedData, request);
 
     const newMajorCabinet = await prisma.majorCabinet.create({
