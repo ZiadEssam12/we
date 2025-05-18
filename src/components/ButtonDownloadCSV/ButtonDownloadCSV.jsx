@@ -62,7 +62,9 @@ export default function DownloadCSVButton({ apiEndpoint, fileName }) {
     setLoading(true);
     try {
       // Fetch data from the provided API endpoint
-      const response = await fetch(apiEndpoint);
+      const baseUrl = process.env.NEXT_PUBLIC_APP_URL || window.location.origin;
+      const url = new URL(apiEndpoint, baseUrl);
+      const response = await fetch(url);
       const result = await response.json();
 
       // Get the data array from the response
