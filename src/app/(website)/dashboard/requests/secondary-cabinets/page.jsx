@@ -4,6 +4,7 @@ import ServerRequestPageFinal from "@/components/UI/CutomRequestPAge/ServerReque
 import SecondaryCabinetForm from "@/app/(website)/dashboard/secondary-cabinets/SecondaryCabinetForm";
 import { getSecondaryCabinetsRequests } from "@/lib/api";
 
+export const dynamic = "force-dynamic";
 // This is a server component
 export default async function SecondaryCabinetsRequestsPage() {
   return (

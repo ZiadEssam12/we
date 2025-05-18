@@ -4,6 +4,7 @@ import ServerRequestPageFinal from "@/components/UI/CutomRequestPAge/ServerReque
 import MobileTowerForm from "@/app/(website)/dashboard/mobile-towers/MobileTowerForm";
 import { getMobileTowersRequests } from "@/lib/api";
 
+export const dynamic = "force-dynamic";
 // This is a server component
 export default async function MobileTowersRequestsPage() {
   return (

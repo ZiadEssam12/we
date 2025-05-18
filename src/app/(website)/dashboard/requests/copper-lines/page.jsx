@@ -3,6 +3,8 @@ import ServerRequestPageFinal from "@/components/UI/CutomRequestPAge/ServerReque
 import CopperLineForm from "@/app/(website)/dashboard/copper-lines/CopperLineForm";
 import { getCopperLinesRequests } from "@/lib/api";
 
+export const dynamic = "force-dynamic";
+
 // This is a server component
 export default async function CopperLinesRequestsPage() {
   // Define server-side fetch function - uses database directly
