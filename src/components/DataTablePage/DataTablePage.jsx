@@ -61,15 +61,52 @@ export default async function DataTablePage({
         <p>{error}</p>
       </div>
     );
-  }
-  // Determine the module from fetchData function name or apiEndpoint
+  } // Determine the module from fetchData function name or apiEndpoint
   const getModuleFromFetchData = (fetchDataFunc) => {
-    const functionName = fetchDataFunc.name;
-    if (functionName.includes("MajorCabinets")) return "major-cabinets";
-    if (functionName.includes("SecondaryCabinets")) return "secondary-cabinets";
-    if (functionName.includes("MobileTowers")) return "mobile-towers";
-    if (functionName.includes("CopperLines")) return "copper-lines";
-    if (functionName.includes("Users")) return "users";
+    // In production, function.name might be minified, so this approach isn't reliable
+    // Let's add more robust detection
+
+    // First try to get name from function name if available
+    const functionName = fetchDataFunc.name || "";
+
+    // Then try to extract from toString() which might reveal more in production
+    const functionString = fetchDataFunc.toString().toLowerCase();
+
+    // Check both the function name and string representation
+    if (
+      functionName.includes("MajorCabinets") ||
+      functionString.includes("majorcabinets")
+    )
+      return "major-cabinets";
+    if (
+      functionName.includes("SecondaryCabinets") ||
+      functionString.includes("secondarycabinets")
+    )
+      return "secondary-cabinets";
+    if (
+      functionName.includes("MobileTowers") ||
+      functionString.includes("mobiletowers")
+    )
+      return "mobile-towers";
+    if (
+      functionName.includes("CopperLines") ||
+      functionString.includes("copperlines")
+    )
+      return "copper-lines";
+    if (functionName.includes("Users") || functionString.includes("users"))
+      return "users";
+
+    // Fallback: if we couldn't determine from function, check if apiEndpoint is provided
+    if (apiEndpoint) {
+      if (apiEndpoint.includes("major-cabinets")) return "major-cabinets";
+      if (apiEndpoint.includes("secondary-cabinets"))
+        return "secondary-cabinets";
+      if (apiEndpoint.includes("mobile-towers")) return "mobile-towers";
+      if (apiEndpoint.includes("copper-lines")) return "copper-lines";
+      if (apiEndpoint.includes("users")) return "users";
+    }
+
+    console.log("Could not determine module from function:", functionName);
     return null;
   };
 
@@ -83,19 +120,20 @@ export default async function DataTablePage({
     <>
       <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-l from-blue-600 to-purple-600 text-transparent bg-clip-text animate-gradient-text leading-tight text-center mb-6">
         {title}
-      </h1>
-
+      </h1>{" "}
       <DataTableWrapper initialData={initialData} columns={columns} />
-      {session?.user?.role === "ADMIN" && moduleParam && (
+      {/* Debug information - removed in production */}
+      {console.log("Session Role:", session?.user?.role)}
+      {console.log("Module Parameter:", moduleParam)}
+      {console.log("Title:", title)}
+      {/* Show download button if user is admin - more flexible condition */}
+      {(session?.user?.role === "ADMIN" || session?.user?.role === "admin") && (
         <DownloadCSVButton
-          apiEndpoint={`/api/export-csv?module=${moduleParam}`}
+          apiEndpoint={`/api/export-csv?module=${
+            moduleParam || title.toLowerCase().replace(/\s+/g, "-")
+          }`}
           fileName={fileName}
         />
-      )}
-
-      {console.log(
-        "session?.user?.role === ADMIN && moduleParam :",
-        session?.user?.role === "ADMIN" && moduleParam
       )}
     </>
   );

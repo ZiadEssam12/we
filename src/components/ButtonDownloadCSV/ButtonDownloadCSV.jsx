@@ -57,14 +57,26 @@ function convertToCSVAndDownload(data, filename = "data.csv") {
 
 export default function DownloadCSVButton({ apiEndpoint, fileName }) {
   const [loading, setLoading] = useState(false);
-
   const handleDownload = async () => {
     setLoading(true);
     try {
-      // Fetch data from the provided API endpoint
-      const baseUrl = process.env.NEXT_PUBLIC_APP_URL || window.location.origin;
-      const url = new URL(apiEndpoint, baseUrl);
-      const response = await fetch(url);
+      // Use relative URL for API calls to avoid cross-origin issues
+      let finalUrl;
+
+      // Handle different URL formats
+      if (apiEndpoint.startsWith("http")) {
+        // If it's a full URL, use it directly
+        finalUrl = apiEndpoint;
+      } else {
+        // For relative URLs, use window.location.origin
+        finalUrl = `${process.env.NEXT_PUBLIC_APP_URL}${
+          apiEndpoint.startsWith("/") ? "" : "/"
+        }${apiEndpoint}`;
+      }
+
+      console.log("Fetching CSV data from:", finalUrl);
+
+      const response = await fetch(finalUrl);
       const result = await response.json();
 
       // Get the data array from the response
