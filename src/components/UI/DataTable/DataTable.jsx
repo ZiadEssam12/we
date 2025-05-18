@@ -17,8 +17,10 @@ import {
   TrashIcon,
   Search,
   X,
+  PlusCircle,
 } from "lucide-react";
 import { LineMdLoadingLoop } from "@/app/icons/Icons";
+import { useSession } from "next-auth/react";
 
 export default function DataTable({
   data = [],
@@ -27,6 +29,8 @@ export default function DataTable({
   handleSearch,
   isLoading = false,
 }) {
+  const { data: session } = useSession();
+
   const [pagination, setPagination] = useState({
     pageIndex: 0,
     pageSize: 10,
@@ -87,11 +91,11 @@ export default function DataTable({
               disabled={isLoading}
               type="submit"
               className={`flex cursor-pointer items-center gap-1 py-2 px-4 rounded-lg bg-gradient-to-br transition-colors duration-150 shadow-md 
-    ${
-      isLoading
-        ? "from-blue-400 to-purple-400 opacity-70 cursor-not-allowed"
-        : "from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 hover:shadow-lg"
-    } text-white`}
+              ${
+                isLoading
+                  ? "from-blue-400 to-purple-400 opacity-70 cursor-not-allowed"
+                  : "from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 hover:shadow-lg"
+              } text-white`}
             >
               {isLoading ? (
                 <LineMdLoadingLoop className="h-4 w-4 animate-spin" />
@@ -102,12 +106,16 @@ export default function DataTable({
             </button>
           </form>
         </div>
-        <button
-          onClick={() => setOpenModal(true)}
-          className="py-2 px-4 cursor-pointer rounded-lg bg-black hover:bg-black/80 border border-black  text-white transition-colors duration-150 "
-        >
-          إضافة
-        </button>
+
+        {session?.user.role !== "MANAGER" && (
+          <button
+            onClick={() => setOpenModal(true)}
+            className="group relative flex items-center cursor-pointer justify-center gap-2 rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 px-4 py-2  font-medium text-white hover:from-blue-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-70 transition-all duration-200 shadow-md hover:shadow-lg"
+          >
+            <PlusCircle width={20} height={20} />
+            <span>إضافة</span>
+          </button>
+        )}
       </div>
       <div className="rounded-md border bg-white">
         <div className="overflow-x-auto">
@@ -136,10 +144,13 @@ export default function DataTable({
                 table.getRowModel().rows.map((row) => (
                   <tr
                     key={row.id}
-                    className="border-b hover:bg-gray-50 transition-colors relative"
+                    className="border-b last:border-b-0 hover:bg-gray-50/80 transition-all duration-200 ease-in-out relative even:bg-gray-50/30 group"
                   >
                     {row.getVisibleCells().map((cell) => (
-                      <td key={cell.id} className="px-4 py-3 text-gray-700">
+                      <td
+                        key={cell.id}
+                        className="px-4 py-3.5 text-gray-700 group-hover:text-gray-900 transition-colors"
+                      >
                         {flexRender(
                           cell.column.columnDef.cell,
                           cell.getContext()

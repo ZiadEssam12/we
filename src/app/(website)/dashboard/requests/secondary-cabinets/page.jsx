@@ -1,8 +1,8 @@
 // Secondary Cabinets Requests Page
 import React from "react";
 import ServerRequestPageFinal from "@/components/UI/CutomRequestPAge/ServerRequestPageFinal";
-import SecondaryCabinetForm from "@/app/(website)/dashboard/secondary-cabinets/SecondaryCabinetForm";
 import { getSecondaryCabinetsRequests } from "@/lib/api";
+import { SecondaryCabinetDynamicForm } from "../../secondary-cabinets/SecondaryCabinetDynamicForm";
 
 export const dynamic = "force-dynamic";
 // This is a server component
@@ -14,7 +14,7 @@ export default async function SecondaryCabinetsRequestsPage() {
       backLinkUrl="/dashboard/requests"
       backLinkText="العودة للطلبات"
       fetchFn={getSecondaryCabinetsRequests}
-      RequestForm={SecondaryCabinetForm}
+      RequestForm={SecondaryCabinetDynamicForm}
       apiEndpoint="/api/requests/secondary-cabinets"
     />
   );

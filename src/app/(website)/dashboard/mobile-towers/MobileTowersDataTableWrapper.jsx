@@ -9,7 +9,8 @@ import {
 import { useCallback } from "react";
 
 // You would need to create this form component
-import MobileTowerForm from "./MobileTowerForm";
+// import MobileTowerForm from "./MobileTowerForm";
+import { mobileTowersDyanamicForm } from "./MobileTowersDynamicForm";
 
 export default function MobileTowersDataTableWrapper({ initialData, columns }) {
   // Define the fetch function that will be used for client-side data refresh
@@ -30,7 +31,7 @@ export default function MobileTowersDataTableWrapper({ initialData, columns }) {
       initialData={initialData}
       columns={columns}
       apiHandlers={apiHandlers}
-      FormComponent={MobileTowerForm}
+      FormComponent={mobileTowersDyanamicForm}
       entityName="برج التليفون"
       modalTexts={{
         addButton: "إضافة ",

@@ -1,5 +1,5 @@
 // get all users
-export async function getAllUsers({ headers, query }) {
+export async function getAllUsers({ headers, query="" }) {
   return fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/users?query=${query}`, {
     method: "GET",
     headers: headers,
@@ -129,7 +129,7 @@ export async function deleteUser({ userId }) {
 // =================== Major Cabinet API Functions ===================
 
 // Get all major cabinets
-export async function getAllMajorCabinets({ headers, query } = {}) {
+export async function getAllMajorCabinets({ headers, query="" } = {}) {
   // Added headers parameter
   const fetchOptions = {
     method: "GET",

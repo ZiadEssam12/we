@@ -1,6 +1,6 @@
 import ServerRequestPageFinal from "@/components/UI/CutomRequestPAge/ServerRequestPageFinal";
-import MajorCabinetForm from "@/app/(website)/dashboard/main-cabinets/MajorCabinetForm";
 import { getMajorCabinetsRequests } from "@/lib/api";
+import { majorFormDynamic } from "../../main-cabinets/MajorCabinetDynamicForm";
 
 export const dynamic = "force-dynamic";
 // This is a server component
@@ -14,7 +14,7 @@ export default async function MajorCabinetRequestsPage() {
       backLinkUrl="/dashboard/requests"
       backLinkText="العودة للطلبات"
       fetchFn={getMajorCabinetsRequests}
-      RequestForm={MajorCabinetForm}
+      RequestForm={majorFormDynamic}
       apiEndpoint="/api/requests/major-cabinets"
     />
   );

@@ -30,7 +30,6 @@ export async function apiRoleMiddleware(req, token) {
     (method === "POST" && userRole === "ADMIN") ||
     (method === "PUT" && (userRole === "ADMIN" || userRole === "MANAGER"));
 
-  console.log("Should add status:", shouldAddStatus);
   if (shouldAddStatus) {
     try {
       // Create a new headers object with all original headers
@@ -39,7 +38,6 @@ export async function apiRoleMiddleware(req, token) {
       // Add status directly in the header
       newHeaders.set("x-status", "ACTIVE");
 
-      console.log("Added status header: ACTIVE");
 
       // Clone the request with new headers
       const newReq = new Request(req.url, {

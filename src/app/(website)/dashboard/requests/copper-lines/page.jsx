@@ -1,7 +1,7 @@
 import React from "react";
 import ServerRequestPageFinal from "@/components/UI/CutomRequestPAge/ServerRequestPageFinal";
-import CopperLineForm from "@/app/(website)/dashboard/copper-lines/CopperLineForm";
 import { getCopperLinesRequests } from "@/lib/api";
+import { CopperLinesFormDynamic } from "../../copper-lines/CopperLinesFormDynamic";
 
 export const dynamic = "force-dynamic";
 
@@ -16,7 +16,7 @@ export default async function CopperLinesRequestsPage() {
       backLinkUrl="/dashboard/requests"
       backLinkText="العودة للطلبات"
       fetchFn={getCopperLinesRequests}
-      RequestForm={CopperLineForm}
+      RequestForm={CopperLinesFormDynamic}
       apiEndpoint="/api/requests/copper-lines"
     />
   );

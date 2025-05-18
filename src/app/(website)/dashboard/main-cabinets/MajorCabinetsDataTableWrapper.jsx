@@ -1,6 +1,5 @@
 "use client";
 import DataTableWrapper from "@/components/DataTableWrapper/DataTableWrapper";
-import MajorCabinetForm from "./MajorCabinetForm";
 import {
   createMajorCabinet,
   updateMajorCabinet,
@@ -8,6 +7,7 @@ import {
   getAllMajorCabinets,
 } from "@/lib/client-api";
 import { useCallback } from "react";
+import { majorFormDynamic } from "./MajorCabinetDynamicForm";
 
 export default function MajorCabinetsDataTableWrapper({
   initialData,
@@ -30,7 +30,7 @@ export default function MajorCabinetsDataTableWrapper({
       initialData={initialData}
       columns={columns}
       apiHandlers={apiHandlers}
-      FormComponent={MajorCabinetForm}
+      FormComponent={majorFormDynamic}
       entityName="الكبينة الرئيسية"
       modalTexts={{
         addButton: "إضافة كبينة رئيسية",

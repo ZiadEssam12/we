@@ -9,7 +9,7 @@ import {
 import { useCallback } from "react";
 
 // You would need to create this form component similar to MajorCabinetForm
-import SecondaryCabinetForm from "./SecondaryCabinetForm";
+import { SecondaryCabinetDynamicForm } from "./SecondaryCabinetDynamicForm";
 
 export default function SecondaryCabinetsDataTableWrapper({
   initialData,
@@ -33,7 +33,7 @@ export default function SecondaryCabinetsDataTableWrapper({
       initialData={initialData}
       columns={columns}
       apiHandlers={apiHandlers}
-      FormComponent={SecondaryCabinetForm}
+      FormComponent={SecondaryCabinetDynamicForm}
       entityName="الكبينة الثانوية"
       modalTexts={{
         addButton: "إضافة كبينة ثانوية",

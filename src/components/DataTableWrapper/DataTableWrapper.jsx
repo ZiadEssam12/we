@@ -119,6 +119,9 @@ export default function DataTableWrapper({
 
   // Fetch data on component mount or when refetch is triggered
   const refetchData = async () => {
+    // Remove the following if you need to refetch after updating/adding
+    return;
+
     if (session?.user?.role === "USER") {
       return;
     }
@@ -153,19 +156,18 @@ export default function DataTableWrapper({
         result = await createItem(formData);
       }
       if (result.success) {
-        if (session?.user.role !== "USER") {
-          setData((prevData) => {
-            if (selectedItem) {
-              return prevData.map((item) =>
-                item.id === selectedItem.id ? result.data : item
-              );
-            } else {
-              return [result.data, ...prevData];
-            }
-          });
-        }
-
-        console.log("user Role :", session?.user?.role);
+        // if (session?.user.role !== "USER") {
+        //   setData((prevData) => {
+        //     if (selectedItem) {
+        //       return prevData.map((item) =>
+        //         item.id === selectedItem.id ? result.data : item
+        //       );
+        //     }
+        //      else {
+        //       return [result.data, ...prevData];
+        //     }
+        //   });
+        // }
 
         // Display different success messages based on user role
         const successMessage =
@@ -219,11 +221,17 @@ export default function DataTableWrapper({
     try {
       const result = await deleteItem({ id: selectedItem.id });
       if (result.success) {
+        setData((prevData) =>
+          prevData.filter((item) => item.id !== selectedItem.id)
+        );
+
         setIsDeleteModalOpen(false);
         setSelectedItem(null);
 
-        await refetchData();
+        toast.success(texts.deleteSuccess || result.message);
+        // await refetchData();
       } else {
+        toast.error(result.message || `فشل في حذف ${entityName}`);
         setError(result.message || `فشل في حذف ${entityName}`);
       }
     } catch (err) {
@@ -333,7 +341,7 @@ export default function DataTableWrapper({
     // Implement search functionality here
     // For example, you can filter the data based on the search term
     try {
-      setIsLoading(true)
+      setIsLoading(true);
       const { data } = await fetchData({ query: searchTerm });
       console.log("data after search:", data);
       setData(data);
@@ -366,19 +374,13 @@ export default function DataTableWrapper({
         onClose={closeAddUpdateModal}
         title={selectedItem ? texts.editTitle : texts.addTitle}
       >
-        <Suspense
-          fallback={
-            <div className="h-[100px] rounded-lg bg-gray-100 animate-bounce"></div>
-          }
-        >
-          <FormComponent
-            initialData={selectedItem}
-            onSubmit={handleFormSubmit}
-            isProcessing={isFormProcessing}
-            formStyle="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 overflow-y-auto max-h-[70vh] p-4"
-            {...formProps}
-          />
-        </Suspense>
+        <FormComponent
+          initialData={selectedItem}
+          onSubmit={handleFormSubmit}
+          isProcessing={isFormProcessing}
+          formStyle="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 overflow-y-auto max-h-[70vh] p-4"
+          {...formProps}
+        />
       </Modal>
       {/* Delete Confirmation Modal */}
       <Modal

@@ -1,8 +1,8 @@
 // Mobile Towers Requests Page
 import React from "react";
 import ServerRequestPageFinal from "@/components/UI/CutomRequestPAge/ServerRequestPageFinal";
-import MobileTowerForm from "@/app/(website)/dashboard/mobile-towers/MobileTowerForm";
 import { getMobileTowersRequests } from "@/lib/api";
+import { mobileTowersDyanamicForm } from "../../mobile-towers/MobileTowersDynamicForm";
 
 export const dynamic = "force-dynamic";
 // This is a server component
@@ -14,7 +14,7 @@ export default async function MobileTowersRequestsPage() {
       backLinkUrl="/dashboard/requests"
       backLinkText="العودة للطلبات"
       fetchFn={getMobileTowersRequests}
-      RequestForm={MobileTowerForm}
+      RequestForm={mobileTowersDyanamicForm}
       apiEndpoint="/api/requests/mobile-towers"
     />
   );
