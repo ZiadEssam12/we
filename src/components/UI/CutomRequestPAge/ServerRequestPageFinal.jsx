@@ -14,6 +14,9 @@ import { getSessionCookieName, setCookiesHeader } from "@/lib/utils";
  * @param {React.Component} props.RequestForm - Form component to render for request details
  * @param {string} props.apiEndpoint - API endpoint for approving/rejecting requests
  */
+
+export const dynamic = 'force-dynamic';
+
 export default async function ServerRequestPageFinal({
   entityType,
   title,
