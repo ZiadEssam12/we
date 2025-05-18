@@ -40,7 +40,6 @@ export default async function DataTablePage({
 
     // Fetch data using provided function
     const result = await fetchData({ headers });
-    console.log(`SSR Fetch Result for ${title}:`, result);
 
     if (result.success) {
       initialData = result.data || [];
@@ -106,7 +105,6 @@ export default async function DataTablePage({
       if (apiEndpoint.includes("users")) return "users";
     }
 
-    console.log("Could not determine module from function:", functionName);
     return null;
   };
 
@@ -122,10 +120,6 @@ export default async function DataTablePage({
         {title}
       </h1>{" "}
       <DataTableWrapper initialData={initialData} columns={columns} />
-      {/* Debug information - removed in production */}
-      {console.log("Session Role:", session?.user?.role)}
-      {console.log("Module Parameter:", moduleParam)}
-      {console.log("Title:", title)}
       {/* Show download button if user is admin - more flexible condition */}
       {(session?.user?.role === "ADMIN" || session?.user?.role === "admin") && (
         <DownloadCSVButton

@@ -27,7 +27,6 @@ export async function GET(request, { params }) {
       );
     }
 
-    console.log("Pending Request:", pendingRequest);
 
     return NextResponse.json(
       {

@@ -21,7 +21,6 @@ export default function LoginPage() {
       setLoading(true);
       setError(null); // Clear previous errors
 
-      console.log("values:", values);
 
       try {
         const result = await signIn("credentials", {

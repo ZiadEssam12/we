@@ -152,7 +152,6 @@ export async function DELETE(request, { params }) {
 
   const { majorCabinetId } = await params;
 
-  console.log("majorCabinetId", await params);
 
   if (!majorCabinetId) {
     return NextResponse.json(

@@ -44,9 +44,6 @@ export async function POST(req) {
 
     const isValid = await bcrypt.compare(password, user.password);
 
-    console.log("User:", user);
-    console.log("Is valid:", isValid);
-
     // Important change: Return 200 with success:false instead of 401
     if (!isValid) {
       return NextResponse.json(

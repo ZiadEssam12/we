@@ -32,7 +32,6 @@ const { handlers, auth, signIn, signOut } = NextAuth({
         },
       },
       async authorize(credentials) {
-        console.log("credentials :  ", credentials);
 
         try {
           // Validate credentials

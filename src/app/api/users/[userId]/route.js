@@ -153,12 +153,10 @@ export const PUT = auth(async function PUT(request, { params }) {
       updateData.role = role;
     }
 
-    console.log("Searching for user with ID:", userId);
     const existingUser = await prisma.user.findUnique({
       where: { id: userId },
     });
 
-    console.log("existingUser :> ", existingUser);
 
     if (!existingUser) {
       return NextResponse.json(

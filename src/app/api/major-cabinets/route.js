@@ -68,7 +68,6 @@ export async function POST(request) {
   try {
     const cabinetData = await request.json();
 
-    console.log("cabinetData", cabinetData);
 
     let validatedData;
 

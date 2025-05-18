@@ -19,7 +19,6 @@ export async function createUser({ user }) {
   });
 
   const data = await response.json();
-  console.log("response : ", data);
 
   if (!response.ok) {
     return {
@@ -185,7 +184,6 @@ export async function getMajorCabinetById(id) {
 
 // Create a new major cabinet
 export async function createMajorCabinet({ cabinetData }) {
-  console.log("cabinetData", cabinetData);
   // Changed to accept majorCabinetData directly
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_APP_URL}/api/major-cabinets`,
@@ -702,7 +700,6 @@ export async function getMajorCabinetsRequests({ headers }) {
 
     const data = await response.json();
 
-    console.log("data:", data);
 
     if (!response.ok) {
       return {
@@ -738,7 +735,6 @@ export async function getSecondaryCabinetsRequests({ headers }) {
 
     const data = await response.json();
 
-    console.log("data:", data);
 
     if (!response.ok) {
       return {
@@ -774,7 +770,6 @@ export async function getMobileTowersRequests({ headers }) {
 
     const data = await response.json();
 
-    console.log("data:", data);
 
     if (!response.ok) {
       return {
@@ -810,7 +805,6 @@ export async function getCopperLinesRequests({ headers }) {
 
     const data = await response.json();
 
-    console.log("data:", data);
 
     if (!response.ok) {
       return {

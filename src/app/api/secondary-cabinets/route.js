@@ -67,7 +67,6 @@ export async function POST(request) {
     const body = await request.json();
     let validatedData;
 
-    console.log("Request body:", body);
 
     try {
       validatedData = await secondaryCabinetSchema.validate(body, {

@@ -29,9 +29,6 @@ export default function CustomRequestPage({
   const router = useRouter();
   const requestId = searchParams.get("id");
 
-  useEffect(() => {
-    console.log("Request Id changed:", requestId);
-  }, [requestId]);
 
   // Use initial data from server component and allow client-side updates
   const [pendingRequests, setPendingRequests] = useState([]);
@@ -78,7 +75,6 @@ export default function CustomRequestPage({
               requestId
             );
 
-            console.log("Data from API:", detailedData);
 
             if (detailedData) {
               setSelectedRequestData(detailedData);
@@ -136,7 +132,7 @@ export default function CustomRequestPage({
       setIsProcessing(false);
     }
   };
-  
+
   const handleRejectRequest = async (reqId) => {
     setIsProcessing(true);
 
@@ -349,11 +345,6 @@ export default function CustomRequestPage({
                   initialData={selectedRequestData}
                   isProcessing={isProcessing}
                   hideSubmitButton={true}
-                  onSubmit={(data) => {
-                    // Handle form submission here
-                    console.log("Form submitted with data:", data);
-                    // In a real application, you would send this to your API
-                  }}
                   formStyle="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-h-[65vh] overflow-y-auto px-2 rounded-lg"
                   renderCustomButtons={(formik) => (
                     <div className="col-span-1 md:col-span-2 lg:col-span-3">
