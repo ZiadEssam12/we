@@ -92,6 +92,11 @@ export default async function DataTablePage({
           fileName={fileName}
         />
       )}
+
+      {console.log(
+        "session?.user?.role === ADMIN && moduleParam :",
+        session?.user?.role === "ADMIN" && moduleParam
+      )}
     </>
   );
 }
