@@ -13,6 +13,7 @@ export default async function SecondaryCabinetsPageSSR() {
       columns={secondaryCabinetColumns}
       title="الكبينة الثانوية"
       errorTitle="خطأ في تحميل بيانات الكبائن الثانوية"
+      apiEndpoint="/api/secondary-cabinets"
     />
   );
 }

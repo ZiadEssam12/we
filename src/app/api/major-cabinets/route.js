@@ -11,15 +11,6 @@ import {
 
 // api/major-cabinets
 export async function GET(request) {
-  const session = await auth();
-
-  if (!session || !session.user) {
-    return NextResponse.json(
-      { success: false, message: "غير مصرح به" },
-      { status: 401 }
-    );
-  }
-
   try {
     const majorCabinets = await prisma.majorCabinet.findMany({
       where: {
@@ -85,7 +76,7 @@ export async function POST(request) {
         },
         { status: 400 }
       );
-    } 
+    }
 
     validatedData = applyMiddlewareHeaders(validatedData, request);
 

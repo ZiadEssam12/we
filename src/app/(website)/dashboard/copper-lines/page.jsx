@@ -13,6 +13,7 @@ export default async function CopperLinesPageSSR() {
       columns={copperLineColumns}
       title="خطوط النحاس"
       errorTitle="خطأ في تحميل بيانات خطوط النحاس"
+      apiEndpoint="/api/copper-lines"
     />
   );
 }

@@ -2,22 +2,16 @@ import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 import { auth } from "@/app/auth";
 import { secondaryCabinetSchema } from "@/schemas/secondaryCabinet";
-import { getStatusFromHeader } from "@/lib/middleware-utils";
+import { applyMiddlewareHeaders } from "@/lib/middleware-utils";
 
 // GET all SecondaryCabinets
 // api/secondary-cabinets
 export async function GET(request) {
-  const session = await auth();
-
-  if (!session || !session.user) {
-    return NextResponse.json(
-      { success: false, message: "غير مصرح به" },
-      { status: 401 }
-    );
-  }
-
   try {
     const secondaryCabinets = await prisma.secondaryCabinet.findMany({
+      where: {
+        status: "ACTIVE",
+      },
       orderBy: {
         createdAt: "desc",
       },
@@ -73,11 +67,9 @@ export async function POST(request) {
         },
         { status: 400 }
       );
-    } // Check if status header is set by the middleware
-    const statusHeader = getStatusFromHeader(request);
-    if (statusHeader === "ACTIVE") {
-      validatedData.status = "ACTIVE";
     }
+    // Check if status header is set by the middleware
+    validatedData = applyMiddlewareHeaders(validatedData, request);
 
     const newSecondaryCabinet = await prisma.secondaryCabinet.create({
       data: validatedData,

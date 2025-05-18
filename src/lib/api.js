@@ -678,6 +678,9 @@ export const getAllPendingRequests = async ({ headers }) => {
   }
 };
 
+// You can make them into one function by handling the
+// module in the backend and in the funtion as a prop
+// headers are requireds
 export async function getMajorCabinetsRequests({ headers }) {
   try {
     const response = await fetch(
@@ -685,6 +688,114 @@ export async function getMajorCabinetsRequests({ headers }) {
       {
         headers,
         cache: "no-store", // Don't cache the results
+      }
+    );
+
+    const data = await response.json();
+
+    console.log("data:", data);
+
+    if (!response.ok) {
+      return {
+        success: false,
+        message: data.message || "فشل في استرجاع الطلبات",
+        error: data.error,
+      };
+    }
+
+    return {
+      success: true,
+      message: "تم استرجاع الطلبات بنجاح",
+      data: data.data,
+    };
+  } catch (error) {
+    console.error("Error fetching major cabinets requests:", error);
+    return {
+      success: false,
+      message: "فشل في استرجاع الطلبات",
+      error: error.message,
+    };
+  }
+}
+export async function getSecondaryCabinetsRequests({ headers }) {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_APP_URL}/api/requests/secondary-cabinets`,
+      {
+        headers,
+        cache: "no-store",
+      }
+    );
+
+    const data = await response.json();
+
+    console.log("data:", data);
+
+    if (!response.ok) {
+      return {
+        success: false,
+        message: data.message || "فشل في استرجاع الطلبات",
+        error: data.error,
+      };
+    }
+
+    return {
+      success: true,
+      message: "تم استرجاع الطلبات بنجاح",
+      data: data.data,
+    };
+  } catch (error) {
+    console.error("Error fetching major cabinets requests:", error);
+    return {
+      success: false,
+      message: "فشل في استرجاع الطلبات",
+      error: error.message,
+    };
+  }
+}
+export async function getMobileTowersRequests({ headers }) {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_APP_URL}/api/requests/mobile-towers`,
+      {
+        headers,
+        cache: "no-store",
+      }
+    );
+
+    const data = await response.json();
+
+    console.log("data:", data);
+
+    if (!response.ok) {
+      return {
+        success: false,
+        message: data.message || "فشل في استرجاع الطلبات",
+        error: data.error,
+      };
+    }
+
+    return {
+      success: true,
+      message: "تم استرجاع الطلبات بنجاح",
+      data: data.data,
+    };
+  } catch (error) {
+    console.error("Error fetching major cabinets requests:", error);
+    return {
+      success: false,
+      message: "فشل في استرجاع الطلبات",
+      error: error.message,
+    };
+  }
+}
+export async function getCopperLinesRequests({ headers }) {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_APP_URL}/api/requests/copper-lines`,
+      {
+        headers,
+        cache: "no-store",
       }
     );
 

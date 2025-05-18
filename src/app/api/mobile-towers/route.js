@@ -2,22 +2,18 @@ import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 import { auth } from "@/app/auth";
 import { mobileTowerSchema } from "@/schemas/mobileTower";
-import { getStatusFromHeader } from "@/lib/middleware-utils";
+import {
+  applyMiddlewareHeaders,
+} from "@/lib/middleware-utils";
 
 // GET all MobileTowers
 // api/mobile-towers
 export async function GET(request) {
-  const session = await auth();
-
-  if (!session || !session.user) {
-    return NextResponse.json(
-      { success: false, message: "غير مصرح به" },
-      { status: 401 }
-    );
-  }
-
   try {
     const mobileTowers = await prisma.mobileTower.findMany({
+      where: {
+        status: "ACTIVE",
+      },
       orderBy: {
         createdAt: "desc",
       },
@@ -43,20 +39,6 @@ export async function GET(request) {
 export async function POST(request) {
   const session = await auth();
 
-  if (!session || !session.user) {
-    return NextResponse.json(
-      { success: false, message: "غير مصرح به" },
-      { status: 401 }
-    );
-  }
-  // Optional: Add role-based access control if needed, e.g., only ADMIN can create
-  // if (session.user.role !== "ADMIN") {
-  //   return NextResponse.json(
-  //     { success: false, message: "غير مصرح به. يتطلب دور المسؤول." },
-  //     { status: 403 }
-  //   );
-  // }
-
   try {
     const body = await request.json();
     let validatedData;
@@ -80,10 +62,7 @@ export async function POST(request) {
         { status: 400 }
       );
     } // Check if status header is set by the middleware
-    const statusHeader = getStatusFromHeader(request);
-    if (statusHeader === "ACTIVE") {
-      validatedData.status = "ACTIVE";
-    }
+    validatedData = applyMiddlewareHeaders(validatedData, request);
 
     const newMobileTower = await prisma.mobileTower.create({
       data: validatedData,

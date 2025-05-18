@@ -2,7 +2,10 @@ import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 import { updateSecondaryCabinetSchema } from "@/schemas/secondaryCabinet";
 import { auth } from "@/app/auth";
-import { getStatusFromHeader } from "@/lib/middleware-utils";
+import {
+  applyMiddlewareHeaders,
+  getStatusFromHeader,
+} from "@/lib/middleware-utils";
 
 // GET a single SecondaryCabinet by ID
 export async function GET(request, { params }) {
@@ -58,15 +61,6 @@ export async function GET(request, { params }) {
 
 // PUT (Update) a SecondaryCabinet by ID
 export async function PUT(request, { params }) {
-  const session = await auth();
-
-  if (!session || !session.user || session.user.role !== "ADMIN") {
-    return NextResponse.json(
-      { success: false, message: "غير مصرح به. يتطلب دور المسؤول." },
-      { status: 403 }
-    );
-  }
-
   const { secondaryCabinetId } = await params;
 
   if (!secondaryCabinetId) {
@@ -98,11 +92,10 @@ export async function PUT(request, { params }) {
         },
         { status: 400 }
       );
-    } // Check if status header is set by the middleware
-    const statusHeader = getStatusFromHeader(request);
-    if (statusHeader === "ACTIVE") {
-      validatedData.status = "ACTIVE";
     }
+
+    // Check if status header is set by the middleware
+    validatedData = applyMiddlewareHeaders(validatedData, request);
 
     const updatedSecondaryCabinet = await prisma.secondaryCabinet.update({
       where: { id: secondaryCabinetId },

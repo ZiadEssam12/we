@@ -147,7 +147,6 @@ export const fetchRequestDetails = async (entityType, requestId) => {
 
     const data = await response.json();
 
-    console.log("data from function :", data);
     return data.data || null;
   } catch (error) {
     console.error("Error fetching request details:", error);

@@ -13,6 +13,7 @@ export default async function MobileTowersPageSSR() {
       columns={mobileTowerColumns}
       title="أبراج التليفون"
       errorTitle="خطأ في تحميل بيانات أبراج التليفون"
+      apiEndpoint="/api/mobile-towers"
     />
   );
 }

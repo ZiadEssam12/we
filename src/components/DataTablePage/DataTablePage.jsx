@@ -2,6 +2,7 @@ import React from "react";
 import { auth } from "@/app/auth";
 import { cookies } from "next/headers";
 import { getSessionCookieName, setCookiesHeader } from "@/lib/utils";
+import DownloadCSVButton from "../ButtonDownloadCSV/ButtonDownloadCSV";
 
 /**
  * Generic server component for data table pages
@@ -11,6 +12,7 @@ import { getSessionCookieName, setCookiesHeader } from "@/lib/utils";
  * @param {Array} props.columns - Column definitions for the table
  * @param {string} props.title - Page title
  * @param {string} props.errorTitle - Title to display when there's an error
+ * @param {string} props.apiEndpoint - API endpoint for downloading data (optional)
  * @returns {React.ReactElement} Rendered component
  */
 export default async function DataTablePage({
@@ -19,6 +21,7 @@ export default async function DataTablePage({
   columns,
   title,
   errorTitle = "خطأ في تحميل البيانات",
+  apiEndpoint,
 }) {
   let initialData = [];
   let error = null;
@@ -59,14 +62,36 @@ export default async function DataTablePage({
       </div>
     );
   }
+  // Determine the module from fetchData function name or apiEndpoint
+  const getModuleFromFetchData = (fetchDataFunc) => {
+    const functionName = fetchDataFunc.name;
+    if (functionName.includes("MajorCabinets")) return "major-cabinets";
+    if (functionName.includes("SecondaryCabinets")) return "secondary-cabinets";
+    if (functionName.includes("MobileTowers")) return "mobile-towers";
+    if (functionName.includes("CopperLines")) return "copper-lines";
+    if (functionName.includes("Users")) return "users";
+    return null;
+  };
 
+  // Get module name for CSV export
+  const moduleParam = getModuleFromFetchData(fetchData);
+
+  // Format title for file name (remove spaces, make lowercase)
+  const fileName = title.replace(/\s+/g, "-").toLowerCase();
   // Render the page with data table
   return (
     <>
       <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-l from-blue-600 to-purple-600 text-transparent bg-clip-text animate-gradient-text leading-tight text-center mb-6">
         {title}
       </h1>
+
       <DataTableWrapper initialData={initialData} columns={columns} />
+      {session?.user?.role === "ADMIN" && moduleParam && (
+        <DownloadCSVButton
+          apiEndpoint={`/api/export-csv?module=${moduleParam}`}
+          fileName={fileName}
+        />
+      )}
     </>
   );
 }

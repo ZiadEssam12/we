@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import ButtonWithLoading from "@/components/buttonWithLoading/ButtonWithLoading";
@@ -28,6 +28,10 @@ export default function SecondaryCabinetForm({
   initialData,
   onSubmit,
   isProcessing,
+  formStyle = "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 overflow-y-auto max-h-[70vh] p-4",
+  hideSubmitButton = false,
+  renderCustomButtons,
+  readOnly = false,
 }) {
   // Initialize formik hook
   const formik = useFormik({
@@ -50,6 +54,7 @@ export default function SecondaryCabinetForm({
     onSubmit: (values) => {
       onSubmit(values);
     },
+    enableReinitialize: true,
   });
 
   // Helper to determine field error classes
@@ -59,293 +64,274 @@ export default function SecondaryCabinetForm({
       hasError ? "border-red-500" : "border-gray-300"
     }`;
   };
-
   return (
-    <form
-      onSubmit={formik.handleSubmit}
-      className="space-y-4 overflow-y-auto max-h-[70vh] p-4"
-    >
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div>
-          <label
-            htmlFor="central"
-            className="block text-sm font-medium text-gray-700"
-          >
-            السنترال
-          </label>
-          <input
-            id="central"
-            name="central"
-            type="text"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.central}
-            className={getInputClassName("central")}
-          />
-          {formik.touched.central && formik.errors.central && (
-            <div className="text-red-500 text-sm mt-1">
-              {formik.errors.central}
-            </div>
-          )}
-        </div>
-
-        <div>
-          <label
-            htmlFor="village"
-            className="block text-sm font-medium text-gray-700"
-          >
-            القرية
-          </label>
-          <input
-            id="village"
-            name="village"
-            type="text"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.village}
-            className={getInputClassName("village")}
-          />
-          {formik.touched.village && formik.errors.village && (
-            <div className="text-red-500 text-sm mt-1">
-              {formik.errors.village}
-            </div>
-          )}
-        </div>
-
-        <div>
-          <label
-            htmlFor="port_gbon"
-            className="block text-sm font-medium text-gray-700"
-          >
-            Port GBON
-          </label>
-          <input
-            id="port_gbon"
-            name="port_gbon"
-            type="text"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.port_gbon}
-            className={getInputClassName("port_gbon")}
-          />
-          {formik.touched.port_gbon && formik.errors.port_gbon && (
-            <div className="text-red-500 text-sm mt-1">
-              {formik.errors.port_gbon}
-            </div>
-          )}
-        </div>
-
-        <div>
-          <label
-            htmlFor="cabinet"
-            className="block text-sm font-medium text-gray-700"
-          >
-            الكبينة
-          </label>
-          <input
-            id="cabinet"
-            name="cabinet"
-            type="text"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.cabinet}
-            className={getInputClassName("cabinet")}
-          />
-          {formik.touched.cabinet && formik.errors.cabinet && (
-            <div className="text-red-500 text-sm mt-1">
-              {formik.errors.cabinet}
-            </div>
-          )}
-        </div>
-
-        <div>
-          <label
-            htmlFor="splitter_number"
-            className="block text-sm font-medium text-gray-700"
-          >
-            رقم السبليتر
-          </label>
-          <input
-            id="splitter_number"
-            name="splitter_number"
-            type="text"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.splitter_number}
-            className={getInputClassName("splitter_number")}
-          />
-          {formik.touched.splitter_number && formik.errors.splitter_number && (
-            <div className="text-red-500 text-sm mt-1">
-              {formik.errors.splitter_number}
-            </div>
-          )}
-        </div>
-
-        <div>
-          <label
-            htmlFor="splitter_port"
-            className="block text-sm font-medium text-gray-700"
-          >
-            منفذ السبليتر
-          </label>
-          <input
-            id="splitter_port"
-            name="splitter_port"
-            type="text"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.splitter_port}
-            className={getInputClassName("splitter_port")}
-          />
-          {formik.touched.splitter_port && formik.errors.splitter_port && (
-            <div className="text-red-500 text-sm mt-1">
-              {formik.errors.splitter_port}
-            </div>
-          )}
-        </div>
-
-        <div>
-          <label
-            htmlFor="distance"
-            className="block text-sm font-medium text-gray-700"
-          >
-            المسافة
-          </label>
-          <input
-            id="distance"
-            name="distance"
-            type="text"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.distance}
-            className={getInputClassName("distance")}
-          />
-          {formik.touched.distance && formik.errors.distance && (
-            <div className="text-red-500 text-sm mt-1">
-              {formik.errors.distance}
-            </div>
-          )}
-        </div>
-
-        <div>
-          <label
-            htmlFor="box_number"
-            className="block text-sm font-medium text-gray-700"
-          >
-            رقم البوكس
-          </label>
-          <input
-            id="box_number"
-            name="box_number"
-            type="text"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.box_number}
-            className={getInputClassName("box_number")}
-          />
-          {formik.touched.box_number && formik.errors.box_number && (
-            <div className="text-red-500 text-sm mt-1">
-              {formik.errors.box_number}
-            </div>
-          )}
-        </div>
-
-        <div>
-          <label
-            htmlFor="cabinet_location"
-            className="block text-sm font-medium text-gray-700"
-          >
-            موقع الكبينة
-          </label>
-          <input
-            id="cabinet_location"
-            name="cabinet_location"
-            type="text"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.cabinet_location}
-            className={getInputClassName("cabinet_location")}
-          />
-          {formik.touched.cabinet_location &&
-            formik.errors.cabinet_location && (
-              <div className="text-red-500 text-sm mt-1">
-                {formik.errors.cabinet_location}
-              </div>
-            )}
-        </div>
-
-        <div>
-          <label
-            htmlFor="box_location"
-            className="block text-sm font-medium text-gray-700"
-          >
-            موقع البوكس
-          </label>
-          <input
-            id="box_location"
-            name="box_location"
-            type="text"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.box_location}
-            className={getInputClassName("box_location")}
-          />
-          {formik.touched.box_location && formik.errors.box_location && (
-            <div className="text-red-500 text-sm mt-1">
-              {formik.errors.box_location}
-            </div>
-          )}
-        </div>
-
-        <div>
-          <label
-            htmlFor="cabinet_to_box_distance"
-            className="block text-sm font-medium text-gray-700"
-          >
-            المسافة من الكبينة للصندوق
-          </label>
-          <input
-            id="cabinet_to_box_distance"
-            name="cabinet_to_box_distance"
-            type="text"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.cabinet_to_box_distance}
-            className={getInputClassName("cabinet_to_box_distance")}
-          />
-          {formik.touched.cabinet_to_box_distance &&
-            formik.errors.cabinet_to_box_distance && (
-              <div className="text-red-500 text-sm mt-1">
-                {formik.errors.cabinet_to_box_distance}
-              </div>
-            )}
-        </div>
-
-        <div>
-          <label
-            htmlFor="responsible"
-            className="block text-sm font-medium text-gray-700"
-          >
-            المسؤول
-          </label>
-          <input
-            id="responsible"
-            name="responsible"
-            type="text"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.responsible}
-            className={getInputClassName("responsible")}
-          />
-          {formik.touched.responsible && formik.errors.responsible && (
-            <div className="text-red-500 text-sm mt-1">
-              {formik.errors.responsible}
-            </div>
-          )}
-        </div>
-      </div>
-
+    <form onSubmit={formik.handleSubmit} className={formStyle}>
       <div>
+        <label
+          htmlFor="central"
+          className="block text-sm font-medium text-gray-700"
+        >
+          السنترال
+        </label>
+        <input
+          id="central"
+          name="central"
+          type="text"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.central}
+          className={getInputClassName("central")}
+        />
+        {formik.touched.central && formik.errors.central && (
+          <div className="text-red-500 text-sm mt-1">
+            {formik.errors.central}
+          </div>
+        )}
+      </div>
+      <div>
+        <label
+          htmlFor="village"
+          className="block text-sm font-medium text-gray-700"
+        >
+          القرية
+        </label>
+        <input
+          id="village"
+          name="village"
+          type="text"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.village}
+          className={getInputClassName("village")}
+        />
+        {formik.touched.village && formik.errors.village && (
+          <div className="text-red-500 text-sm mt-1">
+            {formik.errors.village}
+          </div>
+        )}
+      </div>
+      <div>
+        <label
+          htmlFor="port_gbon"
+          className="block text-sm font-medium text-gray-700"
+        >
+          Port GBON
+        </label>
+        <input
+          id="port_gbon"
+          name="port_gbon"
+          type="text"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.port_gbon}
+          className={getInputClassName("port_gbon")}
+        />
+        {formik.touched.port_gbon && formik.errors.port_gbon && (
+          <div className="text-red-500 text-sm mt-1">
+            {formik.errors.port_gbon}
+          </div>
+        )}
+      </div>
+      <div>
+        <label
+          htmlFor="cabinet"
+          className="block text-sm font-medium text-gray-700"
+        >
+          الكبينة
+        </label>
+        <input
+          id="cabinet"
+          name="cabinet"
+          type="text"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.cabinet}
+          className={getInputClassName("cabinet")}
+        />
+        {formik.touched.cabinet && formik.errors.cabinet && (
+          <div className="text-red-500 text-sm mt-1">
+            {formik.errors.cabinet}
+          </div>
+        )}
+      </div>
+      <div>
+        <label
+          htmlFor="splitter_number"
+          className="block text-sm font-medium text-gray-700"
+        >
+          رقم السبليتر
+        </label>
+        <input
+          id="splitter_number"
+          name="splitter_number"
+          type="text"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.splitter_number}
+          className={getInputClassName("splitter_number")}
+        />
+        {formik.touched.splitter_number && formik.errors.splitter_number && (
+          <div className="text-red-500 text-sm mt-1">
+            {formik.errors.splitter_number}
+          </div>
+        )}
+      </div>
+      <div>
+        <label
+          htmlFor="splitter_port"
+          className="block text-sm font-medium text-gray-700"
+        >
+          منفذ السبليتر
+        </label>
+        <input
+          id="splitter_port"
+          name="splitter_port"
+          type="text"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.splitter_port}
+          className={getInputClassName("splitter_port")}
+        />
+        {formik.touched.splitter_port && formik.errors.splitter_port && (
+          <div className="text-red-500 text-sm mt-1">
+            {formik.errors.splitter_port}
+          </div>
+        )}
+      </div>
+      <div>
+        <label
+          htmlFor="distance"
+          className="block text-sm font-medium text-gray-700"
+        >
+          المسافة
+        </label>
+        <input
+          id="distance"
+          name="distance"
+          type="text"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.distance}
+          className={getInputClassName("distance")}
+        />
+        {formik.touched.distance && formik.errors.distance && (
+          <div className="text-red-500 text-sm mt-1">
+            {formik.errors.distance}
+          </div>
+        )}
+      </div>
+      <div>
+        <label
+          htmlFor="box_number"
+          className="block text-sm font-medium text-gray-700"
+        >
+          رقم البوكس
+        </label>
+        <input
+          id="box_number"
+          name="box_number"
+          type="text"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.box_number}
+          className={getInputClassName("box_number")}
+        />
+        {formik.touched.box_number && formik.errors.box_number && (
+          <div className="text-red-500 text-sm mt-1">
+            {formik.errors.box_number}
+          </div>
+        )}
+      </div>
+      <div>
+        <label
+          htmlFor="cabinet_location"
+          className="block text-sm font-medium text-gray-700"
+        >
+          موقع الكبينة
+        </label>
+        <input
+          id="cabinet_location"
+          name="cabinet_location"
+          type="text"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.cabinet_location}
+          className={getInputClassName("cabinet_location")}
+        />
+        {formik.touched.cabinet_location && formik.errors.cabinet_location && (
+          <div className="text-red-500 text-sm mt-1">
+            {formik.errors.cabinet_location}
+          </div>
+        )}
+      </div>
+      <div>
+        <label
+          htmlFor="box_location"
+          className="block text-sm font-medium text-gray-700"
+        >
+          موقع البوكس
+        </label>
+        <input
+          id="box_location"
+          name="box_location"
+          type="text"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.box_location}
+          className={getInputClassName("box_location")}
+        />
+        {formik.touched.box_location && formik.errors.box_location && (
+          <div className="text-red-500 text-sm mt-1">
+            {formik.errors.box_location}
+          </div>
+        )}
+      </div>
+      <div>
+        <label
+          htmlFor="cabinet_to_box_distance"
+          className="block text-sm font-medium text-gray-700"
+        >
+          المسافة من الكبينة للصندوق
+        </label>
+        <input
+          id="cabinet_to_box_distance"
+          name="cabinet_to_box_distance"
+          type="text"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.cabinet_to_box_distance}
+          className={getInputClassName("cabinet_to_box_distance")}
+        />
+        {formik.touched.cabinet_to_box_distance &&
+          formik.errors.cabinet_to_box_distance && (
+            <div className="text-red-500 text-sm mt-1">
+              {formik.errors.cabinet_to_box_distance}
+            </div>
+          )}
+      </div>
+      <div>
+        <label
+          htmlFor="responsible"
+          className="block text-sm font-medium text-gray-700"
+        >
+          المسؤول
+        </label>
+        <input
+          id="responsible"
+          name="responsible"
+          type="text"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.responsible}
+          className={getInputClassName("responsible")}
+        />
+        {formik.touched.responsible && formik.errors.responsible && (
+          <div className="text-red-500 text-sm mt-1">
+            {formik.errors.responsible}
+          </div>
+        )}
+      </div>{" "}
+      <div className="col-span-1 sm:col-span-2 lg:col-span-3">
         <label
           htmlFor="notes"
           className="block text-sm font-medium text-gray-700"
@@ -364,16 +350,18 @@ export default function SecondaryCabinetForm({
         {formik.touched.notes && formik.errors.notes && (
           <div className="text-red-500 text-sm mt-1">{formik.errors.notes}</div>
         )}
+      </div>{" "}
+      <div className="col-span-1 sm:col-span-2 lg:col-span-3 flex justify-end space-x-3 mt-4">
+        {!hideSubmitButton && (
+          <ButtonWithLoading
+            loading={isProcessing}
+            text={initialData ? "تحديث" : "إضافة"}
+            areaLabel={initialData ? "تحديث" : "إضافة"}
+            valid={formik.isValid && formik.dirty}
+          />
+        )}
       </div>
-
-      <div className="flex justify-end space-x-3">
-        <ButtonWithLoading
-          loading={isProcessing}
-          valid={formik.isValid && formik.dirty}
-          text={initialData ? "تعديل الكبينة" : "إضافة كبينة جديدة"}
-          areaLabel={initialData ? "تعديل الكبينة" : "إضافة كبينة جديدة"}
-        />
-      </div>
+      {renderCustomButtons && renderCustomButtons(formik)}
     </form>
   );
 }

@@ -23,6 +23,10 @@ export default function MobileTowerForm({
   initialData,
   onSubmit,
   isProcessing,
+  formStyle = "flex flex-col  gap-3 overflow-y-auto max-h-[70vh] p-4",
+  hideSubmitButton = false,
+  renderCustomButtons,
+  readOnly = false,
 }) {
   // Initialize formik hook
   const formik = useFormik({
@@ -42,6 +46,7 @@ export default function MobileTowerForm({
     onSubmit: (values) => {
       onSubmit(values);
     },
+    enableReinitialize: true,
   });
 
   // Helper to determine field error classes
@@ -53,221 +58,216 @@ export default function MobileTowerForm({
   };
 
   return (
-    <form
-      onSubmit={formik.handleSubmit}
-      className="space-y-4 overflow-y-auto max-h-[70vh] p-4"
-    >
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div>
-          <label
-            htmlFor="central"
-            className="block text-sm font-medium text-gray-700"
-          >
-            السنترال
-          </label>
-          <input
-            id="central"
-            name="central"
-            type="text"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.central}
-            className={getInputClassName("central")}
-          />
-          {formik.touched.central && formik.errors.central && (
-            <div className="text-red-500 text-sm mt-1">
-              {formik.errors.central}
-            </div>
-          )}
-        </div>
-
-        <div>
-          <label
-            htmlFor="cable_name"
-            className="block text-sm font-medium text-gray-700"
-          >
-            اسم الكابل
-          </label>
-          <input
-            id="cable_name"
-            name="cable_name"
-            type="text"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.cable_name}
-            className={getInputClassName("cable_name")}
-          />
-          {formik.touched.cable_name && formik.errors.cable_name && (
-            <div className="text-red-500 text-sm mt-1">
-              {formik.errors.cable_name}
-            </div>
-          )}
-        </div>
-
-        <div>
-          <label
-            htmlFor="tower_code"
-            className="block text-sm font-medium text-gray-700"
-          >
-            كود البرج
-          </label>
-          <input
-            id="tower_code"
-            name="tower_code"
-            type="text"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.tower_code}
-            className={getInputClassName("tower_code")}
-          />
-          {formik.touched.tower_code && formik.errors.tower_code && (
-            <div className="text-red-500 text-sm mt-1">
-              {formik.errors.tower_code}
-            </div>
-          )}
-        </div>
-
-        <div>
-          <label
-            htmlFor="company"
-            className="block text-sm font-medium text-gray-700"
-          >
-            الشركة
-          </label>
-          <input
-            id="company"
-            name="company"
-            type="text"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.company}
-            className={getInputClassName("company")}
-          />
-          {formik.touched.company && formik.errors.company && (
-            <div className="text-red-500 text-sm mt-1">
-              {formik.errors.company}
-            </div>
-          )}
-        </div>
-
-        <div>
-          <label
-            htmlFor="entitlement"
-            className="block text-sm font-medium text-gray-700"
-          >
-            الاستحقاق
-          </label>
-          <input
-            id="entitlement"
-            name="entitlement"
-            type="text"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.entitlement}
-            className={getInputClassName("entitlement")}
-          />
-          {formik.touched.entitlement && formik.errors.entitlement && (
-            <div className="text-red-500 text-sm mt-1">
-              {formik.errors.entitlement}
-            </div>
-          )}
-        </div>
-
-        <div>
-          <label
-            htmlFor="distance"
-            className="block text-sm font-medium text-gray-700"
-          >
-            المسافة
-          </label>
-          <input
-            id="distance"
-            name="distance"
-            type="text"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.distance}
-            className={getInputClassName("distance")}
-          />
-          {formik.touched.distance && formik.errors.distance && (
-            <div className="text-red-500 text-sm mt-1">
-              {formik.errors.distance}
-            </div>
-          )}
-        </div>
-
-        <div>
-          <label
-            htmlFor="address"
-            className="block text-sm font-medium text-gray-700"
-          >
-            العنوان
-          </label>
-          <input
-            id="address"
-            name="address"
-            type="text"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.address}
-            className={getInputClassName("address")}
-          />
-          {formik.touched.address && formik.errors.address && (
-            <div className="text-red-500 text-sm mt-1">
-              {formik.errors.address}
-            </div>
-          )}
-        </div>
-
-        <div>
-          <label
-            htmlFor="location"
-            className="block text-sm font-medium text-gray-700"
-          >
-            الموقع
-          </label>
-          <input
-            id="location"
-            name="location"
-            type="text"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.location}
-            className={getInputClassName("location")}
-            placeholder="latitude,longitude"
-          />
-          {formik.touched.location && formik.errors.location && (
-            <div className="text-red-500 text-sm mt-1">
-              {formik.errors.location}
-            </div>
-          )}
-        </div>
-
-        <div>
-          <label
-            htmlFor="responsible"
-            className="block text-sm font-medium text-gray-700"
-          >
-            المسؤول
-          </label>{" "}
-          <input
-            id="responsible"
-            name="responsible"
-            type="text"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.responsible}
-            className={getInputClassName("responsible")}
-          />
-          {formik.touched.responsible && formik.errors.responsible && (
-            <div className="text-red-500 text-sm mt-1">
-              {formik.errors.responsible}
-            </div>
-          )}
-        </div>
+    <form onSubmit={formik.handleSubmit} className={formStyle}>
+      <div>
+        <label
+          htmlFor="central"
+          className="block text-sm font-medium text-gray-700"
+        >
+          السنترال
+        </label>
+        <input
+          id="central"
+          name="central"
+          type="text"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.central}
+          className={getInputClassName("central")}
+        />
+        {formik.touched.central && formik.errors.central && (
+          <div className="text-red-500 text-sm mt-1">
+            {formik.errors.central}
+          </div>
+        )}
       </div>
 
       <div>
+        <label
+          htmlFor="cable_name"
+          className="block text-sm font-medium text-gray-700"
+        >
+          اسم الكابل
+        </label>
+        <input
+          id="cable_name"
+          name="cable_name"
+          type="text"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.cable_name}
+          className={getInputClassName("cable_name")}
+        />
+        {formik.touched.cable_name && formik.errors.cable_name && (
+          <div className="text-red-500 text-sm mt-1">
+            {formik.errors.cable_name}
+          </div>
+        )}
+      </div>
+
+      <div>
+        <label
+          htmlFor="tower_code"
+          className="block text-sm font-medium text-gray-700"
+        >
+          كود البرج
+        </label>
+        <input
+          id="tower_code"
+          name="tower_code"
+          type="text"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.tower_code}
+          className={getInputClassName("tower_code")}
+        />
+        {formik.touched.tower_code && formik.errors.tower_code && (
+          <div className="text-red-500 text-sm mt-1">
+            {formik.errors.tower_code}
+          </div>
+        )}
+      </div>
+
+      <div>
+        <label
+          htmlFor="company"
+          className="block text-sm font-medium text-gray-700"
+        >
+          الشركة
+        </label>
+        <input
+          id="company"
+          name="company"
+          type="text"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.company}
+          className={getInputClassName("company")}
+        />
+        {formik.touched.company && formik.errors.company && (
+          <div className="text-red-500 text-sm mt-1">
+            {formik.errors.company}
+          </div>
+        )}
+      </div>
+
+      <div>
+        <label
+          htmlFor="entitlement"
+          className="block text-sm font-medium text-gray-700"
+        >
+          الاستحقاق
+        </label>
+        <input
+          id="entitlement"
+          name="entitlement"
+          type="text"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.entitlement}
+          className={getInputClassName("entitlement")}
+        />
+        {formik.touched.entitlement && formik.errors.entitlement && (
+          <div className="text-red-500 text-sm mt-1">
+            {formik.errors.entitlement}
+          </div>
+        )}
+      </div>
+
+      <div>
+        <label
+          htmlFor="distance"
+          className="block text-sm font-medium text-gray-700"
+        >
+          المسافة
+        </label>
+        <input
+          id="distance"
+          name="distance"
+          type="text"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.distance}
+          className={getInputClassName("distance")}
+        />
+        {formik.touched.distance && formik.errors.distance && (
+          <div className="text-red-500 text-sm mt-1">
+            {formik.errors.distance}
+          </div>
+        )}
+      </div>
+
+      <div>
+        <label
+          htmlFor="address"
+          className="block text-sm font-medium text-gray-700"
+        >
+          العنوان
+        </label>
+        <input
+          id="address"
+          name="address"
+          type="text"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.address}
+          className={getInputClassName("address")}
+        />
+        {formik.touched.address && formik.errors.address && (
+          <div className="text-red-500 text-sm mt-1">
+            {formik.errors.address}
+          </div>
+        )}
+      </div>
+
+      <div>
+        <label
+          htmlFor="location"
+          className="block text-sm font-medium text-gray-700"
+        >
+          الموقع
+        </label>
+        <input
+          id="location"
+          name="location"
+          type="text"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.location}
+          className={getInputClassName("location")}
+          placeholder="latitude,longitude"
+        />
+        {formik.touched.location && formik.errors.location && (
+          <div className="text-red-500 text-sm mt-1">
+            {formik.errors.location}
+          </div>
+        )}
+      </div>
+
+      <div>
+        <label
+          htmlFor="responsible"
+          className="block text-sm font-medium text-gray-700"
+        >
+          المسؤول
+        </label>{" "}
+        <input
+          id="responsible"
+          name="responsible"
+          type="text"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.responsible}
+          className={getInputClassName("responsible")}
+        />
+        {formik.touched.responsible && formik.errors.responsible && (
+          <div className="text-red-500 text-sm mt-1">
+            {formik.errors.responsible}
+          </div>
+        )}
+      </div>
+
+      <div className="col-span-1 md:col-span-2 lg:col-span-3 w-full">
         <label
           htmlFor="notes"
           className="block text-sm font-medium text-gray-700"
@@ -288,14 +288,15 @@ export default function MobileTowerForm({
         )}
       </div>
 
-      <div className="flex justify-end">
+      {!hideSubmitButton && (
         <ButtonWithLoading
           loading={isProcessing}
           text={initialData ? "تحديث" : "إضافة"}
           areaLabel={initialData ? "تحديث" : "إضافة"}
           valid={formik.isValid && formik.dirty}
         />
-      </div>
+      )}
+      {renderCustomButtons && renderCustomButtons(formik)}
     </form>
   );
 }

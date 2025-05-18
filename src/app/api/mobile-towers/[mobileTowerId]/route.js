@@ -2,7 +2,7 @@ import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 import { updateMobileTowerSchema } from "@/schemas/mobileTower";
 import { auth } from "@/app/auth";
-import { getStatusFromHeader } from "@/lib/middleware-utils";
+import { applyMiddlewareHeaders, getStatusFromHeader } from "@/lib/middleware-utils";
 
 // GET a single MobileTower by ID
 export async function GET(request, { params }) {
@@ -95,11 +95,11 @@ export async function PUT(request, { params }) {
         },
         { status: 400 }
       );
-    } // Check if status header is set by the middleware
-    const statusHeader = getStatusFromHeader(request);
-    if (statusHeader === "ACTIVE") {
-      validatedData.status = "ACTIVE";
-    }
+    } 
+    
+    // Check if status header is set by the middleware
+    validatedData = applyMiddlewareHeaders(validatedData, request);
+
 
     const updatedMobileTower = await prisma.mobileTower.update({
       where: { id: mobileTowerId },

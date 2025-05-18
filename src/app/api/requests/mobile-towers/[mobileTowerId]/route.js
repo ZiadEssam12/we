@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 
 export async function GET(request, { params }) {
   // Get the request ID from the route
-  const requestId = params.mobileTowerId;
+  const requestId = (await params).mobileTowerId;
 
   // Check if user is authenticated (handled by middleware)
   try {
@@ -49,7 +49,7 @@ export async function GET(request, { params }) {
 
 // Handle approval request
 export async function POST(request, { params }) {
-  const requestId = params.mobileTowerId;
+  const requestId = (await params).mobileTowerId;
   const { action } = await request.json();
 
   try {

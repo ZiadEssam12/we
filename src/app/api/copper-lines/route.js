@@ -1,23 +1,16 @@
 import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
-import { auth } from "@/app/auth";
 import { copperLineSchema } from "@/schemas/copperLine";
 import { applyMiddlewareHeaders } from "@/lib/middleware-utils";
 
 // GET all CopperLines
 // api/copper-lines
 export async function GET(request) {
-  const session = await auth();
-
-  if (!session || !session.user) {
-    return NextResponse.json(
-      { success: false, message: "غير مصرح به" },
-      { status: 401 }
-    );
-  }
-
   try {
     const copperLines = await prisma.copperLine.findMany({
+      where: {
+        status: "ACTIVE",
+      },
       orderBy: {
         createdAt: "desc",
       },
@@ -41,22 +34,6 @@ export async function GET(request) {
 
 // POST a new CopperLine
 export async function POST(request) {
-  const session = await auth();
-
-  if (!session || !session.user) {
-    return NextResponse.json(
-      { success: false, message: "غير مصرح به" },
-      { status: 401 }
-    );
-  }
-  // Optional: Add role-based access control if needed
-  // if (session.user.role !== "ADMIN" && session.user.role !== "MANAGER") {
-  //   return NextResponse.json(
-  //     { success: false, message: "غير مصرح به. يتطلب دور المسؤول أو المدير." },
-  //     { status: 403 }
-  //   );
-  // }
-
   try {
     const body = await request.json();
     let validatedData;

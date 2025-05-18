@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 
 export async function GET(request, { params }) {
   // Get the request ID from the route
-  const requestId = params.secondaryCabinetId;
+  const requestId = (await params).secondaryCabinetId;
 
   // Check if user is authenticated (handled by middleware)
   try {
@@ -26,6 +26,8 @@ export async function GET(request, { params }) {
         { status: 404 }
       );
     }
+
+    console.log("Pending Request:", pendingRequest);
 
     return NextResponse.json(
       {
@@ -49,7 +51,7 @@ export async function GET(request, { params }) {
 
 // Handle approval request
 export async function POST(request, { params }) {
-  const requestId = params.secondaryCabinetId;
+  const requestId = (await params).secondaryCabinetId;
   const { action } = await request.json();
 
   try {

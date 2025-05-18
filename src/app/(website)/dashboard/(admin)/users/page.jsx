@@ -13,6 +13,7 @@ export default async function UsersPageSSR() {
       columns={userColumns}
       title="المستخدمين"
       errorTitle="خطأ في تحميل بيانات المستخدمين"
+      apiEndpoint="/api/users"
     />
   );
 }

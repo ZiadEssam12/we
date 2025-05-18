@@ -30,6 +30,10 @@ export default function CopperLineForm({
   initialData,
   onSubmit,
   isProcessing,
+  formStyle = "flex flex-col  gap-3 overflow-y-auto max-h-[70vh] p-4",
+  hideSubmitButton = false,
+  renderCustomButtons,
+  readOnly = false,
 }) {
   // Initialize formik hook
   const formik = useFormik({
@@ -56,6 +60,7 @@ export default function CopperLineForm({
     onSubmit: (values) => {
       onSubmit(values);
     },
+    enableReinitialize: true, // Add this to update form when initialData changes
   });
 
   // Helper to determine field error classes
@@ -67,386 +72,377 @@ export default function CopperLineForm({
   };
 
   return (
-    <form
-      onSubmit={formik.handleSubmit}
-      className="space-y-4 overflow-y-auto max-h-[70vh] p-4"
-    >
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-        <div>
-          <label
-            htmlFor="landline_number"
-            className="block text-sm font-medium text-gray-700"
-          >
-            رقم الخط الأرضي
-          </label>
-          <input
-            id="landline_number"
-            name="landline_number"
-            type="text"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.landline_number}
-            className={getInputClassName("landline_number")}
-          />
-          {formik.touched.landline_number && formik.errors.landline_number && (
-            <div className="text-red-500 text-sm mt-1">
-              {formik.errors.landline_number}
-            </div>
-          )}
-        </div>
-
-        <div>
-          <label
-            htmlFor="central"
-            className="block text-sm font-medium text-gray-700"
-          >
-            السنترال
-          </label>
-          <input
-            id="central"
-            name="central"
-            type="text"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.central}
-            className={getInputClassName("central")}
-          />
-          {formik.touched.central && formik.errors.central && (
-            <div className="text-red-500 text-sm mt-1">
-              {formik.errors.central}
-            </div>
-          )}
-        </div>
-
-        <div>
-          <label
-            htmlFor="village"
-            className="block text-sm font-medium text-gray-700"
-          >
-            القرية
-          </label>
-          <input
-            id="village"
-            name="village"
-            type="text"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.village}
-            className={getInputClassName("village")}
-          />
-          {formik.touched.village && formik.errors.village && (
-            <div className="text-red-500 text-sm mt-1">
-              {formik.errors.village}
-            </div>
-          )}
-        </div>
-
-        <div>
-          <label
-            htmlFor="cabinet_number"
-            className="block text-sm font-medium text-gray-700"
-          >
-            رقم الكابينة
-          </label>
-          <input
-            id="cabinet_number"
-            name="cabinet_number"
-            type="text"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.cabinet_number}
-            className={getInputClassName("cabinet_number")}
-          />
-          {formik.touched.cabinet_number && formik.errors.cabinet_number && (
-            <div className="text-red-500 text-sm mt-1">
-              {formik.errors.cabinet_number}
-            </div>
-          )}
-        </div>
-
-        <div>
-          <label
-            htmlFor="port_number"
-            className="block text-sm font-medium text-gray-700"
-          >
-            رقم المنفذ
-          </label>
-          <input
-            id="port_number"
-            name="port_number"
-            type="text"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.port_number}
-            className={getInputClassName("port_number")}
-          />
-          {formik.touched.port_number && formik.errors.port_number && (
-            <div className="text-red-500 text-sm mt-1">
-              {formik.errors.port_number}
-            </div>
-          )}
-        </div>
-
-        <div>
-          <label
-            htmlFor="terminal_number"
-            className="block text-sm font-medium text-gray-700"
-          >
-            رقم المحطة
-          </label>
-          <input
-            id="terminal_number"
-            name="terminal_number"
-            type="text"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.terminal_number}
-            className={getInputClassName("terminal_number")}
-          />
-          {formik.touched.terminal_number && formik.errors.terminal_number && (
-            <div className="text-red-500 text-sm mt-1">
-              {formik.errors.terminal_number}
-            </div>
-          )}
-        </div>
-
-        <div>
-          <label
-            htmlFor="cabinet_location"
-            className="block text-sm font-medium text-gray-700"
-          >
-            موقع الكابينة
-          </label>
-          <input
-            id="cabinet_location"
-            name="cabinet_location"
-            type="text"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.cabinet_location}
-            className={getInputClassName("cabinet_location")}
-          />
-          {formik.touched.cabinet_location &&
-            formik.errors.cabinet_location && (
-              <div className="text-red-500 text-sm mt-1">
-                {formik.errors.cabinet_location}
-              </div>
-            )}
-        </div>
-
-        <div>
-          <label
-            htmlFor="box_number"
-            className="block text-sm font-medium text-gray-700"
-          >
-            رقم البوكس
-          </label>
-          <input
-            id="box_number"
-            name="box_number"
-            type="text"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.box_number}
-            className={getInputClassName("box_number")}
-          />
-          {formik.touched.box_number && formik.errors.box_number && (
-            <div className="text-red-500 text-sm mt-1">
-              {formik.errors.box_number}
-            </div>
-          )}
-        </div>
-
-        <div>
-          <label
-            htmlFor="box_entitlement"
-            className="block text-sm font-medium text-gray-700"
-          >
-            استحقاق البوكس
-          </label>
-          <input
-            id="box_entitlement"
-            name="box_entitlement"
-            type="text"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.box_entitlement}
-            className={getInputClassName("box_entitlement")}
-          />
-          {formik.touched.box_entitlement && formik.errors.box_entitlement && (
-            <div className="text-red-500 text-sm mt-1">
-              {formik.errors.box_entitlement}
-            </div>
-          )}
-        </div>
-
-        <div>
-          <label
-            htmlFor="box_location"
-            className="block text-sm font-medium text-gray-700"
-          >
-            موقع البوكس
-          </label>
-          <input
-            id="box_location"
-            name="box_location"
-            type="text"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.box_location}
-            className={getInputClassName("box_location")}
-          />
-          {formik.touched.box_location && formik.errors.box_location && (
-            <div className="text-red-500 text-sm mt-1">
-              {formik.errors.box_location}
-            </div>
-          )}
-        </div>
-
-        <div>
-          <label
-            htmlFor="joint_location"
-            className="block text-sm font-medium text-gray-700"
-          >
-            موقع الوصلة
-          </label>
-          <input
-            id="joint_location"
-            name="joint_location"
-            type="text"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.joint_location}
-            className={getInputClassName("joint_location")}
-          />
-          {formik.touched.joint_location && formik.errors.joint_location && (
-            <div className="text-red-500 text-sm mt-1">
-              {formik.errors.joint_location}
-            </div>
-          )}
-        </div>
-
-        <div>
-          <label
-            htmlFor="joint_entitlement"
-            className="block text-sm font-medium text-gray-700"
-          >
-            استحقاق الوصلة
-          </label>
-          <input
-            id="joint_entitlement"
-            name="joint_entitlement"
-            type="text"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.joint_entitlement}
-            className={getInputClassName("joint_entitlement")}
-          />
-          {formik.touched.joint_entitlement &&
-            formik.errors.joint_entitlement && (
-              <div className="text-red-500 text-sm mt-1">
-                {formik.errors.joint_entitlement}
-              </div>
-            )}
-        </div>
-
-        <div>
-          <label
-            htmlFor="joint_depth"
-            className="block text-sm font-medium text-gray-700"
-          >
-            عمق الوصلة
-          </label>
-          <input
-            id="joint_depth"
-            name="joint_depth"
-            type="text"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.joint_depth}
-            className={getInputClassName("joint_depth")}
-          />
-          {formik.touched.joint_depth && formik.errors.joint_depth && (
-            <div className="text-red-500 text-sm mt-1">
-              {formik.errors.joint_depth}
-            </div>
-          )}
-        </div>
-
-        <div>
-          <label
-            htmlFor="room_location"
-            className="block text-sm font-medium text-gray-700"
-          >
-            موقع الغرفة
-          </label>
-          <input
-            id="room_location"
-            name="room_location"
-            type="text"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.room_location}
-            className={getInputClassName("room_location")}
-          />
-          {formik.touched.room_location && formik.errors.room_location && (
-            <div className="text-red-500 text-sm mt-1">
-              {formik.errors.room_location}
-            </div>
-          )}
-        </div>
-
-        <div>
-          <label
-            htmlFor="insulation_level"
-            className="block text-sm font-medium text-gray-700"
-          >
-            مستوى العزل
-          </label>
-          <input
-            id="insulation_level"
-            name="insulation_level"
-            type="text"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.insulation_level}
-            className={getInputClassName("insulation_level")}
-          />
-          {formik.touched.insulation_level &&
-            formik.errors.insulation_level && (
-              <div className="text-red-500 text-sm mt-1">
-                {formik.errors.insulation_level}
-              </div>
-            )}
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div>
-          <label
-            htmlFor="responsible"
-            className="block text-sm font-medium text-gray-700"
-          >
-            المسؤول
-          </label>
-          <input
-            id="responsible"
-            name="responsible"
-            type="text"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.responsible}
-            className={getInputClassName("responsible")}
-          />
-          {formik.touched.responsible && formik.errors.responsible && (
-            <div className="text-red-500 text-sm mt-1">
-              {formik.errors.responsible}
-            </div>
-          )}
-        </div>
+    <form onSubmit={formik.handleSubmit} className={formStyle}>
+      <div>
+        <label
+          htmlFor="landline_number"
+          className="block text-sm font-medium text-gray-700"
+        >
+          رقم الخط الأرضي
+        </label>
+        <input
+          id="landline_number"
+          name="landline_number"
+          type="text"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.landline_number}
+          className={getInputClassName("landline_number")}
+        />
+        {formik.touched.landline_number && formik.errors.landline_number && (
+          <div className="text-red-500 text-sm mt-1">
+            {formik.errors.landline_number}
+          </div>
+        )}
       </div>
 
       <div>
+        <label
+          htmlFor="central"
+          className="block text-sm font-medium text-gray-700"
+        >
+          السنترال
+        </label>
+        <input
+          id="central"
+          name="central"
+          type="text"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.central}
+          className={getInputClassName("central")}
+        />
+        {formik.touched.central && formik.errors.central && (
+          <div className="text-red-500 text-sm mt-1">
+            {formik.errors.central}
+          </div>
+        )}
+      </div>
+
+      <div>
+        <label
+          htmlFor="village"
+          className="block text-sm font-medium text-gray-700"
+        >
+          القرية
+        </label>
+        <input
+          id="village"
+          name="village"
+          type="text"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.village}
+          className={getInputClassName("village")}
+        />
+        {formik.touched.village && formik.errors.village && (
+          <div className="text-red-500 text-sm mt-1">
+            {formik.errors.village}
+          </div>
+        )}
+      </div>
+
+      <div>
+        <label
+          htmlFor="cabinet_number"
+          className="block text-sm font-medium text-gray-700"
+        >
+          رقم الكابينة
+        </label>
+        <input
+          id="cabinet_number"
+          name="cabinet_number"
+          type="text"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.cabinet_number}
+          className={getInputClassName("cabinet_number")}
+        />
+        {formik.touched.cabinet_number && formik.errors.cabinet_number && (
+          <div className="text-red-500 text-sm mt-1">
+            {formik.errors.cabinet_number}
+          </div>
+        )}
+      </div>
+
+      <div>
+        <label
+          htmlFor="port_number"
+          className="block text-sm font-medium text-gray-700"
+        >
+          رقم المنفذ
+        </label>
+        <input
+          id="port_number"
+          name="port_number"
+          type="text"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.port_number}
+          className={getInputClassName("port_number")}
+        />
+        {formik.touched.port_number && formik.errors.port_number && (
+          <div className="text-red-500 text-sm mt-1">
+            {formik.errors.port_number}
+          </div>
+        )}
+      </div>
+
+      <div>
+        <label
+          htmlFor="terminal_number"
+          className="block text-sm font-medium text-gray-700"
+        >
+          رقم المحطة
+        </label>
+        <input
+          id="terminal_number"
+          name="terminal_number"
+          type="text"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.terminal_number}
+          className={getInputClassName("terminal_number")}
+        />
+        {formik.touched.terminal_number && formik.errors.terminal_number && (
+          <div className="text-red-500 text-sm mt-1">
+            {formik.errors.terminal_number}
+          </div>
+        )}
+      </div>
+
+      <div>
+        <label
+          htmlFor="cabinet_location"
+          className="block text-sm font-medium text-gray-700"
+        >
+          موقع الكابينة
+        </label>
+        <input
+          id="cabinet_location"
+          name="cabinet_location"
+          type="text"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.cabinet_location}
+          className={getInputClassName("cabinet_location")}
+        />
+        {formik.touched.cabinet_location && formik.errors.cabinet_location && (
+          <div className="text-red-500 text-sm mt-1">
+            {formik.errors.cabinet_location}
+          </div>
+        )}
+      </div>
+
+      <div>
+        <label
+          htmlFor="box_number"
+          className="block text-sm font-medium text-gray-700"
+        >
+          رقم البوكس
+        </label>
+        <input
+          id="box_number"
+          name="box_number"
+          type="text"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.box_number}
+          className={getInputClassName("box_number")}
+        />
+        {formik.touched.box_number && formik.errors.box_number && (
+          <div className="text-red-500 text-sm mt-1">
+            {formik.errors.box_number}
+          </div>
+        )}
+      </div>
+
+      <div>
+        <label
+          htmlFor="box_entitlement"
+          className="block text-sm font-medium text-gray-700"
+        >
+          استحقاق البوكس
+        </label>
+        <input
+          id="box_entitlement"
+          name="box_entitlement"
+          type="text"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.box_entitlement}
+          className={getInputClassName("box_entitlement")}
+        />
+        {formik.touched.box_entitlement && formik.errors.box_entitlement && (
+          <div className="text-red-500 text-sm mt-1">
+            {formik.errors.box_entitlement}
+          </div>
+        )}
+      </div>
+
+      <div>
+        <label
+          htmlFor="box_location"
+          className="block text-sm font-medium text-gray-700"
+        >
+          موقع البوكس
+        </label>
+        <input
+          id="box_location"
+          name="box_location"
+          type="text"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.box_location}
+          className={getInputClassName("box_location")}
+        />
+        {formik.touched.box_location && formik.errors.box_location && (
+          <div className="text-red-500 text-sm mt-1">
+            {formik.errors.box_location}
+          </div>
+        )}
+      </div>
+
+      <div>
+        <label
+          htmlFor="joint_location"
+          className="block text-sm font-medium text-gray-700"
+        >
+          موقع الوصلة
+        </label>
+        <input
+          id="joint_location"
+          name="joint_location"
+          type="text"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.joint_location}
+          className={getInputClassName("joint_location")}
+        />
+        {formik.touched.joint_location && formik.errors.joint_location && (
+          <div className="text-red-500 text-sm mt-1">
+            {formik.errors.joint_location}
+          </div>
+        )}
+      </div>
+
+      <div>
+        <label
+          htmlFor="joint_entitlement"
+          className="block text-sm font-medium text-gray-700"
+        >
+          استحقاق الوصلة
+        </label>
+        <input
+          id="joint_entitlement"
+          name="joint_entitlement"
+          type="text"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.joint_entitlement}
+          className={getInputClassName("joint_entitlement")}
+        />
+        {formik.touched.joint_entitlement &&
+          formik.errors.joint_entitlement && (
+            <div className="text-red-500 text-sm mt-1">
+              {formik.errors.joint_entitlement}
+            </div>
+          )}
+      </div>
+
+      <div>
+        <label
+          htmlFor="joint_depth"
+          className="block text-sm font-medium text-gray-700"
+        >
+          عمق الوصلة
+        </label>
+        <input
+          id="joint_depth"
+          name="joint_depth"
+          type="text"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.joint_depth}
+          className={getInputClassName("joint_depth")}
+        />
+        {formik.touched.joint_depth && formik.errors.joint_depth && (
+          <div className="text-red-500 text-sm mt-1">
+            {formik.errors.joint_depth}
+          </div>
+        )}
+      </div>
+
+      <div>
+        <label
+          htmlFor="room_location"
+          className="block text-sm font-medium text-gray-700"
+        >
+          موقع الغرفة
+        </label>
+        <input
+          id="room_location"
+          name="room_location"
+          type="text"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.room_location}
+          className={getInputClassName("room_location")}
+        />
+        {formik.touched.room_location && formik.errors.room_location && (
+          <div className="text-red-500 text-sm mt-1">
+            {formik.errors.room_location}
+          </div>
+        )}
+      </div>
+
+      <div>
+        <label
+          htmlFor="insulation_level"
+          className="block text-sm font-medium text-gray-700"
+        >
+          مستوى العزل
+        </label>
+        <input
+          id="insulation_level"
+          name="insulation_level"
+          type="text"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.insulation_level}
+          className={getInputClassName("insulation_level")}
+        />
+        {formik.touched.insulation_level && formik.errors.insulation_level && (
+          <div className="text-red-500 text-sm mt-1">
+            {formik.errors.insulation_level}
+          </div>
+        )}
+      </div>
+
+      <div>
+        <label
+          htmlFor="responsible"
+          className="block text-sm font-medium text-gray-700"
+        >
+          المسؤول
+        </label>
+        <input
+          id="responsible"
+          name="responsible"
+          type="text"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.responsible}
+          className={getInputClassName("responsible")}
+        />
+        {formik.touched.responsible && formik.errors.responsible && (
+          <div className="text-red-500 text-sm mt-1">
+            {formik.errors.responsible}
+          </div>
+        )}
+      </div>
+
+      <div className="w-full col-span-3">
         <label
           htmlFor="notes"
           className="block text-sm font-medium text-gray-700"
@@ -467,14 +463,15 @@ export default function CopperLineForm({
         )}
       </div>
 
-      <div className="flex justify-end space-x-3">
+      {!hideSubmitButton && (
         <ButtonWithLoading
           loading={isProcessing}
           text={initialData ? "تحديث" : "إضافة"}
           areaLabel={initialData ? "تحديث" : "إضافة"}
           valid={formik.isValid && formik.dirty}
         />
-      </div>
+      )}
+      {renderCustomButtons && renderCustomButtons(formik)}
     </form>
   );
 }

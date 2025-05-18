@@ -68,8 +68,6 @@ export default function CustomRequestPage({
               requestId
             );
 
-            console.log("Data from frontend:", detailedData);
-
             if (detailedData) {
               setSelectedRequestData(detailedData);
             }
@@ -79,6 +77,9 @@ export default function CustomRequestPage({
               entityType,
               requestId
             );
+
+            console.log("Data from API:", detailedData);
+
             if (detailedData) {
               setSelectedRequestData(detailedData);
             } else {
@@ -90,7 +91,6 @@ export default function CustomRequestPage({
           }
         } catch (error) {
           console.error("Error fetching request details:", error);
-          toast.error("حدث خطأ أثناء استرجاع بيانات الطلب");
         }
       } else {
         // No request ID, reset selection
@@ -101,10 +101,10 @@ export default function CustomRequestPage({
 
     fetchSelectedRequestDetails();
   }, [requestId, entityType, router, pendingRequests]);
+
   const handleRequestClick = (reqId) => {
     router.push(`/dashboard/requests/${entityType}?id=${reqId}`);
   };
-
   const handleApproveRequest = async (reqId, formData = null) => {
     setIsProcessing(true);
 
@@ -114,19 +114,19 @@ export default function CustomRequestPage({
       const result = await approveRequest(entityType, reqId, formData);
 
       if (!result.success) {
-        throw new Error(result.message || "Failed to approve request");
+        // throw new Error(result.message || "Failed to approve request");
+        toast.error(result.message || "فشل في الموافقة على الطلب");
+        return;
       }
 
       // Remove the request from the list
       const updatedRequests = pendingRequests.filter((req) => req.id !== reqId);
       setPendingRequests(updatedRequests);
 
-      // Reset selection if the approved request was selected
-      if (reqId === selectedRequestId) {
-        setSelectedRequestId(null);
-        setSelectedRequestData(null);
-        router.push(`/dashboard/requests/${entityType}`);
-      }
+      // Always reset selection and remove ID from URL after approval
+      setSelectedRequestId(null);
+      setSelectedRequestData(null);
+      router.push(`/dashboard/requests/${entityType}`);
 
       toast.success(result.message || "تمت الموافقة على الطلب بنجاح");
     } catch (error) {
@@ -136,7 +136,7 @@ export default function CustomRequestPage({
       setIsProcessing(false);
     }
   };
-
+  
   const handleRejectRequest = async (reqId) => {
     setIsProcessing(true);
 
@@ -150,12 +150,12 @@ export default function CustomRequestPage({
 
       // Remove the request from the list
       const updatedRequests = pendingRequests.filter((req) => req.id !== reqId);
-      setPendingRequests(updatedRequests); // Reset selection if the rejected request was selected
-      if (reqId === selectedRequestId) {
-        setSelectedRequestId(null);
-        setSelectedRequestData(null);
-        router.push(`/dashboard/requests/${entityType}`);
-      }
+      setPendingRequests(updatedRequests);
+
+      // Always reset selection and remove ID from URL after rejection
+      setSelectedRequestId(null);
+      setSelectedRequestData(null);
+      router.push(`/dashboard/requests/${entityType}`);
 
       toast.error(result.message || "تم رفض الطلب");
     } catch (error) {

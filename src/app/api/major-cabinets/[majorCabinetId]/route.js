@@ -9,14 +9,6 @@ import {
 
 // GET a single MajorCabinet by ID
 export async function GET(request, { params }) {
-  const session = await auth();
-
-  if (!session || !session.user) {
-    return NextResponse.json(
-      { success: false, message: "غير مصرح به" },
-      { status: 401 }
-    );
-  }
 
   const { majorCabinetId } = await params;
 

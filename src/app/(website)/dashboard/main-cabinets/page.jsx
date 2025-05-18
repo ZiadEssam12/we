@@ -13,6 +13,7 @@ export default async function MajorCabinetsPageSSR() {
       columns={majorCabinetColumns}
       title="الكبينة الرئيسية"
       errorTitle="خطأ في تحميل بيانات الكبائن الرئيسية"
+      apiEndpoint="/api/major-cabinets"
     />
   );
 }
