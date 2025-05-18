@@ -1,6 +1,6 @@
 // get all users
-export async function getAllUsers({ headers }) {
-  return fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/users`, {
+export async function getAllUsers({ headers, query }) {
+  return fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/users?query=${query}`, {
     method: "GET",
     headers: headers,
     credentials: "include",
@@ -129,7 +129,7 @@ export async function deleteUser({ userId }) {
 // =================== Major Cabinet API Functions ===================
 
 // Get all major cabinets
-export async function getAllMajorCabinets({ headers } = {}) {
+export async function getAllMajorCabinets({ headers, query } = {}) {
   // Added headers parameter
   const fetchOptions = {
     method: "GET",
@@ -145,7 +145,7 @@ export async function getAllMajorCabinets({ headers } = {}) {
   }
 
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_APP_URL}/api/major-cabinets`,
+    `${process.env.NEXT_PUBLIC_APP_URL}/api/major-cabinets?query=${query}`,
     fetchOptions
   );
   const data = await response.json();
@@ -281,16 +281,19 @@ export async function deleteMajorCabinet({ id }) {
 // =================== Secondary Cabinet API Functions ===================
 
 // Get all secondary cabinets
-export function getAllSecondaryCabinets({ headers }) {
-  return fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/secondary-cabinets`, {
-    method: "GET",
-    headers: headers,
-    credentials: "include",
-  }).then((res) => res.json());
+export async function getAllSecondaryCabinets({ headers, query = "" }) {
+  return fetch(
+    `${process.env.NEXT_PUBLIC_APP_URL}/api/secondary-cabinets?query=${query}`,
+    {
+      method: "GET",
+      headers: headers,
+      credentials: "include",
+    }
+  ).then((res) => res.json());
 }
 
 // Get a single secondary cabinet by ID
-export function getSecondaryCabinetById({ id, headers }) {
+export async function getSecondaryCabinetById({ id, headers }) {
   return fetch(
     `${process.env.NEXT_PUBLIC_APP_URL}/api/secondary-cabinets/${id}`,
     {
@@ -395,16 +398,19 @@ export async function deleteSecondaryCabinet({ id }) {
 // =================== Mobile Tower API Functions ===================
 
 // Get all mobile towers
-export function getAllMobileTowers({ headers }) {
-  return fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/mobile-towers`, {
-    method: "GET",
-    headers: headers,
-    credentials: "include",
-  }).then((res) => res.json());
+export async function getAllMobileTowers({ headers, query = "" }) {
+  return fetch(
+    `${process.env.NEXT_PUBLIC_APP_URL}/api/mobile-towers?query=${query}`,
+    {
+      method: "GET",
+      headers: headers,
+      credentials: "include",
+    }
+  ).then((res) => res.json());
 }
 
 // Get a single mobile tower by ID
-export function getMobileTowerById({ id, headers }) {
+export async function getMobileTowerById({ id, headers }) {
   return fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/mobile-towers/${id}`, {
     method: "GET",
     headers: headers,
@@ -506,12 +512,15 @@ export async function deleteMobileTower({ id }) {
 // =================== Copper Line API Functions ===================
 
 // Get all copper lines
-export async function getAllCopperLines({ headers }) {
-  return fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/copper-lines`, {
-    method: "GET",
-    headers: headers,
-    credentials: "include",
-  }).then((res) => res.json());
+export async function getAllCopperLines({ headers, query = "" }) {
+  return fetch(
+    `${process.env.NEXT_PUBLIC_APP_URL}/api/copper-lines?query=${query}`,
+    {
+      method: "GET",
+      headers: headers,
+      credentials: "include",
+    }
+  ).then((res) => res.json());
 }
 
 // Get a single copper line by ID

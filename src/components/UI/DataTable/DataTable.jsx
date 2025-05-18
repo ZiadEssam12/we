@@ -18,12 +18,14 @@ import {
   Search,
   X,
 } from "lucide-react";
+import { LineMdLoadingLoop } from "@/app/icons/Icons";
 
 export default function DataTable({
   data = [],
   columns = [],
   setOpenModal,
   handleSearch,
+  isLoading = false,
 }) {
   const [pagination, setPagination] = useState({
     pageIndex: 0,
@@ -63,6 +65,7 @@ export default function DataTable({
                 placeholder="بحث..."
                 className="py-2 px-4 pr-10 w-[250px] border border-gray-300 rounded-lg focus:outline-none focus:ring-0 "
                 value={globalFilter || ""}
+                disabled={isLoading}
                 onChange={(e) => setGlobalFilter(e.target.value)}
               />
               <div className="absolute right-3 inset-y-0 flex items-center">
@@ -81,10 +84,20 @@ export default function DataTable({
               </div>
             </div>{" "}
             <button
+              disabled={isLoading}
               type="submit"
-              className="flex cursor-pointer items-center gap-1 py-2 px-4 rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white transition-colors duration-150 shadow-md hover:shadow-lg"
+              className={`flex cursor-pointer items-center gap-1 py-2 px-4 rounded-lg bg-gradient-to-br transition-colors duration-150 shadow-md 
+    ${
+      isLoading
+        ? "from-blue-400 to-purple-400 opacity-70 cursor-not-allowed"
+        : "from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 hover:shadow-lg"
+    } text-white`}
             >
-              <Search className="h-4 w-4" />
+              {isLoading ? (
+                <LineMdLoadingLoop className="h-4 w-4 animate-spin" />
+              ) : (
+                <Search className="h-4 w-4" />
+              )}
               <span>بحث</span>
             </button>
           </form>

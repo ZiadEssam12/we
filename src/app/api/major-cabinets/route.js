@@ -12,16 +12,33 @@ import {
 // api/major-cabinets
 export async function GET(request) {
   try {
+    const { searchParams } = new URL(request.url);
+    const query = searchParams.get("query");
+
+    // Build where clause based on search query
+    const where = { status: "ACTIVE" };
+
+    // If query parameter exists, add search conditions
+    if (query) {
+      where.OR = [
+        { central: { contains: query, mode: "insensitive" } },
+        { village: { contains: query, mode: "insensitive" } },
+        { cabinet: { contains: query, mode: "insensitive" } },
+        { notes: { contains: query, mode: "insensitive" } },
+      ];
+    }
+
     const majorCabinets = await prisma.majorCabinet.findMany({
-      where: {
-        status: "ACTIVE",
-      },
+      where,
       orderBy: {
         createdAt: "desc",
       },
     });
     return NextResponse.json(
-      { success: true, data: majorCabinets },
+      {
+        success: true,
+        data: majorCabinets,
+      },
       { status: 200 }
     );
   } catch (error) {

@@ -42,7 +42,8 @@ export default function DataTableWrapper({
 
   // Initialize state variables
   // Use initialData if provided, otherwise default to an empty array
-  const [data, setData] = useState(initialData || []);
+  // if you need to init data on mount just pass it as initialData
+  const [data, setData] = useState([]);
 
   // State for loading, error, and modal management
   const [isLoading, setIsLoading] = useState(false);
@@ -328,10 +329,20 @@ export default function DataTableWrapper({
     setSelectedItem(null);
   };
 
-  const handleSearch = (searchTerm) => {
+  const handleSearch = async (searchTerm) => {
     // Implement search functionality here
     // For example, you can filter the data based on the search term
-    console.log("Search Term :", searchTerm);
+    try {
+      setIsLoading(true)
+      const { data } = await fetchData({ query: searchTerm });
+      console.log("data after search:", data);
+      setData(data);
+    } catch (err) {
+      console.error("Error searching data:", err);
+      toast.error("حدث خطأ أثناء البحث");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (

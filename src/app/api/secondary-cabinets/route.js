@@ -8,16 +8,35 @@ import { applyMiddlewareHeaders } from "@/lib/middleware-utils";
 // api/secondary-cabinets
 export async function GET(request) {
   try {
+    const { searchParams } = new URL(request.url);
+    const query = searchParams.get("query");
+
+    // Build where clause based on search query
+    const where = { status: "ACTIVE" };
+
+    // If query parameter exists, add search conditions
+    if (query) {
+      where.OR = [
+        { central: { contains: query, mode: "insensitive" } },
+        { village: { contains: query, mode: "insensitive" } },
+        { cabinet: { contains: query, mode: "insensitive" } },
+        { port_gbon: { contains: query, mode: "insensitive" } },
+        { box_number: { contains: query, mode: "insensitive" } },
+        { notes: { contains: query, mode: "insensitive" } },
+      ];
+    }
+
     const secondaryCabinets = await prisma.secondaryCabinet.findMany({
-      where: {
-        status: "ACTIVE",
-      },
+      where,
       orderBy: {
         createdAt: "desc",
       },
     });
     return NextResponse.json(
-      { success: true, data: secondaryCabinets },
+      {
+        success: true,
+        data: secondaryCabinets,
+      },
       { status: 200 }
     );
   } catch (error) {

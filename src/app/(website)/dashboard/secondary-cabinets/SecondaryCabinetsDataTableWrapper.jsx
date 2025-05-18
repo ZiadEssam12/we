@@ -16,8 +16,8 @@ export default function SecondaryCabinetsDataTableWrapper({
   columns,
 }) {
   // Define the fetch function that will be used for client-side data refresh
-  const fetchData = useCallback(async () => {
-    return await getAllSecondaryCabinets();
+  const fetchData = useCallback(async ({ query }) => {
+    return await getAllSecondaryCabinets({ query });
   }, []);
 
   // Create object of API functions to pass to DataTableWrapper

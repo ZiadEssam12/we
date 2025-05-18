@@ -13,8 +13,8 @@ import CopperLineForm from "./CopperLineForm";
 
 export default function CopperLinesDataTableWrapper({ initialData, columns }) {
   // Define the fetch function that will be used for client-side data refresh
-  const fetchData = useCallback(async () => {
-    return await getAllCopperLines();
+  const fetchData = useCallback(async ({ query }) => {
+    return await getAllCopperLines({ query });
   }, []);
 
   // Create object of API functions to pass to DataTableWrapper

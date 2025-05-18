@@ -31,13 +31,27 @@ export const GET = auth(async function GET(req) {
         { status: 403 }
       );
     }
+    const { searchParams } = new URL(req.url);
+    const query = searchParams.get("query");
+
+    // Build where clause based on search query
+    const where = {
+      id: {
+        not: session.user.id,
+      },
+    };
+
+    // If query parameter exists, add search conditions
+    if (query) {
+      where.OR = [
+        { userName: { contains: query, mode: "insensitive" } },
+        { name: { contains: query, mode: "insensitive" } },
+        { phoneNumber: { contains: query, mode: "insensitive" } },
+      ];
+    }
 
     const users = await prisma.user.findMany({
-      where: {
-        id: {
-          not: session.user.id,
-        },
-      },
+      where,
       orderBy: {
         createdAt: "desc",
       },

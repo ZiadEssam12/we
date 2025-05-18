@@ -29,8 +29,8 @@ import {
 } from "./api";
 
 // Secondary Cabinet client wrappers
-export const getAllSecondaryCabinets = async (options = {}) => {
-  return await getSecondaryCabinets(options);
+export const getAllSecondaryCabinets = async ({ query }) => {
+  return await getSecondaryCabinets({ query });
 };
 
 export const createSecondaryCabinet = async (data) => {
@@ -46,8 +46,8 @@ export const deleteSecondaryCabinet = async ({ id }) => {
 };
 
 // Mobile Tower client wrappers
-export const getAllMobileTowers = async (options = {}) => {
-  return await getMobileTowers(options);
+export const getAllMobileTowers = async ({ query }) => {
+  return await getMobileTowers({ query });
 };
 
 export const createMobileTower = async (data) => {
@@ -63,8 +63,8 @@ export const deleteMobileTower = async ({ id }) => {
 };
 
 // Copper Line client wrappers
-export const getAllCopperLines = async (options = {}) => {
-  return await getCopperLines(options);
+export const getAllCopperLines = async ({ query }) => {
+  return await getCopperLines({ query });
 };
 
 export const createCopperLine = async (data) => {
@@ -80,8 +80,8 @@ export const deleteCopperLine = async ({ id }) => {
 };
 
 // Major Cabinet client wrappers
-export const getAllMajorCabinets = async (options = {}) => {
-  return await getMajorCabinets(options);
+export const getAllMajorCabinets = async ({ query }) => {
+  return await getMajorCabinets({ query });
 };
 
 export const createMajorCabinet = async (data) => {
@@ -97,8 +97,8 @@ export const deleteMajorCabinet = async ({ id }) => {
 };
 
 // User client wrappers
-export const getAllUsers = async (options = {}) => {
-  return await getUsers(options);
+export const getAllUsers = async ({ query }) => {
+  return await getUsers({ query });
 };
 
 export const createUser = async (data) => {

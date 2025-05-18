@@ -2,24 +2,40 @@ import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 import { auth } from "@/app/auth";
 import { mobileTowerSchema } from "@/schemas/mobileTower";
-import {
-  applyMiddlewareHeaders,
-} from "@/lib/middleware-utils";
+import { applyMiddlewareHeaders } from "@/lib/middleware-utils";
 
 // GET all MobileTowers
 // api/mobile-towers
 export async function GET(request) {
   try {
+    const { searchParams } = new URL(request.url);
+    const query = searchParams.get("query");
+
+    // Build where clause based on search query
+    const where = { status: "ACTIVE" };
+
+    // If query parameter exists, add search conditions
+    if (query) {
+      where.OR = [
+        { central: { contains: query, mode: "insensitive" } },
+        { tower_code: { contains: query, mode: "insensitive" } },
+        { company: { contains: query, mode: "insensitive" } },
+        { address: { contains: query, mode: "insensitive" } },
+        { notes: { contains: query, mode: "insensitive" } },
+      ];
+    }
+
     const mobileTowers = await prisma.mobileTower.findMany({
-      where: {
-        status: "ACTIVE",
-      },
+      where,
       orderBy: {
         createdAt: "desc",
       },
     });
     return NextResponse.json(
-      { success: true, data: mobileTowers },
+      {
+        success: true,
+        data: mobileTowers,
+      },
       { status: 200 }
     );
   } catch (error) {
