@@ -328,6 +328,12 @@ export default function DataTableWrapper({
     setSelectedItem(null);
   };
 
+  const handleSearch = (searchTerm) => {
+    // Implement search functionality here
+    // For example, you can filter the data based on the search term
+    console.log("Search Term :", searchTerm);
+  };
+
   return (
     <div className="container mx-auto px-4">
       {error && (
@@ -341,6 +347,7 @@ export default function DataTableWrapper({
         isLoading={isLoading}
         ButtonTitle={texts.addButton}
         setOpenModal={setIsModalOpen}
+        handleSearch={handleSearch}
       />
       {/* Form Modal */}
       <Modal

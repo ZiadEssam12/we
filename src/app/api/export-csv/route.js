@@ -31,10 +31,10 @@ export const GET = auth(async function GET(req) {
 
     // Get the module parameter from query string
     const { searchParams } = new URL(req.url);
-    const module = searchParams.get("module");
+    const table = searchParams.get("module");
 
     // Validate module parameter
-    if (!module) {
+    if (!table) {
       return NextResponse.json(
         {
           success: false,
@@ -47,7 +47,7 @@ export const GET = auth(async function GET(req) {
     let data = [];
 
     // Get data based on the specified module
-    switch (module) {
+    switch (table) {
       case "major-cabinets":
         data = await prisma.majorCabinet.findMany({
           orderBy: {

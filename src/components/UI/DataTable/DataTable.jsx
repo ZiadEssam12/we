@@ -22,58 +22,72 @@ import {
 export default function DataTable({
   data = [],
   columns = [],
-
-  ButtonTitle = null,
   setOpenModal,
+  handleSearch,
 }) {
   const [pagination, setPagination] = useState({
     pageIndex: 0,
     pageSize: 10,
   });
-  const [globalFilter, setGlobalFilter] = useState("");
-
-  // Use columns directly as provided by parent component
+  const [globalFilter, setGlobalFilter] = useState(""); // Use columns directly as provided by parent component
   const table = useReactTable({
     data,
     columns,
     state: {
       pagination,
-      globalFilter,
+      // globalFilter,
     },
     onPaginationChange: setPagination,
-    onGlobalFilterChange: setGlobalFilter,
+    // onGlobalFilterChange: setGlobalFilter,
     getCoreRowModel: getCoreRowModel(),
-    getFilteredRowModel: getFilteredRowModel(),
+    // getFilteredRowModel: getFilteredRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     globalFilterFn: "includesString",
     manualPagination: false,
   });
+  const handleSearchfn = (e) => {
+    e.preventDefault(); // Prevent page reload
+    handleSearch(globalFilter); // Pass only the search term
+  };
+
   return (
     <div className="w-full">
       <div className="flex items-center justify-between mb-4">
         <div className="relative">
-          <div className="flex items-center">
-            <input
-              type="text"
-              placeholder="بحث..."
-              className="py-2 px-4 pr-10 w-[250px] border border-gray-300 rounded-lg focus:outline-none focus:ring-0 "
-              value={globalFilter || ""}
-              onChange={(e) => setGlobalFilter(e.target.value)}
-            />
-            <div className="absolute right-3 inset-y-0 flex items-center">
-              {globalFilter ? (
-                <button
-                  onClick={() => setGlobalFilter("")}
-                  className="text-gray-400 hover:text-gray-600 focus:outline-none"
-                  title="مسح البحث"
-                >
-                  <X className="h-4 w-4" />
-                </button>
-              ) : (
-                <Search className="h-4 w-4 text-gray-400" />
-              )}
-            </div>
-          </div>
+          {" "}
+          <form className="flex items-center gap-3" onSubmit={handleSearchfn}>
+            {" "}
+            <div className="flex items-center">
+              <input
+                type="text"
+                placeholder="بحث..."
+                className="py-2 px-4 pr-10 w-[250px] border border-gray-300 rounded-lg focus:outline-none focus:ring-0 "
+                value={globalFilter || ""}
+                onChange={(e) => setGlobalFilter(e.target.value)}
+              />
+              <div className="absolute right-3 inset-y-0 flex items-center">
+                {globalFilter ? (
+                  <button
+                    type="reset"
+                    onClick={() => setGlobalFilter("")}
+                    className="text-gray-400 hover:text-gray-600 focus:outline-none"
+                    title="مسح البحث"
+                  >
+                    <X className="h-4 w-4" />
+                  </button>
+                ) : (
+                  <Search className="h-4 w-4 text-gray-400" />
+                )}
+              </div>
+            </div>{" "}
+            <button
+              type="submit"
+              className="flex cursor-pointer items-center gap-1 py-2 px-4 rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white transition-colors duration-150 shadow-md hover:shadow-lg"
+            >
+              <Search className="h-4 w-4" />
+              <span>بحث</span>
+            </button>
+          </form>
         </div>
         <button
           onClick={() => setOpenModal(true)}

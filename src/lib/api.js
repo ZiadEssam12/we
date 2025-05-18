@@ -1,5 +1,5 @@
 // get all users
-export function getAllUsers({ headers }) {
+export async function getAllUsers({ headers }) {
   return fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/users`, {
     method: "GET",
     headers: headers,
@@ -506,7 +506,7 @@ export async function deleteMobileTower({ id }) {
 // =================== Copper Line API Functions ===================
 
 // Get all copper lines
-export function getAllCopperLines({ headers }) {
+export async function getAllCopperLines({ headers }) {
   return fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/copper-lines`, {
     method: "GET",
     headers: headers,
@@ -515,7 +515,7 @@ export function getAllCopperLines({ headers }) {
 }
 
 // Get a single copper line by ID
-export function getCopperLineById({ id, headers }) {
+export async function getCopperLineById({ id, headers }) {
   return fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/copper-lines/${id}`, {
     method: "GET",
     headers: headers,
