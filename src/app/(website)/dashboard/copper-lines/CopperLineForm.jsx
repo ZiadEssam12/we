@@ -30,7 +30,7 @@ export default function CopperLineForm({
   initialData,
   onSubmit,
   isProcessing,
-  formStyle = "flex flex-col  gap-3 overflow-y-auto max-h-[70vh] p-4",
+  formStyle = null,
   hideSubmitButton = false,
   renderCustomButtons,
   readOnly = false,
@@ -72,7 +72,10 @@ export default function CopperLineForm({
   };
 
   return (
-    <form onSubmit={formik.handleSubmit} className={formStyle}>
+    <form
+      onSubmit={formik.handleSubmit}
+      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 overflow-y-auto max-h-[70vh] p-4"
+    >
       <div>
         <label
           htmlFor="landline_number"
@@ -442,7 +445,7 @@ export default function CopperLineForm({
         )}
       </div>
 
-      <div className="w-full col-span-3">
+      <div className="col-span-1 md:col-span-2 lg:col-span-3 w-full">
         <label
           htmlFor="notes"
           className="block text-sm font-medium text-gray-700"

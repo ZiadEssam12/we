@@ -11,6 +11,7 @@ import {
 } from "@/app/icons/Icons";
 import { useSession } from "next-auth/react";
 import { entityNameArToEn } from "@/lib/utils";
+import { usePermission } from "@/app/hooks/RBAC";
 
 /**
  * Generic data table wrapper component that can be extended for specific entity types
@@ -37,12 +38,10 @@ export default function DataTableWrapper({
   entityName = "item",
   modalTexts = {},
 }) {
+  const { hasPermission } = usePermission();
   const { data: session } = useSession();
   const { fetchData, createItem, updateItem, deleteItem } = apiHandlers;
   // State for data, loading, modal, selected item, etc.
-  console.log("current entity :", entityName);
-  console.log("current entity in ar :", entityNameArToEn(entityName));
-  // Check if the session is available and log the user role
 
   // Initialize state variables
   // Use initialData if provided, otherwise default to an empty array
@@ -434,7 +433,7 @@ export default function DataTableWrapper({
               </span>
               <span>تعديل</span>
             </button>
-            {session?.user?.role !== "USER" && (
+            {hasPermission(entityNameArToEn(entityName), "delete") && (
               <button
                 onClick={() => {
                   // Only set selectedItem when delete button is clicked

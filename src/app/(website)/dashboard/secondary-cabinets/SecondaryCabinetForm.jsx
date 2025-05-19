@@ -28,7 +28,7 @@ export default function SecondaryCabinetForm({
   initialData,
   onSubmit,
   isProcessing,
-  formStyle = "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 overflow-y-auto max-h-[70vh] p-4",
+  formStyle = null,
   hideSubmitButton = false,
   renderCustomButtons,
   readOnly = false,
