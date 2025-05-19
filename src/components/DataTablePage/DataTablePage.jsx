@@ -116,9 +116,9 @@ export default async function DataTablePage({
   // Render the page with data table
   return (
     <>
-      <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-l from-blue-600 to-purple-600 text-transparent bg-clip-text animate-gradient-text leading-tight text-center mb-6">
+      <h1 className="mt-10 md:mt-4 text-4xl md:text-5xl font-bold bg-gradient-to-l from-blue-600 to-purple-600 text-transparent bg-clip-text animate-gradient-text leading-tight text-center mb-6">
         {title}
-      </h1>{" "}
+      </h1>
       <DataTableWrapper initialData={initialData} columns={columns} />
       {/* Show download button if user is admin - more flexible condition */}
       {(session?.user?.role === "ADMIN" || session?.user?.role === "admin") && (

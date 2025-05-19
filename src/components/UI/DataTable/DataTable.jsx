@@ -58,7 +58,7 @@ export default function DataTable({
 
   return (
     <div className="w-full">
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex items-center justify-between mb-2 lg:mb-4">
         <div className="relative">
           {" "}
           <form className="flex items-center gap-3" onSubmit={handleSearchfn}>
@@ -80,10 +80,10 @@ export default function DataTable({
                     className="text-gray-400 hover:text-gray-600 focus:outline-none"
                     title="مسح البحث"
                   >
-                    <X className="h-4 w-4" />
+                    <X width={25} height={25} />
                   </button>
                 ) : (
-                  <Search className="h-4 w-4 text-gray-400" />
+                  <Search width={25} height={25} className="text-gray-400" />
                 )}
               </div>
             </div>{" "}
@@ -98,11 +98,11 @@ export default function DataTable({
               } text-white`}
             >
               {isLoading ? (
-                <LineMdLoadingLoop className="h-4 w-4 animate-spin" />
+                <LineMdLoadingLoop width={25} height={25} />
               ) : (
-                <Search className="h-4 w-4" />
+                <Search width={25} height={25} />
               )}
-              <span>بحث</span>
+              <span className="hidden md:inline">بحث</span>
             </button>
           </form>
         </div>
@@ -112,8 +112,8 @@ export default function DataTable({
             onClick={() => setOpenModal(true)}
             className="group relative flex items-center cursor-pointer justify-center gap-2 rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 px-4 py-2  font-medium text-white hover:from-blue-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-70 transition-all duration-200 shadow-md hover:shadow-lg"
           >
-            <PlusCircle width={20} height={20} />
-            <span>إضافة</span>
+            <PlusCircle width={25} height={25} />
+            <span className="hidden md:inline">إضافة</span>
           </button>
         )}
       </div>
