@@ -74,7 +74,6 @@ export default function DownloadCSVButton({ apiEndpoint, fileName }) {
         }${apiEndpoint}`;
       }
 
-      console.log("Fetching CSV data from:", finalUrl);
 
       const response = await fetch(finalUrl);
       const result = await response.json();

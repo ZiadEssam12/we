@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { loginSchema, SigninInitialValues } from "@/schemas/auth";
 import LoadingButton from "@/components/buttonWithLoading/ButtonWithLoading";
+import toast from "react-hot-toast";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -21,7 +22,6 @@ export default function LoginPage() {
       setLoading(true);
       setError(null); // Clear previous errors
 
-
       try {
         const result = await signIn("credentials", {
           redirect: false, // Prevent redirect
@@ -29,16 +29,21 @@ export default function LoginPage() {
           password: values.password,
         });
 
+        
+
         if (result?.error) {
           setError(result.code);
         } else if (!result.ok) {
           setError("حدث خطأ أثناء تسجيل الدخول. حاول مرة أخرى.");
+          toast.error("حدث خطأ أثناء تسجيل الدخول. حاول مرة أخرى.");
         } else {
+          toast.success("تم تسجيل الدخول بنجاح");
           router.push("/dashboard"); // Redirect on success
         }
       } catch (error) {
         console.error("Unexpected error during signIn:", error);
-        setError("An unexpected error occurred. Please try again.");
+        toast.error("حدث خطأ غير متوقع. حاول مرة أخرى.");
+        // setError("An unexpected error occurred. Please try again.");
       } finally {
         setLoading(false);
       }

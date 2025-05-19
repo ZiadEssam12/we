@@ -18,8 +18,19 @@ export function getSessionCookieName() {
     : "authjs.session-token";
 }
 
-
-
-export function setStatus(data){
-  
+export function entityNameArToEn(entityNameAr) {
+  switch (entityNameAr) {
+    case "برج التليفون":
+      return "mobileTowers"; // Changed to plural to match RBAC
+    case "الكبينة الرئيسية":
+      return "majorCabinets"; // Changed to plural to match RBAC
+    case "الكبينة الثانوية":
+      return "secondaryCabinets"; // Changed to plural to match RBAC
+    case "خط النحاس":
+      return "copperLines"; // Changed to plural to match RBAC
+    case "المستخدمين":
+      return "users";
+    default:
+      return "";
+  }
 }

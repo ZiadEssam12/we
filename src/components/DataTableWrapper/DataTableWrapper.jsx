@@ -10,6 +10,7 @@ import {
   TrashIcon,
 } from "@/app/icons/Icons";
 import { useSession } from "next-auth/react";
+import { entityNameArToEn } from "@/lib/utils";
 
 /**
  * Generic data table wrapper component that can be extended for specific entity types
@@ -39,6 +40,9 @@ export default function DataTableWrapper({
   const { data: session } = useSession();
   const { fetchData, createItem, updateItem, deleteItem } = apiHandlers;
   // State for data, loading, modal, selected item, etc.
+  console.log("current entity :", entityName);
+  console.log("current entity in ar :", entityNameArToEn(entityName));
+  // Check if the session is available and log the user role
 
   // Initialize state variables
   // Use initialData if provided, otherwise default to an empty array
@@ -343,7 +347,6 @@ export default function DataTableWrapper({
     try {
       setIsLoading(true);
       const { data } = await fetchData({ query: searchTerm });
-      console.log("data after search:", data);
       setData(data);
     } catch (err) {
       console.error("Error searching data:", err);
@@ -367,6 +370,7 @@ export default function DataTableWrapper({
         ButtonTitle={texts.addButton}
         setOpenModal={setIsModalOpen}
         handleSearch={handleSearch}
+        entityName={entityNameArToEn(entityName)}
       />
       {/* Form Modal */}
       <Modal

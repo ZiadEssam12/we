@@ -20,7 +20,7 @@ import {
   PlusCircle,
 } from "lucide-react";
 import { LineMdLoadingLoop } from "@/app/icons/Icons";
-import { useSession } from "next-auth/react";
+import { usePermission } from "@/app/hooks/RBAC";
 
 export default function DataTable({
   data = [],
@@ -28,8 +28,9 @@ export default function DataTable({
   setOpenModal,
   handleSearch,
   isLoading = false,
+  entityName = null,
 }) {
-  const { data: session } = useSession();
+  const { hasPermission } = usePermission();
 
   const [pagination, setPagination] = useState({
     pageIndex: 0,
@@ -105,9 +106,8 @@ export default function DataTable({
               <span className="hidden md:inline">بحث</span>
             </button>
           </form>
-        </div>
-
-        {session?.user.role !== "MANAGER" && (
+        </div>{" "}
+        {hasPermission(entityName, "create") && (
           <button
             onClick={() => setOpenModal(true)}
             className="group relative flex items-center cursor-pointer justify-center gap-2 rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 px-4 py-2  font-medium text-white hover:from-blue-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-70 transition-all duration-200 shadow-md hover:shadow-lg"
@@ -116,6 +116,15 @@ export default function DataTable({
             <span className="hidden md:inline">إضافة</span>
           </button>
         )}
+        {/* {session?.user.role !== "MANAGER" && (
+          <button
+            onClick={() => setOpenModal(true)}
+            className="group relative flex items-center cursor-pointer justify-center gap-2 rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 px-4 py-2  font-medium text-white hover:from-blue-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-70 transition-all duration-200 shadow-md hover:shadow-lg"
+          >
+            <PlusCircle width={25} height={25} />
+            <span className="hidden md:inline">إضافة</span>
+          </button>
+        )} */}
       </div>
       <div className="rounded-md border bg-white">
         <div className="overflow-x-auto">
