@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { use } from "react";
 import {
   MdOutlineStorage,
   MdOutlineDevices,
@@ -8,7 +9,9 @@ import {
   MdTimeline,
 } from "react-icons/md";
 
-export default function ClientRequestsPage({ pendingRequests }) {
+export default function ClientRequestsPage({ pendingRequestsPromise }) {
+  const pendingRequests = use(pendingRequestsPromise);
+
   return (
     <div className="container mx-auto p-6">
       <div className="mb-8">

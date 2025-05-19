@@ -13,8 +13,8 @@ import { UserFormDynamic } from "./UserFormDynamic";
 
 export default function UsersDataTableWrapper({ initialData, columns }) {
   // Define the fetch function that will be used for client-side data refresh
-  const fetchData = useCallback(async ({query}) => {
-    return await getAllUsers({query});
+  const fetchData = useCallback(async ({ query }) => {
+    return await getAllUsers({ query });
   }, []);
 
   // Create object of API functions to pass to DataTableWrapper
@@ -30,7 +30,7 @@ export default function UsersDataTableWrapper({ initialData, columns }) {
       columns={columns}
       apiHandlers={apiHandlers}
       FormComponent={UserFormDynamic}
-      entityName="المستخدم"
+      entityName="المستخدمين"
       modalTexts={{
         addButton: "إضافة مستخدم",
         editTitle: "تعديل المستخدم",

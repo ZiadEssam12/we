@@ -18,6 +18,9 @@ export function usePermission() {
    * @returns {boolean} - Whether the user has the permission
    */
   const hasPermission = (resource, permission) => {
+    console.log("Checking permission for resource:", resource);
+    console.log("Checking permission for role:", role);
+    console.log("Checking permission for action:", permission);
     return checkPermission(role, resource, permission);
   };
 

@@ -8,7 +8,9 @@ export default async function RequestsPage() {
   const sessionCookieName = getSessionCookieName();
   const sessionTokenCookie = cookieStore.get(sessionCookieName);
   const headers = await setCookiesHeader({ sessionTokenCookie });
-  const data = await getAllPendingRequests({ headers });
+  const pendingRequestsPromiseData = getAllPendingRequests({ headers });
 
-  return <ClientRequestsPage pendingRequests={data} />;
+  return (
+    <ClientRequestsPage pendingRequestsPromise={pendingRequestsPromiseData} />
+  );
 }
