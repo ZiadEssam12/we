@@ -1,8 +1,8 @@
-import React from "react";
 import { auth } from "@/app/auth";
 import { cookies } from "next/headers";
 import { getSessionCookieName, setCookiesHeader } from "@/lib/utils";
 import DownloadCSVButton from "../ButtonDownloadCSV/ButtonDownloadCSV";
+import { checkPermission } from "@/RBAC";
 
 /**
  * Generic server component for data table pages
@@ -121,7 +121,7 @@ export default async function DataTablePage({
       </h1>
       <DataTableWrapper initialData={initialData} columns={columns} />
       {/* Show download button if user is admin - more flexible condition */}
-      {(session?.user?.role === "ADMIN" || session?.user?.role === "admin") && (
+      {checkPermission(session?.user?.role, "exportCSV", "read") && (
         <DownloadCSVButton
           apiEndpoint={`/api/export-csv?module=${
             moduleParam || title.toLowerCase().replace(/\s+/g, "-")

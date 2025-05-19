@@ -24,5 +24,6 @@ export const secondaryCabinetColumns = [
     enableSearch: false,
   },
   { header: "المسؤول", accessorKey: "responsible", enableSearch: true },
+  { header: "ملاحظات", accessorKey: "notes", enableSearch: true },
   { header: "تاريخ الإنشاء", accessorKey: "createdAt", enableSearch: false },
 ];

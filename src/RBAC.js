@@ -10,6 +10,7 @@ const rolePermissions = {
     copperLines: ["create", "read", "update", "delete"],
     mobileTowers: ["create", "read", "update", "delete"],
     PendingRequest: ["read", "update", "delete"],
+    exportCSV: ["read"],
   },
   MANAGER: {
     users: [], // No permissions for users module
@@ -18,6 +19,7 @@ const rolePermissions = {
     copperLines: ["read", "update", "delete"],
     mobileTowers: ["read", "update", "delete"],
     PendingRequest: ["read", "update", "delete"],
+    exportCSV: [],
   },
   USER: {
     users: [], // No permissions for users module
@@ -26,6 +28,7 @@ const rolePermissions = {
     copperLines: ["create", "read", "update"],
     mobileTowers: ["create", "read", "update"],
     PendingRequest: [],
+    exportCSV: [],
   },
 };
 
