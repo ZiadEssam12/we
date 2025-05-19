@@ -13,7 +13,9 @@ import {
 export async function GET(request) {
   try {
     const { searchParams } = new URL(request.url);
-    const query = searchParams.get("query");
+
+    // get the query and trim it to remove any leading or trailing spaces
+    const query = searchParams.get("query").trim();
 
     // Build where clause based on search query
     const where = { status: "ACTIVE" };
@@ -67,7 +69,6 @@ export async function POST(request) {
 
   try {
     const cabinetData = await request.json();
-
 
     let validatedData;
 

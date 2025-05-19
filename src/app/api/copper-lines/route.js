@@ -8,7 +8,7 @@ import { applyMiddlewareHeaders } from "@/lib/middleware-utils";
 export async function GET(request) {
   try {
     const { searchParams } = new URL(request.url);
-    const query = searchParams.get("query");
+    const query = searchParams.get("query").trim();
 
     // Build where clause based on search query
     const where = { status: "ACTIVE" };

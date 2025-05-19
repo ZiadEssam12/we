@@ -9,7 +9,7 @@ import { applyMiddlewareHeaders } from "@/lib/middleware-utils";
 export async function GET(request) {
   try {
     const { searchParams } = new URL(request.url);
-    const query = searchParams.get("query");
+    const query = searchParams.get("query").trim();
 
     // Build where clause based on search query
     const where = { status: "ACTIVE" };
@@ -66,7 +66,6 @@ export async function POST(request) {
   try {
     const body = await request.json();
     let validatedData;
-
 
     try {
       validatedData = await secondaryCabinetSchema.validate(body, {
