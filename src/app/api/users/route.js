@@ -9,28 +9,6 @@ import { NextResponse } from "next/server";
 // get all users
 export const GET = auth(async function GET(req) {
   try {
-    const session = req.auth;
-
-    // Check if the user is authenticated
-    if (!session || !session.user) {
-      return NextResponse.json(
-        {
-          success: false,
-          message: "يجب تسجيل الدخول للوصول إلى هذه الصفحة",
-        },
-        { status: 401 }
-      );
-    }
-    // Check if the user has the required role
-    if (session?.user?.role !== "ADMIN" && session?.user?.role !== "MANAGER") {
-      return NextResponse.json(
-        {
-          success: false,
-          message: "ليس لديك إذن للوصول إلى هذه الصفحة",
-        },
-        { status: 403 }
-      );
-    }
     const { searchParams } = new URL(req.url);
     const query = searchParams.get("query");
 
@@ -87,30 +65,6 @@ export const GET = auth(async function GET(req) {
 // Create a new user
 export const POST = auth(async function POST(request) {
   try {
-    // const session = request.auth;
-
-    // // Check if the user is authenticated
-    // if (!session || !session.user) {
-    //   return NextResponse.json(
-    //     {
-    //       success: false,
-    //       message: "يجب تسجيل الدخول للوصول إلى هذه الصفحة",
-    //     },
-    //     { status: 401 }
-    //   );
-    // }
-
-    // // Check if the user has the required role
-    // if (session?.user?.role !== "ADMIN") {
-    //   return NextResponse.json(
-    //     {
-    //       success: false,
-    //       message: "ليس لديك صلاحيات للقيام بهذا الإجراء",
-    //     },
-    //     { status: 403 }
-    //   );
-    // }
-
     const body = await request.json();
     const checkSchema = await registerNewUserSchema.isValid(body);
     if (!checkSchema) {

@@ -2,6 +2,7 @@
 import { NextResponse } from "next/server";
 import { getToken } from "next-auth/jwt";
 import { apiRoleMiddleware } from "./middlewares/apiRoleMiddleware";
+import { pathGuardMiddleware } from "./middlewares/pathGuardMiddleware";
 
 export async function middleware(request) {
   // Get the pathname of the request
@@ -44,6 +45,12 @@ export async function middleware(request) {
   if (path.startsWith("/api/")) {
     // If it's an API route, apply the API role middleware
     return await apiRoleMiddleware(request, token || {});
+  }
+
+  // Apply path guard middleware and return its result
+  const pathGuardResponse = await pathGuardMiddleware(request, token || {});
+  if (pathGuardResponse) {
+    return pathGuardResponse;
   }
 
   // Continue with the request if no redirection is needed

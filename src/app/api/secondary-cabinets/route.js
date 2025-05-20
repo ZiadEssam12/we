@@ -56,13 +56,6 @@ export async function GET(request) {
 export async function POST(request) {
   const session = await auth();
 
-  if (!session || !session.user) {
-    return NextResponse.json(
-      { success: false, message: "غير مصرح به" },
-      { status: 401 }
-    );
-  }
-
   try {
     const body = await request.json();
     let validatedData;

@@ -9,7 +9,6 @@ import {
 
 // GET a single MajorCabinet by ID
 export async function GET(request, { params }) {
-
   const { majorCabinetId } = await params;
 
   if (!majorCabinetId) {
@@ -142,16 +141,7 @@ export async function PUT(request, { params }) {
 // DELETE a MajorCabinet by ID
 export async function DELETE(request, { params }) {
   const session = await auth();
-
-  if (!session || !session.user || session.user.role !== "ADMIN") {
-    return NextResponse.json(
-      { success: false, message: "غير مصرح به. يتطلب دور المسؤول." },
-      { status: 403 }
-    );
-  }
-
   const { majorCabinetId } = await params;
-
 
   if (!majorCabinetId) {
     return NextResponse.json(

@@ -2,22 +2,10 @@ import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 import { updateSecondaryCabinetSchema } from "@/schemas/secondaryCabinet";
 import { auth } from "@/app/auth";
-import {
-  applyMiddlewareHeaders,
-  getStatusFromHeader,
-} from "@/lib/middleware-utils";
+import { applyMiddlewareHeaders } from "@/lib/middleware-utils";
 
 // GET a single SecondaryCabinet by ID
 export async function GET(request, { params }) {
-  const session = await auth();
-
-  if (!session || !session.user) {
-    return NextResponse.json(
-      { success: false, message: "غير مصرح به" },
-      { status: 401 }
-    );
-  }
-
   const { secondaryCabinetId } = await params;
 
   if (!secondaryCabinetId) {
@@ -135,15 +123,6 @@ export async function PUT(request, { params }) {
 
 // DELETE a SecondaryCabinet by ID
 export async function DELETE(request, { params }) {
-  const session = await auth();
-
-  if (!session || !session.user || session.user.role !== "ADMIN") {
-    return NextResponse.json(
-      { success: false, message: "غير مصرح به. يتطلب دور المسؤول." },
-      { status: 403 }
-    );
-  }
-
   const { secondaryCabinetId } = await params;
 
   if (!secondaryCabinetId) {

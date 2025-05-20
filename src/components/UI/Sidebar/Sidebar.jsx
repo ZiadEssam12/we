@@ -28,7 +28,7 @@ const links = [
     name: "إدارة المستخدمين",
     link: "/dashboard/users",
     icon: MdOutlineSpaceDashboard,
-    role: ["ADMIN", "MANAGER"],
+    role: ["ADMIN"],
   },
   {
     name: "الطلبات المعلقة",

@@ -2,7 +2,10 @@ import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 import { updateMobileTowerSchema } from "@/schemas/mobileTower";
 import { auth } from "@/app/auth";
-import { applyMiddlewareHeaders, getStatusFromHeader } from "@/lib/middleware-utils";
+import {
+  applyMiddlewareHeaders,
+  getStatusFromHeader,
+} from "@/lib/middleware-utils";
 
 // GET a single MobileTower by ID
 export async function GET(request, { params }) {
@@ -55,15 +58,6 @@ export async function GET(request, { params }) {
 
 // PUT (Update) a MobileTower by ID
 export async function PUT(request, { params }) {
-  const session = await auth();
-
-  if (!session || !session.user || session.user.role !== "ADMIN") {
-    return NextResponse.json(
-      { success: false, message: "غير مصرح به. يتطلب دور المسؤول." },
-      { status: 403 }
-    );
-  }
-
   const { mobileTowerId } = await params;
 
   if (!mobileTowerId) {
@@ -95,11 +89,10 @@ export async function PUT(request, { params }) {
         },
         { status: 400 }
       );
-    } 
-    
+    }
+
     // Check if status header is set by the middleware
     validatedData = applyMiddlewareHeaders(validatedData, request);
-
 
     const updatedMobileTower = await prisma.mobileTower.update({
       where: { id: mobileTowerId },
@@ -136,15 +129,6 @@ export async function PUT(request, { params }) {
 
 // DELETE a MobileTower by ID
 export async function DELETE(request, { params }) {
-  const session = await auth();
-
-  if (!session || !session.user || session.user.role !== "ADMIN") {
-    return NextResponse.json(
-      { success: false, message: "غير مصرح به. يتطلب دور المسؤول." },
-      { status: 403 }
-    );
-  }
-
   const { mobileTowerId } = await params;
 
   if (!mobileTowerId) {

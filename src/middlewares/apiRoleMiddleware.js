@@ -17,6 +17,13 @@ export async function apiRoleMiddleware(req, token) {
     );
   }
 
+  
+  if (path.startsWith("/api/export-csv") && userRole !== "ADMIN") {
+    return NextResponse.json(
+      { success: false, message: "ليس لديك صلاحيات للقيام بهذا الإجراء" },
+      { status: 401 }
+    );
+  }
   // DELETE requests only allowed for ADMIN
   if (method === "DELETE" && userRole !== "ADMIN") {
     return NextResponse.json(
@@ -37,7 +44,6 @@ export async function apiRoleMiddleware(req, token) {
 
       // Add status directly in the header
       newHeaders.set("x-status", "ACTIVE");
-
 
       // Clone the request with new headers
       const newReq = new Request(req.url, {

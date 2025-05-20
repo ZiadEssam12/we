@@ -9,7 +9,7 @@ const rolePermissions = {
     secondaryCabinets: ["create", "read", "update", "delete"],
     copperLines: ["create", "read", "update", "delete"],
     mobileTowers: ["create", "read", "update", "delete"],
-    PendingRequest: ["read", "update", "delete"],
+    requests: ["read", "update", "delete"],
     exportCSV: ["read"],
   },
   MANAGER: {
@@ -18,7 +18,7 @@ const rolePermissions = {
     secondaryCabinets: ["read", "update", "delete"],
     copperLines: ["read", "update", "delete"],
     mobileTowers: ["read", "update", "delete"],
-    PendingRequest: ["read", "update", "delete"],
+    requests: ["read", "update", "delete"],
     exportCSV: [],
   },
   USER: {
@@ -27,7 +27,7 @@ const rolePermissions = {
     secondaryCabinets: ["create", "read", "update"],
     copperLines: ["create", "read", "update"],
     mobileTowers: ["create", "read", "update"],
-    PendingRequest: [],
+    requests: [],
     exportCSV: [],
   },
 };
