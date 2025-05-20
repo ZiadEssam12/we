@@ -24,6 +24,5 @@ export async function pathGuardMiddleware(request, token) {
   }
 
   // else go to the next page
-  console.log("No redirection needed");
   return NextResponse.next();
 }

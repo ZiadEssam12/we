@@ -2,14 +2,14 @@
 export const secondaryCabinetColumns = [
   { header: "السنترال", accessorKey: "central", enableSearch: true },
   { header: "القرية", accessorKey: "village", enableSearch: true },
-  { header: "منفذ GBON", accessorKey: "port_gbon", enableSearch: true },
+  { header: "بورت GBON", accessorKey: "port_gbon", enableSearch: true },
   { header: "الكبينة", accessorKey: "cabinet", enableSearch: true },
   {
-    header: "رقم السبليتر",
+    header: "رقم الاسبلتر",
     accessorKey: "splitter_number",
     enableSearch: true,
   },
-  { header: "منفذ السبليتر", accessorKey: "splitter_port", enableSearch: true },
+  { header: "بورت الاسبلتر", accessorKey: "splitter_port", enableSearch: true },
   { header: "المسافة", accessorKey: "distance", enableSearch: false },
   { header: "رقم البوكس", accessorKey: "box_number", enableSearch: true },
   {

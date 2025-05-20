@@ -8,16 +8,16 @@ import ButtonWithLoading from "@/components/buttonWithLoading/ButtonWithLoading"
 const SecondaryCabinetSchema = Yup.object().shape({
   central: Yup.string().required("السنترال مطلوب"),
   village: Yup.string().required("القرية مطلوبة"),
-  port_gbon: Yup.string().required("Port GBON مطلوب"),
+  port_gbon: Yup.string().required("بورت GROB مطلوب"),
   cabinet: Yup.string().required("الكبينة مطلوبة"),
-  splitter_number: Yup.string().required("رقم السبليتر مطلوب"),
-  splitter_port: Yup.string().required("منفذ السبليتر مطلوب"),
+  splitter_number: Yup.string().required("رقم الاسبلتر مطلوب"),
+  splitter_port: Yup.string().required("بورت الاسبلتر مطلوب"),
   distance: Yup.string().required("المسافة مطلوبة"),
   box_number: Yup.string().required("رقم البوكس مطلوب"),
   cabinet_location: Yup.string().required("موقع الكبينة مطلوب"),
   box_location: Yup.string().required("موقع البوكس مطلوب"),
   cabinet_to_box_distance: Yup.string().required(
-    "المسافة من الكبينة للصندوق مطلوبة"
+    "المسافة من الكبينة للبوكس مطلوبة"
   ),
   responsible: Yup.string().nullable(),
   notes: Yup.string().nullable(),
@@ -159,7 +159,7 @@ export default function SecondaryCabinetForm({
           htmlFor="splitter_number"
           className="block text-sm font-medium text-gray-700"
         >
-          رقم السبليتر
+          رقم الاسبلتر
         </label>
         <input
           id="splitter_number"
@@ -181,7 +181,7 @@ export default function SecondaryCabinetForm({
           htmlFor="splitter_port"
           className="block text-sm font-medium text-gray-700"
         >
-          منفذ السبليتر
+          بورت الاسبلتر
         </label>
         <input
           id="splitter_port"
@@ -291,7 +291,7 @@ export default function SecondaryCabinetForm({
           htmlFor="cabinet_to_box_distance"
           className="block text-sm font-medium text-gray-700"
         >
-          المسافة من الكبينة للصندوق
+          المسافة من الكبينة للبوكس
         </label>
         <input
           id="cabinet_to_box_distance"

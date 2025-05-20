@@ -37,12 +37,12 @@ const links = [
     role: ["ADMIN", "MANAGER"],
   },
   {
-    name: "الكابينات الرئيسة",
+    name: "الكبائن الرئيسة",
     link: "/dashboard/main-cabinets",
     icon: MdOutlineStorage,
   },
   {
-    name: "الكابينات الفرعية",
+    name: "الكبائن الفرعية",
     link: "/dashboard/secondary-cabinets",
     icon: MdOutlineDevices,
   },
@@ -52,7 +52,7 @@ const links = [
     icon: MdOutlineSettingsInputAntenna,
   },
   {
-    name: "كابينات النحاس",
+    name: "كبائن النحاس",
     link: "/dashboard/copper-lines",
     icon: MdOutlineCable,
   },
