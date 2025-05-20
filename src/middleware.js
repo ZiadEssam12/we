@@ -44,18 +44,14 @@ export async function middleware(request) {
   // Check if this is an API route
   if (path.startsWith("/api/")) {
     // If it's an API route, apply the API role middleware
-    console.log("Applying API middleware for:", path);
     return await apiRoleMiddleware(request, token || {});
   }
 
   // For non-API routes, apply the path guard middleware
   if (isProtectedPath) {
-    console.log("Applying path guard middleware for:", path);
     return await pathGuardMiddleware(request, token || {});
     // return pathGuardResponse;
   }
-
-  console.log("No limitation going next", path);
 
   // Continue with the request if no redirection is needed
   return NextResponse.next();

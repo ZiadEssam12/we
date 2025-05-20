@@ -5,15 +5,6 @@ export async function pathGuardMiddleware(request, token) {
   const path = request.nextUrl.pathname;
   const userRole = token?.role;
 
-  console.log("Path Guard Middleware:", {
-    path,
-    userRole,
-    hasUserReadPermission: checkPermission(userRole, "users", "read"),
-    condition:
-      path.startsWith("/dashboard/users") &&
-      !checkPermission(userRole, "users", "read"),
-  });
-
   // Check if user has permission to access the path (users page)
   // only ADMIN can access users
   if (

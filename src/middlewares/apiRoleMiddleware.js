@@ -17,14 +17,35 @@ export async function apiRoleMiddleware(req, token) {
     );
   }
 
-  
+  // Check if user has permission to access the path (users page)
+  // only ADMIN can access users
   if (path.startsWith("/api/export-csv") && userRole !== "ADMIN") {
     return NextResponse.json(
       { success: false, message: "ليس لديك صلاحيات للقيام بهذا الإجراء" },
       { status: 401 }
     );
   }
-  
+
+  // Check if user has permission to access the path (requests page)
+  // only ADMIN can access requests
+  if (path.startsWith("/api/users") && userRole !== "ADMIN") {
+    return NextResponse.json(
+      { success: false, message: "ليس لديك صلاحيات للقيام بهذا الإجراء" },
+      { status: 401 }
+    );
+  }
+  // Check if user has permission to access the path (requests page)
+  // only ADMIN and MANAGER can access requests
+  if (
+    path.startsWith("/api/requests") &&
+    !["ADMIN", "MANAGER"].includes(userRole)
+  ) {
+    return NextResponse.json(
+      { success: false, message: "ليس لديك صلاحيات للقيام بهذا الإجراء" },
+      { status: 401 }
+    );
+  }
+
   // DELETE requests only allowed for ADMIN
   if (method === "DELETE" && userRole !== "ADMIN") {
     return NextResponse.json(
