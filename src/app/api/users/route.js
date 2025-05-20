@@ -8,6 +8,7 @@ import { NextResponse } from "next/server";
 
 // get all users
 export const GET = auth(async function GET(req) {
+  const session = req.auth;
   try {
     const { searchParams } = new URL(req.url);
     const query = searchParams.get("query");
@@ -51,6 +52,7 @@ export const GET = auth(async function GET(req) {
       { status: 200 }
     );
   } catch (error) {
+    console.error("Error fetching users:", error);
     return NextResponse.json(
       {
         success: false,
@@ -122,6 +124,7 @@ export const POST = auth(async function POST(request) {
       { status: 201 }
     );
   } catch (error) {
+    console.log("Error creating user:", error);
     return NextResponse.json(
       {
         success: false,

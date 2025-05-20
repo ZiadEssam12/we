@@ -51,11 +51,11 @@ export async function middleware(request) {
   // For non-API routes, apply the path guard middleware
   if (isProtectedPath) {
     console.log("Applying path guard middleware for:", path);
-    const pathGuardResponse = await pathGuardMiddleware(request, token || {});
-    if (pathGuardResponse) {
-      return pathGuardResponse;
-    }
+    return await pathGuardMiddleware(request, token || {});
+    // return pathGuardResponse;
   }
+
+  console.log("No limitation going next", path);
 
   // Continue with the request if no redirection is needed
   return NextResponse.next();

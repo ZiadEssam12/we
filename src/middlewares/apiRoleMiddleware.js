@@ -24,6 +24,7 @@ export async function apiRoleMiddleware(req, token) {
       { status: 401 }
     );
   }
+  
   // DELETE requests only allowed for ADMIN
   if (method === "DELETE" && userRole !== "ADMIN") {
     return NextResponse.json(

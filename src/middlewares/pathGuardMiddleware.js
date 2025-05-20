@@ -14,6 +14,8 @@ export async function pathGuardMiddleware(request, token) {
       !checkPermission(userRole, "users", "read"),
   });
 
+  // Check if user has permission to access the path (users page)
+  // only ADMIN can access users
   if (
     path.startsWith("/dashboard/users") &&
     !checkPermission(userRole, "users", "read")
@@ -21,6 +23,8 @@ export async function pathGuardMiddleware(request, token) {
     return NextResponse.redirect(new URL("/dashboard", request.url));
   }
 
+  // Check if user has permission to access the path (requests page)
+  // only ADMIN and MANAGER can access requests
   if (
     path.startsWith("/dashboard/requests") &&
     !checkPermission(userRole, "requests", "read")
@@ -28,6 +32,7 @@ export async function pathGuardMiddleware(request, token) {
     return NextResponse.redirect(new URL("/dashboard", request.url));
   }
 
+  // else go to the next page
   console.log("No redirection needed");
   return NextResponse.next();
 }
