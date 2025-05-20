@@ -59,16 +59,17 @@ export default function DataTable({
 
   return (
     <div className="w-full">
-      <div className="flex items-center justify-between mb-2 lg:mb-4">
-        <div className="relative">
-          {" "}
-          <form className="flex items-center gap-3" onSubmit={handleSearchfn}>
-            {" "}
-            <div className="flex items-center">
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-3 mb-2 lg:mb-4">
+        <div className="relative w-full sm:w-auto flex-grow lg:max-w-[400px] xl:max-w-[600px]">
+          <form
+            className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3 w-full"
+            onSubmit={handleSearchfn}
+          >
+            <div className="relative w-full lg:max-w-[250px]">
               <input
                 type="text"
                 placeholder="بحث..."
-                className="py-2 px-4 pr-10 w-[250px] border border-gray-300 rounded-lg focus:outline-none focus:ring-0 "
+                className="w-full py-2 px-4 pr-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-0"
                 value={globalFilter || ""}
                 disabled={isLoading}
                 onChange={(e) => setGlobalFilter(e.target.value)}
@@ -81,17 +82,25 @@ export default function DataTable({
                     className="text-gray-400 hover:text-gray-600 focus:outline-none"
                     title="مسح البحث"
                   >
-                    <X width={25} height={25} />
+                    <X
+                      width={20}
+                      height={20}
+                      className="sm:width-25 sm:height-25"
+                    />
                   </button>
                 ) : (
-                  <Search width={25} height={25} className="text-gray-400" />
+                  <Search
+                    width={20}
+                    height={20}
+                    className="text-gray-400 sm:width-25 sm:height-25"
+                  />
                 )}
               </div>
-            </div>{" "}
+            </div>
             <button
               disabled={isLoading}
               type="submit"
-              className={`flex cursor-pointer items-center gap-1 py-2 px-4 rounded-lg bg-gradient-to-br transition-colors duration-150 shadow-md 
+              className={`w-full sm:w-auto flex justify-center items-center gap-1 py-2 px-4 rounded-lg bg-gradient-to-br transition-colors duration-150 shadow-md 
               ${
                 isLoading
                   ? "from-blue-400 to-purple-400 opacity-70 cursor-not-allowed"
@@ -99,32 +108,36 @@ export default function DataTable({
               } text-white`}
             >
               {isLoading ? (
-                <LineMdLoadingLoop width={25} height={25} />
+                <LineMdLoadingLoop
+                  width={20}
+                  height={20}
+                  className="sm:width-25 sm:height-25"
+                />
               ) : (
-                <Search width={25} height={25} />
+                <Search
+                  width={20}
+                  height={20}
+                  className="sm:width-25 sm:height-25"
+                />
               )}
-              <span className="hidden md:inline">بحث</span>
+              <span className="inline">بحث</span>
             </button>
           </form>
-        </div>{" "}
+        </div>
+
         {hasPermission(entityName, "create") && (
           <button
             onClick={() => setOpenModal(true)}
-            className="group relative flex items-center cursor-pointer justify-center gap-2 rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 px-4 py-2  font-medium text-white hover:from-blue-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-70 transition-all duration-200 shadow-md hover:shadow-lg"
+            className="w-full sm:w-auto mt-2 sm:mt-0 group flex items-center justify-center gap-2 rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 px-4 py-2 font-medium text-white hover:from-blue-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-70 transition-all duration-200 shadow-md hover:shadow-lg"
           >
-            <PlusCircle width={25} height={25} />
-            <span className="hidden md:inline">إضافة</span>
+            <PlusCircle
+              width={20}
+              height={20}
+              className="sm:width-25 sm:height-25"
+            />
+            <span className="inline">إضافة</span>
           </button>
         )}
-        {/* {session?.user.role !== "MANAGER" && (
-          <button
-            onClick={() => setOpenModal(true)}
-            className="group relative flex items-center cursor-pointer justify-center gap-2 rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 px-4 py-2  font-medium text-white hover:from-blue-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-70 transition-all duration-200 shadow-md hover:shadow-lg"
-          >
-            <PlusCircle width={25} height={25} />
-            <span className="hidden md:inline">إضافة</span>
-          </button>
-        )} */}
       </div>
       <div className="rounded-md border bg-white">
         <div className="overflow-x-auto">

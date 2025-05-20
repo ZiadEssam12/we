@@ -4,23 +4,23 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import ButtonWithLoading from "@/components/buttonWithLoading/ButtonWithLoading";
 
-// Validation schema for Copper Line form
+// Validation schema for Copper Line form - update error messages to match new labels
 const CopperLineSchema = Yup.object().shape({
-  landline_number: Yup.string().required("رقم الخط الأرضي مطلوب"),
+  landline_number: Yup.string().required("رقم الخط الارضي مطلوب"),
   central: Yup.string().required("السنترال مطلوب"),
-  village: Yup.string().required("القرية مطلوبة"),
+  village: Yup.string().required("البلد مطلوب"),
   cabinet_number: Yup.string().required("رقم الكابينة مطلوب"),
-  port_number: Yup.string().required("رقم المنفذ مطلوب"),
-  terminal_number: Yup.string().required("رقم المحطة مطلوب"),
+  port_number: Yup.string().required("رقم البورت مطلوب"),
+  terminal_number: Yup.string().required("رقم الترمنال مطلوب"),
   cabinet_location: Yup.string().required("موقع الكابينة مطلوب"),
   box_number: Yup.string().required("رقم البوكس مطلوب"),
   box_entitlement: Yup.string().required("استحقاق البوكس مطلوب"),
   box_location: Yup.string().required("موقع البوكس مطلوب"),
-  joint_location: Yup.string().required("موقع الوصلة مطلوب"),
-  joint_entitlement: Yup.string().required("استحقاق الوصلة مطلوب"),
-  joint_depth: Yup.string().required("عمق الوصلة مطلوب"),
+  joint_location: Yup.string().required("موقع اللحامات مطلوب"),
+  joint_entitlement: Yup.string().required("استحقاق اللحامات مطلوب"),
+  joint_depth: Yup.string().required("عمق المسافة اللحامة مطلوب"),
   room_location: Yup.string().required("موقع الغرفة مطلوب"),
-  insulation_level: Yup.string().required("مستوى العزل مطلوب"),
+  insulation_level: Yup.string().required("مستوي العزل مطلوب"),
   responsible: Yup.string().nullable(),
   notes: Yup.string().nullable(),
 });
@@ -81,7 +81,7 @@ export default function CopperLineForm({
           htmlFor="landline_number"
           className="block text-sm font-medium text-gray-700"
         >
-          رقم الخط الأرضي
+          رقم الخط الارضي
         </label>
         <input
           id="landline_number"
@@ -127,7 +127,7 @@ export default function CopperLineForm({
           htmlFor="village"
           className="block text-sm font-medium text-gray-700"
         >
-          القرية
+          البلد
         </label>
         <input
           id="village"
@@ -173,7 +173,7 @@ export default function CopperLineForm({
           htmlFor="port_number"
           className="block text-sm font-medium text-gray-700"
         >
-          رقم المنفذ
+          رقم البورت
         </label>
         <input
           id="port_number"
@@ -196,7 +196,7 @@ export default function CopperLineForm({
           htmlFor="terminal_number"
           className="block text-sm font-medium text-gray-700"
         >
-          رقم المحطة
+          رقم الترمنال
         </label>
         <input
           id="terminal_number"
@@ -311,7 +311,7 @@ export default function CopperLineForm({
           htmlFor="joint_location"
           className="block text-sm font-medium text-gray-700"
         >
-          موقع الوصلة
+          موقع اللحامات
         </label>
         <input
           id="joint_location"
@@ -334,7 +334,7 @@ export default function CopperLineForm({
           htmlFor="joint_entitlement"
           className="block text-sm font-medium text-gray-700"
         >
-          استحقاق الوصلة
+          استحقاق اللحامات
         </label>
         <input
           id="joint_entitlement"
@@ -358,7 +358,7 @@ export default function CopperLineForm({
           htmlFor="joint_depth"
           className="block text-sm font-medium text-gray-700"
         >
-          عمق الوصلة
+          عمق المسافة اللحامة
         </label>
         <input
           id="joint_depth"
@@ -404,7 +404,7 @@ export default function CopperLineForm({
           htmlFor="insulation_level"
           className="block text-sm font-medium text-gray-700"
         >
-          مستوى العزل
+          مستوي العزل
         </label>
         <input
           id="insulation_level"
@@ -450,7 +450,7 @@ export default function CopperLineForm({
           htmlFor="notes"
           className="block text-sm font-medium text-gray-700"
         >
-          ملاحظات
+          الملاحظات
         </label>
         <textarea
           id="notes"

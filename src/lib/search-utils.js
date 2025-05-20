@@ -29,7 +29,10 @@ export async function searchEntities({
   useUnifiedEndpoint = true,
 }) {
   if (!entityType) {
-    throw new Error("Entity type is required");
+    return {
+      success: false,
+      message: "Entity type is required",
+    };
   }
 
   // Use the unified search endpoint

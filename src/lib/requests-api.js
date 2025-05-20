@@ -15,16 +15,20 @@ export const fetchPendingRequests = async (entityType) => {
     });
 
     if (!response.ok) {
-      throw new Error(
-        `Error fetching ${entityType} requests: ${response.statusText}`
-      );
+      return {
+        success: false,
+        message: `Error fetching ${entityType} requests: ${response.statusText}`,
+      };
     }
 
     const data = await response.json();
     return data.data || [];
   } catch (error) {
     console.error(`Error fetching ${entityType} requests:`, error);
-    throw error;
+    return {
+      success: false,
+      message: `Error fetching ${entityType} requests: ${error.message}`,
+    };
   }
 };
 
@@ -53,13 +57,19 @@ export const approveRequest = async (
     });
 
     if (!response.ok) {
-      throw new Error(`Error approving request: ${response.statusText}`);
+      return {
+        success: false,
+        message: `Error approving request: ${response.statusText}`,
+      };
     }
 
     return await response.json();
   } catch (error) {
     console.error("Error approving request:", error);
-    throw error;
+    return {
+      success: false,
+      message: `Error approving request: ${error.message}`,
+    };
   }
 };
 
@@ -80,13 +90,19 @@ export const rejectRequest = async (entityType, requestId) => {
     });
 
     if (!response.ok) {
-      throw new Error(`Error rejecting request: ${response.statusText}`);
+      return {
+        success: false,
+        message: `Error rejecting request: ${response.statusText}`,
+      };
     }
 
     return await response.json();
   } catch (error) {
     console.error("Error rejecting request:", error);
-    throw error;
+    return {
+      success: false,
+      message: `Error rejecting request: ${error.message}`,
+    };
   }
 };
 
@@ -105,7 +121,10 @@ export const fetchRequestCounts = async () => {
     });
 
     if (!response.ok) {
-      throw new Error(`Error fetching request counts: ${response.statusText}`);
+      return {
+        success: false,
+        message: `Error fetching request counts: ${response.statusText}`,
+      };
     }
 
     const data = await response.json();
@@ -119,7 +138,10 @@ export const fetchRequestCounts = async () => {
     );
   } catch (error) {
     console.error("Error fetching request counts:", error);
-    throw error;
+    return {
+      success: false,
+      message: `Error fetching request counts: ${error.message}`,
+    };
   }
 };
 
@@ -142,7 +164,10 @@ export const fetchRequestDetails = async (entityType, requestId) => {
     );
 
     if (!response.ok) {
-      throw new Error(`Error fetching request details: ${response.statusText}`);
+      return {
+        success: false,
+        message: `Error fetching request details: ${response.statusText}`,
+      };
     }
 
     const data = await response.json();
@@ -150,6 +175,9 @@ export const fetchRequestDetails = async (entityType, requestId) => {
     return data.data || null;
   } catch (error) {
     console.error("Error fetching request details:", error);
-    throw error;
+    return {
+      success: false,
+      message: `Error fetching request details: ${error.message}`,
+    };
   }
 };

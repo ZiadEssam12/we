@@ -18,7 +18,6 @@ export async function pathGuardMiddleware(request, token) {
     path.startsWith("/dashboard/users") &&
     !checkPermission(userRole, "users", "read")
   ) {
-    console.log("Redirecting to dashboard from users path");
     return NextResponse.redirect(new URL("/dashboard", request.url));
   }
 
@@ -26,7 +25,6 @@ export async function pathGuardMiddleware(request, token) {
     path.startsWith("/dashboard/requests") &&
     !checkPermission(userRole, "requests", "read")
   ) {
-    console.log("Redirecting to dashboard from requests path");
     return NextResponse.redirect(new URL("/dashboard", request.url));
   }
 
