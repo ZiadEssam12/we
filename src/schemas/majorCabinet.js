@@ -35,7 +35,7 @@ export const majorCabinetSchema = Yup.object().shape({
     .required("موقع الغرفة مطلوب"),
   entitlement: Yup.string().required("الاستحقاق مطلوب"),
   distance: Yup.string().required("المسافة مطلوبة"),
-  responsible: Yup.string().nullable(), // Optional
+  responsible: Yup.string().required("المسؤول مطلوب"),
   notes: Yup.string().required("الملاحظات مطلوبة"),
 });
 

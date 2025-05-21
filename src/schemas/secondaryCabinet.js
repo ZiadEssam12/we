@@ -14,7 +14,7 @@ export const secondaryCabinetSchema = yup.object().shape({
   cabinet_to_box_distance: yup
     .string()
     .required("Cabinet to Box Distance is required"),
-  responsible: yup.string().nullable(),
+  responsible: yup.string().required("Responsible is required"),
   notes: yup.string().nullable(),
 });
 
@@ -30,6 +30,6 @@ export const updateSecondaryCabinetSchema = yup.object().shape({
   cabinet_location: yup.string(),
   box_location: yup.string(),
   cabinet_to_box_distance: yup.string(),
-  responsible: yup.string().nullable(),
+  responsible: yup.string(),
   notes: yup.string().nullable(),
 });

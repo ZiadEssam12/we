@@ -22,7 +22,7 @@ export const mobileTowerSchema = yup.object().shape({
   distance: yup.string().required("المسافة مطلوبة"),
   address: yup.string().required("العنوان مطلوب"),
   location: yup.string().required("الموقع مطلوب"), // Assuming "lat,lng" string
-  responsible: yup.string().nullable(),
+  responsible: yup.string().required("المسؤول مطلوب"),
   notes: yup.string().nullable(),
 });
 
@@ -35,6 +35,6 @@ export const updateMobileTowerSchema = yup.object().shape({
   distance: yup.string(),
   address: yup.string(),
   location: yup.string(),
-  responsible: yup.string().nullable(),
+  responsible: yup.string(),  
   notes: yup.string().nullable(),
 });

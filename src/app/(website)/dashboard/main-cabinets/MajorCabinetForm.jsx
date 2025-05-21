@@ -72,13 +72,13 @@ export default function MajorCabinetForm({
         "central_to_cabinet_distance",
         "المسافة من السنترال للكبينة"
       )}
-      {renderTextInput("number_of_joints", "عدد اللحامات", "", "number")}
+      {renderTextInput("number_of_joints", "عدد اللحامات", "0")}
       {renderTextInput("joint_location", "موقع اللحام (lat,lng)")}
       {renderTextInput("rooms", "الغرف")}
       {renderTextInput("room_location", "موقع الغرف (lat,lng)")}
       {renderTextInput("entitlement", "الاستحقاق")}
       {renderTextInput("distance", "المسافة")}
-      {renderTextInput("responsible", "المسؤول (اختياري)")}{" "}
+      {renderTextInput("responsible", "المسؤول")}
       <div className="col-span-1 md:col-span-2 lg:col-span-3">
         <Label
           htmlFor="notes"

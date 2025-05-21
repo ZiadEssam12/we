@@ -19,7 +19,7 @@ const SecondaryCabinetSchema = Yup.object().shape({
   cabinet_to_box_distance: Yup.string().required(
     "المسافة من الكبينة للبوكس مطلوبة"
   ),
-  responsible: Yup.string().nullable(),
+  responsible: Yup.string().required("المسؤول مطلوب"),
   notes: Yup.string().nullable(),
 });
 

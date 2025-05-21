@@ -16,7 +16,7 @@ export const copperLineSchema = yup.object().shape({
   joint_depth: yup.string().required("Joint Depth is required"),
   room_location: yup.string().required("Room Location is required"),
   insulation_level: yup.string().required("Insulation Level is required"),
-  responsible: yup.string().nullable(),
+  responsible: yup.string().required("Responsible is required"),
   notes: yup.string().nullable(),
 });
 

@@ -21,7 +21,7 @@ const CopperLineSchema = Yup.object().shape({
   joint_depth: Yup.string().required("عمق المسافة اللحامة مطلوب"),
   room_location: Yup.string().required("موقع الغرفة مطلوب"),
   insulation_level: Yup.string().required("مستوي العزل مطلوب"),
-  responsible: Yup.string().nullable(),
+  responsible: Yup.string().required("المسؤول مطلوب"),
   notes: Yup.string().nullable(),
 });
 
@@ -30,7 +30,7 @@ export default function CopperLineForm({
   initialData,
   onSubmit,
   isProcessing,
-  formStyle = null, 
+  formStyle = null,
   hideSubmitButton = false,
   renderCustomButtons,
   readOnly = false,

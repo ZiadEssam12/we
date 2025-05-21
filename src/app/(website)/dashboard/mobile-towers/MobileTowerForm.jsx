@@ -14,7 +14,7 @@ const MobileTowerSchema = Yup.object().shape({
   distance: Yup.string().required("المسافة مطلوبة"),
   address: Yup.string().required("العنوان مطلوب"),
   location: Yup.string().required("الموقع مطلوب"),
-  responsible: Yup.string().nullable(),
+  responsible: Yup.string().required("المسؤول مطلوب"),
   notes: Yup.string().nullable(),
 });
 
