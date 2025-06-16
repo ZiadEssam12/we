@@ -1,5 +1,15 @@
 // Column definitions for MSAN cabinets data table
 export const msanCabinetColumns = [
+  {
+    header: "السنترال",
+    accessorKey: "central",
+    enableSearch: true,
+  },
+  {
+    header: "رقم msan",
+    accessorKey: "msan_number",
+    enableSearch: true,
+  },
   { header: "اسم الكابينة", accessorKey: "cabinet_name", enableSearch: true },
   { header: "رقم الكابل", accessorKey: "cable_number", enableSearch: true },
   { header: "سعة الكابل", accessorKey: "cable_capacity", enableSearch: false },

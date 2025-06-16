@@ -23,6 +23,8 @@ export async function GET(request) {
     // If query parameter exists, add search conditions
     if (query) {
       where.OR = [
+        { central: { contains: query, mode: "insensitive" } },
+        { msan_number: { contains: query, mode: "insensitive" } },
         { cabinet_name: { contains: query, mode: "insensitive" } },
         { cable_number: { contains: query, mode: "insensitive" } },
         { odf_name: { contains: query, mode: "insensitive" } },
