@@ -237,6 +237,8 @@ exports.Prisma.CopperLineScalarFieldEnum = {
 
 exports.Prisma.MsanCabinetScalarFieldEnum = {
   id: 'id',
+  central: 'central',
+  msan_number: 'msan_number',
   cabinet_name: 'cabinet_name',
   cable_number: 'cable_number',
   cable_capacity: 'cable_capacity',

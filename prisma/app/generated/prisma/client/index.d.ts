@@ -9617,6 +9617,8 @@ export namespace Prisma {
 
   export type MsanCabinetMinAggregateOutputType = {
     id: string | null
+    central: string | null
+    msan_number: string | null
     cabinet_name: string | null
     cable_number: string | null
     cable_capacity: string | null
@@ -9635,6 +9637,8 @@ export namespace Prisma {
 
   export type MsanCabinetMaxAggregateOutputType = {
     id: string | null
+    central: string | null
+    msan_number: string | null
     cabinet_name: string | null
     cable_number: string | null
     cable_capacity: string | null
@@ -9653,6 +9657,8 @@ export namespace Prisma {
 
   export type MsanCabinetCountAggregateOutputType = {
     id: number
+    central: number
+    msan_number: number
     cabinet_name: number
     cable_number: number
     cable_capacity: number
@@ -9673,6 +9679,8 @@ export namespace Prisma {
 
   export type MsanCabinetMinAggregateInputType = {
     id?: true
+    central?: true
+    msan_number?: true
     cabinet_name?: true
     cable_number?: true
     cable_capacity?: true
@@ -9691,6 +9699,8 @@ export namespace Prisma {
 
   export type MsanCabinetMaxAggregateInputType = {
     id?: true
+    central?: true
+    msan_number?: true
     cabinet_name?: true
     cable_number?: true
     cable_capacity?: true
@@ -9709,6 +9719,8 @@ export namespace Prisma {
 
   export type MsanCabinetCountAggregateInputType = {
     id?: true
+    central?: true
+    msan_number?: true
     cabinet_name?: true
     cable_number?: true
     cable_capacity?: true
@@ -9800,6 +9812,8 @@ export namespace Prisma {
 
   export type MsanCabinetGroupByOutputType = {
     id: string
+    central: string
+    msan_number: string
     cabinet_name: string
     cable_number: string
     cable_capacity: string
@@ -9835,6 +9849,8 @@ export namespace Prisma {
 
   export type MsanCabinetSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    central?: boolean
+    msan_number?: boolean
     cabinet_name?: boolean
     cable_number?: boolean
     cable_capacity?: boolean
@@ -9853,6 +9869,8 @@ export namespace Prisma {
 
   export type MsanCabinetSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    central?: boolean
+    msan_number?: boolean
     cabinet_name?: boolean
     cable_number?: boolean
     cable_capacity?: boolean
@@ -9871,6 +9889,8 @@ export namespace Prisma {
 
   export type MsanCabinetSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    central?: boolean
+    msan_number?: boolean
     cabinet_name?: boolean
     cable_number?: boolean
     cable_capacity?: boolean
@@ -9889,6 +9909,8 @@ export namespace Prisma {
 
   export type MsanCabinetSelectScalar = {
     id?: boolean
+    central?: boolean
+    msan_number?: boolean
     cabinet_name?: boolean
     cable_number?: boolean
     cable_capacity?: boolean
@@ -9905,13 +9927,15 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type MsanCabinetOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "cabinet_name" | "cable_number" | "cable_capacity" | "distance_from_central" | "odf_name" | "cassette_number" | "branches" | "spares" | "cabinet_location" | "notes" | "responsible" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["msanCabinet"]>
+  export type MsanCabinetOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "central" | "msan_number" | "cabinet_name" | "cable_number" | "cable_capacity" | "distance_from_central" | "odf_name" | "cassette_number" | "branches" | "spares" | "cabinet_location" | "notes" | "responsible" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["msanCabinet"]>
 
   export type $MsanCabinetPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "MsanCabinet"
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: string
+      central: string
+      msan_number: string
       cabinet_name: string
       cable_number: string
       cable_capacity: string
@@ -10350,6 +10374,8 @@ export namespace Prisma {
    */
   interface MsanCabinetFieldRefs {
     readonly id: FieldRef<"MsanCabinet", 'String'>
+    readonly central: FieldRef<"MsanCabinet", 'String'>
+    readonly msan_number: FieldRef<"MsanCabinet", 'String'>
     readonly cabinet_name: FieldRef<"MsanCabinet", 'String'>
     readonly cable_number: FieldRef<"MsanCabinet", 'String'>
     readonly cable_capacity: FieldRef<"MsanCabinet", 'String'>
@@ -10882,6 +10908,8 @@ export namespace Prisma {
 
   export const MsanCabinetScalarFieldEnum: {
     id: 'id',
+    central: 'central',
+    msan_number: 'msan_number',
     cabinet_name: 'cabinet_name',
     cable_number: 'cable_number',
     cable_capacity: 'cable_capacity',
@@ -11698,6 +11726,8 @@ export namespace Prisma {
     OR?: MsanCabinetWhereInput[]
     NOT?: MsanCabinetWhereInput | MsanCabinetWhereInput[]
     id?: StringFilter<"MsanCabinet"> | string
+    central?: StringFilter<"MsanCabinet"> | string
+    msan_number?: StringFilter<"MsanCabinet"> | string
     cabinet_name?: StringFilter<"MsanCabinet"> | string
     cable_number?: StringFilter<"MsanCabinet"> | string
     cable_capacity?: StringFilter<"MsanCabinet"> | string
@@ -11716,6 +11746,8 @@ export namespace Prisma {
 
   export type MsanCabinetOrderByWithRelationInput = {
     id?: SortOrder
+    central?: SortOrder
+    msan_number?: SortOrder
     cabinet_name?: SortOrder
     cable_number?: SortOrder
     cable_capacity?: SortOrder
@@ -11737,6 +11769,8 @@ export namespace Prisma {
     AND?: MsanCabinetWhereInput | MsanCabinetWhereInput[]
     OR?: MsanCabinetWhereInput[]
     NOT?: MsanCabinetWhereInput | MsanCabinetWhereInput[]
+    central?: StringFilter<"MsanCabinet"> | string
+    msan_number?: StringFilter<"MsanCabinet"> | string
     cabinet_name?: StringFilter<"MsanCabinet"> | string
     cable_number?: StringFilter<"MsanCabinet"> | string
     cable_capacity?: StringFilter<"MsanCabinet"> | string
@@ -11755,6 +11789,8 @@ export namespace Prisma {
 
   export type MsanCabinetOrderByWithAggregationInput = {
     id?: SortOrder
+    central?: SortOrder
+    msan_number?: SortOrder
     cabinet_name?: SortOrder
     cable_number?: SortOrder
     cable_capacity?: SortOrder
@@ -11779,6 +11815,8 @@ export namespace Prisma {
     OR?: MsanCabinetScalarWhereWithAggregatesInput[]
     NOT?: MsanCabinetScalarWhereWithAggregatesInput | MsanCabinetScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"MsanCabinet"> | string
+    central?: StringWithAggregatesFilter<"MsanCabinet"> | string
+    msan_number?: StringWithAggregatesFilter<"MsanCabinet"> | string
     cabinet_name?: StringWithAggregatesFilter<"MsanCabinet"> | string
     cable_number?: StringWithAggregatesFilter<"MsanCabinet"> | string
     cable_capacity?: StringWithAggregatesFilter<"MsanCabinet"> | string
@@ -12608,6 +12646,8 @@ export namespace Prisma {
 
   export type MsanCabinetCreateInput = {
     id?: string
+    central: string
+    msan_number: string
     cabinet_name: string
     cable_number: string
     cable_capacity: string
@@ -12626,6 +12666,8 @@ export namespace Prisma {
 
   export type MsanCabinetUncheckedCreateInput = {
     id?: string
+    central: string
+    msan_number: string
     cabinet_name: string
     cable_number: string
     cable_capacity: string
@@ -12644,6 +12686,8 @@ export namespace Prisma {
 
   export type MsanCabinetUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    central?: StringFieldUpdateOperationsInput | string
+    msan_number?: StringFieldUpdateOperationsInput | string
     cabinet_name?: StringFieldUpdateOperationsInput | string
     cable_number?: StringFieldUpdateOperationsInput | string
     cable_capacity?: StringFieldUpdateOperationsInput | string
@@ -12662,6 +12706,8 @@ export namespace Prisma {
 
   export type MsanCabinetUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    central?: StringFieldUpdateOperationsInput | string
+    msan_number?: StringFieldUpdateOperationsInput | string
     cabinet_name?: StringFieldUpdateOperationsInput | string
     cable_number?: StringFieldUpdateOperationsInput | string
     cable_capacity?: StringFieldUpdateOperationsInput | string
@@ -12680,6 +12726,8 @@ export namespace Prisma {
 
   export type MsanCabinetCreateManyInput = {
     id?: string
+    central: string
+    msan_number: string
     cabinet_name: string
     cable_number: string
     cable_capacity: string
@@ -12698,6 +12746,8 @@ export namespace Prisma {
 
   export type MsanCabinetUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    central?: StringFieldUpdateOperationsInput | string
+    msan_number?: StringFieldUpdateOperationsInput | string
     cabinet_name?: StringFieldUpdateOperationsInput | string
     cable_number?: StringFieldUpdateOperationsInput | string
     cable_capacity?: StringFieldUpdateOperationsInput | string
@@ -12716,6 +12766,8 @@ export namespace Prisma {
 
   export type MsanCabinetUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
+    central?: StringFieldUpdateOperationsInput | string
+    msan_number?: StringFieldUpdateOperationsInput | string
     cabinet_name?: StringFieldUpdateOperationsInput | string
     cable_number?: StringFieldUpdateOperationsInput | string
     cable_capacity?: StringFieldUpdateOperationsInput | string
@@ -13309,6 +13361,8 @@ export namespace Prisma {
 
   export type MsanCabinetCountOrderByAggregateInput = {
     id?: SortOrder
+    central?: SortOrder
+    msan_number?: SortOrder
     cabinet_name?: SortOrder
     cable_number?: SortOrder
     cable_capacity?: SortOrder
@@ -13327,6 +13381,8 @@ export namespace Prisma {
 
   export type MsanCabinetMaxOrderByAggregateInput = {
     id?: SortOrder
+    central?: SortOrder
+    msan_number?: SortOrder
     cabinet_name?: SortOrder
     cable_number?: SortOrder
     cable_capacity?: SortOrder
@@ -13345,6 +13401,8 @@ export namespace Prisma {
 
   export type MsanCabinetMinOrderByAggregateInput = {
     id?: SortOrder
+    central?: SortOrder
+    msan_number?: SortOrder
     cabinet_name?: SortOrder
     cable_number?: SortOrder
     cable_capacity?: SortOrder
