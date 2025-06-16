@@ -28,8 +28,13 @@ export function entityNameArToEn(entityNameAr) {
       return "secondaryCabinets"; // Changed to plural to match RBAC
     case "خط النحاس":
       return "copperLines"; // Changed to plural to match RBAC
+    case "كبائن MSAN":
+      return "msanCabinets"; // Plural form
+    case "كابينة MSAN":
+      return "msanCabinets"; // Singular form - maps to same permissions
     case "المستخدمين":
       return "users";
+
     default:
       return "";
   }

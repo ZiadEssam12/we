@@ -48,6 +48,11 @@ export type MobileTower = $Result.DefaultSelection<Prisma.$MobileTowerPayload>
  * 
  */
 export type CopperLine = $Result.DefaultSelection<Prisma.$CopperLinePayload>
+/**
+ * Model MsanCabinet
+ * 
+ */
+export type MsanCabinet = $Result.DefaultSelection<Prisma.$MsanCabinetPayload>
 
 /**
  * Enums
@@ -274,6 +279,16 @@ export class PrismaClient<
     * ```
     */
   get copperLine(): Prisma.CopperLineDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.msanCabinet`: Exposes CRUD operations for the **MsanCabinet** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more MsanCabinets
+    * const msanCabinets = await prisma.msanCabinet.findMany()
+    * ```
+    */
+  get msanCabinet(): Prisma.MsanCabinetDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -720,7 +735,8 @@ export namespace Prisma {
     MajorCabinet: 'MajorCabinet',
     SecondaryCabinet: 'SecondaryCabinet',
     MobileTower: 'MobileTower',
-    CopperLine: 'CopperLine'
+    CopperLine: 'CopperLine',
+    MsanCabinet: 'MsanCabinet'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -739,7 +755,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "account" | "session" | "majorCabinet" | "secondaryCabinet" | "mobileTower" | "copperLine"
+      modelProps: "user" | "account" | "session" | "majorCabinet" | "secondaryCabinet" | "mobileTower" | "copperLine" | "msanCabinet"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1261,6 +1277,80 @@ export namespace Prisma {
           }
         }
       }
+      MsanCabinet: {
+        payload: Prisma.$MsanCabinetPayload<ExtArgs>
+        fields: Prisma.MsanCabinetFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.MsanCabinetFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MsanCabinetPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.MsanCabinetFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MsanCabinetPayload>
+          }
+          findFirst: {
+            args: Prisma.MsanCabinetFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MsanCabinetPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.MsanCabinetFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MsanCabinetPayload>
+          }
+          findMany: {
+            args: Prisma.MsanCabinetFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MsanCabinetPayload>[]
+          }
+          create: {
+            args: Prisma.MsanCabinetCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MsanCabinetPayload>
+          }
+          createMany: {
+            args: Prisma.MsanCabinetCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.MsanCabinetCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MsanCabinetPayload>[]
+          }
+          delete: {
+            args: Prisma.MsanCabinetDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MsanCabinetPayload>
+          }
+          update: {
+            args: Prisma.MsanCabinetUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MsanCabinetPayload>
+          }
+          deleteMany: {
+            args: Prisma.MsanCabinetDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.MsanCabinetUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.MsanCabinetUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MsanCabinetPayload>[]
+          }
+          upsert: {
+            args: Prisma.MsanCabinetUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MsanCabinetPayload>
+          }
+          aggregate: {
+            args: Prisma.MsanCabinetAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateMsanCabinet>
+          }
+          groupBy: {
+            args: Prisma.MsanCabinetGroupByArgs<ExtArgs>
+            result: $Utils.Optional<MsanCabinetGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.MsanCabinetCountArgs<ExtArgs>
+            result: $Utils.Optional<MsanCabinetCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1352,6 +1442,7 @@ export namespace Prisma {
     secondaryCabinet?: SecondaryCabinetOmit
     mobileTower?: MobileTowerOmit
     copperLine?: CopperLineOmit
+    msanCabinet?: MsanCabinetOmit
   }
 
   /* Types for Logging */
@@ -5120,7 +5211,7 @@ export namespace Prisma {
     entitlement: string
     distance: string
     status: $Enums.Status
-    responsible: string | null
+    responsible: string
     notes: string
     createdAt: Date
     updatedAt: Date
@@ -5239,7 +5330,7 @@ export namespace Prisma {
       entitlement: string
       distance: string
       status: $Enums.Status
-      responsible: string | null
+      responsible: string
       notes: string
       createdAt: Date
       updatedAt: Date
@@ -6266,7 +6357,7 @@ export namespace Prisma {
     cabinet_location: string
     box_location: string
     cabinet_to_box_distance: string
-    responsible: string | null
+    responsible: string
     status: $Enums.Status
     notes: string | null
     createdAt: Date
@@ -6388,7 +6479,7 @@ export namespace Prisma {
       cabinet_location: string
       box_location: string
       cabinet_to_box_distance: string
-      responsible: string | null
+      responsible: string
       status: $Enums.Status
       notes: string | null
       createdAt: Date
@@ -7396,7 +7487,7 @@ export namespace Prisma {
     distance: string
     address: string
     location: string
-    responsible: string | null
+    responsible: string
     status: $Enums.Status
     notes: string | null
     createdAt: Date
@@ -7503,7 +7594,7 @@ export namespace Prisma {
       distance: string
       address: string
       location: string
-      responsible: string | null
+      responsible: string
       status: $Enums.Status
       notes: string | null
       createdAt: Date
@@ -8557,7 +8648,7 @@ export namespace Prisma {
     joint_depth: string
     room_location: string
     insulation_level: string
-    responsible: string | null
+    responsible: string
     status: $Enums.Status
     notes: string | null
     createdAt: Date
@@ -8699,7 +8790,7 @@ export namespace Prisma {
       joint_depth: string
       room_location: string
       insulation_level: string
-      responsible: string | null
+      responsible: string
       status: $Enums.Status
       notes: string | null
       createdAt: Date
@@ -9515,6 +9606,1131 @@ export namespace Prisma {
 
 
   /**
+   * Model MsanCabinet
+   */
+
+  export type AggregateMsanCabinet = {
+    _count: MsanCabinetCountAggregateOutputType | null
+    _min: MsanCabinetMinAggregateOutputType | null
+    _max: MsanCabinetMaxAggregateOutputType | null
+  }
+
+  export type MsanCabinetMinAggregateOutputType = {
+    id: string | null
+    cabinet_name: string | null
+    cable_number: string | null
+    cable_capacity: string | null
+    distance_from_central: string | null
+    odf_name: string | null
+    cassette_number: string | null
+    branches: string | null
+    spares: string | null
+    cabinet_location: string | null
+    notes: string | null
+    responsible: string | null
+    status: $Enums.Status | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type MsanCabinetMaxAggregateOutputType = {
+    id: string | null
+    cabinet_name: string | null
+    cable_number: string | null
+    cable_capacity: string | null
+    distance_from_central: string | null
+    odf_name: string | null
+    cassette_number: string | null
+    branches: string | null
+    spares: string | null
+    cabinet_location: string | null
+    notes: string | null
+    responsible: string | null
+    status: $Enums.Status | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type MsanCabinetCountAggregateOutputType = {
+    id: number
+    cabinet_name: number
+    cable_number: number
+    cable_capacity: number
+    distance_from_central: number
+    odf_name: number
+    cassette_number: number
+    branches: number
+    spares: number
+    cabinet_location: number
+    notes: number
+    responsible: number
+    status: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type MsanCabinetMinAggregateInputType = {
+    id?: true
+    cabinet_name?: true
+    cable_number?: true
+    cable_capacity?: true
+    distance_from_central?: true
+    odf_name?: true
+    cassette_number?: true
+    branches?: true
+    spares?: true
+    cabinet_location?: true
+    notes?: true
+    responsible?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type MsanCabinetMaxAggregateInputType = {
+    id?: true
+    cabinet_name?: true
+    cable_number?: true
+    cable_capacity?: true
+    distance_from_central?: true
+    odf_name?: true
+    cassette_number?: true
+    branches?: true
+    spares?: true
+    cabinet_location?: true
+    notes?: true
+    responsible?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type MsanCabinetCountAggregateInputType = {
+    id?: true
+    cabinet_name?: true
+    cable_number?: true
+    cable_capacity?: true
+    distance_from_central?: true
+    odf_name?: true
+    cassette_number?: true
+    branches?: true
+    spares?: true
+    cabinet_location?: true
+    notes?: true
+    responsible?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type MsanCabinetAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MsanCabinet to aggregate.
+     */
+    where?: MsanCabinetWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MsanCabinets to fetch.
+     */
+    orderBy?: MsanCabinetOrderByWithRelationInput | MsanCabinetOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: MsanCabinetWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MsanCabinets from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MsanCabinets.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned MsanCabinets
+    **/
+    _count?: true | MsanCabinetCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: MsanCabinetMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: MsanCabinetMaxAggregateInputType
+  }
+
+  export type GetMsanCabinetAggregateType<T extends MsanCabinetAggregateArgs> = {
+        [P in keyof T & keyof AggregateMsanCabinet]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateMsanCabinet[P]>
+      : GetScalarType<T[P], AggregateMsanCabinet[P]>
+  }
+
+
+
+
+  export type MsanCabinetGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MsanCabinetWhereInput
+    orderBy?: MsanCabinetOrderByWithAggregationInput | MsanCabinetOrderByWithAggregationInput[]
+    by: MsanCabinetScalarFieldEnum[] | MsanCabinetScalarFieldEnum
+    having?: MsanCabinetScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: MsanCabinetCountAggregateInputType | true
+    _min?: MsanCabinetMinAggregateInputType
+    _max?: MsanCabinetMaxAggregateInputType
+  }
+
+  export type MsanCabinetGroupByOutputType = {
+    id: string
+    cabinet_name: string
+    cable_number: string
+    cable_capacity: string
+    distance_from_central: string
+    odf_name: string
+    cassette_number: string
+    branches: string
+    spares: string
+    cabinet_location: string
+    notes: string | null
+    responsible: string
+    status: $Enums.Status
+    createdAt: Date
+    updatedAt: Date
+    _count: MsanCabinetCountAggregateOutputType | null
+    _min: MsanCabinetMinAggregateOutputType | null
+    _max: MsanCabinetMaxAggregateOutputType | null
+  }
+
+  type GetMsanCabinetGroupByPayload<T extends MsanCabinetGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<MsanCabinetGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof MsanCabinetGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], MsanCabinetGroupByOutputType[P]>
+            : GetScalarType<T[P], MsanCabinetGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type MsanCabinetSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    cabinet_name?: boolean
+    cable_number?: boolean
+    cable_capacity?: boolean
+    distance_from_central?: boolean
+    odf_name?: boolean
+    cassette_number?: boolean
+    branches?: boolean
+    spares?: boolean
+    cabinet_location?: boolean
+    notes?: boolean
+    responsible?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["msanCabinet"]>
+
+  export type MsanCabinetSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    cabinet_name?: boolean
+    cable_number?: boolean
+    cable_capacity?: boolean
+    distance_from_central?: boolean
+    odf_name?: boolean
+    cassette_number?: boolean
+    branches?: boolean
+    spares?: boolean
+    cabinet_location?: boolean
+    notes?: boolean
+    responsible?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["msanCabinet"]>
+
+  export type MsanCabinetSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    cabinet_name?: boolean
+    cable_number?: boolean
+    cable_capacity?: boolean
+    distance_from_central?: boolean
+    odf_name?: boolean
+    cassette_number?: boolean
+    branches?: boolean
+    spares?: boolean
+    cabinet_location?: boolean
+    notes?: boolean
+    responsible?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["msanCabinet"]>
+
+  export type MsanCabinetSelectScalar = {
+    id?: boolean
+    cabinet_name?: boolean
+    cable_number?: boolean
+    cable_capacity?: boolean
+    distance_from_central?: boolean
+    odf_name?: boolean
+    cassette_number?: boolean
+    branches?: boolean
+    spares?: boolean
+    cabinet_location?: boolean
+    notes?: boolean
+    responsible?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type MsanCabinetOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "cabinet_name" | "cable_number" | "cable_capacity" | "distance_from_central" | "odf_name" | "cassette_number" | "branches" | "spares" | "cabinet_location" | "notes" | "responsible" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["msanCabinet"]>
+
+  export type $MsanCabinetPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "MsanCabinet"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      cabinet_name: string
+      cable_number: string
+      cable_capacity: string
+      distance_from_central: string
+      odf_name: string
+      cassette_number: string
+      branches: string
+      spares: string
+      cabinet_location: string
+      notes: string | null
+      responsible: string
+      status: $Enums.Status
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["msanCabinet"]>
+    composites: {}
+  }
+
+  type MsanCabinetGetPayload<S extends boolean | null | undefined | MsanCabinetDefaultArgs> = $Result.GetResult<Prisma.$MsanCabinetPayload, S>
+
+  type MsanCabinetCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<MsanCabinetFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: MsanCabinetCountAggregateInputType | true
+    }
+
+  export interface MsanCabinetDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['MsanCabinet'], meta: { name: 'MsanCabinet' } }
+    /**
+     * Find zero or one MsanCabinet that matches the filter.
+     * @param {MsanCabinetFindUniqueArgs} args - Arguments to find a MsanCabinet
+     * @example
+     * // Get one MsanCabinet
+     * const msanCabinet = await prisma.msanCabinet.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends MsanCabinetFindUniqueArgs>(args: SelectSubset<T, MsanCabinetFindUniqueArgs<ExtArgs>>): Prisma__MsanCabinetClient<$Result.GetResult<Prisma.$MsanCabinetPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one MsanCabinet that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {MsanCabinetFindUniqueOrThrowArgs} args - Arguments to find a MsanCabinet
+     * @example
+     * // Get one MsanCabinet
+     * const msanCabinet = await prisma.msanCabinet.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends MsanCabinetFindUniqueOrThrowArgs>(args: SelectSubset<T, MsanCabinetFindUniqueOrThrowArgs<ExtArgs>>): Prisma__MsanCabinetClient<$Result.GetResult<Prisma.$MsanCabinetPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MsanCabinet that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MsanCabinetFindFirstArgs} args - Arguments to find a MsanCabinet
+     * @example
+     * // Get one MsanCabinet
+     * const msanCabinet = await prisma.msanCabinet.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends MsanCabinetFindFirstArgs>(args?: SelectSubset<T, MsanCabinetFindFirstArgs<ExtArgs>>): Prisma__MsanCabinetClient<$Result.GetResult<Prisma.$MsanCabinetPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MsanCabinet that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MsanCabinetFindFirstOrThrowArgs} args - Arguments to find a MsanCabinet
+     * @example
+     * // Get one MsanCabinet
+     * const msanCabinet = await prisma.msanCabinet.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends MsanCabinetFindFirstOrThrowArgs>(args?: SelectSubset<T, MsanCabinetFindFirstOrThrowArgs<ExtArgs>>): Prisma__MsanCabinetClient<$Result.GetResult<Prisma.$MsanCabinetPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more MsanCabinets that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MsanCabinetFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all MsanCabinets
+     * const msanCabinets = await prisma.msanCabinet.findMany()
+     * 
+     * // Get first 10 MsanCabinets
+     * const msanCabinets = await prisma.msanCabinet.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const msanCabinetWithIdOnly = await prisma.msanCabinet.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends MsanCabinetFindManyArgs>(args?: SelectSubset<T, MsanCabinetFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MsanCabinetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a MsanCabinet.
+     * @param {MsanCabinetCreateArgs} args - Arguments to create a MsanCabinet.
+     * @example
+     * // Create one MsanCabinet
+     * const MsanCabinet = await prisma.msanCabinet.create({
+     *   data: {
+     *     // ... data to create a MsanCabinet
+     *   }
+     * })
+     * 
+     */
+    create<T extends MsanCabinetCreateArgs>(args: SelectSubset<T, MsanCabinetCreateArgs<ExtArgs>>): Prisma__MsanCabinetClient<$Result.GetResult<Prisma.$MsanCabinetPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many MsanCabinets.
+     * @param {MsanCabinetCreateManyArgs} args - Arguments to create many MsanCabinets.
+     * @example
+     * // Create many MsanCabinets
+     * const msanCabinet = await prisma.msanCabinet.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends MsanCabinetCreateManyArgs>(args?: SelectSubset<T, MsanCabinetCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many MsanCabinets and returns the data saved in the database.
+     * @param {MsanCabinetCreateManyAndReturnArgs} args - Arguments to create many MsanCabinets.
+     * @example
+     * // Create many MsanCabinets
+     * const msanCabinet = await prisma.msanCabinet.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many MsanCabinets and only return the `id`
+     * const msanCabinetWithIdOnly = await prisma.msanCabinet.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends MsanCabinetCreateManyAndReturnArgs>(args?: SelectSubset<T, MsanCabinetCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MsanCabinetPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a MsanCabinet.
+     * @param {MsanCabinetDeleteArgs} args - Arguments to delete one MsanCabinet.
+     * @example
+     * // Delete one MsanCabinet
+     * const MsanCabinet = await prisma.msanCabinet.delete({
+     *   where: {
+     *     // ... filter to delete one MsanCabinet
+     *   }
+     * })
+     * 
+     */
+    delete<T extends MsanCabinetDeleteArgs>(args: SelectSubset<T, MsanCabinetDeleteArgs<ExtArgs>>): Prisma__MsanCabinetClient<$Result.GetResult<Prisma.$MsanCabinetPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one MsanCabinet.
+     * @param {MsanCabinetUpdateArgs} args - Arguments to update one MsanCabinet.
+     * @example
+     * // Update one MsanCabinet
+     * const msanCabinet = await prisma.msanCabinet.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends MsanCabinetUpdateArgs>(args: SelectSubset<T, MsanCabinetUpdateArgs<ExtArgs>>): Prisma__MsanCabinetClient<$Result.GetResult<Prisma.$MsanCabinetPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more MsanCabinets.
+     * @param {MsanCabinetDeleteManyArgs} args - Arguments to filter MsanCabinets to delete.
+     * @example
+     * // Delete a few MsanCabinets
+     * const { count } = await prisma.msanCabinet.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends MsanCabinetDeleteManyArgs>(args?: SelectSubset<T, MsanCabinetDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MsanCabinets.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MsanCabinetUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many MsanCabinets
+     * const msanCabinet = await prisma.msanCabinet.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends MsanCabinetUpdateManyArgs>(args: SelectSubset<T, MsanCabinetUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MsanCabinets and returns the data updated in the database.
+     * @param {MsanCabinetUpdateManyAndReturnArgs} args - Arguments to update many MsanCabinets.
+     * @example
+     * // Update many MsanCabinets
+     * const msanCabinet = await prisma.msanCabinet.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more MsanCabinets and only return the `id`
+     * const msanCabinetWithIdOnly = await prisma.msanCabinet.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends MsanCabinetUpdateManyAndReturnArgs>(args: SelectSubset<T, MsanCabinetUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MsanCabinetPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one MsanCabinet.
+     * @param {MsanCabinetUpsertArgs} args - Arguments to update or create a MsanCabinet.
+     * @example
+     * // Update or create a MsanCabinet
+     * const msanCabinet = await prisma.msanCabinet.upsert({
+     *   create: {
+     *     // ... data to create a MsanCabinet
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the MsanCabinet we want to update
+     *   }
+     * })
+     */
+    upsert<T extends MsanCabinetUpsertArgs>(args: SelectSubset<T, MsanCabinetUpsertArgs<ExtArgs>>): Prisma__MsanCabinetClient<$Result.GetResult<Prisma.$MsanCabinetPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of MsanCabinets.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MsanCabinetCountArgs} args - Arguments to filter MsanCabinets to count.
+     * @example
+     * // Count the number of MsanCabinets
+     * const count = await prisma.msanCabinet.count({
+     *   where: {
+     *     // ... the filter for the MsanCabinets we want to count
+     *   }
+     * })
+    **/
+    count<T extends MsanCabinetCountArgs>(
+      args?: Subset<T, MsanCabinetCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], MsanCabinetCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a MsanCabinet.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MsanCabinetAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends MsanCabinetAggregateArgs>(args: Subset<T, MsanCabinetAggregateArgs>): Prisma.PrismaPromise<GetMsanCabinetAggregateType<T>>
+
+    /**
+     * Group by MsanCabinet.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MsanCabinetGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends MsanCabinetGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: MsanCabinetGroupByArgs['orderBy'] }
+        : { orderBy?: MsanCabinetGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, MsanCabinetGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMsanCabinetGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the MsanCabinet model
+   */
+  readonly fields: MsanCabinetFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for MsanCabinet.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__MsanCabinetClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the MsanCabinet model
+   */
+  interface MsanCabinetFieldRefs {
+    readonly id: FieldRef<"MsanCabinet", 'String'>
+    readonly cabinet_name: FieldRef<"MsanCabinet", 'String'>
+    readonly cable_number: FieldRef<"MsanCabinet", 'String'>
+    readonly cable_capacity: FieldRef<"MsanCabinet", 'String'>
+    readonly distance_from_central: FieldRef<"MsanCabinet", 'String'>
+    readonly odf_name: FieldRef<"MsanCabinet", 'String'>
+    readonly cassette_number: FieldRef<"MsanCabinet", 'String'>
+    readonly branches: FieldRef<"MsanCabinet", 'String'>
+    readonly spares: FieldRef<"MsanCabinet", 'String'>
+    readonly cabinet_location: FieldRef<"MsanCabinet", 'String'>
+    readonly notes: FieldRef<"MsanCabinet", 'String'>
+    readonly responsible: FieldRef<"MsanCabinet", 'String'>
+    readonly status: FieldRef<"MsanCabinet", 'Status'>
+    readonly createdAt: FieldRef<"MsanCabinet", 'DateTime'>
+    readonly updatedAt: FieldRef<"MsanCabinet", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * MsanCabinet findUnique
+   */
+  export type MsanCabinetFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MsanCabinet
+     */
+    select?: MsanCabinetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MsanCabinet
+     */
+    omit?: MsanCabinetOmit<ExtArgs> | null
+    /**
+     * Filter, which MsanCabinet to fetch.
+     */
+    where: MsanCabinetWhereUniqueInput
+  }
+
+  /**
+   * MsanCabinet findUniqueOrThrow
+   */
+  export type MsanCabinetFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MsanCabinet
+     */
+    select?: MsanCabinetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MsanCabinet
+     */
+    omit?: MsanCabinetOmit<ExtArgs> | null
+    /**
+     * Filter, which MsanCabinet to fetch.
+     */
+    where: MsanCabinetWhereUniqueInput
+  }
+
+  /**
+   * MsanCabinet findFirst
+   */
+  export type MsanCabinetFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MsanCabinet
+     */
+    select?: MsanCabinetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MsanCabinet
+     */
+    omit?: MsanCabinetOmit<ExtArgs> | null
+    /**
+     * Filter, which MsanCabinet to fetch.
+     */
+    where?: MsanCabinetWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MsanCabinets to fetch.
+     */
+    orderBy?: MsanCabinetOrderByWithRelationInput | MsanCabinetOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MsanCabinets.
+     */
+    cursor?: MsanCabinetWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MsanCabinets from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MsanCabinets.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MsanCabinets.
+     */
+    distinct?: MsanCabinetScalarFieldEnum | MsanCabinetScalarFieldEnum[]
+  }
+
+  /**
+   * MsanCabinet findFirstOrThrow
+   */
+  export type MsanCabinetFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MsanCabinet
+     */
+    select?: MsanCabinetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MsanCabinet
+     */
+    omit?: MsanCabinetOmit<ExtArgs> | null
+    /**
+     * Filter, which MsanCabinet to fetch.
+     */
+    where?: MsanCabinetWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MsanCabinets to fetch.
+     */
+    orderBy?: MsanCabinetOrderByWithRelationInput | MsanCabinetOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MsanCabinets.
+     */
+    cursor?: MsanCabinetWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MsanCabinets from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MsanCabinets.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MsanCabinets.
+     */
+    distinct?: MsanCabinetScalarFieldEnum | MsanCabinetScalarFieldEnum[]
+  }
+
+  /**
+   * MsanCabinet findMany
+   */
+  export type MsanCabinetFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MsanCabinet
+     */
+    select?: MsanCabinetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MsanCabinet
+     */
+    omit?: MsanCabinetOmit<ExtArgs> | null
+    /**
+     * Filter, which MsanCabinets to fetch.
+     */
+    where?: MsanCabinetWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MsanCabinets to fetch.
+     */
+    orderBy?: MsanCabinetOrderByWithRelationInput | MsanCabinetOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing MsanCabinets.
+     */
+    cursor?: MsanCabinetWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MsanCabinets from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MsanCabinets.
+     */
+    skip?: number
+    distinct?: MsanCabinetScalarFieldEnum | MsanCabinetScalarFieldEnum[]
+  }
+
+  /**
+   * MsanCabinet create
+   */
+  export type MsanCabinetCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MsanCabinet
+     */
+    select?: MsanCabinetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MsanCabinet
+     */
+    omit?: MsanCabinetOmit<ExtArgs> | null
+    /**
+     * The data needed to create a MsanCabinet.
+     */
+    data: XOR<MsanCabinetCreateInput, MsanCabinetUncheckedCreateInput>
+  }
+
+  /**
+   * MsanCabinet createMany
+   */
+  export type MsanCabinetCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many MsanCabinets.
+     */
+    data: MsanCabinetCreateManyInput | MsanCabinetCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * MsanCabinet createManyAndReturn
+   */
+  export type MsanCabinetCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MsanCabinet
+     */
+    select?: MsanCabinetSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the MsanCabinet
+     */
+    omit?: MsanCabinetOmit<ExtArgs> | null
+    /**
+     * The data used to create many MsanCabinets.
+     */
+    data: MsanCabinetCreateManyInput | MsanCabinetCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * MsanCabinet update
+   */
+  export type MsanCabinetUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MsanCabinet
+     */
+    select?: MsanCabinetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MsanCabinet
+     */
+    omit?: MsanCabinetOmit<ExtArgs> | null
+    /**
+     * The data needed to update a MsanCabinet.
+     */
+    data: XOR<MsanCabinetUpdateInput, MsanCabinetUncheckedUpdateInput>
+    /**
+     * Choose, which MsanCabinet to update.
+     */
+    where: MsanCabinetWhereUniqueInput
+  }
+
+  /**
+   * MsanCabinet updateMany
+   */
+  export type MsanCabinetUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update MsanCabinets.
+     */
+    data: XOR<MsanCabinetUpdateManyMutationInput, MsanCabinetUncheckedUpdateManyInput>
+    /**
+     * Filter which MsanCabinets to update
+     */
+    where?: MsanCabinetWhereInput
+    /**
+     * Limit how many MsanCabinets to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * MsanCabinet updateManyAndReturn
+   */
+  export type MsanCabinetUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MsanCabinet
+     */
+    select?: MsanCabinetSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the MsanCabinet
+     */
+    omit?: MsanCabinetOmit<ExtArgs> | null
+    /**
+     * The data used to update MsanCabinets.
+     */
+    data: XOR<MsanCabinetUpdateManyMutationInput, MsanCabinetUncheckedUpdateManyInput>
+    /**
+     * Filter which MsanCabinets to update
+     */
+    where?: MsanCabinetWhereInput
+    /**
+     * Limit how many MsanCabinets to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * MsanCabinet upsert
+   */
+  export type MsanCabinetUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MsanCabinet
+     */
+    select?: MsanCabinetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MsanCabinet
+     */
+    omit?: MsanCabinetOmit<ExtArgs> | null
+    /**
+     * The filter to search for the MsanCabinet to update in case it exists.
+     */
+    where: MsanCabinetWhereUniqueInput
+    /**
+     * In case the MsanCabinet found by the `where` argument doesn't exist, create a new MsanCabinet with this data.
+     */
+    create: XOR<MsanCabinetCreateInput, MsanCabinetUncheckedCreateInput>
+    /**
+     * In case the MsanCabinet was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<MsanCabinetUpdateInput, MsanCabinetUncheckedUpdateInput>
+  }
+
+  /**
+   * MsanCabinet delete
+   */
+  export type MsanCabinetDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MsanCabinet
+     */
+    select?: MsanCabinetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MsanCabinet
+     */
+    omit?: MsanCabinetOmit<ExtArgs> | null
+    /**
+     * Filter which MsanCabinet to delete.
+     */
+    where: MsanCabinetWhereUniqueInput
+  }
+
+  /**
+   * MsanCabinet deleteMany
+   */
+  export type MsanCabinetDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MsanCabinets to delete
+     */
+    where?: MsanCabinetWhereInput
+    /**
+     * Limit how many MsanCabinets to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * MsanCabinet without action
+   */
+  export type MsanCabinetDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MsanCabinet
+     */
+    select?: MsanCabinetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MsanCabinet
+     */
+    omit?: MsanCabinetOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -9662,6 +10878,27 @@ export namespace Prisma {
   };
 
   export type CopperLineScalarFieldEnum = (typeof CopperLineScalarFieldEnum)[keyof typeof CopperLineScalarFieldEnum]
+
+
+  export const MsanCabinetScalarFieldEnum: {
+    id: 'id',
+    cabinet_name: 'cabinet_name',
+    cable_number: 'cable_number',
+    cable_capacity: 'cable_capacity',
+    distance_from_central: 'distance_from_central',
+    odf_name: 'odf_name',
+    cassette_number: 'cassette_number',
+    branches: 'branches',
+    spares: 'spares',
+    cabinet_location: 'cabinet_location',
+    notes: 'notes',
+    responsible: 'responsible',
+    status: 'status',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type MsanCabinetScalarFieldEnum = (typeof MsanCabinetScalarFieldEnum)[keyof typeof MsanCabinetScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -10022,7 +11259,7 @@ export namespace Prisma {
     entitlement?: StringFilter<"MajorCabinet"> | string
     distance?: StringFilter<"MajorCabinet"> | string
     status?: EnumStatusFilter<"MajorCabinet"> | $Enums.Status
-    responsible?: StringNullableFilter<"MajorCabinet"> | string | null
+    responsible?: StringFilter<"MajorCabinet"> | string
     notes?: StringFilter<"MajorCabinet"> | string
     createdAt?: DateTimeFilter<"MajorCabinet"> | Date | string
     updatedAt?: DateTimeFilter<"MajorCabinet"> | Date | string
@@ -10041,7 +11278,7 @@ export namespace Prisma {
     entitlement?: SortOrder
     distance?: SortOrder
     status?: SortOrder
-    responsible?: SortOrderInput | SortOrder
+    responsible?: SortOrder
     notes?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -10063,7 +11300,7 @@ export namespace Prisma {
     entitlement?: StringFilter<"MajorCabinet"> | string
     distance?: StringFilter<"MajorCabinet"> | string
     status?: EnumStatusFilter<"MajorCabinet"> | $Enums.Status
-    responsible?: StringNullableFilter<"MajorCabinet"> | string | null
+    responsible?: StringFilter<"MajorCabinet"> | string
     notes?: StringFilter<"MajorCabinet"> | string
     createdAt?: DateTimeFilter<"MajorCabinet"> | Date | string
     updatedAt?: DateTimeFilter<"MajorCabinet"> | Date | string
@@ -10082,7 +11319,7 @@ export namespace Prisma {
     entitlement?: SortOrder
     distance?: SortOrder
     status?: SortOrder
-    responsible?: SortOrderInput | SortOrder
+    responsible?: SortOrder
     notes?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -10109,7 +11346,7 @@ export namespace Prisma {
     entitlement?: StringWithAggregatesFilter<"MajorCabinet"> | string
     distance?: StringWithAggregatesFilter<"MajorCabinet"> | string
     status?: EnumStatusWithAggregatesFilter<"MajorCabinet"> | $Enums.Status
-    responsible?: StringNullableWithAggregatesFilter<"MajorCabinet"> | string | null
+    responsible?: StringWithAggregatesFilter<"MajorCabinet"> | string
     notes?: StringWithAggregatesFilter<"MajorCabinet"> | string
     createdAt?: DateTimeWithAggregatesFilter<"MajorCabinet"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"MajorCabinet"> | Date | string
@@ -10131,7 +11368,7 @@ export namespace Prisma {
     cabinet_location?: StringFilter<"SecondaryCabinet"> | string
     box_location?: StringFilter<"SecondaryCabinet"> | string
     cabinet_to_box_distance?: StringFilter<"SecondaryCabinet"> | string
-    responsible?: StringNullableFilter<"SecondaryCabinet"> | string | null
+    responsible?: StringFilter<"SecondaryCabinet"> | string
     status?: EnumStatusFilter<"SecondaryCabinet"> | $Enums.Status
     notes?: StringNullableFilter<"SecondaryCabinet"> | string | null
     createdAt?: DateTimeFilter<"SecondaryCabinet"> | Date | string
@@ -10151,7 +11388,7 @@ export namespace Prisma {
     cabinet_location?: SortOrder
     box_location?: SortOrder
     cabinet_to_box_distance?: SortOrder
-    responsible?: SortOrderInput | SortOrder
+    responsible?: SortOrder
     status?: SortOrder
     notes?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -10174,7 +11411,7 @@ export namespace Prisma {
     cabinet_location?: StringFilter<"SecondaryCabinet"> | string
     box_location?: StringFilter<"SecondaryCabinet"> | string
     cabinet_to_box_distance?: StringFilter<"SecondaryCabinet"> | string
-    responsible?: StringNullableFilter<"SecondaryCabinet"> | string | null
+    responsible?: StringFilter<"SecondaryCabinet"> | string
     status?: EnumStatusFilter<"SecondaryCabinet"> | $Enums.Status
     notes?: StringNullableFilter<"SecondaryCabinet"> | string | null
     createdAt?: DateTimeFilter<"SecondaryCabinet"> | Date | string
@@ -10194,7 +11431,7 @@ export namespace Prisma {
     cabinet_location?: SortOrder
     box_location?: SortOrder
     cabinet_to_box_distance?: SortOrder
-    responsible?: SortOrderInput | SortOrder
+    responsible?: SortOrder
     status?: SortOrder
     notes?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -10220,7 +11457,7 @@ export namespace Prisma {
     cabinet_location?: StringWithAggregatesFilter<"SecondaryCabinet"> | string
     box_location?: StringWithAggregatesFilter<"SecondaryCabinet"> | string
     cabinet_to_box_distance?: StringWithAggregatesFilter<"SecondaryCabinet"> | string
-    responsible?: StringNullableWithAggregatesFilter<"SecondaryCabinet"> | string | null
+    responsible?: StringWithAggregatesFilter<"SecondaryCabinet"> | string
     status?: EnumStatusWithAggregatesFilter<"SecondaryCabinet"> | $Enums.Status
     notes?: StringNullableWithAggregatesFilter<"SecondaryCabinet"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"SecondaryCabinet"> | Date | string
@@ -10240,7 +11477,7 @@ export namespace Prisma {
     distance?: StringFilter<"MobileTower"> | string
     address?: StringFilter<"MobileTower"> | string
     location?: StringFilter<"MobileTower"> | string
-    responsible?: StringNullableFilter<"MobileTower"> | string | null
+    responsible?: StringFilter<"MobileTower"> | string
     status?: EnumStatusFilter<"MobileTower"> | $Enums.Status
     notes?: StringNullableFilter<"MobileTower"> | string | null
     createdAt?: DateTimeFilter<"MobileTower"> | Date | string
@@ -10257,7 +11494,7 @@ export namespace Prisma {
     distance?: SortOrder
     address?: SortOrder
     location?: SortOrder
-    responsible?: SortOrderInput | SortOrder
+    responsible?: SortOrder
     status?: SortOrder
     notes?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -10277,7 +11514,7 @@ export namespace Prisma {
     distance?: StringFilter<"MobileTower"> | string
     address?: StringFilter<"MobileTower"> | string
     location?: StringFilter<"MobileTower"> | string
-    responsible?: StringNullableFilter<"MobileTower"> | string | null
+    responsible?: StringFilter<"MobileTower"> | string
     status?: EnumStatusFilter<"MobileTower"> | $Enums.Status
     notes?: StringNullableFilter<"MobileTower"> | string | null
     createdAt?: DateTimeFilter<"MobileTower"> | Date | string
@@ -10294,7 +11531,7 @@ export namespace Prisma {
     distance?: SortOrder
     address?: SortOrder
     location?: SortOrder
-    responsible?: SortOrderInput | SortOrder
+    responsible?: SortOrder
     status?: SortOrder
     notes?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -10317,7 +11554,7 @@ export namespace Prisma {
     distance?: StringWithAggregatesFilter<"MobileTower"> | string
     address?: StringWithAggregatesFilter<"MobileTower"> | string
     location?: StringWithAggregatesFilter<"MobileTower"> | string
-    responsible?: StringNullableWithAggregatesFilter<"MobileTower"> | string | null
+    responsible?: StringWithAggregatesFilter<"MobileTower"> | string
     status?: EnumStatusWithAggregatesFilter<"MobileTower"> | $Enums.Status
     notes?: StringNullableWithAggregatesFilter<"MobileTower"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"MobileTower"> | Date | string
@@ -10344,7 +11581,7 @@ export namespace Prisma {
     joint_depth?: StringFilter<"CopperLine"> | string
     room_location?: StringFilter<"CopperLine"> | string
     insulation_level?: StringFilter<"CopperLine"> | string
-    responsible?: StringNullableFilter<"CopperLine"> | string | null
+    responsible?: StringFilter<"CopperLine"> | string
     status?: EnumStatusFilter<"CopperLine"> | $Enums.Status
     notes?: StringNullableFilter<"CopperLine"> | string | null
     createdAt?: DateTimeFilter<"CopperLine"> | Date | string
@@ -10368,7 +11605,7 @@ export namespace Prisma {
     joint_depth?: SortOrder
     room_location?: SortOrder
     insulation_level?: SortOrder
-    responsible?: SortOrderInput | SortOrder
+    responsible?: SortOrder
     status?: SortOrder
     notes?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -10395,7 +11632,7 @@ export namespace Prisma {
     joint_depth?: StringFilter<"CopperLine"> | string
     room_location?: StringFilter<"CopperLine"> | string
     insulation_level?: StringFilter<"CopperLine"> | string
-    responsible?: StringNullableFilter<"CopperLine"> | string | null
+    responsible?: StringFilter<"CopperLine"> | string
     status?: EnumStatusFilter<"CopperLine"> | $Enums.Status
     notes?: StringNullableFilter<"CopperLine"> | string | null
     createdAt?: DateTimeFilter<"CopperLine"> | Date | string
@@ -10419,7 +11656,7 @@ export namespace Prisma {
     joint_depth?: SortOrder
     room_location?: SortOrder
     insulation_level?: SortOrder
-    responsible?: SortOrderInput | SortOrder
+    responsible?: SortOrder
     status?: SortOrder
     notes?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -10449,11 +11686,113 @@ export namespace Prisma {
     joint_depth?: StringWithAggregatesFilter<"CopperLine"> | string
     room_location?: StringWithAggregatesFilter<"CopperLine"> | string
     insulation_level?: StringWithAggregatesFilter<"CopperLine"> | string
-    responsible?: StringNullableWithAggregatesFilter<"CopperLine"> | string | null
+    responsible?: StringWithAggregatesFilter<"CopperLine"> | string
     status?: EnumStatusWithAggregatesFilter<"CopperLine"> | $Enums.Status
     notes?: StringNullableWithAggregatesFilter<"CopperLine"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"CopperLine"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"CopperLine"> | Date | string
+  }
+
+  export type MsanCabinetWhereInput = {
+    AND?: MsanCabinetWhereInput | MsanCabinetWhereInput[]
+    OR?: MsanCabinetWhereInput[]
+    NOT?: MsanCabinetWhereInput | MsanCabinetWhereInput[]
+    id?: StringFilter<"MsanCabinet"> | string
+    cabinet_name?: StringFilter<"MsanCabinet"> | string
+    cable_number?: StringFilter<"MsanCabinet"> | string
+    cable_capacity?: StringFilter<"MsanCabinet"> | string
+    distance_from_central?: StringFilter<"MsanCabinet"> | string
+    odf_name?: StringFilter<"MsanCabinet"> | string
+    cassette_number?: StringFilter<"MsanCabinet"> | string
+    branches?: StringFilter<"MsanCabinet"> | string
+    spares?: StringFilter<"MsanCabinet"> | string
+    cabinet_location?: StringFilter<"MsanCabinet"> | string
+    notes?: StringNullableFilter<"MsanCabinet"> | string | null
+    responsible?: StringFilter<"MsanCabinet"> | string
+    status?: EnumStatusFilter<"MsanCabinet"> | $Enums.Status
+    createdAt?: DateTimeFilter<"MsanCabinet"> | Date | string
+    updatedAt?: DateTimeFilter<"MsanCabinet"> | Date | string
+  }
+
+  export type MsanCabinetOrderByWithRelationInput = {
+    id?: SortOrder
+    cabinet_name?: SortOrder
+    cable_number?: SortOrder
+    cable_capacity?: SortOrder
+    distance_from_central?: SortOrder
+    odf_name?: SortOrder
+    cassette_number?: SortOrder
+    branches?: SortOrder
+    spares?: SortOrder
+    cabinet_location?: SortOrder
+    notes?: SortOrderInput | SortOrder
+    responsible?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MsanCabinetWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: MsanCabinetWhereInput | MsanCabinetWhereInput[]
+    OR?: MsanCabinetWhereInput[]
+    NOT?: MsanCabinetWhereInput | MsanCabinetWhereInput[]
+    cabinet_name?: StringFilter<"MsanCabinet"> | string
+    cable_number?: StringFilter<"MsanCabinet"> | string
+    cable_capacity?: StringFilter<"MsanCabinet"> | string
+    distance_from_central?: StringFilter<"MsanCabinet"> | string
+    odf_name?: StringFilter<"MsanCabinet"> | string
+    cassette_number?: StringFilter<"MsanCabinet"> | string
+    branches?: StringFilter<"MsanCabinet"> | string
+    spares?: StringFilter<"MsanCabinet"> | string
+    cabinet_location?: StringFilter<"MsanCabinet"> | string
+    notes?: StringNullableFilter<"MsanCabinet"> | string | null
+    responsible?: StringFilter<"MsanCabinet"> | string
+    status?: EnumStatusFilter<"MsanCabinet"> | $Enums.Status
+    createdAt?: DateTimeFilter<"MsanCabinet"> | Date | string
+    updatedAt?: DateTimeFilter<"MsanCabinet"> | Date | string
+  }, "id">
+
+  export type MsanCabinetOrderByWithAggregationInput = {
+    id?: SortOrder
+    cabinet_name?: SortOrder
+    cable_number?: SortOrder
+    cable_capacity?: SortOrder
+    distance_from_central?: SortOrder
+    odf_name?: SortOrder
+    cassette_number?: SortOrder
+    branches?: SortOrder
+    spares?: SortOrder
+    cabinet_location?: SortOrder
+    notes?: SortOrderInput | SortOrder
+    responsible?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: MsanCabinetCountOrderByAggregateInput
+    _max?: MsanCabinetMaxOrderByAggregateInput
+    _min?: MsanCabinetMinOrderByAggregateInput
+  }
+
+  export type MsanCabinetScalarWhereWithAggregatesInput = {
+    AND?: MsanCabinetScalarWhereWithAggregatesInput | MsanCabinetScalarWhereWithAggregatesInput[]
+    OR?: MsanCabinetScalarWhereWithAggregatesInput[]
+    NOT?: MsanCabinetScalarWhereWithAggregatesInput | MsanCabinetScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"MsanCabinet"> | string
+    cabinet_name?: StringWithAggregatesFilter<"MsanCabinet"> | string
+    cable_number?: StringWithAggregatesFilter<"MsanCabinet"> | string
+    cable_capacity?: StringWithAggregatesFilter<"MsanCabinet"> | string
+    distance_from_central?: StringWithAggregatesFilter<"MsanCabinet"> | string
+    odf_name?: StringWithAggregatesFilter<"MsanCabinet"> | string
+    cassette_number?: StringWithAggregatesFilter<"MsanCabinet"> | string
+    branches?: StringWithAggregatesFilter<"MsanCabinet"> | string
+    spares?: StringWithAggregatesFilter<"MsanCabinet"> | string
+    cabinet_location?: StringWithAggregatesFilter<"MsanCabinet"> | string
+    notes?: StringNullableWithAggregatesFilter<"MsanCabinet"> | string | null
+    responsible?: StringWithAggregatesFilter<"MsanCabinet"> | string
+    status?: EnumStatusWithAggregatesFilter<"MsanCabinet"> | $Enums.Status
+    createdAt?: DateTimeWithAggregatesFilter<"MsanCabinet"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"MsanCabinet"> | Date | string
   }
 
   export type UserCreateInput = {
@@ -10720,7 +12059,7 @@ export namespace Prisma {
     entitlement: string
     distance: string
     status: $Enums.Status
-    responsible?: string | null
+    responsible: string
     notes: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -10739,7 +12078,7 @@ export namespace Prisma {
     entitlement: string
     distance: string
     status: $Enums.Status
-    responsible?: string | null
+    responsible: string
     notes: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -10758,7 +12097,7 @@ export namespace Prisma {
     entitlement?: StringFieldUpdateOperationsInput | string
     distance?: StringFieldUpdateOperationsInput | string
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
-    responsible?: NullableStringFieldUpdateOperationsInput | string | null
+    responsible?: StringFieldUpdateOperationsInput | string
     notes?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10777,7 +12116,7 @@ export namespace Prisma {
     entitlement?: StringFieldUpdateOperationsInput | string
     distance?: StringFieldUpdateOperationsInput | string
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
-    responsible?: NullableStringFieldUpdateOperationsInput | string | null
+    responsible?: StringFieldUpdateOperationsInput | string
     notes?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10796,7 +12135,7 @@ export namespace Prisma {
     entitlement: string
     distance: string
     status: $Enums.Status
-    responsible?: string | null
+    responsible: string
     notes: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -10815,7 +12154,7 @@ export namespace Prisma {
     entitlement?: StringFieldUpdateOperationsInput | string
     distance?: StringFieldUpdateOperationsInput | string
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
-    responsible?: NullableStringFieldUpdateOperationsInput | string | null
+    responsible?: StringFieldUpdateOperationsInput | string
     notes?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10834,7 +12173,7 @@ export namespace Prisma {
     entitlement?: StringFieldUpdateOperationsInput | string
     distance?: StringFieldUpdateOperationsInput | string
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
-    responsible?: NullableStringFieldUpdateOperationsInput | string | null
+    responsible?: StringFieldUpdateOperationsInput | string
     notes?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10853,7 +12192,7 @@ export namespace Prisma {
     cabinet_location: string
     box_location: string
     cabinet_to_box_distance: string
-    responsible?: string | null
+    responsible: string
     status: $Enums.Status
     notes?: string | null
     createdAt?: Date | string
@@ -10873,7 +12212,7 @@ export namespace Prisma {
     cabinet_location: string
     box_location: string
     cabinet_to_box_distance: string
-    responsible?: string | null
+    responsible: string
     status: $Enums.Status
     notes?: string | null
     createdAt?: Date | string
@@ -10893,7 +12232,7 @@ export namespace Prisma {
     cabinet_location?: StringFieldUpdateOperationsInput | string
     box_location?: StringFieldUpdateOperationsInput | string
     cabinet_to_box_distance?: StringFieldUpdateOperationsInput | string
-    responsible?: NullableStringFieldUpdateOperationsInput | string | null
+    responsible?: StringFieldUpdateOperationsInput | string
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10913,7 +12252,7 @@ export namespace Prisma {
     cabinet_location?: StringFieldUpdateOperationsInput | string
     box_location?: StringFieldUpdateOperationsInput | string
     cabinet_to_box_distance?: StringFieldUpdateOperationsInput | string
-    responsible?: NullableStringFieldUpdateOperationsInput | string | null
+    responsible?: StringFieldUpdateOperationsInput | string
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10933,7 +12272,7 @@ export namespace Prisma {
     cabinet_location: string
     box_location: string
     cabinet_to_box_distance: string
-    responsible?: string | null
+    responsible: string
     status: $Enums.Status
     notes?: string | null
     createdAt?: Date | string
@@ -10953,7 +12292,7 @@ export namespace Prisma {
     cabinet_location?: StringFieldUpdateOperationsInput | string
     box_location?: StringFieldUpdateOperationsInput | string
     cabinet_to_box_distance?: StringFieldUpdateOperationsInput | string
-    responsible?: NullableStringFieldUpdateOperationsInput | string | null
+    responsible?: StringFieldUpdateOperationsInput | string
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10973,7 +12312,7 @@ export namespace Prisma {
     cabinet_location?: StringFieldUpdateOperationsInput | string
     box_location?: StringFieldUpdateOperationsInput | string
     cabinet_to_box_distance?: StringFieldUpdateOperationsInput | string
-    responsible?: NullableStringFieldUpdateOperationsInput | string | null
+    responsible?: StringFieldUpdateOperationsInput | string
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10990,7 +12329,7 @@ export namespace Prisma {
     distance: string
     address: string
     location: string
-    responsible?: string | null
+    responsible: string
     status: $Enums.Status
     notes?: string | null
     createdAt?: Date | string
@@ -11007,7 +12346,7 @@ export namespace Prisma {
     distance: string
     address: string
     location: string
-    responsible?: string | null
+    responsible: string
     status: $Enums.Status
     notes?: string | null
     createdAt?: Date | string
@@ -11024,7 +12363,7 @@ export namespace Prisma {
     distance?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
     location?: StringFieldUpdateOperationsInput | string
-    responsible?: NullableStringFieldUpdateOperationsInput | string | null
+    responsible?: StringFieldUpdateOperationsInput | string
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11041,7 +12380,7 @@ export namespace Prisma {
     distance?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
     location?: StringFieldUpdateOperationsInput | string
-    responsible?: NullableStringFieldUpdateOperationsInput | string | null
+    responsible?: StringFieldUpdateOperationsInput | string
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11058,7 +12397,7 @@ export namespace Prisma {
     distance: string
     address: string
     location: string
-    responsible?: string | null
+    responsible: string
     status: $Enums.Status
     notes?: string | null
     createdAt?: Date | string
@@ -11075,7 +12414,7 @@ export namespace Prisma {
     distance?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
     location?: StringFieldUpdateOperationsInput | string
-    responsible?: NullableStringFieldUpdateOperationsInput | string | null
+    responsible?: StringFieldUpdateOperationsInput | string
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11092,7 +12431,7 @@ export namespace Prisma {
     distance?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
     location?: StringFieldUpdateOperationsInput | string
-    responsible?: NullableStringFieldUpdateOperationsInput | string | null
+    responsible?: StringFieldUpdateOperationsInput | string
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11116,7 +12455,7 @@ export namespace Prisma {
     joint_depth: string
     room_location: string
     insulation_level: string
-    responsible?: string | null
+    responsible: string
     status: $Enums.Status
     notes?: string | null
     createdAt?: Date | string
@@ -11140,7 +12479,7 @@ export namespace Prisma {
     joint_depth: string
     room_location: string
     insulation_level: string
-    responsible?: string | null
+    responsible: string
     status: $Enums.Status
     notes?: string | null
     createdAt?: Date | string
@@ -11164,7 +12503,7 @@ export namespace Prisma {
     joint_depth?: StringFieldUpdateOperationsInput | string
     room_location?: StringFieldUpdateOperationsInput | string
     insulation_level?: StringFieldUpdateOperationsInput | string
-    responsible?: NullableStringFieldUpdateOperationsInput | string | null
+    responsible?: StringFieldUpdateOperationsInput | string
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11188,7 +12527,7 @@ export namespace Prisma {
     joint_depth?: StringFieldUpdateOperationsInput | string
     room_location?: StringFieldUpdateOperationsInput | string
     insulation_level?: StringFieldUpdateOperationsInput | string
-    responsible?: NullableStringFieldUpdateOperationsInput | string | null
+    responsible?: StringFieldUpdateOperationsInput | string
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11212,7 +12551,7 @@ export namespace Prisma {
     joint_depth: string
     room_location: string
     insulation_level: string
-    responsible?: string | null
+    responsible: string
     status: $Enums.Status
     notes?: string | null
     createdAt?: Date | string
@@ -11236,7 +12575,7 @@ export namespace Prisma {
     joint_depth?: StringFieldUpdateOperationsInput | string
     room_location?: StringFieldUpdateOperationsInput | string
     insulation_level?: StringFieldUpdateOperationsInput | string
-    responsible?: NullableStringFieldUpdateOperationsInput | string | null
+    responsible?: StringFieldUpdateOperationsInput | string
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11260,9 +12599,135 @@ export namespace Prisma {
     joint_depth?: StringFieldUpdateOperationsInput | string
     room_location?: StringFieldUpdateOperationsInput | string
     insulation_level?: StringFieldUpdateOperationsInput | string
-    responsible?: NullableStringFieldUpdateOperationsInput | string | null
+    responsible?: StringFieldUpdateOperationsInput | string
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MsanCabinetCreateInput = {
+    id?: string
+    cabinet_name: string
+    cable_number: string
+    cable_capacity: string
+    distance_from_central: string
+    odf_name: string
+    cassette_number: string
+    branches: string
+    spares: string
+    cabinet_location: string
+    notes?: string | null
+    responsible: string
+    status?: $Enums.Status
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MsanCabinetUncheckedCreateInput = {
+    id?: string
+    cabinet_name: string
+    cable_number: string
+    cable_capacity: string
+    distance_from_central: string
+    odf_name: string
+    cassette_number: string
+    branches: string
+    spares: string
+    cabinet_location: string
+    notes?: string | null
+    responsible: string
+    status?: $Enums.Status
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MsanCabinetUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    cabinet_name?: StringFieldUpdateOperationsInput | string
+    cable_number?: StringFieldUpdateOperationsInput | string
+    cable_capacity?: StringFieldUpdateOperationsInput | string
+    distance_from_central?: StringFieldUpdateOperationsInput | string
+    odf_name?: StringFieldUpdateOperationsInput | string
+    cassette_number?: StringFieldUpdateOperationsInput | string
+    branches?: StringFieldUpdateOperationsInput | string
+    spares?: StringFieldUpdateOperationsInput | string
+    cabinet_location?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    responsible?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MsanCabinetUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    cabinet_name?: StringFieldUpdateOperationsInput | string
+    cable_number?: StringFieldUpdateOperationsInput | string
+    cable_capacity?: StringFieldUpdateOperationsInput | string
+    distance_from_central?: StringFieldUpdateOperationsInput | string
+    odf_name?: StringFieldUpdateOperationsInput | string
+    cassette_number?: StringFieldUpdateOperationsInput | string
+    branches?: StringFieldUpdateOperationsInput | string
+    spares?: StringFieldUpdateOperationsInput | string
+    cabinet_location?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    responsible?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MsanCabinetCreateManyInput = {
+    id?: string
+    cabinet_name: string
+    cable_number: string
+    cable_capacity: string
+    distance_from_central: string
+    odf_name: string
+    cassette_number: string
+    branches: string
+    spares: string
+    cabinet_location: string
+    notes?: string | null
+    responsible: string
+    status?: $Enums.Status
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MsanCabinetUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    cabinet_name?: StringFieldUpdateOperationsInput | string
+    cable_number?: StringFieldUpdateOperationsInput | string
+    cable_capacity?: StringFieldUpdateOperationsInput | string
+    distance_from_central?: StringFieldUpdateOperationsInput | string
+    odf_name?: StringFieldUpdateOperationsInput | string
+    cassette_number?: StringFieldUpdateOperationsInput | string
+    branches?: StringFieldUpdateOperationsInput | string
+    spares?: StringFieldUpdateOperationsInput | string
+    cabinet_location?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    responsible?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MsanCabinetUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    cabinet_name?: StringFieldUpdateOperationsInput | string
+    cable_number?: StringFieldUpdateOperationsInput | string
+    cable_capacity?: StringFieldUpdateOperationsInput | string
+    distance_from_central?: StringFieldUpdateOperationsInput | string
+    odf_name?: StringFieldUpdateOperationsInput | string
+    cassette_number?: StringFieldUpdateOperationsInput | string
+    branches?: StringFieldUpdateOperationsInput | string
+    spares?: StringFieldUpdateOperationsInput | string
+    cabinet_location?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    responsible?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -11838,6 +13303,60 @@ export namespace Prisma {
     responsible?: SortOrder
     status?: SortOrder
     notes?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MsanCabinetCountOrderByAggregateInput = {
+    id?: SortOrder
+    cabinet_name?: SortOrder
+    cable_number?: SortOrder
+    cable_capacity?: SortOrder
+    distance_from_central?: SortOrder
+    odf_name?: SortOrder
+    cassette_number?: SortOrder
+    branches?: SortOrder
+    spares?: SortOrder
+    cabinet_location?: SortOrder
+    notes?: SortOrder
+    responsible?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MsanCabinetMaxOrderByAggregateInput = {
+    id?: SortOrder
+    cabinet_name?: SortOrder
+    cable_number?: SortOrder
+    cable_capacity?: SortOrder
+    distance_from_central?: SortOrder
+    odf_name?: SortOrder
+    cassette_number?: SortOrder
+    branches?: SortOrder
+    spares?: SortOrder
+    cabinet_location?: SortOrder
+    notes?: SortOrder
+    responsible?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MsanCabinetMinOrderByAggregateInput = {
+    id?: SortOrder
+    cabinet_name?: SortOrder
+    cable_number?: SortOrder
+    cable_capacity?: SortOrder
+    distance_from_central?: SortOrder
+    odf_name?: SortOrder
+    cassette_number?: SortOrder
+    branches?: SortOrder
+    spares?: SortOrder
+    cabinet_location?: SortOrder
+    notes?: SortOrder
+    responsible?: SortOrder
+    status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }

@@ -9,7 +9,6 @@ import {
   LineMdLoadingLoop,
   TrashIcon,
 } from "@/app/icons/Icons";
-import { useSession } from "next-auth/react";
 import { entityNameArToEn } from "@/lib/utils";
 import { usePermission } from "@/app/hooks/RBAC";
 
@@ -38,8 +37,7 @@ export default function DataTableWrapper({
   entityName = "item",
   modalTexts = {},
 }) {
-  const { hasPermission } = usePermission();
-  const { data: session } = useSession();
+  const { hasPermission, role } = usePermission();
   const { fetchData, createItem, updateItem, deleteItem } = apiHandlers;
   // State for data, loading, modal, selected item, etc.
 
@@ -125,7 +123,7 @@ export default function DataTableWrapper({
     // Remove the following if you need to refetch after updating/adding
     return;
 
-    if (session?.user?.role === "USER") {
+    if (role === "USER") {
       return;
     }
 
@@ -159,7 +157,7 @@ export default function DataTableWrapper({
         result = await createItem(formData);
       }
       if (result.success) {
-        // if (session?.user.role !== "USER") {
+        // if (role !== "USER") {
         //   setData((prevData) => {
         //     if (selectedItem) {
         //       return prevData.map((item) =>
@@ -174,7 +172,7 @@ export default function DataTableWrapper({
 
         // Display different success messages based on user role
         const successMessage =
-          session?.user?.role === "USER"
+          role === "USER"
             ? `تم التحويل للمراجعة`
             : `تم ${selectedItem ? "تعديل" : "إضافة"} ${entityName} بنجاح`;
 
@@ -415,7 +413,7 @@ export default function DataTableWrapper({
       <Modal
         isOpen={isCustomModalOpen}
         onClose={handleCloseCustomModal}
-        title={session?.user?.role === "USER" ? "تعديل" : "تعديل/حذف"}
+        title={role === "USER" ? "تعديل" : "تعديل/حذف"}
       >
         <div className="flex flex-col space-y-4 p-6 relative min-w-[260px]">
           <div className="flex gap-3 justify-center">

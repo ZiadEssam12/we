@@ -1,5 +1,5 @@
 // get all users
-export async function getAllUsers({ headers, query="" }) {
+export async function getAllUsers({ headers, query = "" }) {
   return fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/users?query=${query}`, {
     method: "GET",
     headers: headers,
@@ -128,7 +128,7 @@ export async function deleteUser({ userId }) {
 // =================== Major Cabinet API Functions ===================
 
 // Get all major cabinets
-export async function getAllMajorCabinets({ headers, query="" } = {}) {
+export async function getAllMajorCabinets({ headers, query = "" } = {}) {
   // Added headers parameter
   const fetchOptions = {
     method: "GET",
@@ -700,7 +700,6 @@ export async function getMajorCabinetsRequests({ headers }) {
 
     const data = await response.json();
 
-
     if (!response.ok) {
       return {
         success: false,
@@ -734,7 +733,6 @@ export async function getSecondaryCabinetsRequests({ headers }) {
     );
 
     const data = await response.json();
-
 
     if (!response.ok) {
       return {
@@ -770,7 +768,6 @@ export async function getMobileTowersRequests({ headers }) {
 
     const data = await response.json();
 
-
     if (!response.ok) {
       return {
         success: false,
@@ -805,7 +802,6 @@ export async function getCopperLinesRequests({ headers }) {
 
     const data = await response.json();
 
-
     if (!response.ok) {
       return {
         success: false,
@@ -828,3 +824,156 @@ export async function getCopperLinesRequests({ headers }) {
     };
   }
 }
+
+// =================== MSAN Cabinet API Functions ===================
+
+// Get all MSAN cabinets
+export async function getAllMsanCabinets({ headers, query = "" } = {}) {
+  // Added headers parameter
+  const fetchOptions = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      ...(headers && headers), // Spread the passed headers
+    },
+  };
+
+  // Only add credentials if headers are not explicitly passed (for client-side calls)
+  if (!headers) {
+    fetchOptions.credentials = "include";
+  }
+
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_APP_URL}/api/msan-cabinets?query=${query}`,
+    fetchOptions
+  );
+  const data = await response.json();
+  if (!response.ok) {
+    return {
+      success: false,
+      message: data.message || "فشل في استرجاع كابينات MSAN",
+      error: data.error,
+    };
+  }
+  return data; // Returns { success: true, data: msanCabinets }
+}
+
+// Get a single MSAN cabinet by ID
+export async function getMsanCabinetById(id) {
+  // Changed to accept id directly
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_APP_URL}/api/msan-cabinets/${id}`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    }
+  );
+  const data = await response.json();
+  if (!response.ok) {
+    return {
+      success: false,
+      message: data.message || `فشل في استرجاع كابينة MSAN ${id}`,
+      error: data.error,
+    };
+  }
+  return data; // Returns { success: true, data: msanCabinet }
+}
+
+// Create a new MSAN cabinet
+export async function createMsanCabinet({ cabinetData }) {
+  // Changed to accept msanCabinetData directly
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_APP_URL}/api/msan-cabinets`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(cabinetData),
+      credentials: "include",
+    }
+  );
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    return {
+      success: false,
+      message: data.message || "فشل في إنشاء كابينة MSAN",
+      error: data.error,
+    };
+  }
+
+  return {
+    success: true,
+    message: "تم إنشاء كابينة MSAN بنجاح",
+    data: data.data, // API returns { success: true, message: ..., data: newMsanCabinet }
+  };
+}
+
+// Update an existing MSAN cabinet
+export async function updateMsanCabinet({ id, cabinetData }) {
+  // Changed to accept id and msanCabinetData
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_APP_URL}/api/msan-cabinets/${id}`,
+    {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(cabinetData),
+      credentials: "include",
+    }
+  );
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    return {
+      success: false,
+      message: data.message || "فشل في تحديث كابينة MSAN",
+      error: data.error,
+    };
+  }
+
+  return {
+    success: true,
+    message: "تم تحديث كابينة MSAN بنجاح",
+    data: data.data, // API returns { success: true, message: ..., data: updatedMsanCabinet }
+  };
+}
+
+// Delete a MSAN cabinet
+export async function deleteMsanCabinet({ id }) {
+  // Changed to accept id directly
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_APP_URL}/api/msan-cabinets/${id}`,
+    {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    }
+  );
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    return {
+      success: false,
+      message: data.message || "فشل في حذف كابينة MSAN",
+      error: data.error,
+    };
+  }
+
+  return {
+    success: true,
+    message: "تم حذف كابينة MSAN بنجاح",
+  };
+}
+
+// =================== Secondary Cabinet API Functions ===================

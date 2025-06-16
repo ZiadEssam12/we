@@ -56,6 +56,11 @@ const links = [
     link: "/dashboard/copper-lines",
     icon: MdOutlineCable,
   },
+  {
+    name: "كبائن MSAN",
+    link: "/dashboard/msan-cabinets",
+    icon: MdOutlineStorage,
+  },
 ];
 
 export default function Sidebar() {

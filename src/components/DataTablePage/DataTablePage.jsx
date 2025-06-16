@@ -95,6 +95,12 @@ export default async function DataTablePage({
     if (functionName.includes("Users") || functionString.includes("users"))
       return "users";
 
+    if (
+      functionName.includes("MsanCabinets") ||
+      functionString.includes("msancabinets")
+    )
+      return "msan-cabinets";
+
     // Fallback: if we couldn't determine from function, check if apiEndpoint is provided
     if (apiEndpoint) {
       if (apiEndpoint.includes("major-cabinets")) return "major-cabinets";
@@ -102,6 +108,7 @@ export default async function DataTablePage({
         return "secondary-cabinets";
       if (apiEndpoint.includes("mobile-towers")) return "mobile-towers";
       if (apiEndpoint.includes("copper-lines")) return "copper-lines";
+      if (apiEndpoint.includes("msan-cabinets")) return "msan-cabinets";
       if (apiEndpoint.includes("users")) return "users";
     }
 
@@ -110,6 +117,9 @@ export default async function DataTablePage({
 
   // Get module name for CSV export
   const moduleParam = getModuleFromFetchData(fetchData);
+
+  console.log("user role:", session?.user?.role);
+  console.log("moduleParam:", moduleParam);
 
   // Format title for file name (remove spaces, make lowercase)
   const fileName = title.replace(/\s+/g, "-").toLowerCase();

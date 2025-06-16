@@ -235,6 +235,24 @@ exports.Prisma.CopperLineScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.MsanCabinetScalarFieldEnum = {
+  id: 'id',
+  cabinet_name: 'cabinet_name',
+  cable_number: 'cable_number',
+  cable_capacity: 'cable_capacity',
+  distance_from_central: 'distance_from_central',
+  odf_name: 'odf_name',
+  cassette_number: 'cassette_number',
+  branches: 'branches',
+  spares: 'spares',
+  cabinet_location: 'cabinet_location',
+  notes: 'notes',
+  responsible: 'responsible',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -268,7 +286,8 @@ exports.Prisma.ModelName = {
   MajorCabinet: 'MajorCabinet',
   SecondaryCabinet: 'SecondaryCabinet',
   MobileTower: 'MobileTower',
-  CopperLine: 'CopperLine'
+  CopperLine: 'CopperLine',
+  MsanCabinet: 'MsanCabinet'
 };
 
 /**

@@ -76,6 +76,13 @@ export const GET = auth(async function GET(req) {
           },
         });
         break;
+      case "msan-cabinets":
+        data = await prisma.msanCabinet.findMany({
+          orderBy: {
+            createdAt: "desc",
+          },
+        });
+        break;
       case "users":
         // For users, only return necessary fields (exclude passwords)
         data = await prisma.user.findMany({

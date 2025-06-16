@@ -66,7 +66,7 @@ model Session {
 }
 
 model MajorCabinet {
-  id                          String  @id @default(cuid())
+  id                          String @id @default(cuid())
   central                     String
   village                     String
   cabinet                     String
@@ -78,8 +78,8 @@ model MajorCabinet {
   entitlement                 String
   distance                    String
   status                      Status
-  responsible                 String? // Optional field
-  notes                       String  @db.Text
+  responsible                 String
+  notes                       String @db.Text
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -89,7 +89,7 @@ model MajorCabinet {
 }
 
 model SecondaryCabinet {
-  id                      String  @id @default(cuid())
+  id                      String @id @default(cuid())
   central                 String
   village                 String
   port_gbon               String
@@ -101,7 +101,7 @@ model SecondaryCabinet {
   cabinet_location        String
   box_location            String
   cabinet_to_box_distance String
-  responsible             String?
+  responsible             String
   status                  Status
 
   notes String? @db.Text
@@ -115,7 +115,7 @@ model SecondaryCabinet {
 }
 
 model MobileTower {
-  id          String  @id @default(cuid())
+  id          String @id @default(cuid())
   central     String
   cable_name  String
   tower_code  String
@@ -124,7 +124,7 @@ model MobileTower {
   distance    String
   address     String
   location    String // Stores "lat,lng" pairs
-  responsible String?
+  responsible String
   status      Status
 
   notes String? @db.Text
@@ -138,7 +138,7 @@ model MobileTower {
 }
 
 model CopperLine {
-  id                String  @id @default(cuid())
+  id                String @id @default(cuid())
   landline_number   String
   central           String
   village           String
@@ -154,7 +154,7 @@ model CopperLine {
   joint_depth       String
   room_location     String
   insulation_level  String
-  responsible       String?
+  responsible       String
   status            Status
 
   notes String? @db.Text
@@ -166,4 +166,29 @@ model CopperLine {
   @@index([central])
   @@index([village])
   @@index([cabinet_number])
+}
+
+// ...existing code...
+
+model MsanCabinet {
+  id                    String  @id @default(cuid())
+  cabinet_name          String
+  cable_number          String
+  cable_capacity        String
+  distance_from_central String
+  odf_name              String
+  cassette_number       String
+  branches              String
+  spares                String
+  cabinet_location      String // Stores "lat,lng" pairs
+  notes                 String? @db.Text
+  responsible           String
+  status                Status  @default(ACTIVE)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([cabinet_name])
+  @@index([cable_number])
+  @@index([odf_name])
 }

@@ -21,6 +21,11 @@ import {
   createMajorCabinet as createMajor,
   updateMajorCabinet as updateMajor,
   deleteMajorCabinet as deleteMajor,
+  getAllMsanCabinets as getMsanCabinets,
+  getMsanCabinetById,
+  createMsanCabinet as createMsan,
+  updateMsanCabinet as updateMsan,
+  deleteMsanCabinet as deleteMsan,
   getAllUsers as getUsers,
   createUser as createUserBase,
   updateUser as updateUserBase,
@@ -94,6 +99,23 @@ export const updateMajorCabinet = async ({ id, ...data }) => {
 
 export const deleteMajorCabinet = async ({ id }) => {
   return await deleteMajor({ id });
+};
+
+// MSAN Cabinet client wrappers
+export const getAllMsanCabinets = async ({ query }) => {
+  return await getMsanCabinets({ query });
+};
+
+export const createMsanCabinet = async (data) => {
+  return await createMsan({ cabinetData: data });
+};
+
+export const updateMsanCabinet = async ({ id, ...data }) => {
+  return await updateMsan({ id, cabinetData: data });
+};
+
+export const deleteMsanCabinet = async ({ id }) => {
+  return await deleteMsan({ id });
 };
 
 // User client wrappers

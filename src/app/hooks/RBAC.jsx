@@ -9,6 +9,8 @@ import { useSession } from "next-auth/react";
 export function usePermission() {
   const { data: session } = useSession();
 
+  console.log("Session data:", session);
+
   const role = session?.user?.role; // Default to USER if no role found
 
   /**
