@@ -66,9 +66,9 @@ export default function MsanCabinetForm({
       {renderTextInput("distance_from_central", "المسافة من السنترال")}
       {renderTextInput("odf_name", "اسم ODF")}
       {renderTextInput("cassette_number", "رقم الكاست")}
-      {renderTextInput("branches", "الفروع")}
-      {renderTextInput("spares", "الاحتياط")}
-      {renderTextInput("cabinet_location", "موقع الكابينة (lat,lng)")}
+      {renderTextInput("branches", "ارقام الفرعات")}
+      {renderTextInput("spares", "ارقام الاسبير")}
+      {renderTextInput("cabinet_location", "موقع الكابينة")}
       {renderTextInput("responsible", "المسؤول")}
       <div className="col-span-1 md:col-span-2 lg:col-span-3">
         <Label

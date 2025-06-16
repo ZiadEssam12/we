@@ -18,8 +18,8 @@ export const msanCabinetColumns = [
     accessorKey: "cassette_number",
     enableSearch: true,
   },
-  { header: "الفروع", accessorKey: "branches", enableSearch: true },
-  { header: "الاحتياط", accessorKey: "spares", enableSearch: true },
+  { header: "ارقام الفرعات", accessorKey: "branches", enableSearch: true },
+  { header: "ارقام الاسبير", accessorKey: "spares", enableSearch: true },
   {
     header: "موقع الكابينة",
     accessorKey: "cabinet_location",
