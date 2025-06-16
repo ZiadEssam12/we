@@ -58,8 +58,13 @@ export default function MsanCabinetForm({
     </div>
   );
 
+  //   msan_number           String
+  // cabinet_name          String
+
   return (
     <form onSubmit={formik.handleSubmit} className={formStyle}>
+      {renderTextInput("central", "السنترال")}
+      {renderTextInput("msan_number", "رقم MSAN")}
       {renderTextInput("cabinet_name", "اسم الكابينة")}
       {renderTextInput("cable_number", "رقم الكابل")}
       {renderTextInput("cable_capacity", "سعة الكابل")}

@@ -172,6 +172,8 @@ model CopperLine {
 
 model MsanCabinet {
   id                    String   @id @default(cuid())
+  central               String
+  msan_number           String
   cabinet_name          String
   cable_number          String
   cable_capacity        String
