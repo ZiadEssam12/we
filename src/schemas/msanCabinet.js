@@ -26,10 +26,10 @@ export const msanCabinetSchema = Yup.object().shape({
   branches: Yup.string().required("الفروع مطلوبة"),
   spares: Yup.string().required("الاحتياط مطلوب"),
   cabinet_location: Yup.string()
-    .matches(
-      /^\d+\.\d+,\d+\.\d+$/,
-      "تنسيق موقع الكابينة غير صحيح (خط الطول,خط العرض)"
-    )
+    // .matches(
+    //   /^\d+\.\d+,\d+\.\d+$/,
+    //   "تنسيق موقع الكابينة غير صحيح (خط الطول,خط العرض)"
+    // )
     .required("موقع الكابينة مطلوب"),
   responsible: Yup.string().required("المسؤول مطلوب"),
   notes: Yup.string().optional(),
